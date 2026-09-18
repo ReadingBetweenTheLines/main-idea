@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TKA Blind Exam Arena — 10 Diagnostic Questions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Post-Answer Target Sentence Reveal */
+    .nav-revealed-target {
+      background-color: #fef08a !important;
+      border-left: 4px solid #ca8a04 !important;
+      padding-left: 6px !important;
+      font-weight: 600 !important;
+      box-shadow: 0 0 0 2px #eab308;
+      transition: all 0.4s ease;
+    }
+    .strikethrough-opt { text-decoration: line-through; opacity: 0.35; }
+    .passage-sentence { border-radius: 3px; padding: 1px 2px; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-950 text-white px-6 py-4 shadow-md flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs uppercase tracking-widest font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded">TKA Phase F</span>
+        <span class="text-xs text-slate-400 font-medium">Page 2: Blind Assessment Arena</span>
+      </div>
+      <h1 class="text-lg sm:text-xl font-bold mt-1">10-Question Diagnostic Assessment Battery</h1>
+    </div>
+
+    <!-- Page Switcher -->
+    <div class="flex items-center gap-2">
+      <a href="lab.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
+        ← Return to Strategy Lab
+      </a>
+      <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5">
+        <span>📝</span> Blind Exam (10 Qs)
+      </span>
+    </div>
+  </header>
+
+  <!-- Module Selector Bar -->
+  <nav class="bg-slate-900 border-b border-slate-800 px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Select Test Module:</span>
+      <button onclick="loadExamModule(0)" id="exam-tab-0" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow">
+        Passage A: Deep-Sea Mining (Q1–Q5)
+      </button>
+      <button onclick="loadExamModule(1)" id="exam-tab-1" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700">
+        Passage B: Algorithmic Grading (Q6–Q10)
+      </button>
+    </div>
+
+    <div id="exam-status-indicator" class="flex items-center gap-2 text-xs bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-slate-300 font-mono">
+      <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+      <span>Navigation Locked (Exam Mode)</span>
+    </div>
+  </nav>
+
+  <!-- Navigation Reveal Banner -->
+  <aside id="exam-protocol-banner" class="hidden bg-amber-950 text-amber-100 px-6 py-2.5 border-b border-amber-800 text-xs transition-all">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-amber-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Navigation Path Revealed</span>
+        <span id="exam-protocol-text" class="font-medium text-amber-200"></span>
+      </div>
+      <span class="text-amber-400 italic">Target anchor sentences are now color-highlighted in the text.</span>
+    </div>
+  </aside>
+
+  <!-- Exam Workspace -->
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    
+    <!-- Left Pane: Clean Unmarked Passage -->
+    <section class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+      <div class="border-b border-slate-100 pb-3 flex justify-between items-start">
+        <div>
+          <h2 id="exam-text-title" class="text-lg font-bold text-slate-900">Title</h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span id="exam-text-genre" class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Genre</span>
+            <span class="text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono">Blind Assessment</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="exam-passage-container" class="text-slate-700 text-[15px] leading-relaxed space-y-4 select-text"></div>
+    </section>
+
+    <!-- Right Pane: Blind Exercise Questions -->
+    <section class="lg:col-span-5 space-y-5">
+      <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 shadow-sm flex items-center justify-between">
+        <div>
+          <span class="font-bold text-slate-800 block">Assessment Mode</span>
+          <span>Answer each question. Navigation reveals upon verification.</span>
+        </div>
+        <span id="exam-module-progress" class="bg-slate-100 text-slate-700 font-mono font-bold px-2 py-1 rounded border">0/5 Completed</span>
+      </div>
+
+      <div id="exam-questions-container" class="space-y-6"></div>
+    </section>
+
+  </main>
+
+  <script>
+    const examDatabase = [
+      {
+        id: 0,
+        title: "The Ecological Perils of Deep-Sea Nodule Extraction",
+        genre: "Analytical Exposition",
+        protocol: "P1 Pivot ('However') reveals the thesis. Paragraphs 2 & 3 open with evidentiary arguments. P4 restates the core stance.",
+        htmlContent: `
+          <p id="a-p1">
+            <span class="passage-sentence s1">The accelerating global transition toward renewable energy and electric vehicles has sparked an unprecedented demand for battery metals such as cobalt, nickel, and manganese.</span>
+            <span class="passage-sentence s2">Mining corporations argue that vacuuming polymetallic nodules from the abyssal seabed offers a cleaner alternative to destructive terrestrial mining.</span>
+            <span class="passage-sentence s3" id="exam-target-s3">However, commercial deep-sea mining poses catastrophic, irreversible risks to fragile benthic ecosystems that must not be compromised for short-term industrial resources.</span>
+          </p>
+          <p id="a-p2">
+            <span class="passage-sentence s4 font-semibold text-slate-800" id="exam-target-s4">First, the physical removal of nodules permanently dismantles irreplaceable benthic biomes.</span>
+            <span class="passage-sentence s5">These mineral deposits take millions of years to precipitate and host specialized sessile sponges, octopuses, and microorganisms found nowhere else on the planet.</span>
+            <span class="passage-sentence s6" id="exam-target-s6">Laboratory sediment assays show that benthic tracks stripped by trial machinery decades ago remain completely devoid of life today, proving that deep abyssal habitats possess virtually zero regenerative capacity.</span>
+          </p>
+          <p id="a-p3">
+            <span class="passage-sentence s7 font-semibold text-slate-800" id="exam-target-s7">Second, high-volume extraction equipment generates massive underwater sediment plumes that choke the broader pelagic food web.</span>
+            <span class="passage-sentence s8">Discharged slurry drifts across hundreds of kilometers, blocking photosynthetic sunlight in upper layers and clogging the delicate feeding apparatuses of filter-feeding crustaceans and larval fish.</span>
+            <span class="passage-sentence s9">Furthermore, continuous industrial machinery introduces heavy acoustic vibrations into ocean zones that disorient migrating marine mammals.</span>
+          </p>
+          <p id="a-p4">
+            <span class="passage-sentence s10" id="exam-target-s10">In conclusion, extracting ocean floor minerals presents severe ecological fallout that far outweighs temporary metallurgical benefits.</span>
+            <span class="passage-sentence s11">International regulatory authorities must enforce a total moratorium on commercial seabed extraction before pristine abyssal plains are irreversibly degraded.</span>
+          </p>
+        `,
+        questions: [
+          {
+            id: 1,
+            stem: "1. What is the central thesis defended by the author in the passage?",
+            targetId: "exam-target-s3",
+            navHint: "Located in Sentence 3 (immediately following the 'However' pivot at the end of Paragraph 1).",
+            options: [
+              { id: "A", text: "Terrestrial mining practices are completely clean and should be expanded globally." },
+              { id: "B", text: "Deep-sea mining generates catastrophic environmental threats that justify a complete ban." },
+              { id: "C", text: "Electric vehicle manufacturers must stop using cobalt and nickel in commercial batteries." },
+              { id: "D", text: "Abyssal mineral extraction is the only viable method to power global green energy transitions." },
+              { id: "E", text: "Oceanic sponges and octopuses can easily relocate to upper coastal coral habitats." }
+            ],
+            answer: "B",
+            rationale: "Sentence 3 states the core thesis: deep-sea mining poses catastrophic, irreversible risks to fragile benthic ecosystems that must not be compromised."
+          },
+          {
+            id: 2,
+            stem: "2. Which statement from Paragraph 2 serves as a micro-claim backed by laboratory sediment evidence?",
+            targetId: "exam-target-s6",
+            navHint: "Located in Sentence 6 (inside the body of Paragraph 2, presenting research assay results).",
+            options: [
+              { id: "A", text: "Electric vehicles have significantly reduced the consumer cost of lithium batteries." },
+              { id: "B", text: "Abyssal seabeds possess virtually zero natural regenerative recovery capacity." },
+              { id: "C", text: "Mining corporations have developed zero-impact underwater collection harvesters." },
+              { id: "D", text: "Ocean nodules can be artificially cultured in chemical laboratories within days." },
+              { id: "E", text: "Commercial fisheries benefit from the disruption of underwater manganese fields." }
+            ],
+            answer: "B",
+            rationale: "Sentence 6 presents the claim backed by sediment assays: seabed areas stripped decades ago remain barren, showing that abyssal habitats possess virtually zero recovery capacity."
+          },
+          {
+            id: 3,
+            stem: "3. What direct consequence of deep-sea sediment plumes is identified in Paragraph 3?",
+            targetId: "exam-target-s7",
+            navHint: "Located in Sentences 7–8 (the topic sentence and causal elaboration of Paragraph 3).",
+            options: [
+              { id: "A", text: "They cause immediate freezing of equatorial surface water currents." },
+              { id: "B", text: "They permanently dissolve the structural hulls of oceanic shipping vessels." },
+              { id: "C", text: "They block sunlight and clog the feeding organs of marine filter-feeders." },
+              { id: "D", text: "They generate chemical reactions that accelerate global atmospheric carbon capture." },
+              { id: "E", text: "They convert microscopic marine larvae into apex carnivorous predators." }
+            ],
+            answer: "C",
+            rationale: "Sentence 8 states that discharged slurry drifts across hundreds of kilometers, blocking sunlight and clogging the delicate feeding filters of crustaceans and young fish."
+          },
+          {
+            id: 4,
+            stem: "4. The word 'precipitate' in Paragraph 2 most nearly means...",
+            targetId: "exam-target-s4",
+            navHint: "Context clue in Sentence 5: 'take millions of years to precipitate' (geological accumulation of mineral nodules).",
+            options: [
+              { id: "A", text: "Evaporate into air" },
+              { id: "B", text: "Gradually form from liquid" },
+              { id: "C", text: "Explode violently" },
+              { id: "D", text: "Decay into poison" },
+              { id: "E", text: "Melt under heat" }
+            ],
+            answer: "B",
+            rationale: "In chemistry and oceanography, mineral nodules precipitate by slowly accumulating and solidifying out of dissolved ocean water over millions of years."
+          },
+          {
+            id: 5,
+            stem: "5. What is the structural role of the final paragraph (Paragraph 4)?",
+            targetId: "exam-target-s10",
+            navHint: "Located in Sentences 10–11 (the concluding reiteration and policy mandate).",
+            options: [
+              { id: "A", text: "It introduces a brand-new economic theory regarding the pricing of manganese." },
+              { id: "B", text: "It restates the central argument and issues a strong call for a total mining moratorium." },
+              { id: "C", text: "It concedes that environmental damage is an acceptable sacrifice for industrial progress." },
+              { id: "D", text: "It provides a step-by-step engineering manual for repairing deep-sea collection tools." },
+              { id: "E", text: "It refutes the claim that marine mammals rely on acoustic signals for migration." }
+            ],
+            answer: "B",
+            rationale: "Paragraph 4 acts as the analytical conclusion/reiteration: it emphasizes that ecological damage outweighs metals and demands an international moratorium."
+          }
+        ]
+      },
+      {
+        id: 1,
+        title: "The Implementation of Automated Essay Scoring in Higher Education",
+        genre: "Discussion Text",
+        archetype: "Balanced Discursive (Pro vs. Con → Synthesis in P4)",
+        protocol: "Discussion texts do not declare a winner in P1. Check P2 for Efficiency/Speed (Pro), P3 for Nuance/Bias (Con), and P4 for Balanced Synthesis.",
+        htmlContent: `
+          <p id="b-p1">
+            <span class="passage-sentence s1">Large-scale educational testing institutions process millions of student written responses annually, placing immense strain on human instructional staff.</span>
+            <span class="passage-sentence s2" id="exam-target-b-s2">To address grading backlogs, numerous testing authorities have deployed Automated Essay Scoring (AES) engines driven by natural language processing algorithms.</span>
+            <span class="passage-sentence s3">Whether delegating academic evaluation to algorithmic software enhances instructional efficiency or compromises pedagogical fairness remains widely contested.</span>
+          </p>
+          <p id="b-p2">
+            <span class="passage-sentence s4 font-semibold text-slate-800" id="exam-target-b-s4">Supporters assert that automated scoring delivers unprecedented evaluation speed and eliminates human evaluator fatigue.</span>
+            <span class="passage-sentence s5">Unlike human teachers whose grading consistency often wavers after evaluating dozens of repetitive papers, machine engines apply standardized syntactic and structural benchmarks uniformly.</span>
+            <span class="passage-sentence s6" id="exam-target-b-s6">Furthermore, instant automated evaluation provides students with immediate corrective feedback, enabling iterative revision cycles that accelerate grammatical proficiency.</span>
+          </p>
+          <p id="b-p3">
+            <span class="passage-sentence s7 font-semibold text-slate-800" id="exam-target-b-s7">Conversely, educational critics contend that automated engines reward superficial stylistic metrics while remaining blind to genuine human intellectual depth.</span>
+            <span class="passage-sentence s8">Current language models grade essays by evaluating surface proxies—such as paragraph length, varied vocabulary, and complex connector frequency—rather than actual conceptual insight.</span>
+            <span class="passage-sentence s9">Consequently, students learn to 'game the algorithm' by inserting sophisticated vocabulary and formulaic templates into essays that lack logical coherence.</span>
+          </p>
+          <p id="b-p4">
+            <span class="passage-sentence s10" id="exam-target-b-s10">Ultimately, automated grading provides indispensable operational utility for high-volume diagnostic screening, yet falls short of evaluating authentic creative and critical thought.</span>
+            <span class="passage-sentence s11">Institutions should implement hybrid evaluation systems that combine automated speed for low-stakes drills with human assessment for holistic intellectual work.</span>
+          </p>
+        `,
+        questions: [
+          {
+            id: 6,
+            stem: "6. What is the primary purpose of Paragraph 1 in this discussion text?",
+            targetId: "exam-target-b-s2",
+            navHint: "Located in Sentence 3 (objective statement framing the controversy without picking a side).",
+            options: [
+              { id: "A", text: "To prove that human educators should never be permitted to grade student essays." },
+              { id: "B", text: "To introduce the controversy surrounding automated grading without choosing a side." },
+              { id: "C", text: "To outline the exact Python code required to train a language processing engine." },
+              { id: "D", text: "To criticize students who submit poorly formatted academic research assignments." },
+              { id: "E", text: "To celebrate testing companies that have eliminated all human teachers." }
+            ],
+            answer: "B",
+            rationale: "Paragraph 1 sets the background context of grading fatigue and introduces the contentious debate over automated scoring in an objective manner."
+          },
+          {
+            id: 7,
+            stem: "7. According to supporters in Paragraph 2, what is an advantage of automated scoring?",
+            targetId: "exam-target-b-s6",
+            navHint: "Located in Sentence 5 & 6 (standardized consistency and instant formative feedback).",
+            options: [
+              { id: "A", text: "Machines can automatically write complete homework essays on behalf of students." },
+              { id: "B", text: "Algorithms provide uniform consistency and immediate feedback for iterative revisions." },
+              { id: "C", text: "Automated software eliminates the need for students to practice grammatical rules." },
+              { id: "D", text: "Computer scoring guarantees that every student achieves the highest exam percentile." },
+              { id: "E", text: "Software programs charge zero licensing fees to municipal public school districts." }
+            ],
+            answer: "B",
+            rationale: "Sentence 5 and 6 highlight that automated scoring applies standardized benchmarks without fatigue and delivers instant feedback for student improvement."
+          },
+          {
+            id: 8,
+            stem: "8. What vulnerability of automated essay grading is highlighted by critics in Paragraph 3?",
+            targetId: "exam-target-b-s7",
+            navHint: "Located in Sentences 8–9 (reliance on surface proxies and students gaming the algorithm).",
+            options: [
+              { id: "A", text: "The software frequently crashes whenever essays exceed fifty words in total length." },
+              { id: "B", text: "Algorithms prioritize superficial metrics, encouraging students to game the system." },
+              { id: "C", text: "Machine engines refuse to grade papers written on digital computer keyboards." },
+              { id: "D", text: "Automated models deliberately decrease grades for essays containing sophisticated words." },
+              { id: "E", text: "The evaluation speed of computerized grading is significantly slower than human reading." }
+            ],
+            answer: "B",
+            rationale: "Sentence 8 and 9 explain that algorithms rely on surface proxies (length, connector frequency), allowing students to game the system with hollow, formulaic prose."
+          },
+          {
+            id: 9,
+            stem: "9. In Paragraph 3, what does the phrase 'surface proxies' describe?",
+            targetId: "exam-target-b-s7",
+            navHint: "Context clue in Sentence 8: 'proxies—such as paragraph length, varied vocabulary, and connector frequency—rather than actual insight'.",
+            options: [
+              { id: "A", text: "Direct measurements of a student's personal moral character" },
+              { id: "B", text: "Superficial visual indicators used to substitute for true intellectual quality" },
+              { id: "C", text: "Physical glass touchscreens used during standardized testing exams" },
+              { id: "D", text: "The electrical wiring systems supporting server computers in schools" },
+              { id: "E", text: "Government certificates awarded to certified language arts instructors" }
+            ],
+            answer: "B",
+            rationale: "Surface proxies are superficial measurable features (like word length or comma count) used as stand-ins for deep conceptual understanding."
+          },
+          {
+            id: 10,
+            stem: "10. Which policy solution represents the author's final synthesis in Paragraph 4?",
+            targetId: "exam-target-b-s10",
+            navHint: "Located in Sentence 11 (the concluding recommendation for a hybrid evaluation model).",
+            options: [
+              { id: "A", text: "Institutions should ban computerized software entirely from all school campuses." },
+              { id: "B", text: "Schools should adopt a hybrid model combining automated speed with human judgment." },
+              { id: "C", text: "Educators should allow algorithms to handle 100% of university graduation theses." },
+              { id: "D", text: "Students should be penalized whenever they write essays longer than three paragraphs." },
+              { id: "E", text: "Testing centers should replace all low-stakes drills with multi-day oral exams." }
+            ],
+            answer: "B",
+            rationale: "Sentence 11 delivers the balanced conclusion: schools should adopt a hybrid approach, using automated speed for low-stakes drills and humans for deeper intellectual work."
+          }
+        ]
+      }
+    ];
+
+    let currentExamIdx = 0;
+    let examAnsweredCounts = [0, 0];
+
+    function loadExamModule(idx) {
+      currentExamIdx = idx;
+      const data = examDatabase[idx];
+
+      [0, 1].forEach(i => {
+        const btn = document.getElementById(`exam-tab-${i}`);
+        if (btn) {
+          btn.className = (i === idx) 
+            ? "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow"
+            : "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
+        }
+      });
+
+      document.getElementById("exam-text-title").innerText = data.title;
+      document.getElementById("exam-text-genre").innerText = data.genre;
+      document.getElementById("exam-passage-container").innerHTML = data.htmlContent;
+
+      document.getElementById("exam-protocol-banner").classList.add("hidden");
+      document.getElementById("exam-protocol-text").innerText = data.protocol;
+      document.getElementById("exam-status-indicator").innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+        <span>Navigation Locked (Exam Mode)</span>
+      `;
+
+      renderExamQuestions(data.questions);
+      updateExamProgress();
+    }
+
+    function renderExamQuestions(questions) {
+      const container = document.getElementById("exam-questions-container");
+      container.innerHTML = "";
+
+      questions.forEach((q) => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4 transition-all";
+        card.id = `card-exam-q-${q.id}`;
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-slate-900 text-sm leading-snug">${q.stem}</h3>
+          </div>
+
+          <div class="space-y-2 text-sm" id="exam-options-group-${q.id}">
+            ${q.options.map(opt => `
+              <div class="flex items-center gap-1.5" id="wrap-exam-${q.id}-${opt.id}">
+                <button type="button" title="Cross out" onclick="toggleStrike('exam-${q.id}', '${opt.id}')" class="text-xs px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded border border-slate-200 font-bold">✕</button>
+                <label id="label-exam-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition select-none">
+                  <input type="radio" name="exam-q-${q.id}" value="${opt.id}" class="mt-1 text-indigo-600 focus:ring-indigo-500" onchange="enableCheckBtn('exam-${q.id}')">
+                  <span class="text-slate-700 leading-snug font-normal text-xs sm:text-sm">
+                    <strong>${opt.id}.</strong>${opt.text}
+                  </span>
+                </label>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+            <button id="btn-check-exam-${q.id}" disabled onclick="submitExamAnswer(${q.id})" class="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+              Submit & Reveal Navigation
+            </button>
+            <div id="feedback-exam-${q.id}" class="hidden text-xs font-bold"></div>
+          </div>
+
+          <div id="nav-debrief-exam-${q.id}" class="hidden text-xs bg-amber-50 border-l-4 border-amber-500 p-3 text-slate-700 rounded-r space-y-1.5 mt-2">
+            <div class="font-bold text-amber-900 flex items-center gap-1.5">
+              <span>📍</span> <strong>Navigation Route:</strong> ${q.navHint}
+            </div>
+            <p class="text-slate-600"><strong>Teacher Rationale:</strong> ${q.rationale}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    window.toggleStrike = (prefix, optId) => {
+      document.getElementById(`label-${prefix}-${optId}`).classList.toggle("strikethrough-opt");
+    };
+
+    window.enableCheckBtn = (prefix) => {
+      document.getElementById(`btn-check-${prefix}`).disabled = false;
+    };
+
+    window.submitExamAnswer = (qId) => {
+      const selected = document.querySelector(`input[name="exam-q-${qId}"]:checked`);
+      if (!selected) return;
+
+      const mod = examDatabase[currentExamIdx];
+      const q = mod.questions.find(item => item.id === qId);
+
+      document.querySelectorAll(`input[name="exam-q-${qId}"]`).forEach(inp => inp.disabled = true);
+      document.getElementById(`btn-check-exam-${qId}`).disabled = true;
+
+      q.options.forEach(opt => {
+        const label = document.getElementById(`label-exam-${qId}-${opt.id}`);
+        if (opt.id === q.answer) {
+          label.classList.add("bg-emerald-50", "border-emerald-500", "text-emerald-900", "font-semibold");
+        } else if (opt.id === selected.value) {
+          label.classList.add("bg-rose-50", "border-rose-400", "text-rose-900");
+        }
+      });
+
+      const fb = document.getElementById(`feedback-exam-${qId}`);
+      fb.classList.remove("hidden");
+      fb.innerHTML = (selected.value === q.answer)
+        ? `<span class="text-emerald-600">✓ Correct</span>`
+        : `<span class="text-rose-600">✕ Incorrect (Key: ${q.answer})</span>`;
+
+      // Reveal Navigation Anchor in Left Pane
+      const targetElement = document.getElementById(q.targetId);
+      if (targetElement) {
+        document.querySelectorAll(".nav-revealed-target").forEach(el => el.classList.remove("nav-revealed-target"));
+        targetElement.classList.add("nav-revealed-target");
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      document.getElementById(`nav-debrief-exam-${qId}`).classList.remove("hidden");
+      document.getElementById("exam-protocol-banner").classList.remove("hidden");
+      document.getElementById("exam-status-indicator").innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span class="text-emerald-400 font-semibold">Forensic Navigation Revealed</span>
+      `;
+
+      examAnsweredCounts[currentExamIdx]++;
+      updateExamProgress();
+    };
+
+    function updateExamProgress() {
+      document.getElementById("exam-module-progress").innerText = `${examAnsweredCounts[currentExamIdx]}/5 Completed`;
+    }
+
+    // Initialize Exam Module
+    loadExamModule(0);
+  </script>
+</body>
+</html>

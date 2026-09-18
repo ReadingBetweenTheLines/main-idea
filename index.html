@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TKA Forensic Reading Lab — Strategy & Hierarchy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Lab Anatomy Layers */
+    .highlight-thesis { background-color: #dcfce7; border-bottom: 2px solid #22c55e; font-weight: 600; color: #15803d; border-radius: 2px; padding: 0 3px; }
+    .highlight-argument { background-color: #ffedd5; border-bottom: 2px solid #f97316; font-weight: 600; color: #c2410c; border-radius: 2px; padding: 0 3px; }
+    .highlight-claim { background-color: #fef08a; border-bottom: 2px solid #eab308; font-weight: 500; color: #854d0e; border-radius: 2px; padding: 0 3px; }
+    .highlight-detail { background-color: #f1f5f9; color: #64748b; font-style: italic; border-radius: 2px; padding: 0 2px; }
+    .highlight-restating { background-color: #ede9fe; border-bottom: 2px solid #8b5cf6; font-weight: 600; color: #6d28d9; border-radius: 2px; padding: 0 3px; }
+    .highlight-recommendation { background-color: #fce7f3; border-bottom: 2px solid #ec4899; font-weight: 600; color: #be185d; border-radius: 2px; padding: 0 3px; }
+
+    /* Fluff Stripping & Window Spotlight */
+    .dimmed-fluff { opacity: 0.15; filter: blur(0.4px); transition: all 0.25s ease; }
+    .passage-sentence { transition: all 0.2s ease; border-radius: 4px; padding: 1px 2px; }
+    .spotlight-active { background-color: #fef3c7; box-shadow: 0 0 0 2px #f59e0b; font-weight: 500; }
+    .spotlight-dimmed { opacity: 0.2; filter: grayscale(80%); }
+
+    /* Interactive Elements */
+    .strikethrough-opt { text-decoration: line-through; opacity: 0.35; }
+    .vocab-chip { border-bottom: 2px dashed #6366f1; cursor: pointer; font-weight: 600; color: #4338ca; }
+    .vocab-chip:hover { background-color: #e0e7ff; border-radius: 2px; }
+    .anchor-chip { cursor: pointer; border-bottom: 2px solid #0284c7; background-color: #e0f2fe; padding: 0 4px; border-radius: 3px; font-weight: 600; color: #0369a1; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-950 text-white px-6 py-4 shadow-md flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs uppercase tracking-widest font-bold bg-indigo-600 text-white px-2 py-0.5 rounded">TKA Phase F</span>
+        <span class="text-xs text-slate-400 font-medium">Page 1: Diagnostic Strategy Lab</span>
+      </div>
+      <h1 class="text-lg sm:text-xl font-bold mt-1">Forensic Reading & Anatomy Workshop</h1>
+    </div>
+
+    <!-- Page Switcher -->
+    <div class="flex items-center gap-2">
+      <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5">
+        <span>🧪</span> Strategy Lab
+      </span>
+      <a href="exam.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
+        <span>📝</span> Go to Blind Exam (10 Qs) →
+      </a>
+    </div>
+  </header>
+
+  <!-- Lab Toolbar -->
+  <div class="bg-slate-900 border-b border-slate-800 px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-1">Lab Tools:</span>
+      <button id="toggle-anatomy-btn" class="bg-indigo-600 hover:bg-indigo-500 text-xs px-2.5 py-1.5 rounded-md font-semibold text-white transition flex items-center gap-1.5 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Anatomy Layers
+      </button>
+      <button id="toggle-strip-btn" class="bg-amber-600 hover:bg-amber-500 text-xs px-2.5 py-1.5 rounded-md font-semibold text-white transition flex items-center gap-1.5 shadow-sm">
+        <span>✂️</span> Strip Fluff / Details
+      </button>
+      <button id="toggle-extreme-btn" class="bg-rose-700 hover:bg-rose-600 text-xs px-2.5 py-1.5 rounded-md font-semibold text-white transition flex items-center gap-1.5 shadow-sm">
+        <span>⚠️</span> Extreme Trap Highlighter
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button onclick="toggleHierarchyGuide()" class="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-2">
+        Matryoshka Rules ▼
+      </button>
+      <button id="reset-lab-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-2.5 py-1.5 rounded-md font-medium transition border border-slate-700">
+        Reset Workspace
+      </button>
+    </div>
+  </div>
+
+  <!-- Matryoshka Guide Dropdown -->
+  <div id="hierarchy-guide-panel" class="hidden bg-slate-900 border-b border-slate-800 px-6 py-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-[11px] text-slate-300">
+    <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+      <span class="font-bold text-sky-400 block mb-1">1. TOPIC</span>
+      <p class="text-slate-300 font-medium">Where: Title / Opening noun</p>
+      <p class="text-slate-400 mt-1">1–4 words. No verbs, no claims, no judgment.</p>
+      <p class="text-rose-400 mt-1 font-mono">NOT: A full sentence.</p>
+    </div>
+    <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+      <span class="font-bold text-emerald-400 block mb-1">2. THESIS</span>
+      <p class="text-slate-300 font-medium">Where: Last sentence of P1</p>
+      <p class="text-slate-400 mt-1">The author's core debatable stance after the pivot.</p>
+      <p class="text-rose-400 mt-1 font-mono">NOT: The opening hook bait.</p>
+    </div>
+    <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+      <span class="font-bold text-orange-400 block mb-1">3. ARGUMENT</span>
+      <p class="text-slate-300 font-medium">Where: 1st sentence of P2/P3</p>
+      <p class="text-slate-400 mt-1">Major supporting pillar governing a whole paragraph.</p>
+      <p class="text-rose-400 mt-1 font-mono">NOT: Just a raw number or study.</p>
+    </div>
+    <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+      <span class="font-bold text-yellow-400 block mb-1">4. CLAIM & DETAIL</span>
+      <p class="text-slate-300 font-medium">Where: Middle of P2/P3</p>
+      <p class="text-slate-400 mt-1">Claim: Sub-assertion needing proof. Detail: Numbers, facts, studies.</p>
+      <p class="text-rose-400 mt-1 font-mono">NOT: The text's main idea.</p>
+    </div>
+    <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+      <span class="font-bold text-purple-400 block mb-1">5. RESTATING / REC</span>
+      <p class="text-slate-300 font-medium">Where: Paragraph 4</p>
+      <p class="text-slate-400 mt-1">Analytical: Restates thesis. Hortatory: Mandatory policy action.</p>
+      <p class="text-rose-400 mt-1 font-mono">NOT: A brand new argument.</p>
+    </div>
+  </div>
+
+  <!-- Genre Tabs -->
+  <nav class="bg-slate-900/90 border-b border-slate-800 px-6 py-2 flex flex-wrap items-center gap-2 overflow-x-auto">
+    <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Lab Passages:</span>
+    <button onclick="loadLabText(0)" id="lab-tab-0" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow whitespace-nowrap">
+      1. Analytical Exposition
+    </button>
+    <button onclick="loadLabText(1)" id="lab-tab-1" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">
+      2. Hortatory Exposition
+    </button>
+    <button onclick="loadLabText(2)" id="lab-tab-2" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">
+      3. Information Report
+    </button>
+    <button onclick="loadLabText(3)" id="lab-tab-3" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap">
+      4. Discussion Text
+    </button>
+  </nav>
+
+  <!-- Navigation Banner -->
+  <aside class="bg-indigo-950 text-indigo-100 px-6 py-2.5 border-b border-indigo-900 shadow-inner flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs">
+    <div class="flex items-start md:items-center gap-2">
+      <span class="bg-indigo-600 text-white font-mono font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Protocol:</span>
+      <span id="lab-nav-strategy-text" class="leading-relaxed">Strategy text...</span>
+    </div>
+    <span id="lab-nav-target-zone" class="font-mono text-emerald-400 font-bold bg-indigo-900/80 px-2 py-0.5 rounded border border-indigo-700 whitespace-nowrap self-start md:self-auto">Target: End of P1</span>
+  </aside>
+
+  <!-- Lab Workspace -->
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    
+    <!-- Left Pane: Passage & Hierarchy Sorter -->
+    <section class="lg:col-span-7 space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+        <div class="border-b border-slate-100 pb-3 flex justify-between items-start">
+          <div>
+            <h2 id="lab-text-title" class="text-lg font-bold text-slate-900">Title</h2>
+            <div class="flex items-center gap-2 mt-1">
+              <span id="lab-text-genre" class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Genre</span>
+              <span id="lab-text-archetype" class="text-[11px] font-semibold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded border border-indigo-100">Structural Archetype</span>
+            </div>
+          </div>
+          <button id="clear-spotlight-btn" class="hidden text-xs bg-amber-100 text-amber-900 border border-amber-300 font-semibold px-2.5 py-1 rounded-md hover:bg-amber-200 transition">
+            Exit Spotlight ✕
+          </button>
+        </div>
+
+        <div id="lab-passage-container" class="text-slate-700 text-[15px] leading-relaxed space-y-4 select-text"></div>
+
+        <!-- Vocab Card Modal -->
+        <div id="vocab-card" class="hidden bg-indigo-50 border border-indigo-200 rounded-lg p-4 transition-all">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span id="vocab-word" class="font-bold text-indigo-900 text-base">Word</span>
+              <button onclick="playVocabAudio()" class="text-indigo-600 hover:text-indigo-800 bg-white border border-indigo-200 px-2 py-0.5 rounded text-xs flex items-center gap-1 font-semibold">
+                🔊 Pronounce
+              </button>
+            </div>
+            <button onclick="closeVocab()" class="text-xs text-slate-400 hover:text-slate-600 font-bold">✕ Close</button>
+          </div>
+          <p id="vocab-id" class="text-xs text-indigo-700 font-medium mt-1">Arti: -</p>
+          <p id="vocab-en" class="text-xs text-slate-600 italic mt-0.5">Def: -</p>
+        </div>
+
+        <div id="lab-anatomy-explanation" class="hidden text-xs bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r space-y-2 text-slate-700"></div>
+      </div>
+
+      <!-- Sorter Drill -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+        <div class="border-b border-slate-100 pb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Active Structural Training</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-0.5">Hierarchy Sorter: Match Statement to Structural Level</h3>
+        </div>
+        <div class="space-y-3 text-xs sm:text-sm" id="sorter-container"></div>
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+          <button onclick="checkDrill()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition shadow-sm">
+            Verify Hierarchy Roles
+          </button>
+          <div id="drill-feedback" class="text-xs font-bold"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Pane: Lab Guided Practice Questions -->
+    <section class="lg:col-span-5 space-y-5">
+      <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 shadow-sm space-y-1">
+        <span class="font-bold text-slate-800 block">Guided Forensic Practice</span>
+        <p>• Click <span class="font-bold text-rose-600 border px-1 rounded bg-rose-50">✕</span> to strike distractors.</p>
+        <p>• Click <span class="font-bold bg-slate-100 border px-1 rounded text-slate-700">+/-/=</span> to tag option sentiment against the text.</p>
+      </div>
+      <div id="lab-questions-container" class="space-y-6"></div>
+    </section>
+
+  </main>
+
+  <script>
+    const labDatabase = [
+      {
+        id: 0,
+        title: "Artificial Intelligence in Secondary School Writing",
+        genre: "Analytical Exposition",
+        archetype: "Deductive (Hook → Thesis in P1 → Reiteration in P4)",
+        navStrategy: "Locate the contrast pivot in Paragraph 1. The thesis follows. Check P4 for the restated thesis.",
+        navTarget: "Target: End of P1 & First sentence of P4",
+        anatomyGuide: `
+          <p class="font-bold text-amber-900 text-sm">💡 Analytical Exposition Placement Guide:</p>
+          <p>• <strong class="text-sky-700">Topic:</strong> <em>Generative AI in classroom writing</em> (Found in title and P1 opening).</p>
+          <p>• <strong class="text-emerald-700">Thesis (End of P1):</strong> <em>'High schools must restrict generative AI to supervised interactive tasks...'</em></p>
+          <p>• <strong class="text-orange-700">Arguments:</strong> P2 opens with cognitive erosion; P3 opens with attribution/accuracy risks.</p>
+          <p>• <strong class="text-yellow-700">Claims:</strong> Assertions inside paragraphs (e.g., active text drafting builds conceptual reasoning).</p>
+          <p>• <strong class="text-slate-600">Supporting Details:</strong> Mention of automated grading, invented citations, and neurolinguistic studies.</p>
+          <p>• <strong class="text-purple-700">Conclusion / Restating (P4):</strong> Restates the thesis in new words.</p>
+        `,
+        htmlContent: `
+          <p id="p1">
+            <span class="passage-sentence s1 anatomy-detail">In recent years, artificial intelligence utilities have surged across secondary classrooms worldwide.</span>
+            <span class="passage-sentence s2 anatomy-detail">While some teachers celebrate these platforms for automated grading, uncritical classroom adoption undermines active student inquiry.</span>
+            <span class="passage-sentence s3 anatomy-thesis">High schools must restrict generative AI to supervised interactive tasks rather than unmonitored writing assignments.</span>
+          </p>
+          <p id="p2">
+            <span class="passage-sentence s4 anatomy-argument font-semibold">First, unchecked generative writing directly erodes foundational critical thinking.</span>
+            <span class="passage-sentence s5 anatomy-claim">When learners outsource brainstorming and syntax formation to machine models, cognitive engagement drops significantly.</span>
+            <span class="passage-sentence s6 anatomy-detail">Internal <span class="anchor-chip" onclick="triggerSpotlight('s6')">neurolinguistic studies</span> confirm that active text drafting strengthens conceptual reasoning far more than merely editing computer outputs.</span>
+          </p>
+          <p id="p3">
+            <span class="passage-sentence s7 anatomy-argument font-semibold">Furthermore, algorithmic reliance creates systemic attribution and factual accuracy concerns.</span>
+            <span class="passage-sentence s8 anatomy-claim">Language models frequently <span class="vocab-chip" onclick="showVocab('hallucinate', 'Menghasilkan informasi palsu/khayalan', 'generate false or fabricated information presented as fact')">hallucinate</span> and invent plausible academic citations out of whole cloth.</span>
+            <span class="passage-sentence s9 anatomy-detail">Relying on automated drafting prevents young researchers from developing rigorous <span class="anchor-chip" onclick="triggerSpotlight('s9')">source-verification skills</span>.</span>
+          </p>
+          <p id="p4">
+            <span class="passage-sentence s10 anatomy-restating">In summary, while AI platforms offer practical conveniences, unrestricted access threatens core educational outcomes.</span>
+            <span class="passage-sentence s11 anatomy-restating">Secondary institutions must regulate classroom software use to preserve authentic student literacy.</span>
+          </p>
+        `,
+        sorterDrill: [
+          { text: "Generative AI in secondary education.", correct: "topic" },
+          { text: "High schools need to regulate student AI use because automated tools degrade critical thinking and source-verification skills.", correct: "main-idea" },
+          { text: "High schools must restrict generative AI to supervised interactive tasks rather than unmonitored writing assignments.", correct: "thesis" },
+          { text: "Unchecked generative writing directly erodes foundational critical thinking in young learners.", correct: "argument" },
+          { text: "Language models frequently invent plausible citations and fake sources.", correct: "claim" },
+          { text: "Internal neurolinguistic studies measuring student brain activity during syntax drafting.", correct: "detail" },
+          { text: "Secondary institutions must regulate classroom software use to preserve authentic student literacy.", correct: "restating" }
+        ],
+        questions: [
+          {
+            id: 101,
+            type: "Analytical Main Thesis",
+            stem: "What is the primary thesis defended by the author in the text?",
+            options: [
+              { id: "A", text: "Artificial intelligence should be banned completely from all school computers.", trapType: "TRAP: Extreme Qualifier ('banned completely from all').", hasExtreme: true },
+              { id: "B", text: "Schools must restrict generative AI to supervised activities to safeguard thinking skills.", trapType: "CORRECT: Paraphrases the thesis at the end of P1 and reiterated in P4.", hasExtreme: false },
+              { id: "C", text: "Automated grading is the only reason language models were invented for schools.", trapType: "TRAP: Extreme Detail Trap ('the only reason').", hasExtreme: true },
+              { id: "D", text: "Active drafting and automated editing produce identical neurological results.", trapType: "TRAP: Factually Contradicts P2.", hasExtreme: false },
+              { id: "E", text: "Secondary students prefer writing traditional essays over using computer software.", trapType: "TRAP: Outside Scope.", hasExtreme: false }
+            ],
+            answer: "B",
+            rationale: "Sentence 3 establishes the thesis: high schools must restrict AI to supervised tasks. Sentence 11 reiterates this in P4."
+          }
+        ]
+      },
+      {
+        id: 1,
+        title: "The Crisis of Microplastics in Municipal Waterways",
+        genre: "Hortatory Exposition",
+        archetype: "Action-Oriented (Issue → Arguments → Mandatory Recommendation in P4)",
+        navStrategy: "Hortatory texts seek to persuade the reader to TAKE ACTION. Jump straight to Paragraph 4 and locate modals of obligation ('must', 'should').",
+        navTarget: "Target: Paragraph 4 (The Recommendation)",
+        anatomyGuide: `
+          <p class="font-bold text-amber-900 text-sm">💡 Hortatory Placement Guide:</p>
+          <p>• <strong class="text-sky-700">Topic:</strong> <em>Aquatic microplastic pollution</em> (Title and P1).</p>
+          <p>• <strong class="text-orange-700">Arguments:</strong> P2 details persistent toxins bioaccumulating in seafood; P3 on municipal reservoir degradation.</p>
+          <p>• <strong class="text-pink-700">Recommendation (P4):</strong> Mandatory policy action for legislative councils and consumers.</p>
+        `,
+        htmlContent: `
+          <p id="p1">
+            <span class="passage-sentence s1 anatomy-detail">Microplastic accumulation in municipal waterways has emerged as a severe environmental hazard over the past decade.</span>
+            <span class="passage-sentence s2 anatomy-detail">Everyday cosmetic cleansers and packaging shed synthetic polymers that municipal filtration facilities cannot intercept.</span>
+            <span class="passage-sentence s3 anatomy-thesis">Unchecked plastic runoff creates a persistent ecological emergency requiring immediate legislative action.</span>
+          </p>
+          <p id="p2">
+            <span class="passage-sentence s4 anatomy-argument font-semibold">To begin with, microplastics absorb hazardous persistent organic pollutants from industrial runoff.</span>
+            <span class="passage-sentence s5 anatomy-claim">When aquatic organisms ingest these concentrated toxic pellets, toxins <span class="vocab-chip" onclick="showVocab('bioaccumulate', 'Menumpuk dalam rantai makanan', 'accumulate within tissues of living organisms')">bioaccumulate</span> up the food chain, eventually contaminating commercial human seafood.</span>
+            <span class="passage-sentence s6 anatomy-detail">Marine autopsies consistently show elevated liver toxicity in coastal fish stocks.</span>
+          </p>
+          <p id="p3">
+            <span class="passage-sentence s7 anatomy-argument font-semibold">Moreover, synthetic particles degrade municipal drinking reservoirs.</span>
+            <span class="passage-sentence s8 anatomy-claim">Standard municipal sedimentation tanks fail to block non-biodegradable fragments under <span class="anchor-chip" onclick="triggerSpotlight('s8')">5 millimeters</span> wide.</span>
+            <span class="passage-sentence s9 anatomy-detail">Over time, these microscopic fibers penetrate city taps and residential water supplies.</span>
+          </p>
+          <p id="p4">
+            <span class="passage-sentence s10 anatomy-recommendation">Therefore, municipal legislative councils must ban the manufacture of commercial products containing synthetic microbeads.</span>
+            <span class="passage-sentence s11 anatomy-recommendation">Consumers should also substitute single-use plastic containers with reusable glass alternatives immediately.</span>
+          </p>
+        `,
+        sorterDrill: [
+          { text: "Aquatic microplastic pollution.", correct: "topic" },
+          { text: "Microplastic runoff contaminates seafood and municipal water supplies, necessitating immediate statutory bans and consumer action.", correct: "main-idea" },
+          { text: "Unchecked plastic runoff creates a persistent ecological emergency requiring immediate legislative intervention.", correct: "thesis" },
+          { text: "Microplastics absorb hazardous industrial toxins that bioaccumulate across the marine food chain.", correct: "argument" },
+          { text: "Standard municipal sedimentation tanks cannot intercept non-biodegradable particles under 5 millimeters.", correct: "claim" },
+          { text: "Marine autopsies showing liver toxicity measurements in coastal fish stocks.", correct: "detail" },
+          { text: "Municipal councils must ban commercial products containing synthetic microbeads.", correct: "recommendation" }
+        ],
+        questions: [
+          {
+            id: 201,
+            type: "Hortatory Recommendation",
+            stem: "What concrete legislative measure is demanded in the final paragraph?",
+            options: [
+              { id: "A", text: "Commercial fisheries should permanently halt operations along coastal rivers.", trapType: "TRAP: Outside Scope." },
+              { id: "B", text: "Municipal legislative councils must ban products manufactured with synthetic microbeads.", trapType: "CORRECT: Direct match to Sentence 10." },
+              { id: "C", text: "Sedimentation tanks should be completely replaced by chemical filters everywhere.", trapType: "TRAP: Extreme Generalization ('everywhere').", hasExtreme: true },
+              { id: "D", text: "Citizens must stop drinking tap water completely until rivers are declared pure.", trapType: "TRAP: Extreme Distortion.", hasExtreme: true },
+              { id: "E", text: "Cosmetic companies should voluntarily label packaging without legal mandates.", trapType: "TRAP: Too Weak." }
+            ],
+            answer: "B",
+            rationale: "Sentence 10 specifies: 'municipal legislative councils must ban the manufacture of commercial products containing synthetic microbeads.'"
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "The Biology and Morphology of Cephalopods",
+        genre: "Information Report",
+        archetype: "Taxonomic Classification (Definition → Anatomy → Ecological Role)",
+        navStrategy: "Reports do NOT have an argumentative thesis. Scan topic sentences for biological sub-categories (Anatomy in P2, Ecological Role in P3).",
+        navTarget: "Target: Category Topic Sentences (P2, P3)",
+        anatomyGuide: `
+          <p class="font-bold text-amber-900 text-sm">💡 Information Report Placement Guide:</p>
+          <p>• <strong class="text-sky-700">Topic:</strong> <em>Cephalopod biology and morphology</em> (Title and opening sentence).</p>
+          <p>• <strong class="text-slate-600">Thesis:</strong> <strong>NONE.</strong> Objective reports explain scientific facts without personal stances.</p>
+          <p>• <strong class="text-yellow-700">Claims:</strong> Objective anatomical assertions (chromatophores expand to alter patterns instantly).</p>
+          <p>• <strong class="text-slate-600">Supporting Details:</strong> Chitinous beaks, pressurized siphon propulsion, and bilateral body symmetry.</p>
+        `,
+        htmlContent: `
+          <p id="p1">
+            <span class="passage-sentence s1 anatomy-detail">Cephalopods are an advanced class of marine mollusks characterized by bilateral body symmetry, prominent head structures, and modified tentacular arms.</span>
+            <span class="passage-sentence s2 anatomy-detail">Unlike bivalves or gastropods, cephalopods display exceptionally high metabolic rates and sophisticated nervous systems.</span>
+          </p>
+          <p id="p2">
+            <span class="passage-sentence s3 font-semibold text-slate-800">Morphologically, cephalopods possess specialized dermal pigment cells known as <span class="anchor-chip" onclick="triggerSpotlight('s3')">chromatophores</span>.</span>
+            <span class="passage-sentence s4 anatomy-claim">Controlled directly by motor neurons in the cerebral ganglia, these elastic pigment sacs expand or contract to alter skin color and patterns instantly.</span>
+            <span class="passage-sentence s5 anatomy-detail">This anatomical adaptation enables instantaneous <span class="vocab-chip" onclick="showVocab('camouflage', 'Kamuflase / penyamaran', 'disguising appearance to blend with surroundings')">camouflage</span> against varied seafloor backgrounds.</span>
+          </p>
+          <p id="p3">
+            <span class="passage-sentence s6 font-semibold text-slate-800">Ecologically, these animals operate as active, opportunistic predatory carnivores.</span>
+            <span class="passage-sentence s7 anatomy-claim">Utilizing sharp chitinous beaks and pressurized siphon propulsion, species such as cuttlefish capture crustaceans and teleost fish.</span>
+            <span class="passage-sentence s8 anatomy-detail">They serve as a vital caloric bridge between benthic invertebrates and apex pelagic predators.</span>
+          </p>
+        `,
+        sorterDrill: [
+          { text: "Cephalopod biology and morphology.", correct: "topic" },
+          { text: "Cephalopods are predatory marine mollusks that possess specialized neural camouflage mechanisms and serve as vital ecological predators.", correct: "main-idea" },
+          { text: "Cephalopods represent the only marine mollusks that should be legally classified as sentient organisms.", correct: "thesis" },
+          { text: "Motor neurons directly control dermal chromatophores to achieve instantaneous background camouflage.", correct: "argument" },
+          { text: "Elastic pigment sacs expand or contract to alter skin color patterns within milliseconds.", correct: "claim" },
+          { text: "Sharp chitinous beaks, siphon propulsion, and teleost fish diet.", correct: "detail" }
+        ],
+        questions: [
+          {
+            id: 301,
+            type: "Report Classification Detail",
+            stem: "According to Paragraph 2, how do cephalopods change their skin color so rapidly?",
+            options: [
+              { id: "A", text: "By circulating warm arterial blood exclusively into their outer tentacle tips.", trapType: "TRAP: Outside Scope." },
+              { id: "B", text: "Through motor neurons directly expanding and contracting elastic pigment sacs.", trapType: "CORRECT: Direct factual paraphrase of Sentence 4." },
+              { id: "C", text: "By releasing clouds of dark melanin ink that coat its body in complete shadow.", trapType: "TRAP: True cephalopod fact, but not in P2." },
+              { id: "D", text: "Through chemical reactions triggered only during ocean tidal shifts.", trapType: "TRAP: Extreme Qualifier ('only during').", hasExtreme: true },
+              { id: "E", text: "By consuming pigmented crustaceans that alter their internal stomach hues.", trapType: "TRAP: Misinterpretation of feeding habits in P3." }
+            ],
+            answer: "B",
+            rationale: "Sentence 4 states chromatophores are controlled directly by motor neurons, expanding or contracting elastic sacs to alter skin patterns instantly."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "The Socioeconomic Debate Over High-Speed Passenger Rail",
+        genre: "Discussion Text",
+        archetype: "Balanced See-Saw (Pro vs. Con → Synthesis in P4)",
+        navStrategy: "Discussion texts do NOT take a one-sided stance in P1. Check P2 for Pro arguments, P3 for Con arguments, and P4 for balanced synthesis.",
+        navTarget: "Target: P2 (Pros), P3 (Cons), P4 (Synthesis)",
+        anatomyGuide: `
+          <p class="font-bold text-amber-900 text-sm">💡 Discussion Text Placement Guide:</p>
+          <p>• <strong class="text-sky-700">Topic:</strong> <em>High-speed passenger rail investment</em> (Title and P1).</p>
+          <p>• <strong class="text-slate-600">Thesis (P1):</strong> <strong>NONE.</strong> Opens with a neutral scope statement.</p>
+          <p>• <strong class="text-orange-700">Arguments:</strong> P2 presents Pro-Rail arguments; P3 presents Con-Rail arguments.</p>
+          <p>• <strong class="text-purple-700">Synthesis (P4):</strong> Balances both perspectives without declaring an absolute winner.</p>
+        `,
+        htmlContent: `
+          <p id="p1">
+            <span class="passage-sentence s1 anatomy-detail">The construction of high-speed passenger rail networks has triggered substantial debate among regional economists and urban planners.</span>
+            <span class="passage-sentence s2 anatomy-detail">Whether capital-intensive rail initiatives deliver superior long-term socioeconomic benefits compared to highway expansion remains <span class="vocab-chip" onclick="showVocab('contentious', 'Dipersengketakan / memicu perdebatan', 'controversial; causing intense argument')">contentious</span>.</span>
+          </p>
+          <p id="p2">
+            <span class="passage-sentence s3 anatomy-argument font-semibold">Proponents argue that electrified passenger rail significantly curbs carbon emissions and minimizes regional highway congestion.</span>
+            <span class="passage-sentence s4 anatomy-claim">Moving commuters off intercity freeways lowers petroleum consumption while slashing vehicular accident rates.</span>
+            <span class="passage-sentence s5 anatomy-detail">Central transit terminals also generate substantial localized retail spending in downtown districts.</span>
+          </p>
+          <p id="p3">
+            <span class="passage-sentence s6 anatomy-argument font-semibold">Conversely, detractors emphasize that high-speed rail entails prohibitive capital construction costs and long-term operating deficits.</span>
+            <span class="passage-sentence s7 anatomy-claim">Initial tunneling and rights-of-way acquisitions routinely exceed initial municipal budget forecasts.</span>
+            <span class="passage-sentence s8 anatomy-detail">In lower-density transit corridors, passenger ticket yields rarely cover regular line maintenance.</span>
+          </p>
+          <p id="p4">
+            <span class="passage-sentence s9 anatomy-restating">In short, high-speed rail provides undeniable environmental benefits, yet presents acute debt risks in low-density corridors.</span>
+            <span class="passage-sentence s10 anatomy-restating">Regional transit authorities must evaluate local passenger density before authorizing heavy construction bonds.</span>
+          </p>
+        `,
+        sorterDrill: [
+          { text: "High-speed passenger rail investment.", correct: "topic" },
+          { text: "Developing high-speed rail delivers clear environmental and congestion relief benefits but carries steep capital expenditure and deficit risks.", correct: "main-idea" },
+          { text: "National governments should halt all high-speed rail projects due to excessive financial risks.", correct: "thesis" },
+          { text: "Electrified passenger rail curbs carbon emissions and minimizes highway congestion.", correct: "argument" },
+          { text: "In lower-density corridors, passenger ticket yields rarely cover ongoing track maintenance.", correct: "claim" },
+          { text: "Initial tunneling costs and rights-of-way property acquisitions exceeding budget forecasts.", correct: "detail" },
+          { text: "Authorities must evaluate passenger density before approving construction bonds.", correct: "restating" }
+        ],
+        questions: [
+          {
+            id: 401,
+            type: "Discursive Balanced Synthesis",
+            stem: "Which statement best summarizes the author's overall perspective in the concluding paragraph?",
+            options: [
+              { id: "A", text: "Rail systems are completely unaffordable and should be abandoned across all nations.", trapType: "TRAP: One-Sided Extreme ('completely unaffordable').", hasExtreme: true },
+              { id: "B", text: "High-speed rail offers strong environmental perks but requires cautious financial evaluation.", trapType: "CORRECT: Captures the balanced synthesis in Sentences 9 and 10." },
+              { id: "C", text: "Highway expansion is always superior to public transit investment in dense cities.", trapType: "TRAP: Extreme Qualifier ('always superior').", hasExtreme: true },
+              { id: "D", text: "Ticket yields in rural sectors cover the construction of urban stations.", trapType: "TRAP: Factually Contradicts P3." },
+              { id: "E", text: "Downtown retail spending is the only metric that proves a rail line's success.", trapType: "TRAP: Extreme Word Qualifier ('the only metric').", hasExtreme: true }
+            ],
+            answer: "B",
+            rationale: "Sentence 9 notes that rail provides environmental perks yet carries debt risks, requiring authorities to evaluate density before approving bonds."
+          }
+        ]
+      }
+    ];
+
+    let currentLabIdx = 0;
+    let labAnatomyActive = false;
+    let labStrippedActive = false;
+    let labExtremeHighlighted = false;
+    let currentVocabWord = "";
+
+    function loadLabText(idx) {
+      currentLabIdx = idx;
+      const data = labDatabase[idx];
+
+      [0, 1, 2, 3].forEach(i => {
+        const btn = document.getElementById(`lab-tab-${i}`);
+        if (btn) {
+          btn.className = (i === idx) 
+            ? "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow whitespace-nowrap"
+            : "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap";
+        }
+      });
+
+      document.getElementById("lab-nav-strategy-text").innerText = data.navStrategy;
+      document.getElementById("lab-nav-target-zone").innerText = data.navTarget;
+      document.getElementById("lab-text-title").innerText = data.title;
+      document.getElementById("lab-text-genre").innerText = data.genre;
+      document.getElementById("lab-text-archetype").innerText = data.archetype;
+      document.getElementById("lab-passage-container").innerHTML = data.htmlContent;
+      document.getElementById("lab-anatomy-explanation").innerHTML = data.anatomyGuide;
+
+      labAnatomyActive = false;
+      labStrippedActive = false;
+      document.getElementById("lab-anatomy-explanation").classList.add("hidden");
+      document.getElementById("toggle-strip-btn").innerHTML = "<span>✂️</span> Strip Fluff / Details";
+      closeVocab();
+
+      renderLabQuestions(data.questions);
+      renderSorterDrill(data.sorterDrill);
+    }
+
+    function renderLabQuestions(questions) {
+      const container = document.getElementById("lab-questions-container");
+      container.innerHTML = "";
+
+      questions.forEach((q) => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4";
+        card.id = `card-lab-q-${q.id}`;
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <h3 class="font-bold text-slate-900 text-sm leading-snug">${q.stem}</h3>
+            <span class="text-[10px] uppercase font-bold tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded border ml-2 whitespace-nowrap">${q.type}</span>
+          </div>
+
+          <div class="space-y-2 text-sm" id="lab-options-group-${q.id}">
+            ${q.options.map(opt => `
+              <div class="space-y-1" id="wrap-lab-${q.id}-${opt.id}">
+                <div class="flex items-center gap-1.5">
+                  <button type="button" title="Cross out trap" onclick="toggleStrike('lab-${q.id}', '${opt.id}')" class="text-xs px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded border border-slate-200 font-bold">✕</button>
+                  <button type="button" id="tagger-lab-${q.id}-${opt.id}" title="Tag polarity (+, -, =)" onclick="cyclePolarity('lab-${q.id}', '${opt.id}')" class="text-[11px] w-7 h-7 flex items-center justify-center font-bold bg-slate-100 text-slate-500 rounded border border-slate-200">?</button>
+                  <label id="label-lab-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition select-none">
+                    <input type="radio" name="lab-q-${q.id}" value="${opt.id}" class="mt-1 text-indigo-600 focus:ring-indigo-500" onchange="enableCheckBtn('lab-${q.id}')">
+                    <span class="text-slate-700 leading-snug font-normal text-xs sm:text-sm">
+                      <strong>${opt.id}.</strong> <span id="opt-text-lab-${q.id}-${opt.id}">${opt.text}</span>
+                    </span>
+                  </label>
+                </div>
+                <div id="trap-tag-lab-${q.id}-${opt.id}" class="hidden text-[11px] pl-16 text-slate-500 font-mono">
+                  ↳ ${opt.trapType}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+            <button id="btn-check-lab-${q.id}" disabled onclick="checkLabAnswer(${q.id})" class="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+              Verify Forensic Answer
+            </button>
+            <div id="feedback-lab-${q.id}" class="hidden text-xs font-semibold"></div>
+          </div>
+
+          <div id="rationale-lab-${q.id}" class="hidden text-xs bg-slate-50 border-l-4 border-indigo-500 p-3 text-slate-600 rounded-r space-y-1">
+            <strong>Forensic Debrief:</strong> ${q.rationale}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderSorterDrill(items) {
+      const container = document.getElementById("sorter-container");
+      document.getElementById("drill-feedback").innerHTML = "";
+      container.innerHTML = "";
+
+      items.forEach((item, idx) => {
+        const row = document.createElement("div");
+        row.className = "p-3 bg-slate-50 border border-slate-200 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition";
+        row.id = `drill-row-${idx}`;
+
+        row.innerHTML = `
+          <span class="text-slate-700 flex-1 leading-snug">"${item.text}"</span>
+          <select class="drill-select bg-white border border-slate-300 rounded px-2.5 py-1.5 font-medium text-slate-700 text-xs sm:text-sm" data-correct="${item.correct}">
+            <option value="">Select Role...</option>
+            <option value="topic">1. Topic (Subject Label)</option>
+            <option value="main-idea">2. Main Idea (Macro Umbrella)</option>
+            <option value="thesis">3. Thesis (Debatable Stance)</option>
+            <option value="argument">4. Argument (Supporting Pillar)</option>
+            <option value="claim">5. Claim (Sub-Assertion)</option>
+            <option value="detail">6. Detail (Fluff / Proof)</option>
+            <option value="restating">7. Restating / Synthesis</option>
+            <option value="recommendation">8. Recommendation (Hortatory)</option>
+          </select>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    window.checkDrill = () => {
+      let allCorrect = true;
+      document.querySelectorAll(".drill-select").forEach((sel, idx) => {
+        const correct = sel.dataset.correct;
+        const parent = document.getElementById(`drill-row-${idx}`);
+        if (sel.value === correct) {
+          parent.classList.remove("bg-rose-50", "border-rose-300");
+          parent.classList.add("bg-emerald-50", "border-emerald-300");
+        } else {
+          allCorrect = false;
+          parent.classList.remove("bg-emerald-50", "border-emerald-300");
+          parent.classList.add("bg-rose-50", "border-rose-300");
+        }
+      });
+      const fb = document.getElementById("drill-feedback");
+      fb.innerHTML = allCorrect 
+        ? '<span class="text-emerald-600">✓ All Roles Correctly Placed!</span>'
+        : '<span class="text-rose-600">✕ Review Highlighted Red Errors</span>';
+    };
+
+    window.showVocab = (word, idMeaning, enMeaning) => {
+      currentVocabWord = word;
+      document.getElementById("vocab-word").innerText = word;
+      document.getElementById("vocab-id").innerText = `Arti: ${idMeaning}`;
+      document.getElementById("vocab-en").innerText = `Def: ${enMeaning}`;
+      document.getElementById("vocab-card").classList.remove("hidden");
+    };
+
+    window.closeVocab = () => document.getElementById("vocab-card").classList.add("hidden");
+
+    window.playVocabAudio = () => {
+      if ('speechSynthesis' in window && currentVocabWord) {
+        const u = new SpeechSynthesisUtterance(currentVocabWord);
+        u.lang = 'en-US';
+        u.rate = 0.85;
+        window.speechSynthesis.speak(u);
+      }
+    };
+
+    window.triggerSpotlight = (targetSentenceClass) => {
+      const sentences = document.querySelectorAll("#lab-passage-container .passage-sentence");
+      const list = Array.from(sentences);
+      const targetIndex = list.findIndex(el => el.classList.contains(targetSentenceClass));
+      if (targetIndex === -1) return;
+
+      const windowStart = Math.max(0, targetIndex - 1);
+      const windowEnd = Math.min(list.length - 1, targetIndex + 1);
+
+      list.forEach((el, idx) => {
+        if (idx >= windowStart && idx <= windowEnd) {
+          el.classList.add("spotlight-active");
+          el.classList.remove("spotlight-dimmed");
+        } else {
+          el.classList.remove("spotlight-active");
+          el.classList.add("spotlight-dimmed");
+        }
+      });
+      document.getElementById("clear-spotlight-btn").classList.remove("hidden");
+    };
+
+    document.getElementById("clear-spotlight-btn").addEventListener("click", () => {
+      document.querySelectorAll("#lab-passage-container .passage-sentence").forEach(el => {
+        el.classList.remove("spotlight-active", "spotlight-dimmed");
+      });
+      document.getElementById("clear-spotlight-btn").classList.add("hidden");
+    });
+
+    document.getElementById("toggle-anatomy-btn").addEventListener("click", () => {
+      labAnatomyActive = !labAnatomyActive;
+      document.querySelectorAll(".anatomy-thesis").forEach(el => el.classList.toggle("highlight-thesis", labAnatomyActive));
+      document.querySelectorAll(".anatomy-argument").forEach(el => el.classList.toggle("highlight-argument", labAnatomyActive));
+      document.querySelectorAll(".anatomy-claim").forEach(el => el.classList.toggle("highlight-claim", labAnatomyActive));
+      document.querySelectorAll(".anatomy-detail").forEach(el => el.classList.toggle("highlight-detail", labAnatomyActive));
+      document.querySelectorAll(".anatomy-restating").forEach(el => el.classList.toggle("highlight-restating", labAnatomyActive));
+      document.querySelectorAll(".anatomy-recommendation").forEach(el => el.classList.toggle("highlight-recommendation", labAnatomyActive));
+      document.getElementById("lab-anatomy-explanation").classList.toggle("hidden", !labAnatomyActive);
+    });
+
+    document.getElementById("toggle-strip-btn").addEventListener("click", () => {
+      labStrippedActive = !labStrippedActive;
+      document.querySelectorAll("#lab-passage-container .anatomy-detail").forEach(el => {
+        el.classList.toggle("dimmed-fluff", labStrippedActive);
+      });
+      document.getElementById("toggle-strip-btn").innerHTML = labStrippedActive 
+        ? "<span>🔄</span> Restore Fluff" 
+        : "<span>✂️</span> Strip Fluff / Details";
+    });
+
+    window.toggleHierarchyGuide = () => {
+      document.getElementById("hierarchy-guide-panel").classList.toggle("hidden");
+    };
+
+    document.getElementById("reset-lab-btn").addEventListener("click", () => loadLabText(currentLabIdx));
+
+    window.toggleStrike = (prefix, optId) => {
+      document.getElementById(`label-${prefix}-${optId}`).classList.toggle("strikethrough-opt");
+    };
+
+    window.enableCheckBtn = (prefix) => {
+      document.getElementById(`btn-check-${prefix}`).disabled = false;
+    };
+
+    const polarities = [
+      { symbol: "?", class: "bg-slate-100 text-slate-500 border-slate-200" },
+      { symbol: "+", class: "bg-emerald-100 text-emerald-800 border-emerald-300" },
+      { symbol: "–", class: "bg-rose-100 text-rose-800 border-rose-300" },
+      { symbol: "=", class: "bg-blue-100 text-blue-800 border-blue-300" }
+    ];
+
+    window.cyclePolarity = (prefix, optId) => {
+      const btn = document.getElementById(`tagger-${prefix}-${optId}`);
+      let currentIdx = polarities.findIndex(p => p.symbol === btn.innerText.trim());
+      let nextIdx = (currentIdx + 1) % polarities.length;
+      btn.innerText = polarities[nextIdx].symbol;
+      btn.className = `text-[11px] w-7 h-7 flex items-center justify-center font-bold rounded border transition ${polarities[nextIdx].class}`;
+    };
+
+    const extremeWords = ["entirely", "completely", "only", "all", "never", "exclusively", "banned completely", "always"];
+    document.getElementById("toggle-extreme-btn").addEventListener("click", () => {
+      labExtremeHighlighted = !labExtremeHighlighted;
+      labDatabase[currentLabIdx].questions.forEach(q => {
+        q.options.forEach(opt => {
+          const span = document.getElementById(`opt-text-lab-${q.id}-${opt.id}`);
+          if (!span) return;
+          if (labExtremeHighlighted) {
+            let regex = new RegExp(`\\b(${extremeWords.join('|')})\\b`, 'gi');
+            span.innerHTML = opt.text.replace(regex, `<span class="bg-amber-200 text-amber-950 font-semibold px-1 rounded border border-amber-300">⚠️ $1</span>`);
+          } else {
+            span.innerText = opt.text;
+          }
+        });
+      });
+    });
+
+    window.checkLabAnswer = (qId) => {
+      const selected = document.querySelector(`input[name="lab-q-${qId}"]:checked`);
+      if (!selected) return;
+
+      const qData = labDatabase[currentLabIdx].questions.find(q => q.id === qId);
+      document.querySelectorAll(`input[name="lab-q-${qId}"]`).forEach(inp => inp.disabled = true);
+      document.getElementById(`btn-check-lab-${qId}`).disabled = true;
+
+      qData.options.forEach(opt => {
+        const label = document.getElementById(`label-lab-${qId}-${opt.id}`);
+        const tag = document.getElementById(`trap-tag-lab-${qId}-${opt.id}`);
+        tag.classList.remove("hidden");
+        if (opt.id === qData.answer) {
+          label.classList.add("bg-emerald-50", "border-emerald-500", "text-emerald-900", "font-semibold");
+          tag.classList.add("text-emerald-700", "font-bold");
+        } else if (opt.id === selected.value) {
+          label.classList.add("bg-rose-50", "border-rose-400", "text-rose-900");
+          tag.classList.add("text-rose-600");
+        }
+      });
+
+      const fb = document.getElementById(`feedback-lab-${qId}`);
+      fb.classList.remove("hidden");
+      fb.innerHTML = (selected.value === qData.answer)
+        ? `<span class="text-emerald-600 font-bold">✓ Forensic Analysis Correct</span>`
+        : `<span class="text-rose-600 font-bold">✕ Trap Triggered! Review Below</span>`;
+
+      document.getElementById(`rationale-lab-${qId}`).classList.remove("hidden");
+    };
+
+    // Initialize Lab
+    loadLabText(0);
+  </script>
+</body>
+</html>
