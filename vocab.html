@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TKA Case File — Evidence Tether & Mobile Connotation Lens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #1e1915;
+      background-image: radial-gradient(#2d241e 1px, transparent 1px), radial-gradient(#15120f 1px, #1e1915 1px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      font-family: 'Patrick Hand', cursive;
+    }
+    .font-typewriter { font-family: 'Special Elite', monospace; }
+    .font-hand { font-family: 'Caveat', cursive; }
+    .font-mono-tag { font-family: 'Space Mono', monospace; }
+
+    /* Corkboard Texture */
+    .cork-surface {
+      background-color: #8c5a36;
+      background-image: 
+        radial-gradient(#6d4223 15%, transparent 16%),
+        radial-gradient(#a36b43 15%, transparent 16%),
+        radial-gradient(rgba(45, 27, 14, 0.4) 1px, transparent 1px);
+      background-size: 16px 16px, 20px 20px, 8px 8px;
+      background-position: 0 0, 8px 8px, 4px 4px;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.7), 0 15px 35px rgba(0, 0, 0, 0.8);
+      border: 14px solid #3d2314;
+      border-radius: 6px;
+    }
+
+    .paper-card {
+      background: #faf4e8;
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e0d6c3;
+    }
+
+    /* Push Pins */
+    .push-pin {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.6), inset -2px -2px 4px rgba(0,0,0,0.4), inset 2px 2px 4px rgba(255,255,255,0.7);
+      cursor: pointer;
+      z-index: 30;
+      transition: transform 0.15s ease;
+    }
+    .push-pin:hover { transform: scale(1.25); }
+    .pin-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
+    .pin-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
+    .pin-green { background: radial-gradient(circle at 35% 35%, #4ade80, #166534); }
+
+    /* SVG String Drawing */
+    .evidence-string {
+      stroke: #dc2626;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      filter: drop-shadow(3px 5px 3px rgba(0, 0, 0, 0.6));
+      transition: stroke-dasharray 0.3s ease, opacity 0.3s ease;
+    }
+    .evidence-string-shadow {
+      stroke: rgba(0,0,0,0.35);
+      stroke-width: 4;
+      stroke-linecap: round;
+      transform: translate(4px, 6px);
+    }
+
+    .washi-tape {
+      background: rgba(245, 230, 190, 0.85);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      border-left: 2px dashed rgba(180, 160, 120, 0.4);
+      border-right: 2px dashed rgba(180, 160, 120, 0.4);
+    }
+
+    /* Optical Hover Lens */
+    .lens-active-zone { 
+      cursor: none !important;
+      touch-action: none !important; /* Prevents scroll drag while inspecting */
+    }
+    .lens-active-zone * { 
+      cursor: none !important; 
+    }
+
+    #optical-lens-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      width: 104px;
+      height: 104px;
+      margin-left: -52px;
+      margin-top: -52px;
+      border-radius: 50%;
+      border: 5px solid #d97706;
+      background: rgba(254, 243, 199, 0.22);
+      box-shadow: 
+        0 10px 25px rgba(0,0,0,0.5), 
+        inset 0 0 16px rgba(217, 119, 6, 0.45),
+        inset 2px 2px 4px rgba(255,255,255,0.8);
+      backdrop-filter: brightness(1.22) contrast(1.15);
+      transition: border-color 0.2s ease, background 0.2s ease;
+      display: none;
+    }
+
+    #optical-lens-cursor::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 12px;
+      width: 32px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transform: rotate(-35deg);
+    }
+
+    #optical-lens-cursor::after {
+      content: "";
+      position: absolute;
+      bottom: -22px;
+      right: -22px;
+      width: 12px;
+      height: 38px;
+      background: linear-gradient(135deg, #78350f, #291102);
+      border-radius: 4px;
+      transform: rotate(-45deg);
+      box-shadow: 2px 4px 6px rgba(0,0,0,0.5);
+    }
+
+    .connotation-target {
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .strikethrough-opt {
+      text-decoration: line-through 3px #dc2626;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-stone-800 p-2 sm:p-5 flex flex-col items-center">
+
+  <!-- Floating Optical Lens Component -->
+  <div id="optical-lens-cursor">
+    <div id="lens-readout" class="absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none transition-all">
+      SCANNING...
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="w-full max-w-7xl mb-4 flex flex-wrap items-center justify-between gap-3 bg-[#241c17] p-4 rounded-lg border border-amber-950/60 shadow-xl">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-red-900 border-2 border-red-500/50 flex items-center justify-center text-red-200 font-typewriter font-bold text-lg shadow-inner">
+        🔍
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="bg-red-700 text-white font-mono-tag font-bold text-[10px] uppercase tracking-widest px-2 py-0.5 rounded">
+            CASE FILE: VOCAB-TKA
+          </span>
+          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Correlation & Mobile Connotation Lens</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-hand font-bold text-amber-100 tracking-wide mt-0.5">
+          Context Clue Detective: Tether & Lens
+        </h1>
+      </div>
+    </div>
+
+    <!-- Navigation Hub -->
+    <div class="flex items-center gap-2">
+      <a href="lab.html" class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
+        <span>🧪</span> Strategy Lab
+      </a>
+      <a href="exam.html" class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
+        <span>📝</span> Blind Exam (10 Qs)
+      </a>
+    </div>
+  </header>
+
+  <!-- Word Selector Bar -->
+  <nav class="w-full max-w-7xl mb-4 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="word-selector-bar"></nav>
+
+  <!-- Corkboard Workspace -->
+  <div class="w-full max-w-7xl cork-surface p-4 sm:p-7 relative select-none" id="corkboard-container">
+    
+    <!-- SVG String Overlay -->
+    <svg id="string-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
+
+    <!-- Controls Toolbar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6 relative z-30">
+      <div class="flex items-center gap-2">
+        <button onclick="toggleHoverMagnifier()" id="btn-toggle-lens" class="bg-amber-700 hover:bg-amber-600 text-amber-100 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-amber-500 shadow flex items-center gap-1.5 transition">
+          <span>🔎</span> <span id="lens-btn-label">Enable Lens (Touch & Drag)</span>
+        </button>
+        <button onclick="toggleAllStrings()" id="btn-toggle-strings" class="bg-red-800 hover:bg-red-700 text-white font-mono-tag text-xs px-3.5 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
+          <span>🧵</span> <span>Tether Clues</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="playSpecimenAudio()" class="text-amber-100 hover:text-white font-mono-tag text-xs bg-[#2c1c11]/85 px-3 py-1.5 rounded border border-amber-900/60 shadow flex items-center gap-1 transition">
+          🔊 Pronounce
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+
+      <!-- Left Column: Crime Scene Sentence (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div id="crime-scene-board" class="paper-card p-6 sm:p-8 rounded-sm relative transform -rotate-0.5 transition-all">
+          <div class="push-pin pin-red -top-2 left-6" id="pin-target-word"></div>
+          <div class="push-pin pin-yellow -top-2 right-6"></div>
+
+          <div class="washi-tape absolute -top-3 left-1/3 transform -rotate-1 px-4 py-0.5 text-[11px] font-mono-tag text-stone-700 font-bold uppercase tracking-wider">
+            EXHIBIT A: CRIME SCENE SENTENCE
+          </div>
+
+          <div class="border-b border-stone-300 pb-2 mb-4 flex items-center justify-between">
+            <span class="text-xs font-mono-tag text-stone-500 uppercase tracking-widest" id="specimen-id-badge">SPECIMEN</span>
+            <span class="text-xs font-mono-tag text-stone-400">Desktop: Hover | Phone: Drag finger</span>
+          </div>
+
+          <!-- Sentence With Anchor Pins -->
+          <div class="text-xl sm:text-2xl font-typewriter leading-loose text-stone-800 my-4" id="case-sentence-display"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Verification Exam Slip (5 cols) -->
+      <div class="lg:col-span-5 space-y-5">
+        <div class="paper-card p-5 sm:p-6 rounded-sm relative transform rotate-1">
+          <div class="push-pin pin-red -top-2 right-1/2 transform translate-x-1/2"></div>
+          <div class="washi-tape absolute -top-3 left-4 px-3 py-0.5 text-[10px] font-mono-tag font-bold text-red-800 uppercase">
+            VERIFICATION SLIP
+          </div>
+
+          <div class="border-b border-stone-300 pb-2 mb-3">
+            <span class="text-xs font-mono-tag text-red-800 font-bold uppercase">Question Form</span>
+            <h2 class="text-lg font-typewriter text-stone-900 mt-1 leading-snug" id="exam-stem">
+              Which choice is closest in meaning to the target word?
+            </h2>
+          </div>
+
+          <!-- Options -->
+          <div class="space-y-2 font-mono-tag text-xs" id="options-container"></div>
+
+          <!-- Verify Action -->
+          <div class="pt-3 border-t border-stone-300 flex items-center justify-between mt-4">
+            <button id="btn-verify-answer" disabled onclick="verifyAnswer()" class="bg-red-800 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-mono-tag text-xs font-bold px-4 py-2 rounded shadow transition">
+              Verify Forensic Verdict
+            </button>
+            <div id="answer-feedback" class="text-xs font-hand font-bold text-base"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const caseDatabase = [
+      {
+        id: "curb",
+        word: "curb",
+        phonetic: "/kɜːrb/",
+        partOfSpeech: "Verb",
+        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PURPOSE">To</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] POLLUTION HAZARD">industrial pollution</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] CITY AUTHORITY">the city</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-restrictive" data-connote-label="[-] RESTRICTIVE BAN"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>banned heavy diesel trucks</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] CONNECTOR">which promptly</span> <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-drop" data-connote-label="[+] TOXIN REDUCTION"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>reduced toxic smog by 30%</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] DURATION">within six months</span>.`,
+        clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
+        exam: {
+          stem: "As used in the sentence, the word 'curb' most nearly means...",
+          options: [
+            { id: "A", text: "pave along the road edge" },
+            { id: "B", text: "limit or restrain" },
+            { id: "C", text: "accelerate heavily" },
+            { id: "D", text: "publicly investigate" },
+            { id: "E", text: "completely eliminate" }
+          ],
+          answer: "B"
+        }
+      },
+      {
+        id: "compromise",
+        word: "compromise",
+        phonetic: "/ˈkɑːm.prə.maɪz/",
+        partOfSpeech: "Verb",
+        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] RISKY SOFTWARE">Downloading unverified patches</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MODAL">can</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] SYSTEM ASSET">system security</span>, <span class="connotation-target" data-connotation="negative" data-connote-label="[-] CONSEQUENCE">leaving firewalls</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-threat" data-connote-label="[-] MALWARE RISK"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>vulnerable to ransomware attacks</span>.`,
+        clues: [{ id: "node-clue-1" }],
+        exam: {
+          stem: "In this passage context, what is the meaning of 'compromise'?",
+          options: [
+            { id: "A", text: "negotiate an agreement" },
+            { id: "B", text: "reinforce heavily" },
+            { id: "C", text: "weaken or endanger" },
+            { id: "D", text: "purchase legally" },
+            { id: "E", text: "encrypt securely" }
+          ],
+          answer: "C"
+        }
+      },
+      {
+        id: "harbor",
+        word: "harbor",
+        phonetic: "/ˈhɑːr.bɚ/",
+        partOfSpeech: "Verb",
+        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] DISEASE VECTOR">Stagnant rainwater puddles</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] INSECT PEST">dangerous mosquito larvae</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-shelter" data-connote-label="[=] HABITAT"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>serving as breeding sanctuaries</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] SEASON">during tropical monsoon months</span>.`,
+        clues: [{ id: "node-clue-1" }],
+        exam: {
+          stem: "The word 'harbor' in the biological sentence is closest in meaning to...",
+          options: [
+            { id: "A", text: "dock ships safely" },
+            { id: "B", text: "destroy completely" },
+            { id: "C", text: "shelter or host" },
+            { id: "D", text: "drain away rapidly" },
+            { id: "E", text: "measure precisely" }
+          ],
+          answer: "C"
+        }
+      },
+      {
+        id: "novel",
+        word: "novel",
+        phonetic: "/ˈnɑː.vəl/",
+        partOfSpeech: "Adjective",
+        sentencePrefix: `<span class="connotation-target" data-connotation="positive" data-connote-label="[+] LAB RESEARCH">The vaccine research lab</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] ACTION">developed a</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] TREATMENT">mRNA formulation</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="contrast-traditional" data-connote-label="[≠] CONTRAST: OLD METHODS"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>unlike traditional chemical therapies</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PAST">seen in past centuries</span>.`,
+        clues: [{ id: "node-clue-1" }],
+        exam: {
+          stem: "In this medical context, 'novel' means...",
+          options: [
+            { id: "A", text: "fictional literature book" },
+            { id: "B", text: "unprecedented and new" },
+            { id: "C", text: "ancient and tested" },
+            { id: "D", text: "lengthy narrative" },
+            { id: "E", text: "dangerously toxic" }
+          ],
+          answer: "B"
+        }
+      }
+    ];
+
+    let currentCaseIndex = 0;
+    let allStringsVisible = false;
+    let hoverLensActive = false;
+
+    function renderWordTabs() {
+      const container = document.getElementById("word-selector-bar");
+      container.innerHTML = "";
+
+      caseDatabase.forEach((c, idx) => {
+        const btn = document.createElement("button");
+        btn.onclick = () => loadCase(idx);
+        btn.className = (idx === currentCaseIndex)
+          ? "px-4 py-1.5 rounded-sm font-typewriter text-xs font-bold bg-[#faf4e8] text-red-900 border-2 border-red-800 shadow-md transform -rotate-1 transition"
+          : "px-4 py-1.5 rounded-sm font-typewriter text-xs text-amber-200/70 bg-[#281e18] hover:bg-[#342720] border border-amber-950 transition";
+        btn.innerHTML = `<span>🏷️ CASE #${idx + 1}: ${c.word.toUpperCase()}</span>`;
+        container.appendChild(btn);
+      });
+    }
+
+    function loadCase(idx) {
+      currentCaseIndex = idx;
+      allStringsVisible = false;
+      document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Tether Clues</span>`;
+      renderWordTabs();
+
+      const c = caseDatabase[idx];
+      document.getElementById("specimen-id-badge").innerText = `SPECIMEN: "${c.word.toUpperCase()}" [${c.phonetic}] — ${c.partOfSpeech}`;
+
+      const sentenceBox = document.getElementById("case-sentence-display");
+      sentenceBox.innerHTML = `
+        ${c.sentencePrefix}
+        <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET: ${c.word.toUpperCase()}]">
+          <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
+            ${c.word}
+            <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
+          </span>
+        </span>
+        ${c.sentenceSuffix}
+      `;
+
+      renderExam(c.exam);
+      clearStringsSvg();
+
+      setTimeout(() => {
+        focusClue(0);
+        bindHoverConnotationEvents();
+      }, 150);
+    }
+
+    // -------------------------------------------------------------
+    // OPTICAL LENS: DESKTOP MOUSE & MOBILE CONTINUOUS TOUCH ENGINE
+    // -------------------------------------------------------------
+    window.toggleHoverMagnifier = () => {
+      hoverLensActive = !hoverLensActive;
+      const lens = document.getElementById("optical-lens-cursor");
+      const board = document.getElementById("crime-scene-board");
+      const label = document.getElementById("lens-btn-label");
+
+      if (hoverLensActive) {
+        label.innerText = "Disable Lens";
+        document.getElementById("btn-toggle-lens").classList.replace("bg-amber-700", "bg-emerald-700");
+        board.classList.add("lens-active-zone");
+        lens.style.display = "block";
+      } else {
+        label.innerText = "Enable Lens (Touch & Drag)";
+        document.getElementById("btn-toggle-lens").classList.replace("bg-emerald-700", "bg-amber-700");
+        board.classList.remove("lens-active-zone");
+        lens.style.display = "none";
+      }
+    };
+
+    function applyLensFeedback(element) {
+      const lens = document.getElementById("optical-lens-cursor");
+      const readout = document.getElementById("lens-readout");
+
+      const connote = element ? (element.dataset.connotation || "neutral") : "neutral";
+      const label = element ? (element.dataset.connoteLabel || "SCANNING...") : "SCANNING...";
+
+      readout.innerText = label;
+
+      if (connote.includes("negative") || connote.includes("restrictive")) {
+        lens.style.borderColor = "#ef4444";
+        lens.style.background = "rgba(254, 226, 226, 0.35)";
+        readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-red-950 text-red-200 border border-red-500 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
+      } else if (connote.includes("positive")) {
+        lens.style.borderColor = "#22c55e";
+        lens.style.background = "rgba(220, 252, 231, 0.35)";
+        readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-emerald-950 text-emerald-200 border border-emerald-500 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
+      } else if (connote === "target") {
+        lens.style.borderColor = "#a855f7";
+        lens.style.background = "rgba(243, 232, 255, 0.4)";
+        readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-purple-950 text-purple-200 border border-purple-500 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
+      } else {
+        lens.style.borderColor = "#38bdf8";
+        lens.style.background = "rgba(224, 242, 254, 0.35)";
+        readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-sky-950 text-sky-200 border border-sky-500 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
+      }
+    }
+
+    function resetLensFeedback() {
+      const lens = document.getElementById("optical-lens-cursor");
+      const readout = document.getElementById("lens-readout");
+      lens.style.borderColor = "#d97706";
+      lens.style.background = "rgba(254, 243, 199, 0.22)";
+      readout.innerText = "SCANNING...";
+      readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
+    }
+
+    // 1. Desktop Mouse Movement
+    document.addEventListener("mousemove", (e) => {
+      if (!hoverLensActive) return;
+      const lens = document.getElementById("optical-lens-cursor");
+      const board = document.getElementById("crime-scene-board");
+      const bRect = board.getBoundingClientRect();
+
+      if (
+        e.clientX >= bRect.left &&
+        e.clientX <= bRect.right &&
+        e.clientY >= bRect.top &&
+        e.clientY <= bRect.bottom
+      ) {
+        lens.style.display = "block";
+        lens.style.left = `${e.clientX}px`;
+        lens.style.top = `${e.clientY}px`;
+      } else {
+        lens.style.display = "none";
+      }
+    });
+
+    // 2. Mobile Continuous Touch Engine (Follows Drag & Scans Text)
+    const boardEl = document.getElementById("crime-scene-board");
+
+    function handleTouchMove(e) {
+      if (!hoverLensActive) return;
+      const touch = e.touches[0];
+      if (!touch) return;
+
+      const lens = document.getElementById("optical-lens-cursor");
+      const bRect = boardEl.getBoundingClientRect();
+
+      if (
+        touch.clientX >= bRect.left &&
+        touch.clientX <= bRect.right &&
+        touch.clientY >= bRect.top &&
+        touch.clientY <= bRect.bottom
+      ) {
+        lens.style.display = "block";
+        // Finger offset: 55px upward so the fingertip does not cover the lens
+        lens.style.left = `${touch.clientX}px`;
+        lens.style.top = `${touch.clientY - 55}px`;
+
+        // Direct hit-test beneath fingertip
+        const hitElement = document.elementFromPoint(touch.clientX, touch.clientY);
+        const connoteTarget = hitElement ? hitElement.closest(".connotation-target") : null;
+
+        if (connoteTarget) {
+          applyLensFeedback(connoteTarget);
+        } else {
+          resetLensFeedback();
+        }
+      } else {
+        lens.style.display = "none";
+      }
+    }
+
+    boardEl.addEventListener("touchstart", (e) => {
+      if (!hoverLensActive) return;
+      handleTouchMove(e);
+    }, { passive: false });
+
+    boardEl.addEventListener("touchmove", (e) => {
+      if (!hoverLensActive) return;
+      e.preventDefault(); // Prevents screen scrolling while dragging magnifying lens
+      handleTouchMove(e);
+    }, { passive: false });
+
+    boardEl.addEventListener("touchend", () => {
+      if (!hoverLensActive) return;
+      const lens = document.getElementById("optical-lens-cursor");
+      lens.style.display = "none";
+      resetLensFeedback();
+    });
+
+    // 3. Desktop Hover Listeners
+    function bindHoverConnotationEvents() {
+      const targets = document.querySelectorAll(".connotation-target");
+      targets.forEach(el => {
+        el.addEventListener("mouseenter", () => {
+          if (!hoverLensActive) return;
+          applyLensFeedback(el);
+        });
+        el.addEventListener("mouseleave", () => {
+          if (!hoverLensActive) return;
+          resetLensFeedback();
+        });
+      });
+    }
+
+    // -------------------------------------------------------------
+    // RED STRING TETHER ENGINE
+    // -------------------------------------------------------------
+    function drawRedString(sourceElId, targetElId) {
+      const corkboard = document.getElementById("corkboard-container");
+      const sourceEl = document.getElementById(sourceElId);
+      const targetEl = document.getElementById(targetElId);
+      const svg = document.getElementById("string-svg-layer");
+
+      if (!corkboard || !sourceEl || !targetEl || !svg) return;
+
+      const boardRect = corkboard.getBoundingClientRect();
+      const sRect = sourceEl.getBoundingClientRect();
+      const tRect = targetEl.getBoundingClientRect();
+
+      const x1 = (sRect.left + sRect.width / 2) - boardRect.left;
+      const y1 = (sRect.top + sRect.height / 2) - boardRect.top;
+      const x2 = (tRect.left + tRect.width / 2) - boardRect.left;
+      const y2 = (tRect.top + tRect.height / 2) - boardRect.top;
+
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const sag = Math.min(dist * 0.08, 25);
+
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2 + sag;
+
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", "string-group");
+
+      const shadowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      shadowPath.setAttribute("d", `M ${x1} ${y1} Q ${midX} ${midY} ${x2} ${y2}`);
+      shadowPath.setAttribute("class", "evidence-string-shadow");
+      shadowPath.setAttribute("fill", "none");
+
+      const linePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      linePath.setAttribute("d", `M ${x1} ${y1} Q ${midX} ${midY} ${x2} ${y2}`);
+      linePath.setAttribute("class", "evidence-string");
+      linePath.setAttribute("fill", "none");
+
+      g.appendChild(shadowPath);
+      g.appendChild(linePath);
+      svg.appendChild(g);
+    }
+
+    function clearStringsSvg() {
+      const svg = document.getElementById("string-svg-layer");
+      if (svg) svg.innerHTML = "";
+    }
+
+    window.focusClue = (clueIndex) => {
+      clearStringsSvg();
+      const c = caseDatabase[currentCaseIndex];
+      const clue = c.clues[clueIndex];
+      if (!clue) return;
+      drawRedString("node-target", clue.id);
+    };
+
+    window.toggleAllStrings = () => {
+      clearStringsSvg();
+      const c = caseDatabase[currentCaseIndex];
+      allStringsVisible = !allStringsVisible;
+
+      if (allStringsVisible) {
+        c.clues.forEach(clue => {
+          drawRedString("node-target", clue.id);
+        });
+        document.getElementById("btn-toggle-strings").innerHTML = `<span>✂️</span> <span>Release Tether</span>`;
+      } else {
+        document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Tether Clues</span>`;
+        focusClue(0);
+      }
+    };
+
+    window.playSpecimenAudio = () => {
+      const c = caseDatabase[currentCaseIndex];
+      if ('speechSynthesis' in window && c.word) {
+        const u = new SpeechSynthesisUtterance(c.word);
+        u.lang = 'en-US';
+        u.rate = 0.85;
+        window.speechSynthesis.speak(u);
+      }
+    };
+
+    // -------------------------------------------------------------
+    // QUESTION ENGINE
+    // -------------------------------------------------------------
+    function renderExam(exam) {
+      document.getElementById("exam-stem").innerText = exam.stem;
+      const optsBox = document.getElementById("options-container");
+      optsBox.innerHTML = "";
+
+      exam.options.forEach(opt => {
+        const row = document.createElement("div");
+        row.className = "flex items-center gap-2";
+        row.id = `opt-wrap-${opt.id}`;
+
+        row.innerHTML = `
+          <button type="button" onclick="toggleStrike('${opt.id}')" title="Cross out" class="px-2 py-1 bg-stone-200 hover:bg-red-200 text-stone-600 hover:text-red-800 rounded font-bold text-xs border border-stone-300">
+            ✕
+          </button>
+          <label id="label-${opt.id}" class="flex-1 flex items-start gap-2 p-2 rounded bg-stone-50 hover:bg-amber-50 border border-stone-300 cursor-pointer transition select-none">
+            <input type="radio" name="case-option" value="${opt.id}" class="mt-0.5 text-red-800 focus:ring-red-600" onchange="enableVerifyBtn()">
+            <span class="text-stone-800 leading-snug">
+              <strong>${opt.id}.</strong> ${opt.text}
+            </span>
+          </label>
+        `;
+        optsBox.appendChild(row);
+      });
+
+      document.getElementById("btn-verify-answer").disabled = true;
+      document.getElementById("answer-feedback").innerHTML = "";
+    }
+
+    window.toggleStrike = (optId) => {
+      document.getElementById(`label-${optId}`).classList.toggle("strikethrough-opt");
+    };
+
+    window.enableVerifyBtn = () => {
+      document.getElementById("btn-verify-answer").disabled = false;
+    };
+
+    window.verifyAnswer = () => {
+      const selected = document.querySelector('input[name="case-option"]:checked');
+      if (!selected) return;
+
+      const c = caseDatabase[currentCaseIndex];
+      const exam = c.exam;
+
+      document.querySelectorAll('input[name="case-option"]').forEach(i => i.disabled = true);
+      document.getElementById("btn-verify-answer").disabled = true;
+
+      exam.options.forEach(opt => {
+        const label = document.getElementById(`label-${opt.id}`);
+        if (opt.id === exam.answer) {
+          label.classList.add("bg-emerald-100", "border-emerald-600", "font-bold", "text-emerald-950");
+        } else if (opt.id === selected.value) {
+          label.classList.add("bg-red-100", "border-red-600", "text-red-950");
+        }
+      });
+
+      const fb = document.getElementById("answer-feedback");
+      if (selected.value === exam.answer) {
+        fb.innerHTML = `<span class="text-emerald-700">✓ VERIFIED CORRECT</span>`;
+      } else {
+        fb.innerHTML = `<span class="text-red-700">✕ INCORRECT (KEY: ${exam.answer})</span>`;
+      }
+    };
+
+    window.addEventListener("resize", () => {
+      if (allStringsVisible) {
+        toggleAllStrings();
+        toggleAllStrings();
+      } else {
+        focusClue(0);
+      }
+    });
+
+    loadCase(0);
+  </script>
+</body>
+</html>
