@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TKA Case File — Evidence Tether & Connotation Lens</title>
+  <title>TKA Case File — Evidence Tether, Lens & 6 Detective Rules</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Special+Elite&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <style>
     body {
       background-color: #1e1915;
@@ -17,14 +20,23 @@
       background-position: 0 0, 12px 12px;
       font-family: 'Patrick Hand', cursive;
     }
-    .font-typewriter { font-family: 'Special Elite', monospace; }
-    .font-hand { font-family: 'Caveat', cursive; }
-    .font-mono-tag { font-family: 'Space Mono', monospace; }
+
+    .font-typewriter {
+      font-family: 'Special Elite', monospace;
+    }
+
+    .font-hand {
+      font-family: 'Caveat', cursive;
+    }
+
+    .font-mono-tag {
+      font-family: 'Space Mono', monospace;
+    }
 
     /* Corkboard Texture */
     .cork-surface {
       background-color: #8c5a36;
-      background-image: 
+      background-image:
         radial-gradient(#6d4223 15%, transparent 16%),
         radial-gradient(#a36b43 15%, transparent 16%),
         radial-gradient(rgba(45, 27, 14, 0.4) 1px, transparent 1px);
@@ -40,10 +52,19 @@
       box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
       border: 1px solid #e0d6c3;
     }
+
     .paper-card-yellow {
       background: #fef9c3;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
       border: 1px solid #fef08a;
+    }
+
+    .paper-kraft {
+      background-color: #cbb493;
+      background-image: radial-gradient(#9c8360 0.8px, transparent 0.8px);
+      background-size: 10px 10px;
+      box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.3);
+      border: 1px dashed #755f41;
     }
 
     /* Push Pins */
@@ -52,16 +73,35 @@
       height: 18px;
       border-radius: 50%;
       position: absolute;
-      box-shadow: 2px 4px 6px rgba(0,0,0,0.6), inset -2px -2px 4px rgba(0,0,0,0.4), inset 2px 2px 4px rgba(255,255,255,0.7);
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6), inset -2px -2px 4px rgba(0, 0, 0, 0.4), inset 2px 2px 4px rgba(255, 255, 255, 0.7);
       cursor: pointer;
       z-index: 30;
       transition: transform 0.15s ease;
     }
-    .push-pin:hover { transform: scale(1.25); }
-    .pin-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
-    .pin-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
-    .pin-green { background: radial-gradient(circle at 35% 35%, #4ade80, #166534); }
-    .pin-blue { background: radial-gradient(circle at 35% 35%, #38bdf8, #0369a1); }
+
+    .push-pin:hover {
+      transform: scale(1.25);
+    }
+
+    .pin-red {
+      background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b);
+    }
+
+    .pin-yellow {
+      background: radial-gradient(circle at 35% 35%, #facc15, #854d0e);
+    }
+
+    .pin-green {
+      background: radial-gradient(circle at 35% 35%, #4ade80, #166534);
+    }
+
+    .pin-blue {
+      background: radial-gradient(circle at 35% 35%, #38bdf8, #0369a1);
+    }
+
+    .pin-purple {
+      background: radial-gradient(circle at 35% 35%, #c084fc, #6b21a8);
+    }
 
     /* SVG String Drawing */
     .evidence-string {
@@ -71,8 +111,9 @@
       filter: drop-shadow(3px 5px 3px rgba(0, 0, 0, 0.6));
       transition: stroke-dasharray 0.3s ease, opacity 0.3s ease;
     }
+
     .evidence-string-shadow {
-      stroke: rgba(0,0,0,0.35);
+      stroke: rgba(0, 0, 0, 0.35);
       stroke-width: 4;
       stroke-linecap: round;
       transform: translate(4px, 6px);
@@ -80,18 +121,45 @@
 
     .washi-tape {
       background: rgba(245, 230, 190, 0.85);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
       border-left: 2px dashed rgba(180, 160, 120, 0.4);
       border-right: 2px dashed rgba(180, 160, 120, 0.4);
     }
 
+    .washi-tape-red {
+      background: rgba(239, 110, 110, 0.75);
+      border-left: 2px dashed rgba(255, 255, 255, 0.7);
+      border-right: 2px dashed rgba(255, 255, 255, 0.7);
+    }
+
+    /* Rubber Stamp */
+    .rubber-stamp {
+      display: inline-block;
+      border: 2px solid #a82313;
+      color: #a82313;
+      font-family: 'Special Elite', monospace;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 1px 6px;
+      border-radius: 4px;
+      transform: rotate(-2deg);
+    }
+
+    .rubber-stamp-green {
+      border-color: #15803d;
+      color: #15803d;
+      transform: rotate(1.5deg);
+    }
+
     /* Optical Hover Lens */
-    .lens-active-zone { 
+    .lens-active-zone {
       cursor: none !important;
       touch-action: none !important;
     }
-    .lens-active-zone * { 
-      cursor: none !important; 
+
+    .lens-active-zone * {
+      cursor: none !important;
     }
 
     #optical-lens-cursor {
@@ -105,10 +173,10 @@
       border-radius: 50%;
       border: 5px solid #d97706;
       background: rgba(254, 243, 199, 0.22);
-      box-shadow: 
-        0 10px 25px rgba(0,0,0,0.5), 
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.5),
         inset 0 0 16px rgba(217, 119, 6, 0.45),
-        inset 2px 2px 4px rgba(255,255,255,0.8);
+        inset 2px 2px 4px rgba(255, 255, 255, 0.8);
       backdrop-filter: brightness(1.22) contrast(1.15);
       transition: border-color 0.2s ease, background 0.2s ease;
       display: none;
@@ -136,7 +204,7 @@
       background: linear-gradient(135deg, #78350f, #291102);
       border-radius: 4px;
       transform: rotate(-45deg);
-      box-shadow: 2px 4px 6px rgba(0,0,0,0.5);
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
     }
 
     .connotation-target {
@@ -150,67 +218,127 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen text-stone-800 p-2 sm:p-5 flex flex-col items-center">
 
   <!-- Floating Optical Lens Component -->
   <div id="optical-lens-cursor">
-    <div id="lens-readout" class="absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none transition-all">
+    <div id="lens-readout"
+      class="absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none transition-all">
       MEMINDAI...
     </div>
   </div>
 
   <!-- Header -->
-  <header class="w-full max-w-7xl mb-4 flex flex-wrap items-center justify-between gap-3 bg-[#241c17] p-4 rounded-lg border border-amber-950/60 shadow-xl">
+  <header
+    class="w-full max-w-7xl mb-4 flex flex-wrap items-center justify-between gap-3 bg-[#241c17] p-4 rounded-lg border border-amber-950/60 shadow-xl">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-red-900 border-2 border-red-500/50 flex items-center justify-center text-red-200 font-typewriter font-bold text-lg shadow-inner">
+      <div
+        class="w-10 h-10 rounded-full bg-red-900 border-2 border-red-500/50 flex items-center justify-center text-red-200 font-typewriter font-bold text-lg shadow-inner">
         🔍
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="bg-red-700 text-white font-mono-tag font-bold text-[10px] uppercase tracking-widest px-2 py-0.5 rounded">
-            CASE FILE: VOCAB-TKA
+          <span
+            class="bg-red-700 text-white font-mono-tag font-bold text-[10px] uppercase tracking-widest px-2 py-0.5 rounded">
+            BERKAS KASUS: VOCAB-TKA-09
           </span>
-          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Correlation & Connotation Workbench</span>
+          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Tether, Connotation Lens & Field
+            Protocol</span>
         </div>
         <h1 class="text-xl sm:text-2xl font-hand font-bold text-amber-100 tracking-wide mt-0.5">
-          Context Clue Detective: Tether & Lens
+          Context Clue Detective: 6 Kaidah Bedah Makna & Lensa Forensik
         </h1>
       </div>
     </div>
 
     <!-- Navigation Hub -->
     <div class="flex items-center gap-2">
-      <a href="lab.html" class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
+      <a href="lab.html"
+        class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
         <span>🧪</span> Strategy Lab
       </a>
-      <a href="exam.html" class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
+      <a href="vocab-exam.html"
+        class="bg-red-800 hover:bg-red-700 text-amber-100 text-xs font-mono-tag font-bold px-3 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
+        <span>📋</span> Vocab Blind Exam (10 Qs) →
+      </a>
+      <a href="exam.html"
+        class="bg-stone-800 hover:bg-stone-700 text-amber-200 text-xs font-mono-tag px-3 py-1.5 rounded border border-stone-600 transition flex items-center gap-1">
         <span>📝</span> Blind Exam (10 Qs)
       </a>
+      <button onclick="toggleDossierRules()"
+        class="bg-amber-800 hover:bg-amber-700 text-white text-xs font-mono-tag px-3 py-1.5 rounded border border-amber-600 transition flex items-center gap-1">
+        <span>📖</span> <span id="dossier-toggle-label">Buka 6 Kaidah Detektif</span>
+      </button>
     </div>
   </header>
 
   <!-- Word Selector Bar -->
-  <nav class="w-full max-w-7xl mb-4 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="word-selector-bar"></nav>
+  <nav class="w-full max-w-7xl mb-4 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="word-selector-bar">
+  </nav>
+
+  <!-- EXPANDABLE DOSSIER: 6 DETECTIVE STRATEGIES -->
+  <section id="detective-rules-dossier"
+    class="w-full max-w-7xl mb-5 paper-card p-5 sm:p-7 rounded-sm border-2 border-[#8b6f4e] relative space-y-4 shadow-2xl">
+    <div class="push-pin pin-purple -top-2 left-8"></div>
+    <div class="push-pin pin-red -top-2 right-8"></div>
+    <div
+      class="washi-tape-red absolute -top-3 left-1/3 px-4 py-0.5 text-white font-mono-tag text-xs font-bold tracking-wider uppercase">
+      DOSSIER TEKNIS: 6 KAIDAH MEMBEDAH MAKNA TANPA KAMUS
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-300 pb-3 gap-2">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-hand font-bold text-amber-950 flex items-center gap-2">
+          <span>🕵️‍♂️</span> "Kata Membawa Fungsi dalam Kalimat, Bukan Sekadar Terjemahan Kaku"
+        </h2>
+        <p class="text-xs font-typewriter text-stone-600 mt-0.5">
+          Klik masing-masing dari 6 instrumen investigasi di bawah untuk melihat simulasi bedah kasusnya:
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="rubber-stamp text-[10px]">ZERO-KNOWLEDGE PROTOCOL</span>
+      </div>
+    </div>
+
+    <!-- 6 Rule Tabs Buttons -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs font-mono-tag" id="rules-tab-bar">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Active Rule Display Plate -->
+    <div id="active-rule-plate"
+      class="paper-card-yellow p-4 sm:p-5 rounded border border-amber-300 space-y-3 font-typewriter text-xs">
+      <!-- Populated via JS -->
+    </div>
+  </section>
 
   <!-- Corkboard Workspace -->
   <div class="w-full max-w-7xl cork-surface p-4 sm:p-7 relative select-none" id="corkboard-container">
-    
+
     <!-- SVG String Overlay -->
     <svg id="string-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
 
     <!-- Controls Toolbar -->
     <div class="flex flex-wrap items-center justify-between gap-3 mb-6 relative z-30">
-      <div class="flex items-center gap-2">
-        <button onclick="toggleHoverMagnifier()" id="btn-toggle-lens" class="bg-amber-700 hover:bg-amber-600 text-amber-100 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-amber-500 shadow flex items-center gap-1.5 transition">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="toggleHoverMagnifier()" id="btn-toggle-lens"
+          class="bg-amber-700 hover:bg-amber-600 text-amber-100 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-amber-500 shadow flex items-center gap-1.5 transition">
           <span>🔎</span> <span id="lens-btn-label">Aktifkan Lensa (Sentuh & Geser)</span>
         </button>
-        <button onclick="toggleAllStrings()" id="btn-toggle-strings" class="bg-red-800 hover:bg-red-700 text-white font-mono-tag text-xs px-3.5 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
+        <button onclick="toggleAllStrings()" id="btn-toggle-strings"
+          class="bg-red-800 hover:bg-red-700 text-white font-mono-tag text-xs px-3.5 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
           <span>🧵</span> <span>Sambung Semua Benang</span>
+        </button>
+        <button onclick="toggleBlankSubstitutionMode()" id="btn-toggle-blank"
+          class="bg-stone-800 hover:bg-stone-700 text-amber-200 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-stone-600 shadow flex items-center gap-1.5 transition">
+          <span>🧩</span> <span id="blank-btn-label">Uji Kaidah 1: [BLANK] $x$</span>
         </button>
       </div>
 
       <div class="flex items-center gap-2">
-        <button onclick="playSpecimenAudio()" class="text-amber-100 hover:text-white font-mono-tag text-xs bg-[#2c1c11]/85 px-3 py-1.5 rounded border border-amber-900/60 shadow flex items-center gap-1 transition">
+        <button onclick="playSpecimenAudio()"
+          class="text-amber-100 hover:text-white font-mono-tag text-xs bg-[#2c1c11]/85 px-3 py-1.5 rounded border border-amber-900/60 shadow flex items-center gap-1 transition">
           🔊 Pronounce
         </button>
       </div>
@@ -219,50 +347,67 @@
     <!-- Main Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
 
-      <!-- Left Column: Crime Scene Sentence + Indonesian Tips Card (7 cols) -->
+      <!-- Left Column: Crime Scene Sentence + Fast Tips Card (7 cols) -->
       <div class="lg:col-span-7 space-y-6">
-        
+
         <!-- Exhibit A: Sentence Board -->
-        <div id="crime-scene-board" class="paper-card p-6 sm:p-8 rounded-sm relative transform -rotate-0.5 transition-all">
+        <div id="crime-scene-board"
+          class="paper-card p-6 sm:p-8 rounded-sm relative transform -rotate-0.5 transition-all">
           <div class="push-pin pin-red -top-2 left-6" id="pin-target-word"></div>
           <div class="push-pin pin-yellow -top-2 right-6"></div>
 
-          <div class="washi-tape absolute -top-3 left-1/3 transform -rotate-1 px-4 py-0.5 text-[11px] font-mono-tag text-stone-700 font-bold uppercase tracking-wider">
+          <div
+            class="washi-tape absolute -top-3 left-1/3 transform -rotate-1 px-4 py-0.5 text-[11px] font-mono-tag text-stone-700 font-bold uppercase tracking-wider">
             EXHIBIT A: CRIME SCENE SENTENCE
           </div>
 
           <div class="border-b border-stone-300 pb-2 mb-4 flex items-center justify-between">
-            <span class="text-xs font-mono-tag text-stone-500 uppercase tracking-widest" id="specimen-id-badge">SPECIMEN</span>
-            <span class="text-xs font-mono-tag text-stone-400">Komputer: Arahkan kursor | HP: Geser jari</span>
+            <span class="text-xs font-mono-tag text-stone-500 uppercase tracking-widest"
+              id="specimen-id-badge">SPECIMEN</span>
+            <span class="text-xs font-mono-tag text-stone-400">Desktop: Hover | Phone: Drag finger</span>
           </div>
 
           <!-- Sentence With Anchor Pins (English) -->
-          <div class="text-xl sm:text-2xl font-typewriter leading-loose text-stone-800 my-4" id="case-sentence-display"></div>
+          <div class="text-xl sm:text-2xl font-typewriter leading-loose text-stone-800 my-4" id="case-sentence-display">
+          </div>
+
+          <!-- Status Indicator of Sentence -->
+          <div id="sentence-mode-banner"
+            class="bg-amber-100/70 border border-amber-300 p-2.5 rounded flex items-center justify-between text-xs font-mono-tag text-stone-700">
+            <span>MODE: <strong>ORIGINAL SPECIMEN</strong></span>
+            <span class="font-hand text-sm text-stone-500">Arahkan lensa untuk melihat konotasi warna (+ / - / =)</span>
+          </div>
         </div>
 
-        <!-- Pinned Detective Tips (Indonesian) -->
-        <div class="paper-card-yellow p-4 sm:p-5 rounded-sm relative transform rotate-0.5 border border-amber-300 space-y-2">
+        <!-- Pinned Quick Field Note (Indonesian) -->
+        <div
+          class="paper-card-yellow p-4 sm:p-5 rounded-sm relative transform rotate-0.5 border border-amber-300 space-y-2">
           <div class="push-pin pin-blue -top-2 left-6"></div>
-          <div class="washi-tape absolute -top-3 right-6 px-3 py-0.5 text-[10px] font-mono-tag text-amber-900 font-bold">
+          <div
+            class="washi-tape absolute -top-3 right-6 px-3 py-0.5 text-[10px] font-mono-tag text-amber-900 font-bold">
             CATATAN DETEKTIF: MAKNA > TERJEMAHAN
           </div>
 
           <h3 class="font-hand font-bold text-lg text-amber-950 flex items-center gap-1.5">
-            <span>💡</span> Cara Membedah Makna Kata (Tanpa Tahu Terjemahan Kamus):
+            <span>💡</span> 3 Langkah Praktis Saat Mengadapi Kata Asing di Ujian:
           </h3>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs font-typewriter text-stone-700">
             <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
-              <strong class="text-red-900 block font-hand text-sm mb-0.5">1. Tinggalkan Kamus Kaku</strong>
-              <p class="leading-relaxed">Jangan paksakan terjemahan kata per kata. Tanyakan: <em>"Apa fungsi atau dampak kata ini terhadap isi kalimat?"</em></p>
+              <strong class="text-red-900 block font-hand text-sm mb-0.5">1. Tutup Kata Target</strong>
+              <p class="leading-relaxed">Ganti kata asing tersebut dengan <strong>[SESUATU]</strong>. Amati peran logis
+                yang harus diisi kata itu.</p>
             </div>
             <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
               <strong class="text-red-900 block font-hand text-sm mb-0.5">2. Deteksi Polaritas Rasa</strong>
-              <p class="leading-relaxed">Gunakan lensa pembesar. Apakah kalimat sedang menyelesaikan masalah <span class="text-emerald-700 font-bold">[+]</span> atau membawa bahaya/pembatasan <span class="text-rose-700 font-bold">[–]</span>?</p>
+              <p class="leading-relaxed">Gunakan lensa pembesar. Apakah kalimat sedang menyelesaikan masalah <span
+                  class="text-emerald-700 font-bold">[+]</span> atau membawa bahaya/pembatasan <span
+                  class="text-rose-700 font-bold">[–]</span>?</p>
             </div>
             <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
-              <strong class="text-red-900 block font-hand text-sm mb-0.5">3. Uji Kata Pengganti</strong>
-              <p class="leading-relaxed">Ganti kata asing tersebut dengan kata sederhana seperti <em>"stop"</em>, <em>"help"</em>, atau <em>"make"</em> agar logikanya tetap nyambung.</p>
+              <strong class="text-red-900 block font-hand text-sm mb-0.5">3. Uji Dummy Word</strong>
+              <p class="leading-relaxed">Ganti kata asing tersebut dengan kata sederhana seperti <em>"stop"</em>,
+                <em>"help"</em>, atau <em>"damage"</em> agar logikanya pas.</p>
             </div>
           </div>
         </div>
@@ -273,7 +418,8 @@
       <div class="lg:col-span-5 space-y-5">
         <div class="paper-card p-5 sm:p-6 rounded-sm relative transform rotate-1">
           <div class="push-pin pin-red -top-2 right-1/2 transform translate-x-1/2"></div>
-          <div class="washi-tape absolute -top-3 left-4 px-3 py-0.5 text-[10px] font-mono-tag font-bold text-red-800 uppercase">
+          <div
+            class="washi-tape absolute -top-3 left-4 px-3 py-0.5 text-[10px] font-mono-tag font-bold text-red-800 uppercase">
             VERIFICATION SLIP
           </div>
 
@@ -289,10 +435,18 @@
 
           <!-- Verify Action -->
           <div class="pt-3 border-t border-stone-300 flex items-center justify-between mt-4">
-            <button id="btn-verify-answer" disabled onclick="verifyAnswer()" class="bg-red-800 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-mono-tag text-xs font-bold px-4 py-2 rounded shadow transition">
+            <button id="btn-verify-answer" disabled onclick="verifyAnswer()"
+              class="bg-red-800 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-mono-tag text-xs font-bold px-4 py-2 rounded shadow transition">
               Verify Forensic Verdict
             </button>
             <div id="answer-feedback" class="text-xs font-hand font-bold text-base"></div>
+          </div>
+
+          <!-- Strategy Applied Debrief -->
+          <div id="strategy-debrief-box"
+            class="hidden mt-3 p-3 bg-amber-50 border-l-4 border-emerald-600 text-xs font-typewriter text-stone-700 space-y-1">
+            <span class="font-bold text-emerald-900 block font-hand text-base">Kaidah Analisis yang Digunakan:</span>
+            <p id="strategy-debrief-text" class="leading-relaxed">Debrief details load here...</p>
           </div>
         </div>
       </div>
@@ -301,17 +455,92 @@
   </div>
 
   <script>
+    // -------------------------------------------------------------
+    // DATA: 6 ZERO-KNOWLEDGE DETECTIVE STRATEGIES
+    // -------------------------------------------------------------
+    const detectiveRules = [
+      {
+        id: "blank",
+        title: "1. Kaidah [BLANK] ($x$ Aljabar)",
+        badge: "ALGEBRAIC VARIABLE",
+        summary: "Jangan paksa baca atau terjemahkan kata asing. Tutup dengan jempol dan anggap sebagai variabel [SOMETHING] atau [DO SOMETHING].",
+        caseTitle: "Contoh: Mengungkap kata 'curb'",
+        original: "The mayor introduced strict laws to curb rising inflation.",
+        blanked: "The mayor introduced strict laws to [DO SOMETHING TO] rising inflation.",
+        analysis: "Inflasi melonjak adalah masalah ekonomi. Pemerintah membuat aturan ketat. Apa yang dilakukan otoritas terhadap masalah yang melonjak? Mengendalikan, menahan, atau membatasi lajunya!",
+        dummyVerdict: "Makna = to limit / to hold back (tanpa membuka kamus)."
+      },
+      {
+        id: "polarity",
+        title: "2. Triase Polaritas (+ / – / =)",
+        badge: "CONNOTATION TRIAGE",
+        summary: "Setiap kalimat memancarkan muatan rasa. Temukan apakah iklim kalimat bernada Positif (+), Negatif/Bahaya (–), atau Netral (=).",
+        caseTitle: "Contoh: Menguji muatan 'compromise'",
+        original: "Malware can compromise system security, leaving personal data vulnerable.",
+        blanked: "Malware [–] can [DO SOMETHING NEGATIVE] to security, leaving data vulnerable [–].",
+        analysis: "Kata 'malware' dan 'vulnerable' membawa polaritas negatif (–). Pilihan jawaban yang berarti 'musyawarah damai' atau 'memperkuat' langsung dicoret karena polaritasnya bertentangan.",
+        dummyVerdict: "Makna = to endanger / to weaken (muatan negatif wajib cocok)."
+      },
+      {
+        id: "punctuation",
+        title: "3. Peta Tanda Baca (Roadmap)",
+        badge: "PUNCTUATION AS EQUALS SIGN",
+        summary: "Penulis teks akademis sering langsung menuliskan artinya di samping kata menggunakan koma aposisi, tanda pisah (—), titik dua (:), atau tanda kurung.",
+        caseTitle: "Contoh: Definisi langsung 'fossorial'",
+        original: "The desert tortoise is fossorial—spending up to 95% of its lifespan underground in burrows.",
+        blanked: "The desert tortoise is fossorial [ = ] spending 95% of its lifespan underground.",
+        analysis: "Tanda em-dash (—) berfungsi persis seperti tanda sama dengan (=). Penjelasan setelah tanda pisah secara harfiah adalah definisi dari kata tersebut!",
+        dummyVerdict: "Makna = hidup menggali di bawah tanah (disediakan langsung oleh teks)."
+      },
+      {
+        id: "pivots",
+        title: "4. Titik Balik Wacana (Pivots)",
+        badge: "LOGICAL CONNECTORS",
+        summary: "Perhatikan kata sambung. Apakah kalimat berbalik arah (Contrast: unlike, however, whereas) atau sebab-akibat (Cause/Effect: thereby, because, consequently)?",
+        caseTitle: "Contoh: Menemukan makna 'novel' lewat 'unlike'",
+        original: "Unlike traditional chemical treatments, the lab engineered a novel vaccine formulation.",
+        blanked: "Unlike traditional [KUNO/LAMA], the lab engineered a [KEBALIKANNYA] vaccine.",
+        analysis: "Kata 'unlike' membalikkan makna. Jika pembandingnya adalah metode 'traditional' (kuno/lama), maka 'novel' di sini bertindak sebagai kata sifat yang berarti 'baru dan belum pernah ada'.",
+        dummyVerdict: "Makna = new and innovative (bukan novel buku cerita fiksi!)."
+      },
+      {
+        id: "syntax",
+        title: "5. Analisis Slot Sintaksis",
+        badge: "PART OF SPEECH LOCK",
+        summary: "Kunci jenis katanya: Apakah bertindak sebagai Kata Kerja (apa yang dilakukan Subjek ke Objek?), Kata Sifat (menerangkan kondisi?), atau Kata Benda?",
+        caseTitle: "Contoh: Jebakan kata 'prejudice'",
+        original: "The leaked audio would prejudice the jury before physical evidence was presented.",
+        blanked: "The leaked audio would [VERB: MEMPENGARUHI BURUK] the jury.",
+        analysis: "Di sini 'prejudice' didahului kata modal 'would', menjadikannya KATA KERJA TRANSITIF terhadap juri pengadilan. Bukan diskriminasi rasial (kata benda sehari-hari).",
+        dummyVerdict: "Makna = to unfairly bias or influence (kunci peran tata bahasanya)."
+      },
+      {
+        id: "dummy",
+        title: "6. Uji Substitusi Dummy Word",
+        badge: "PLUG & VERIFY HEURISTIC",
+        summary: "Ganti kata misterius dengan kata bahasa Inggris super sederhana: HELP, HARM, STOP, MAKE, NEW, SMALL. Jika kalimat tetap mengalir logis, cari opsi A-E yang sepadan.",
+        caseTitle: "Contoh: Uji Dummy Word pada 'ration'",
+        original: "The drought forced the city to ration tap water to only two hours per morning.",
+        blanked: "The drought forced the city to [LIMIT / RESTRICT] tap water.",
+        analysis: "Masukkan kata dummy 'LIMIT'. Kalimat berbunyi: 'Kemarau memaksa kota untuk MEMBATASI air keran'. Logika kalimat berjalan sempurna. Pilih opsi yang berarti 'distribute in limited amounts'.",
+        dummyVerdict: "Makna = distribute in limited amounts (terbukti lewat dummy word)."
+      }
+    ];
+
+    // -------------------------------------------------------------
+    // DATA: CASE SPECIMENS (ENGLISH QUESTIONS & OPTIONS)
+    // -------------------------------------------------------------
     const caseDatabase = [
       {
         id: "curb",
         word: "curb",
+        dummyWord: "LIMIT / RESTRAIN",
         phonetic: "/kɜːrb/",
         partOfSpeech: "Verb",
-        // Magnifying glass HUD explanations in Indonesian
+        ruleUsed: "Kaidah 1 ([BLANK]) & Kaidah 4 (Sebab-Akibat)",
         sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] TUJUAN KALIMAT">To</span> `,
         sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] POLUSI / ANCAMAN LINGKUNGAN">industrial pollution</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] OTORITAS PEMERINTAH">the city</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-restrictive" data-connote-label="[-] TINDAKAN TEGAS: LARANGAN TRUK"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>banned heavy diesel trucks</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PENGHUBUNG AKIBAT">which promptly</span> <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-drop" data-connote-label="[+] DAMPAK BAIK: ASAP RACUN TURUN 30%"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>reduced toxic smog by 30%</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] RENTANG WAKTU CEPAT">within six months</span>.`,
         clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
-        // Exam stem & options in English
         exam: {
           stem: "As used in the sentence, the word 'curb' most nearly means...",
           options: [
@@ -321,14 +550,17 @@
             { id: "D", text: "publicly investigate" },
             { id: "E", text: "completely eliminate" }
           ],
-          answer: "B"
+          answer: "B",
+          rationale: "Kaidah yang dipakai: Kaidah 1 ([BLANK]) & Kaidah 4 (Sebab-Akibat). Melarang truk diesel bertujuan untuk 'menahan/membatasi' lonjakan polusi, bukan membangun trotoar jalan (Jebakan Polisemi A) atau menghapus total 100% (Jebakan Ekstrem E)."
         }
       },
       {
         id: "compromise",
         word: "compromise",
+        dummyWord: "WEAKEN / ENDANGER",
         phonetic: "/ˈkɑːm.prə.maɪz/",
         partOfSpeech: "Verb",
+        ruleUsed: "Kaidah 2 (Triase Polaritas) & Kaidah 5 (Slot Sintaksis)",
         sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] TINDAKAN BERISIKO">Downloading unverified patches</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MODAL KEMUNGKINAN">can</span> `,
         sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] KEAMANAN SISTEM">system security</span>, <span class="connotation-target" data-connotation="negative" data-connote-label="[-] DAMPAK KERUSAKAN">leaving firewalls</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-threat" data-connote-label="[-] ANCAMAN SERANGAN MALWARE"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>vulnerable to ransomware attacks</span>.`,
         clues: [{ id: "node-clue-1" }],
@@ -341,14 +573,17 @@
             { id: "D", text: "purchase legally" },
             { id: "E", text: "encrypt securely" }
           ],
-          answer: "C"
+          answer: "C",
+          rationale: "Kaidah yang dipakai: Kaidah 2 (Triase Polaritas). Akibat dari tindakan ini adalah 'vulnerable to ransomware' (-). Maka kata kerja yang hilang bermakna 'melemahkan atau membahayakan'. Opsi A adalah jebakan arti sehari-hari (musyawarah damai)."
         }
       },
       {
         id: "harbor",
         word: "harbor",
+        dummyWord: "SHELTER / HOUSE",
         phonetic: "/ˈhɑːr.bɚ/",
         partOfSpeech: "Verb",
+        ruleUsed: "Kaidah 3 (Aposisi Definisi) & Kaidah 5 (Slot Sintaksis)",
         sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] AIR TERGENANG / SARANG">Stagnant rainwater puddles</span> `,
         sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] JENTIK NYAMUK BERBAHAYA">dangerous mosquito larvae</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-shelter" data-connote-label="[=] TEMPAT BERKEMBANGBIAK"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>serving as breeding sanctuaries</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MUSIM HUJAN">during tropical monsoon months</span>.`,
         clues: [{ id: "node-clue-1" }],
@@ -361,14 +596,17 @@
             { id: "D", text: "drain away rapidly" },
             { id: "E", text: "measure precisely" }
           ],
-          answer: "C"
+          answer: "C",
+          rationale: "Kaidah yang dipakai: Kaidah 3 (Frasa Aposisi Penjelas). Frasa 'serving as breeding sanctuaries' langsung menjelaskan kata kerja 'harbor' sebagai tempat menampung, memberi suaka, atau menjadi sarang."
         }
       },
       {
         id: "novel",
         word: "novel",
+        dummyWord: "NEW / INNOVATIVE",
         phonetic: "/ˈnɑː.vəl/",
         partOfSpeech: "Adjective",
+        ruleUsed: "Kaidah 4 (Titik Balik 'Unlike') & Kaidah 5 (Adjective Slot)",
         sentencePrefix: `<span class="connotation-target" data-connotation="positive" data-connote-label="[+] PENELITI LABORATORIUM">The vaccine research lab</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] AKSI MENCIPTAKAN">developed a</span> `,
         sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] FORMULASI MEDIS MRNA">mRNA formulation</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="contrast-traditional" data-connote-label="[≠] KONTRAS: BERBEDA DARI CARA KUNO"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>unlike traditional chemical therapies</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MASA LALU">seen in past centuries</span>.`,
         clues: [{ id: "node-clue-1" }],
@@ -381,15 +619,195 @@
             { id: "D", text: "lengthy narrative" },
             { id: "E", text: "dangerously toxic" }
           ],
-          answer: "B"
+          answer: "B",
+          rationale: "Kaidah yang dipakai: Kaidah 4 (Titik Balik Kontras). 'Unlike traditional' memberi sinyal bahwa formula ini berlawanan dengan yang kuno, sehingga maknanya adalah baru/inovatif. Opsi A adalah jebakan kata benda buku cerita."
+        }
+      },
+      {
+        id: "prejudice",
+        word: "prejudice",
+        dummyWord: "UNFAIRLY INFLUENCE",
+        phonetic: "/ˈpredʒ.ə.dɪs/",
+        partOfSpeech: "Verb",
+        ruleUsed: "Kaidah 2 (Triase Polaritas) & Kaidah 5 (Slot Sintaksis: Verb Transitif)",
+        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] BUKTI ILEGAL / BOCOR">The leaked recording</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MODAL KERJA">would</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] OBJEK PERSIDANGAN: JURI">the jury</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-rose-100 text-rose-950 px-2 py-0.5 rounded border border-rose-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-bias" data-connote-label="[-] DAMPAK: MERUSAK KEADILAN SIDANG"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>depriving the defendant of a fair trial</span> <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="neutral-timing" data-connote-label="[=] SEBELUM BUKTI FISIK SAH DIPERIKSA"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>before physical testimony could be examined</span>.`,
+        clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
+        exam: {
+          stem: "As used in the legal passage, the word 'prejudice' most nearly means...",
+          options: [
+            { id: "A", text: "discriminate based on racial background" },
+            { id: "B", text: "unfairly bias or harm objectively" },
+            { id: "C", text: "formally swear into office" },
+            { id: "D", text: "enlighten with factual evidence" },
+            { id: "E", text: "completely excuse from verdict" }
+          ],
+          answer: "B",
+          rationale: "Kaidah yang dipakai: Kaidah 5 (Slot Sintaksis). 'Would prejudice the jury' memposisikan kata ini sebagai kata kerja transitif, bukan kata benda diskriminasi rasial (Jebakan A). Didukung frasa 'depriving the defendant of a fair trial', artinya membuat juri berprasangka/bias secara tidak adil."
+        }
+      },
+      {
+        id: "mitigate",
+        word: "mitigate",
+        dummyWord: "LESSEN / REDUCE",
+        phonetic: "/ˈmɪt.ə.ɡeɪt/",
+        partOfSpeech: "Verb",
+        ruleUsed: "Kaidah 1 ([BLANK]) & Kaidah 4 (Sebab-Akibat Solutif)",
+        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] UPAYA PENANGANAN">To</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] ANCAMAN KELAPARAN / GAGAL PANEN">the severe economic fallout of the crop drought</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PEMERINTAH">the ministry</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-relief" data-connote-label="[+] BANTUAN DANA & AIR BERSIH"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>distributed emergency subsidies and irrigation kits</span>, <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-cushion" data-connote-label="[+] MENAHAN KEBANGKRUTAN PETANI"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>cushioning farmers from bankruptcy</span>.`,
+        clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
+        exam: {
+          stem: "In the agricultural context above, the word 'mitigate' is closest in meaning to...",
+          options: [
+            { id: "A", text: "intensify the severity of" },
+            { id: "B", text: "lessen or alleviate the harshness of" },
+            { id: "C", text: "calculate the financial cost of" },
+            { id: "D", text: "delay indefinitely into the future" },
+            { id: "E", text: "celebrate publicly" }
+          ],
+          answer: "B",
+          rationale: "Kaidah yang dipakai: Kaidah 1 ([BLANK]) & 6 (Dummy Word: LESSEN/CUSHION). Membagikan subsidi darurat dan perangkat irigasi bertujuan untuk meringankan atau memperkecil dampak krisis, bukan memperparahnya (Opsi A) atau menundanya (Opsi D)."
+        }
+      },
+      {
+        id: "ubiquitous",
+        word: "ubiquitous",
+        dummyWord: "FOUND EVERYWHERE",
+        phonetic: "/juːˈbɪk.wə.t̬əs/",
+        partOfSpeech: "Adjective",
+        ruleUsed: "Kaidah 3 (Aposisi Definisi Em-dash) & Kaidah 6 (Dummy Word)",
+        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] REVOLUSI TEKNOLOGI">Within just ten years, smartphones became</span> `,
+        sentenceSuffix: ` <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="definition-omnipresent" data-connote-label="[=] DEFINISI LANGSUNG: DITEMUKAN DI MANA-MANA"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>—present in every classroom, office, and rural village—</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MENGUBAH KOMUNIKASI">fundamentally reshaping how humanity connects</span>.`,
+        clues: [{ id: "node-clue-1" }],
+        exam: {
+          stem: "The word 'ubiquitous' in the passage most nearly describes something that is...",
+          options: [
+            { id: "A", text: "prohibitively expensive to acquire" },
+            { id: "B", text: "seeming to be everywhere at once" },
+            { id: "C", text: "outdated and no longer functional" },
+            { id: "D", text: "manufactured strictly for elite users" },
+            { id: "E", text: "fragile and susceptible to failure" }
+          ],
+          answer: "B",
+          rationale: "Kaidah yang dipakai: Kaidah 3 (Peta Tanda Baca Em-dash). Penulis menyertakan tanda pisah '—present in every classroom, office, and rural village—' yang secara harfiah bertindak sebagai tanda sama dengan (=) untuk mendefinisikan 'ubiquitous' sebagai sesuatu yang ada di mana-mana."
+        }
+      },
+      {
+        id: "ephemeral",
+        word: "ephemeral",
+        dummyWord: "SHORT-LIVED / TEMPORARY",
+        phonetic: "/ɪˈfem.ər.əl/",
+        partOfSpeech: "Adjective",
+        ruleUsed: "Kaidah 4 (Titik Balik 'Whereas') & Kaidah 2 (Polaritas Waktu)",
+        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] VIRALITAS MEDIA SOSIAL">Online viral memes typically enjoy an</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] TINGKAT POPULARITAS">popularity</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="contrast-permanent" data-connote-label="[≠] TITIK BALIK: BEDA DARI KARYA SASTRA ABADI"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>whereas classic literature endures across centuries</span>, <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="drop-speed" data-connote-label="[-] HILANG DALAM HITUNGAN HARI"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>fading from collective memory in mere days</span>.`,
+        clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
+        exam: {
+          stem: "In the cultural analysis sentence, 'ephemeral' most nearly means...",
+          options: [
+            { id: "A", text: "short-lived and transient" },
+            { id: "B", text: "universally acclaimed" },
+            { id: "C", text: "permanent and enduring" },
+            { id: "D", text: "dangerous and harmful" },
+            { id: "E", text: "intellectually demanding" }
+          ],
+          answer: "A",
+          rationale: "Kaidah yang dipakai: Kaidah 4 (Titik Balik Wacana). Kata sambung 'whereas' membandingkan meme dengan sastra klasik yang bertahan berabad-abad ('endures across centuries'). Didukung frasa 'fading in mere days', kata 'ephemeral' berarti singkat, berumur pendek, atau sementara."
         }
       }
     ];
 
+    // State
     let currentCaseIndex = 0;
+    let currentRuleIndex = 0;
     let allStringsVisible = false;
     let hoverLensActive = false;
+    let isBlankModeActive = false;
+    let dossierExpanded = false;
 
+    // -------------------------------------------------------------
+    // RENDER 6 DETECTIVE RULES DOSSIER
+    // -------------------------------------------------------------
+    function mountDetectiveRules() {
+      const bar = document.getElementById("rules-tab-bar");
+      bar.innerHTML = "";
+
+      detectiveRules.forEach((rule, idx) => {
+        const btn = document.createElement("button");
+        btn.onclick = () => selectRuleTab(idx);
+        btn.id = `rule-tab-btn-${idx}`;
+        btn.className = (idx === currentRuleIndex)
+          ? "p-2 rounded bg-amber-900 text-amber-100 font-bold border border-amber-950 shadow"
+          : "p-2 rounded bg-stone-200 hover:bg-amber-100 text-stone-800 border border-stone-300 transition";
+        btn.innerText = rule.title.split(":")[0];
+        bar.appendChild(btn);
+      });
+
+      renderActiveRulePlate();
+    }
+
+    function selectRuleTab(idx) {
+      currentRuleIndex = idx;
+      detectiveRules.forEach((_, i) => {
+        const b = document.getElementById(`rule-tab-btn-${i}`);
+        if (b) {
+          b.className = (i === idx)
+            ? "p-2 rounded bg-amber-900 text-amber-100 font-bold border border-amber-950 shadow"
+            : "p-2 rounded bg-stone-200 hover:bg-amber-100 text-stone-800 border border-stone-300 transition";
+        }
+      });
+      renderActiveRulePlate();
+    }
+
+    function renderActiveRulePlate() {
+      const r = detectiveRules[currentRuleIndex];
+      const plate = document.getElementById("active-rule-plate");
+      plate.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-300/80 pb-2">
+          <div>
+            <span class="rubber-stamp text-[10px]">${r.badge}</span>
+            <h3 class="font-hand font-bold text-lg text-amber-950 mt-1">${r.title}</h3>
+          </div>
+          <span class="text-[11px] font-mono-tag bg-amber-200/80 px-2 py-0.5 rounded text-amber-900">INSTRUMEN #0${currentRuleIndex + 1}</span>
+        </div>
+
+        <p class="text-xs sm:text-sm font-hand text-stone-800 leading-snug">
+          ${r.summary}
+        </p>
+
+        <!-- Case Simulation Box -->
+        <div class="bg-stone-900 text-amber-100 p-3 sm:p-4 rounded border border-stone-700 space-y-2">
+          <div class="flex items-center justify-between text-[11px] text-amber-400 font-mono-tag border-b border-stone-800 pb-1">
+            <span>🔬 ${r.caseTitle.toUpperCase()}</span>
+            <span class="text-stone-400 font-hand text-xs">Simulasi Bedah Konteks</span>
+          </div>
+          <div class="space-y-1 text-xs">
+            <p><span class="text-red-400 font-bold">Original:</span> "${r.original}"</p>
+            <p><span class="text-amber-300 font-bold">Proses Bedah:</span> "${r.blanked}"</p>
+          </div>
+          <div class="pt-2 border-t border-stone-800 text-[11px] space-y-1 text-stone-300 leading-relaxed font-sans">
+            <p><strong>Analisis Forensik:</strong> ${r.analysis}</p>
+            <p class="text-emerald-400 font-mono-tag font-bold">👉 ${r.dummyVerdict}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    window.toggleDossierRules = () => {
+      dossierExpanded = !dossierExpanded;
+      const dossier = document.getElementById("detective-rules-dossier");
+      const label = document.getElementById("dossier-toggle-label");
+      if (dossierExpanded) {
+        dossier.scrollIntoView({ behavior: 'smooth' });
+        label.innerText = "Tutup Dossier";
+      } else {
+        label.innerText = "Buka 6 Kaidah Detektif";
+      }
+    };
+
+    // -------------------------------------------------------------
+    // RENDER WORD TABS & ACTIVE SPECIMEN
+    // -------------------------------------------------------------
     function renderWordTabs() {
       const container = document.getElementById("word-selector-bar");
       container.innerHTML = "";
@@ -408,24 +826,16 @@
     function loadCase(idx) {
       currentCaseIndex = idx;
       allStringsVisible = false;
+      isBlankModeActive = false;
       document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Sambung Semua Benang</span>`;
+      document.getElementById("blank-btn-label").innerText = `Uji Kaidah 1: [BLANK] $x$`;
       renderWordTabs();
 
       const c = caseDatabase[idx];
       document.getElementById("specimen-id-badge").innerText = `SPECIMEN: "${c.word.toUpperCase()}" [${c.phonetic}] — ${c.partOfSpeech}`;
+      document.getElementById("strategy-debrief-box").classList.add("hidden");
 
-      const sentenceBox = document.getElementById("case-sentence-display");
-      sentenceBox.innerHTML = `
-        ${c.sentencePrefix}
-        <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET SPECIMEN: ${c.word.toUpperCase()}]">
-          <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
-            ${c.word}
-            <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
-          </span>
-        </span>
-        ${c.sentenceSuffix}
-      `;
-
+      renderSentenceDisplay();
       renderExam(c.exam);
       clearStringsSvg();
 
@@ -435,8 +845,56 @@
       }, 150);
     }
 
+    function renderSentenceDisplay() {
+      const c = caseDatabase[currentCaseIndex];
+      const sentenceBox = document.getElementById("case-sentence-display");
+      const banner = document.getElementById("sentence-mode-banner");
+
+      if (isBlankModeActive) {
+        sentenceBox.innerHTML = `
+          ${c.sentencePrefix}
+          <span class="connotation-target" data-connotation="target" data-connote-label="[VARIABEL X: ${c.dummyWord}]">
+            <span id="node-target" class="bg-amber-200 text-stone-900 px-3 py-1 rounded border-2 border-amber-600 font-bold inline-block relative shadow-sm select-none animate-pulse">
+              [ ${c.dummyWord} ]
+              <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
+            </span>
+          </span>
+          ${c.sentenceSuffix}
+        `;
+        banner.innerHTML = `<span>MODE: <strong class="text-amber-800">KAIDAH 1 & 6 AKTIF ([BLANK] & DUMMY WORD)</strong></span><span class="font-hand text-sm text-stone-600">Kata target diganti variabel untuk menguji aliran nalar kalimat</span>`;
+      } else {
+        sentenceBox.innerHTML = `
+          ${c.sentencePrefix}
+          <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET SPECIMEN: ${c.word.toUpperCase()}]">
+            <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
+              ${c.word}
+              <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
+            </span>
+          </span>
+          ${c.sentenceSuffix}
+        `;
+        banner.innerHTML = `<span>MODE: <strong>ORIGINAL SPECIMEN</strong></span><span class="font-hand text-sm text-stone-500">Arahkan lensa untuk melihat konotasi warna (+ / - / =)</span>`;
+      }
+    }
+
+    window.toggleBlankSubstitutionMode = () => {
+      isBlankModeActive = !isBlankModeActive;
+      const btnLabel = document.getElementById("blank-btn-label");
+      if (isBlankModeActive) {
+        btnLabel.innerText = "Pulihkan Kata Asli";
+      } else {
+        btnLabel.innerText = "Uji Kaidah 1: [BLANK] $x$";
+      }
+      renderSentenceDisplay();
+      clearStringsSvg();
+      setTimeout(() => {
+        focusClue(0);
+        bindHoverConnotationEvents();
+      }, 100);
+    };
+
     // -------------------------------------------------------------
-    // OPTICAL LENS: DESKTOP MOUSE & MOBILE DIRECT TOUCH ALIGNMENT
+    // OPTICAL LENS: DESKTOP MOUSE & MOBILE EXACT TOUCH TRACKING
     // -------------------------------------------------------------
     window.toggleHoverMagnifier = () => {
       hoverLensActive = !hoverLensActive;
@@ -494,7 +952,7 @@
       readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
     }
 
-    // 1. Desktop Mouse Movement
+    // Desktop Mouse Movement
     document.addEventListener("mousemove", (e) => {
       if (!hoverLensActive) return;
       const lens = document.getElementById("optical-lens-cursor");
@@ -515,7 +973,7 @@
       }
     });
 
-    // 2. Mobile Continuous Touch Engine (Exact Alignment)
+    // Mobile Continuous Touch Alignment
     const boardEl = document.getElementById("crime-scene-board");
 
     function handleTouchMove(e) {
@@ -567,7 +1025,6 @@
       resetLensFeedback();
     });
 
-    // 3. Desktop Hover Listeners
     function bindHoverConnotationEvents() {
       const targets = document.querySelectorAll(".connotation-target");
       targets.forEach(el => {
@@ -668,7 +1125,7 @@
     };
 
     // -------------------------------------------------------------
-    // QUESTION ENGINE
+    // QUESTION ENGINE & VERIFICATION
     // -------------------------------------------------------------
     function renderExam(exam) {
       document.getElementById("exam-stem").innerText = exam.stem;
@@ -731,6 +1188,14 @@
       } else {
         fb.innerHTML = `<span class="text-red-700">✕ INCORRECT (KEY: ${exam.answer})</span>`;
       }
+
+      // Show Strategy Debrief Box
+      const debriefBox = document.getElementById("strategy-debrief-box");
+      document.getElementById("strategy-debrief-text").innerHTML = `
+        <span class="text-stone-900 font-bold block mb-1">Rekomendasi Kaidah: ${c.ruleUsed}</span>
+        ${exam.rationale}
+      `;
+      debriefBox.classList.remove("hidden");
     };
 
     window.addEventListener("resize", () => {
@@ -742,7 +1207,12 @@
       }
     });
 
-    loadCase(0);
+    // Boot
+    window.onload = () => {
+      mountDetectiveRules();
+      loadCase(0);
+    };
   </script>
 </body>
+
 </html>

@@ -44,6 +44,9 @@
       <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5">
         <span>🧪</span> Strategy Lab
       </span>
+      <a href="vocab.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-amber-600/40 hover:border-amber-500 flex items-center gap-1.5">
+        <span>🔍</span> Vocab Clinic (Tether & Lens)
+      </a>
       <a href="exam.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
         <span>📝</span> Go to Blind Exam (10 Qs) →
       </a>
@@ -66,7 +69,7 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <!-- NEW: Field Guide for Main Idea Impostors -->
+      <!-- Field Guide for Main Idea Impostors -->
       <button onclick="toggleImpostorGuide()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-1.5 rounded-md font-bold transition flex items-center gap-1">
         <span>🕵️</span> 5 Impostors Guide ▼
       </button>
@@ -80,7 +83,7 @@
     </div>
   </div>
 
-  <!-- NEW EXPANDABLE PANEL: THE 5 MAIN IDEA IMPOSTORS (TRAPS & EXAMPLES) -->
+  <!-- EXPANDABLE PANEL: THE 5 MAIN IDEA IMPOSTORS (TRAPS & EXAMPLES) -->
   <div id="impostor-guide-panel" class="hidden bg-slate-900 border-b border-amber-900/50 px-6 py-4 space-y-3 text-xs text-slate-200">
     <div class="flex items-center justify-between border-b border-slate-800 pb-2">
       <div>
@@ -728,7 +731,6 @@
       document.getElementById("hierarchy-guide-panel").classList.toggle("hidden");
     };
 
-    // Toggle the 5 Impostors Guide Modal
     window.toggleImpostorGuide = () => {
       document.getElementById("impostor-guide-panel").classList.toggle("hidden");
     };
