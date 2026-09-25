@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TKA Case File — Evidence Tether & Mobile Connotation Lens</title>
+  <title>TKA Case File — Evidence Tether & Connotation Lens</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +40,11 @@
       box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
       border: 1px solid #e0d6c3;
     }
+    .paper-card-yellow {
+      background: #fef9c3;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+      border: 1px solid #fef08a;
+    }
 
     /* Push Pins */
     .push-pin {
@@ -56,6 +61,7 @@
     .pin-red { background: radial-gradient(circle at 35% 35%, #ef4444, #991b1b); }
     .pin-yellow { background: radial-gradient(circle at 35% 35%, #facc15, #854d0e); }
     .pin-green { background: radial-gradient(circle at 35% 35%, #4ade80, #166534); }
+    .pin-blue { background: radial-gradient(circle at 35% 35%, #38bdf8, #0369a1); }
 
     /* SVG String Drawing */
     .evidence-string {
@@ -82,7 +88,7 @@
     /* Optical Hover Lens */
     .lens-active-zone { 
       cursor: none !important;
-      touch-action: none !important; /* Prevents scroll drag while inspecting */
+      touch-action: none !important;
     }
     .lens-active-zone * { 
       cursor: none !important; 
@@ -149,7 +155,7 @@
   <!-- Floating Optical Lens Component -->
   <div id="optical-lens-cursor">
     <div id="lens-readout" class="absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none transition-all">
-      SCANNING...
+      MEMINDAI...
     </div>
   </div>
 
@@ -164,7 +170,7 @@
           <span class="bg-red-700 text-white font-mono-tag font-bold text-[10px] uppercase tracking-widest px-2 py-0.5 rounded">
             CASE FILE: VOCAB-TKA
           </span>
-          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Correlation & Mobile Connotation Lens</span>
+          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Correlation & Connotation Workbench</span>
         </div>
         <h1 class="text-xl sm:text-2xl font-hand font-bold text-amber-100 tracking-wide mt-0.5">
           Context Clue Detective: Tether & Lens
@@ -196,10 +202,10 @@
     <div class="flex flex-wrap items-center justify-between gap-3 mb-6 relative z-30">
       <div class="flex items-center gap-2">
         <button onclick="toggleHoverMagnifier()" id="btn-toggle-lens" class="bg-amber-700 hover:bg-amber-600 text-amber-100 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-amber-500 shadow flex items-center gap-1.5 transition">
-          <span>🔎</span> <span id="lens-btn-label">Enable Lens (Touch & Drag)</span>
+          <span>🔎</span> <span id="lens-btn-label">Aktifkan Lensa (Sentuh & Geser)</span>
         </button>
         <button onclick="toggleAllStrings()" id="btn-toggle-strings" class="bg-red-800 hover:bg-red-700 text-white font-mono-tag text-xs px-3.5 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
-          <span>🧵</span> <span>Tether Clues</span>
+          <span>🧵</span> <span>Sambung Semua Benang</span>
         </button>
       </div>
 
@@ -213,8 +219,10 @@
     <!-- Main Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
 
-      <!-- Left Column: Crime Scene Sentence (7 cols) -->
+      <!-- Left Column: Crime Scene Sentence + Indonesian Tips Card (7 cols) -->
       <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Exhibit A: Sentence Board -->
         <div id="crime-scene-board" class="paper-card p-6 sm:p-8 rounded-sm relative transform -rotate-0.5 transition-all">
           <div class="push-pin pin-red -top-2 left-6" id="pin-target-word"></div>
           <div class="push-pin pin-yellow -top-2 right-6"></div>
@@ -225,15 +233,43 @@
 
           <div class="border-b border-stone-300 pb-2 mb-4 flex items-center justify-between">
             <span class="text-xs font-mono-tag text-stone-500 uppercase tracking-widest" id="specimen-id-badge">SPECIMEN</span>
-            <span class="text-xs font-mono-tag text-stone-400">Desktop: Hover | Phone: Drag finger</span>
+            <span class="text-xs font-mono-tag text-stone-400">Komputer: Arahkan kursor | HP: Geser jari</span>
           </div>
 
-          <!-- Sentence With Anchor Pins -->
+          <!-- Sentence With Anchor Pins (English) -->
           <div class="text-xl sm:text-2xl font-typewriter leading-loose text-stone-800 my-4" id="case-sentence-display"></div>
         </div>
+
+        <!-- Pinned Detective Tips (Indonesian) -->
+        <div class="paper-card-yellow p-4 sm:p-5 rounded-sm relative transform rotate-0.5 border border-amber-300 space-y-2">
+          <div class="push-pin pin-blue -top-2 left-6"></div>
+          <div class="washi-tape absolute -top-3 right-6 px-3 py-0.5 text-[10px] font-mono-tag text-amber-900 font-bold">
+            CATATAN DETEKTIF: MAKNA > TERJEMAHAN
+          </div>
+
+          <h3 class="font-hand font-bold text-lg text-amber-950 flex items-center gap-1.5">
+            <span>💡</span> Cara Membedah Makna Kata (Tanpa Tahu Terjemahan Kamus):
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs font-typewriter text-stone-700">
+            <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
+              <strong class="text-red-900 block font-hand text-sm mb-0.5">1. Tinggalkan Kamus Kaku</strong>
+              <p class="leading-relaxed">Jangan paksakan terjemahan kata per kata. Tanyakan: <em>"Apa fungsi atau dampak kata ini terhadap isi kalimat?"</em></p>
+            </div>
+            <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
+              <strong class="text-red-900 block font-hand text-sm mb-0.5">2. Deteksi Polaritas Rasa</strong>
+              <p class="leading-relaxed">Gunakan lensa pembesar. Apakah kalimat sedang menyelesaikan masalah <span class="text-emerald-700 font-bold">[+]</span> atau membawa bahaya/pembatasan <span class="text-rose-700 font-bold">[–]</span>?</p>
+            </div>
+            <div class="bg-amber-100/60 p-2.5 rounded border border-amber-200">
+              <strong class="text-red-900 block font-hand text-sm mb-0.5">3. Uji Kata Pengganti</strong>
+              <p class="leading-relaxed">Ganti kata asing tersebut dengan kata sederhana seperti <em>"stop"</em>, <em>"help"</em>, atau <em>"make"</em> agar logikanya tetap nyambung.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Right Column: Verification Exam Slip (5 cols) -->
+      <!-- Right Column: Verification Exam Slip (English Questions & Options) (5 cols) -->
       <div class="lg:col-span-5 space-y-5">
         <div class="paper-card p-5 sm:p-6 rounded-sm relative transform rotate-1">
           <div class="push-pin pin-red -top-2 right-1/2 transform translate-x-1/2"></div>
@@ -248,7 +284,7 @@
             </h2>
           </div>
 
-          <!-- Options -->
+          <!-- English Options -->
           <div class="space-y-2 font-mono-tag text-xs" id="options-container"></div>
 
           <!-- Verify Action -->
@@ -271,9 +307,11 @@
         word: "curb",
         phonetic: "/kɜːrb/",
         partOfSpeech: "Verb",
-        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PURPOSE">To</span> `,
-        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] POLLUTION HAZARD">industrial pollution</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] CITY AUTHORITY">the city</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-restrictive" data-connote-label="[-] RESTRICTIVE BAN"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>banned heavy diesel trucks</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] CONNECTOR">which promptly</span> <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-drop" data-connote-label="[+] TOXIN REDUCTION"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>reduced toxic smog by 30%</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] DURATION">within six months</span>.`,
+        // Magnifying glass HUD explanations in Indonesian
+        sentencePrefix: `<span class="connotation-target" data-connotation="neutral" data-connote-label="[=] TUJUAN KALIMAT">To</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] POLUSI / ANCAMAN LINGKUNGAN">industrial pollution</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] OTORITAS PEMERINTAH">the city</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-restrictive" data-connote-label="[-] TINDAKAN TEGAS: LARANGAN TRUK"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>banned heavy diesel trucks</span>, <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PENGHUBUNG AKIBAT">which promptly</span> <span id="node-clue-2" onclick="focusClue(1)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-drop" data-connote-label="[+] DAMPAK BAIK: ASAP RACUN TURUN 30%"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>reduced toxic smog by 30%</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] RENTANG WAKTU CEPAT">within six months</span>.`,
         clues: [{ id: "node-clue-1" }, { id: "node-clue-2" }],
+        // Exam stem & options in English
         exam: {
           stem: "As used in the sentence, the word 'curb' most nearly means...",
           options: [
@@ -291,8 +329,8 @@
         word: "compromise",
         phonetic: "/ˈkɑːm.prə.maɪz/",
         partOfSpeech: "Verb",
-        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] RISKY SOFTWARE">Downloading unverified patches</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MODAL">can</span> `,
-        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] SYSTEM ASSET">system security</span>, <span class="connotation-target" data-connotation="negative" data-connote-label="[-] CONSEQUENCE">leaving firewalls</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-threat" data-connote-label="[-] MALWARE RISK"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>vulnerable to ransomware attacks</span>.`,
+        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] TINDAKAN BERISIKO">Downloading unverified patches</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MODAL KEMUNGKINAN">can</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] KEAMANAN SISTEM">system security</span>, <span class="connotation-target" data-connotation="negative" data-connote-label="[-] DAMPAK KERUSAKAN">leaving firewalls</span> <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="negative-threat" data-connote-label="[-] ANCAMAN SERANGAN MALWARE"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>vulnerable to ransomware attacks</span>.`,
         clues: [{ id: "node-clue-1" }],
         exam: {
           stem: "In this passage context, what is the meaning of 'compromise'?",
@@ -311,8 +349,8 @@
         word: "harbor",
         phonetic: "/ˈhɑːr.bɚ/",
         partOfSpeech: "Verb",
-        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] DISEASE VECTOR">Stagnant rainwater puddles</span> `,
-        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] INSECT PEST">dangerous mosquito larvae</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-shelter" data-connote-label="[=] HABITAT"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>serving as breeding sanctuaries</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] SEASON">during tropical monsoon months</span>.`,
+        sentencePrefix: `<span class="connotation-target" data-connotation="negative" data-connote-label="[-] AIR TERGENANG / SARANG">Stagnant rainwater puddles</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="negative" data-connote-label="[-] JENTIK NYAMUK BERBAHAYA">dangerous mosquito larvae</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-emerald-100 text-emerald-950 px-2 py-0.5 rounded border border-emerald-300 cursor-pointer inline-block relative shadow-sm" data-connotation="positive-shelter" data-connote-label="[=] TEMPAT BERKEMBANGBIAK"><span class="push-pin pin-green -top-2 -right-2 scale-75"></span>serving as breeding sanctuaries</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MUSIM HUJAN">during tropical monsoon months</span>.`,
         clues: [{ id: "node-clue-1" }],
         exam: {
           stem: "The word 'harbor' in the biological sentence is closest in meaning to...",
@@ -331,8 +369,8 @@
         word: "novel",
         phonetic: "/ˈnɑː.vəl/",
         partOfSpeech: "Adjective",
-        sentencePrefix: `<span class="connotation-target" data-connotation="positive" data-connote-label="[+] LAB RESEARCH">The vaccine research lab</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] ACTION">developed a</span> `,
-        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] TREATMENT">mRNA formulation</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="contrast-traditional" data-connote-label="[≠] CONTRAST: OLD METHODS"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>unlike traditional chemical therapies</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] PAST">seen in past centuries</span>.`,
+        sentencePrefix: `<span class="connotation-target" data-connotation="positive" data-connote-label="[+] PENELITI LABORATORIUM">The vaccine research lab</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] AKSI MENCIPTAKAN">developed a</span> `,
+        sentenceSuffix: ` <span class="connotation-target" data-connotation="positive" data-connote-label="[+] FORMULASI MEDIS MRNA">mRNA formulation</span>, <span id="node-clue-1" onclick="focusClue(0)" class="connotation-target bg-amber-100 text-amber-950 px-2 py-0.5 rounded border border-amber-300 cursor-pointer inline-block relative shadow-sm" data-connotation="contrast-traditional" data-connote-label="[≠] KONTRAS: BERBEDA DARI CARA KUNO"><span class="push-pin pin-yellow -top-2 -right-2 scale-75"></span>unlike traditional chemical therapies</span> <span class="connotation-target" data-connotation="neutral" data-connote-label="[=] MASA LALU">seen in past centuries</span>.`,
         clues: [{ id: "node-clue-1" }],
         exam: {
           stem: "In this medical context, 'novel' means...",
@@ -370,7 +408,7 @@
     function loadCase(idx) {
       currentCaseIndex = idx;
       allStringsVisible = false;
-      document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Tether Clues</span>`;
+      document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Sambung Semua Benang</span>`;
       renderWordTabs();
 
       const c = caseDatabase[idx];
@@ -379,7 +417,7 @@
       const sentenceBox = document.getElementById("case-sentence-display");
       sentenceBox.innerHTML = `
         ${c.sentencePrefix}
-        <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET: ${c.word.toUpperCase()}]">
+        <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET SPECIMEN: ${c.word.toUpperCase()}]">
           <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
             ${c.word}
             <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
@@ -398,7 +436,7 @@
     }
 
     // -------------------------------------------------------------
-    // OPTICAL LENS: DESKTOP MOUSE & MOBILE CONTINUOUS TOUCH ENGINE
+    // OPTICAL LENS: DESKTOP MOUSE & MOBILE DIRECT TOUCH ALIGNMENT
     // -------------------------------------------------------------
     window.toggleHoverMagnifier = () => {
       hoverLensActive = !hoverLensActive;
@@ -407,12 +445,12 @@
       const label = document.getElementById("lens-btn-label");
 
       if (hoverLensActive) {
-        label.innerText = "Disable Lens";
+        label.innerText = "Nonaktifkan Lensa";
         document.getElementById("btn-toggle-lens").classList.replace("bg-amber-700", "bg-emerald-700");
         board.classList.add("lens-active-zone");
         lens.style.display = "block";
       } else {
-        label.innerText = "Enable Lens (Touch & Drag)";
+        label.innerText = "Aktifkan Lensa (Sentuh & Geser)";
         document.getElementById("btn-toggle-lens").classList.replace("bg-emerald-700", "bg-amber-700");
         board.classList.remove("lens-active-zone");
         lens.style.display = "none";
@@ -424,7 +462,7 @@
       const readout = document.getElementById("lens-readout");
 
       const connote = element ? (element.dataset.connotation || "neutral") : "neutral";
-      const label = element ? (element.dataset.connoteLabel || "SCANNING...") : "SCANNING...";
+      const label = element ? (element.dataset.connoteLabel || "MEMINDAI...") : "MEMINDAI...";
 
       readout.innerText = label;
 
@@ -452,7 +490,7 @@
       const readout = document.getElementById("lens-readout");
       lens.style.borderColor = "#d97706";
       lens.style.background = "rgba(254, 243, 199, 0.22)";
-      readout.innerText = "SCANNING...";
+      readout.innerText = "MEMINDAI...";
       readout.className = "absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-stone-900/95 text-amber-200 border border-amber-600 px-2.5 py-0.5 rounded text-[11px] font-mono-tag font-bold shadow-lg pointer-events-none";
     }
 
@@ -477,7 +515,7 @@
       }
     });
 
-    // 2. Mobile Continuous Touch Engine (Follows Drag & Scans Text)
+    // 2. Mobile Continuous Touch Engine (Exact Alignment)
     const boardEl = document.getElementById("crime-scene-board");
 
     function handleTouchMove(e) {
@@ -495,11 +533,9 @@
         touch.clientY <= bRect.bottom
       ) {
         lens.style.display = "block";
-        // Finger offset: 55px upward so the fingertip does not cover the lens
         lens.style.left = `${touch.clientX}px`;
-        lens.style.top = `${touch.clientY - 55}px`;
+        lens.style.top = `${touch.clientY}px`;
 
-        // Direct hit-test beneath fingertip
         const hitElement = document.elementFromPoint(touch.clientX, touch.clientY);
         const connoteTarget = hitElement ? hitElement.closest(".connotation-target") : null;
 
@@ -520,7 +556,7 @@
 
     boardEl.addEventListener("touchmove", (e) => {
       if (!hoverLensActive) return;
-      e.preventDefault(); // Prevents screen scrolling while dragging magnifying lens
+      e.preventDefault();
       handleTouchMove(e);
     }, { passive: false });
 
@@ -614,9 +650,9 @@
         c.clues.forEach(clue => {
           drawRedString("node-target", clue.id);
         });
-        document.getElementById("btn-toggle-strings").innerHTML = `<span>✂️</span> <span>Release Tether</span>`;
+        document.getElementById("btn-toggle-strings").innerHTML = `<span>✂️</span> <span>Lepas Sambungan Benang</span>`;
       } else {
-        document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Tether Clues</span>`;
+        document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Sambung Semua Benang</span>`;
         focusClue(0);
       }
     };
