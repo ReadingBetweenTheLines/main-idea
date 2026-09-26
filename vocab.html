@@ -146,12 +146,6 @@
       transform: rotate(-2deg);
     }
 
-    .rubber-stamp-green {
-      border-color: #15803d;
-      color: #15803d;
-      transform: rotate(1.5deg);
-    }
-
     /* Optical Hover Lens */
     .lens-active-zone {
       cursor: none !important;
@@ -243,8 +237,7 @@
             class="bg-red-700 text-white font-mono-tag font-bold text-[10px] uppercase tracking-widest px-2 py-0.5 rounded">
             BERKAS KASUS: VOCAB-TKA-09
           </span>
-          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Tether, Connotation Lens & Field
-            Protocol</span>
+          <span class="text-amber-200/60 text-xs font-typewriter">Evidence Tether, Connotation Lens & Field Protocol</span>
         </div>
         <h1 class="text-xl sm:text-2xl font-hand font-bold text-amber-100 tracking-wide mt-0.5">
           Context Clue Detective: 6 Kaidah Bedah Makna & Lensa Forensik
@@ -319,7 +312,7 @@
     <!-- SVG String Overlay -->
     <svg id="string-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-20"></svg>
 
-    <!-- Controls Toolbar -->
+    <!-- Controls Toolbar (Cleaned: Uji Kaidah button removed) -->
     <div class="flex flex-wrap items-center justify-between gap-3 mb-6 relative z-30">
       <div class="flex items-center gap-2 flex-wrap">
         <button onclick="toggleHoverMagnifier()" id="btn-toggle-lens"
@@ -329,10 +322,6 @@
         <button onclick="toggleAllStrings()" id="btn-toggle-strings"
           class="bg-red-800 hover:bg-red-700 text-white font-mono-tag text-xs px-3.5 py-1.5 rounded border border-red-600 shadow flex items-center gap-1.5 transition">
           <span>🧵</span> <span>Sambung Semua Benang</span>
-        </button>
-        <button onclick="toggleBlankSubstitutionMode()" id="btn-toggle-blank"
-          class="bg-stone-800 hover:bg-stone-700 text-amber-200 font-mono-tag text-xs px-3.5 py-1.5 rounded border border-stone-600 shadow flex items-center gap-1.5 transition">
-          <span>🧩</span> <span id="blank-btn-label">Uji Kaidah 1: [BLANK] $x$</span>
         </button>
       </div>
 
@@ -374,7 +363,7 @@
           <!-- Status Indicator of Sentence -->
           <div id="sentence-mode-banner"
             class="bg-amber-100/70 border border-amber-300 p-2.5 rounded flex items-center justify-between text-xs font-mono-tag text-stone-700">
-            <span>MODE: <strong>ORIGINAL SPECIMEN</strong></span>
+            <span>STATUS: <strong>EVIDENCE SENTENCE ACTIVE</strong></span>
             <span class="font-hand text-sm text-stone-500">Arahkan lensa untuk melihat konotasi warna (+ / - / =)</span>
           </div>
         </div>
@@ -447,6 +436,16 @@
             class="hidden mt-3 p-3 bg-amber-50 border-l-4 border-emerald-600 text-xs font-typewriter text-stone-700 space-y-1">
             <span class="font-bold text-emerald-900 block font-hand text-base">Kaidah Analisis yang Digunakan:</span>
             <p id="strategy-debrief-text" class="leading-relaxed">Debrief details load here...</p>
+          </div>
+
+          <!-- Call to action for Blind Exam -->
+          <div class="mt-4 pt-3 border-t border-dashed border-stone-300">
+            <div class="bg-amber-100/70 p-2.5 rounded border border-amber-300 text-center space-y-1.5">
+              <span class="text-[11px] font-hand font-bold text-amber-950 block">Selesai latihan bedah konteks?</span>
+              <a href="vocab-exam.html" class="inline-flex items-center justify-center gap-1.5 w-full bg-stone-900 hover:bg-stone-800 text-amber-200 text-xs font-mono-tag font-bold py-1.5 px-3 rounded border border-stone-700 shadow transition">
+                <span>🕵️‍♂️</span> Buka Ujian Buta 10 Soal (Blind Exam) →
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -534,7 +533,6 @@
       {
         id: "curb",
         word: "curb",
-        dummyWord: "LIMIT / RESTRAIN",
         phonetic: "/kɜːrb/",
         partOfSpeech: "Verb",
         ruleUsed: "Kaidah 1 ([BLANK]) & Kaidah 4 (Sebab-Akibat)",
@@ -557,7 +555,6 @@
       {
         id: "compromise",
         word: "compromise",
-        dummyWord: "WEAKEN / ENDANGER",
         phonetic: "/ˈkɑːm.prə.maɪz/",
         partOfSpeech: "Verb",
         ruleUsed: "Kaidah 2 (Triase Polaritas) & Kaidah 5 (Slot Sintaksis)",
@@ -580,7 +577,6 @@
       {
         id: "harbor",
         word: "harbor",
-        dummyWord: "SHELTER / HOUSE",
         phonetic: "/ˈhɑːr.bɚ/",
         partOfSpeech: "Verb",
         ruleUsed: "Kaidah 3 (Aposisi Definisi) & Kaidah 5 (Slot Sintaksis)",
@@ -603,7 +599,6 @@
       {
         id: "novel",
         word: "novel",
-        dummyWord: "NEW / INNOVATIVE",
         phonetic: "/ˈnɑː.vəl/",
         partOfSpeech: "Adjective",
         ruleUsed: "Kaidah 4 (Titik Balik 'Unlike') & Kaidah 5 (Adjective Slot)",
@@ -626,7 +621,6 @@
       {
         id: "prejudice",
         word: "prejudice",
-        dummyWord: "UNFAIRLY INFLUENCE",
         phonetic: "/ˈpredʒ.ə.dɪs/",
         partOfSpeech: "Verb",
         ruleUsed: "Kaidah 2 (Triase Polaritas) & Kaidah 5 (Slot Sintaksis: Verb Transitif)",
@@ -649,7 +643,6 @@
       {
         id: "mitigate",
         word: "mitigate",
-        dummyWord: "LESSEN / REDUCE",
         phonetic: "/ˈmɪt.ə.ɡeɪt/",
         partOfSpeech: "Verb",
         ruleUsed: "Kaidah 1 ([BLANK]) & Kaidah 4 (Sebab-Akibat Solutif)",
@@ -672,7 +665,6 @@
       {
         id: "ubiquitous",
         word: "ubiquitous",
-        dummyWord: "FOUND EVERYWHERE",
         phonetic: "/juːˈbɪk.wə.t̬əs/",
         partOfSpeech: "Adjective",
         ruleUsed: "Kaidah 3 (Aposisi Definisi Em-dash) & Kaidah 6 (Dummy Word)",
@@ -695,7 +687,6 @@
       {
         id: "ephemeral",
         word: "ephemeral",
-        dummyWord: "SHORT-LIVED / TEMPORARY",
         phonetic: "/ɪˈfem.ər.əl/",
         partOfSpeech: "Adjective",
         ruleUsed: "Kaidah 4 (Titik Balik 'Whereas') & Kaidah 2 (Polaritas Waktu)",
@@ -722,7 +713,6 @@
     let currentRuleIndex = 0;
     let allStringsVisible = false;
     let hoverLensActive = false;
-    let isBlankModeActive = false;
     let dossierExpanded = false;
 
     // -------------------------------------------------------------
@@ -826,9 +816,7 @@
     function loadCase(idx) {
       currentCaseIndex = idx;
       allStringsVisible = false;
-      isBlankModeActive = false;
       document.getElementById("btn-toggle-strings").innerHTML = `<span>🧵</span> <span>Sambung Semua Benang</span>`;
-      document.getElementById("blank-btn-label").innerText = `Uji Kaidah 1: [BLANK] $x$`;
       renderWordTabs();
 
       const c = caseDatabase[idx];
@@ -850,48 +838,18 @@
       const sentenceBox = document.getElementById("case-sentence-display");
       const banner = document.getElementById("sentence-mode-banner");
 
-      if (isBlankModeActive) {
-        sentenceBox.innerHTML = `
-          ${c.sentencePrefix}
-          <span class="connotation-target" data-connotation="target" data-connote-label="[VARIABEL X: ${c.dummyWord}]">
-            <span id="node-target" class="bg-amber-200 text-stone-900 px-3 py-1 rounded border-2 border-amber-600 font-bold inline-block relative shadow-sm select-none animate-pulse">
-              [ ${c.dummyWord} ]
-              <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
-            </span>
+      sentenceBox.innerHTML = `
+        ${c.sentencePrefix}
+        <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET SPECIMEN: ${c.word.toUpperCase()}]">
+          <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
+            ${c.word}
+            <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
           </span>
-          ${c.sentenceSuffix}
-        `;
-        banner.innerHTML = `<span>MODE: <strong class="text-amber-800">KAIDAH 1 & 6 AKTIF ([BLANK] & DUMMY WORD)</strong></span><span class="font-hand text-sm text-stone-600">Kata target diganti variabel untuk menguji aliran nalar kalimat</span>`;
-      } else {
-        sentenceBox.innerHTML = `
-          ${c.sentencePrefix}
-          <span class="connotation-target" data-connotation="target" data-connote-label="[TARGET SPECIMEN: ${c.word.toUpperCase()}]">
-            <span id="node-target" class="bg-red-100 text-red-950 px-3 py-1 rounded border border-red-400 font-bold inline-block relative shadow-sm select-none">
-              ${c.word}
-              <span class="push-pin pin-red -top-2 -right-2 scale-75"></span>
-            </span>
-          </span>
-          ${c.sentenceSuffix}
-        `;
-        banner.innerHTML = `<span>MODE: <strong>ORIGINAL SPECIMEN</strong></span><span class="font-hand text-sm text-stone-500">Arahkan lensa untuk melihat konotasi warna (+ / - / =)</span>`;
-      }
+        </span>
+        ${c.sentenceSuffix}
+      `;
+      banner.innerHTML = `<span>STATUS: <strong>EVIDENCE SENTENCE ACTIVE</strong></span><span class="font-hand text-sm text-stone-500">Arahkan lensa untuk melihat konotasi warna (+ / - / =)</span>`;
     }
-
-    window.toggleBlankSubstitutionMode = () => {
-      isBlankModeActive = !isBlankModeActive;
-      const btnLabel = document.getElementById("blank-btn-label");
-      if (isBlankModeActive) {
-        btnLabel.innerText = "Pulihkan Kata Asli";
-      } else {
-        btnLabel.innerText = "Uji Kaidah 1: [BLANK] $x$";
-      }
-      renderSentenceDisplay();
-      clearStringsSvg();
-      setTimeout(() => {
-        focusClue(0);
-        bindHoverConnotationEvents();
-      }, 100);
-    };
 
     // -------------------------------------------------------------
     // OPTICAL LENS: DESKTOP MOUSE & MOBILE EXACT TOUCH TRACKING
