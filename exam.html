@@ -205,9 +205,9 @@
 
   <script>
     // =============================================================
-    // ⚙️ CONFIGURATION: APPS SCRIPT WEB APP ENDPOINT
+    // ⚙️ CONFIGURATION: PASTE YOUR APPS SCRIPT WEB APP URL HERE
     // =============================================================
-    const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzQ_YOUR_APP_SCRIPT_URL_HERE/exec";
+    const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx1Sa81sa2q5xy6i2zDfdrLvB5wzDXL9GhLjnurZiFpcFmEUAq8k57yxMX5MZofHlJUgw/exec";
 
     const examDatabase = [
       {
@@ -398,9 +398,6 @@
       }
     ];
 
-    // -------------------------------------------------------------
-    // PROGRESS PERSISTENCE & LOCAL STORAGE ENGINE
-    // -------------------------------------------------------------
     let currentExamIdx = 0;
     let studentProfile = {
       name: "",
@@ -410,6 +407,11 @@
       score: 0,
       timestamp: ""
     };
+
+    function safeSetText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.innerText = text;
+    }
 
     function initStudentSession() {
       const saved = localStorage.getItem("tka_exam_session");
@@ -423,7 +425,7 @@
             revealFinalResultsOnLoad();
           }
         } catch (e) {
-          console.error("Session parse error", e);
+          console.error("Session parse error:", e);
         }
       }
       renderPillsBar();
@@ -437,8 +439,10 @@
     }
 
     window.lockStudentProfile = () => {
-      const name = document.getElementById("student-name-input").value.trim();
-      const cls = document.getElementById("student-class-input").value.trim();
+      const nameEl = document.getElementById("student-name-input");
+      const clsEl = document.getElementById("student-class-input");
+      const name = nameEl ? nameEl.value.trim() : "";
+      const cls = clsEl ? clsEl.value.trim() : "";
 
       if (!name) {
         alert("Please enter student name before continuing.");
@@ -457,19 +461,24 @@
         alert("Exam already turned in. Profile cannot be edited.");
         return;
       }
-      document.getElementById("student-input-group").classList.remove("hidden");
-      document.getElementById("student-profile-badge").classList.add("hidden");
+      const group = document.getElementById("student-input-group");
+      const badge = document.getElementById("student-profile-badge");
+      if (group) group.classList.remove("hidden");
+      if (badge) badge.classList.add("hidden");
     };
 
     function renderStudentBadge() {
-      document.getElementById("student-input-group").classList.add("hidden");
-      document.getElementById("student-profile-badge").classList.remove("hidden");
-      document.getElementById("badge-name-display").innerText = studentProfile.name;
-      document.getElementById("badge-class-display").innerText = studentProfile.className;
+      const group = document.getElementById("student-input-group");
+      const badge = document.getElementById("student-profile-badge");
+      if (group) group.classList.add("hidden");
+      if (badge) badge.classList.remove("hidden");
+      safeSetText("badge-name-display", studentProfile.name);
+      safeSetText("badge-class-display", studentProfile.className);
     }
 
     function renderPillsBar() {
       const bar = document.getElementById("question-pills-bar");
+      if (!bar) return;
       bar.innerHTML = "";
 
       for (let i = 1; i <= 10; i++) {
@@ -479,10 +488,8 @@
         pill.id = `pill-q-${i}`;
 
         if (studentProfile.completed) {
-          // Completed: Solid neutral gray badge
           pill.className = "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-700 text-slate-100 shadow-sm";
         } else {
-          // In progress: Amber when answered, dark slate when blank
           pill.className = isAnswered
             ? "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-amber-500 text-slate-950 font-black shadow-sm"
             : "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700";
@@ -508,9 +515,6 @@
       }, 100);
     }
 
-    // -------------------------------------------------------------
-    // MODULE RENDERING & WORKSPACE
-    // -------------------------------------------------------------
     function loadExamModule(idx) {
       currentExamIdx = idx;
       const data = examDatabase[idx];
@@ -524,27 +528,40 @@
         }
       });
 
-      document.getElementById("exam-text-title").innerText = data.title;
-      document.getElementById("exam-text-genre").innerText = data.genre;
-      document.getElementById("exam-passage-container").innerHTML = data.htmlContent;
+      safeSetText("exam-text-title", data.title);
+      safeSetText("exam-text-genre", data.genre);
+      const container = document.getElementById("exam-passage-container");
+      if (container) container.innerHTML = data.htmlContent;
+
+      const legend = document.getElementById("anatomy-legend-bar");
+      const modeBadge = document.getElementById("exam-mode-badge");
+      const statusInd = document.getElementById("exam-status-indicator");
 
       if (studentProfile.completed) {
-        document.getElementById("anatomy-legend-bar").classList.remove("hidden");
-        document.getElementById("exam-mode-badge").innerText = "Anatomy Layers Unlocked";
-        document.getElementById("exam-mode-badge").className = "text-[11px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 font-mono";
-        document.getElementById("exam-status-indicator").innerHTML = `
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="text-emerald-400 font-semibold">Diagnostic Anatomy Mode (Turned In)</span>
-        `;
+        if (legend) legend.classList.remove("hidden");
+        if (modeBadge) {
+          modeBadge.innerText = "Anatomy Layers Unlocked";
+          modeBadge.className = "text-[11px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 font-mono";
+        }
+        if (statusInd) {
+          statusInd.innerHTML = `
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="text-emerald-400 font-semibold">Diagnostic Anatomy Mode (Turned In)</span>
+          `;
+        }
         activateAnatomyHighlights();
       } else {
-        document.getElementById("anatomy-legend-bar").classList.add("hidden");
-        document.getElementById("exam-mode-badge").innerText = "Blind Assessment";
-        document.getElementById("exam-mode-badge").className = "text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono";
-        document.getElementById("exam-status-indicator").innerHTML = `
-          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-          <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
-        `;
+        if (legend) legend.classList.add("hidden");
+        if (modeBadge) {
+          modeBadge.innerText = "Blind Assessment";
+          modeBadge.className = "text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono";
+        }
+        if (statusInd) {
+          statusInd.innerHTML = `
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+            <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
+          `;
+        }
       }
 
       renderExamQuestions(data.questions);
@@ -553,6 +570,7 @@
 
     function renderExamQuestions(questions) {
       const container = document.getElementById("exam-questions-container");
+      if (!container) return;
       container.innerHTML = "";
 
       questions.forEach((q) => {
@@ -573,7 +591,7 @@
             ${q.options.map(opt => `
               <div class="flex items-center gap-1.5" id="wrap-exam-${q.id}-${opt.id}">
                 <button type="button" title="Cross out" onclick="toggleStrike('exam-${q.id}', '${opt.id}')" class="text-xs px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded border border-slate-200 font-bold">✕</button>
-                <label id="label-exam-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border ${savedChoice === opt.id ? 'bg-indigo-50 border-indigo-400' : 'border-slate-200 hover:bg-slate-50'} cursor-pointer transition select-none">
+                <label id="label-exam-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border ${savedChoice === opt.id ? 'bg-indigo-50 border-indigo-400 font-medium' : 'border-slate-200 hover:bg-slate-50'} cursor-pointer transition select-none">
                   <input type="radio" name="exam-q-${q.id}" value="${opt.id}" ${savedChoice === opt.id ? 'checked' : ''} ${studentProfile.completed ? 'disabled' : ''} onchange="recordStudentChoice(${q.id}, '${opt.id}')" class="mt-1 text-indigo-600 focus:ring-indigo-500">
                   <span class="text-slate-700 leading-snug font-normal text-xs sm:text-sm">
                     <strong>${opt.id}.</strong>${opt.text}
@@ -583,7 +601,6 @@
             `).join('')}
           </div>
 
-          <!-- Blind confirmation status (No answer key revealed) -->
           <div id="status-exam-${q.id}" class="${isAnswered ? '' : 'hidden'} text-xs font-mono text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
             <span>Status: Choice Logged (${savedChoice || 'None'})</span>
             <span class="text-emerald-700 font-semibold">✓ Recorded</span>
@@ -593,12 +610,11 @@
       });
     }
 
-    // Auto-save selection directly into profile
     window.recordStudentChoice = (qId, optionId) => {
       if (studentProfile.completed) return;
 
       if (!studentProfile.name) {
-        studentProfile.name = "Anonymous Student";
+        studentProfile.name = "Student_" + Math.floor(1000 + Math.random() * 9000);
         studentProfile.className = "General";
         renderStudentBadge();
       }
@@ -606,12 +622,11 @@
       studentProfile.answers[qId] = optionId;
       saveSession();
 
-      // Highlight selected card visually
       const wrap = document.getElementById(`exam-options-group-${qId}`);
       if (wrap) {
-        wrap.querySelectorAll("label").forEach(l => l.classList.remove("bg-indigo-50", "border-indigo-400"));
+        wrap.querySelectorAll("label").forEach(l => l.classList.remove("bg-indigo-50", "border-indigo-400", "font-medium"));
         const activeLabel = document.getElementById(`label-exam-${qId}-${optionId}`);
-        if (activeLabel) activeLabel.classList.add("bg-indigo-50", "border-indigo-400");
+        if (activeLabel) activeLabel.classList.add("bg-indigo-50", "border-indigo-400", "font-medium");
       }
 
       const statusBox = document.getElementById(`status-exam-${qId}`);
@@ -622,22 +637,24 @@
     };
 
     window.toggleStrike = (prefix, optId) => {
-      document.getElementById(`label-${prefix}-${optId}`).classList.toggle("strikethrough-opt");
+      const el = document.getElementById(`label-${prefix}-${optId}`);
+      if (el) el.classList.toggle("strikethrough-opt");
     };
 
     function updateTurnInButtonState() {
-      const answeredTotal = Object.keys(studentProfile.answers).length;
-      const progressBadge = document.getElementById("exam-total-progress-badge");
+      const answeredTotal = Object.keys(studentProfile.answers || {}).length;
+      safeSetText("exam-total-progress-badge", `${answeredTotal} / 10 Answered`);
+
       const btn = document.getElementById("btn-final-submit");
       const label = document.getElementById("btn-final-label");
       const hint = document.getElementById("exam-turnin-hint");
 
-      progressBadge.innerText = `${answeredTotal} / 10 Answered`;
+      if (!btn || !label || !hint) return;
 
       if (studentProfile.completed) {
         btn.disabled = true;
         label.innerText = "Exam Completed & Locked";
-        btn.className = "w-full bg-slate-800 text-slate-400 font-bold py-2 px-4 rounded-lg cursor-not-allowed text-xs";
+        btn.className = "w-full bg-slate-800 text-slate-400 font-bold py-2.5 px-4 rounded-lg cursor-not-allowed text-xs";
         hint.innerText = "Exam turned in. Check score and anatomy layers on the left.";
         return;
       }
@@ -650,18 +667,18 @@
       } else {
         btn.disabled = true;
         label.innerText = `Complete All Questions to Turn In (${answeredTotal}/10)`;
-        btn.className = "w-full bg-emerald-600 opacity-40 cursor-not-allowed text-white font-bold py-2 px-4 rounded-lg text-xs";
+        btn.className = "w-full bg-emerald-600 opacity-40 cursor-not-allowed text-white font-bold py-2.5 px-4 rounded-lg text-xs";
         hint.innerText = `Remaining: ${10 - answeredTotal} unanswered questions.`;
       }
     }
 
     // -------------------------------------------------------------
-    // FINAL EXAM TURN-IN (BLIND GRADING)
+    // FINAL SUBMISSION (TRANSMIT FIRST, THEN DISPLAY UI)
     // -------------------------------------------------------------
     window.turnInEntireExam = () => {
-      const answeredTotal = Object.keys(studentProfile.answers).length;
+      const answeredTotal = Object.keys(studentProfile.answers || {}).length;
       if (answeredTotal < 10) {
-        alert(`You have answered ${answeredTotal} of 10 questions. Please complete all questions before turning in.`);
+        alert(`You have only answered ${answeredTotal} of 10 questions. Please complete all questions before turning in.`);
         return;
       }
 
@@ -673,7 +690,6 @@
       let passACorrect = 0;
       let passBCorrect = 0;
 
-      // Grade Passage A
       examDatabase[0].questions.forEach(q => {
         if (studentProfile.answers[q.id] === q.answer) {
           totalCorrect++;
@@ -681,7 +697,6 @@
         }
       });
 
-      // Grade Passage B
       examDatabase[1].questions.forEach(q => {
         if (studentProfile.answers[q.id] === q.answer) {
           totalCorrect++;
@@ -694,9 +709,12 @@
       studentProfile.timestamp = new Date().toLocaleString();
       saveSession();
 
+      // 1. Send network payload FIRST to guarantee transmission
+      transmitToGoogleSheet(totalCorrect, passACorrect, passBCorrect);
+
+      // 2. Render UI
       revealFinalResultsOnLoad();
       loadExamModule(currentExamIdx);
-      transmitToGoogleSheet(totalCorrect, passACorrect, passBCorrect);
     };
 
     function revealFinalResultsOnLoad() {
@@ -722,7 +740,6 @@
     }
 
     function activateAnatomyHighlights() {
-      // Highlights matches the anatomy styling in lab.html
       document.querySelectorAll(".anatomy-thesis").forEach(el => el.classList.add("highlight-thesis"));
       document.querySelectorAll(".anatomy-argument").forEach(el => el.classList.add("highlight-argument"));
       document.querySelectorAll(".anatomy-claim").forEach(el => el.classList.add("highlight-claim"));
@@ -733,77 +750,71 @@
 
     function displayDiagnosticReport(totalCorrect, passA, passB) {
       const card = document.getElementById("diagnostic-report-card");
-      card.classList.remove("hidden");
+      if (card) card.classList.remove("hidden");
 
       const incorrectCount = 10 - totalCorrect;
       const accuracyPct = Math.round((totalCorrect / 10) * 100);
 
-      document.getElementById("report-student-header").innerText = `Diagnostic Assessment: ${studentProfile.name} (${studentProfile.className})`;
-      document.getElementById("report-final-score").innerText = `${totalCorrect * 10} / 100`;
-      document.getElementById("report-correct-count").innerText = `${totalCorrect} Qs`;
-      document.getElementById("report-incorrect-count").innerText = `${incorrectCount} Qs`;
-      document.getElementById("report-accuracy-rate").innerText = `${accuracyPct}%`;
+      safeSetText("report-student-header", `Diagnostic Assessment: ${studentProfile.name || 'Student'} (${studentProfile.className || 'General'})`);
+      safeSetText("report-final-score", `${totalCorrect * 10} / 100`);
+      safeSetText("report-correct-count", `${totalCorrect} Qs`);
+      safeSetText("report-incorrect-count", `${incorrectCount} Qs`);
+      safeSetText("report-accuracy-rate", `${accuracyPct}%`);
 
-      const badge = document.getElementById("report-level-badge");
-      if (totalCorrect >= 8) {
-        badge.innerText = "Master Forensic Reader";
-        badge.className = "text-base font-bold text-emerald-700 mt-1 block";
-      } else if (totalCorrect >= 5) {
-        badge.innerText = "Competent Investigator";
-        badge.className = "text-base font-bold text-amber-700 mt-1 block";
-      } else {
-        badge.innerText = "Needs Scaffold Practice";
-        badge.className = "text-base font-bold text-rose-700 mt-1 block";
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-
-      document.getElementById("report-breakdown-a").innerText = `Performance: ${passA}/5 correct (${passA * 20}%).`;
-      document.getElementById("report-breakdown-b").innerText = `Performance: ${passB}/5 correct (${passB * 20}%).`;
-
-      card.scrollIntoView({ behavior: 'smooth' });
     }
 
     // -------------------------------------------------------------
-    // REAL-TIME GOOGLE SHEET APPS SCRIPT SYNC
+    // REAL-TIME GOOGLE SHEET APPS SCRIPT SYNC (ROBUST FETCH)
     // -------------------------------------------------------------
     async function transmitToGoogleSheet(totalCorrect, passA, passB) {
       const banner = document.getElementById("sheet-sync-banner");
       const syncLed = document.getElementById("sync-led");
       const syncStatus = document.getElementById("sync-status-text");
 
-      syncLed.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
-      syncStatus.innerText = "Cloud Sync: Transmitting to Sheet...";
+      if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+      if (syncStatus) syncStatus.innerText = "Cloud Sync: Transmitting to Sheet...";
+      if (banner) {
+        banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-amber-50 border border-amber-300 text-amber-800";
+        banner.innerHTML = `<span>⏳ Cloud Sync: Transmitting answers to Google Sheet...</span>`;
+      }
 
       const payload = {
-        name: studentProfile.name,
-        className: studentProfile.className,
+        name: studentProfile.name || "Anonymous",
+        className: studentProfile.className || "General",
         totalScore: totalCorrect * 10,
         correctCount: totalCorrect,
         accuracy: `${Math.round((totalCorrect / 10) * 100)}%`,
         passA: passA,
         passB: passB,
-        answers: studentProfile.answers
+        answers: studentProfile.answers || {}
       };
 
       try {
+        // text/plain avoids CORS preflight triggers while sending valid JSON payload
         await fetch(APPS_SCRIPT_WEBAPP_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         });
 
-        banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-emerald-50 border border-emerald-300 text-emerald-800";
-        banner.innerHTML = `<span>✓ Cloud Sync Complete: Student score and answers logged in Google Sheet.</span>`;
-
-        syncLed.className = "w-2 h-2 rounded-full bg-emerald-500";
-        syncStatus.innerText = "Cloud Sync: Connected";
+        if (banner) {
+          banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-emerald-50 border border-emerald-300 text-emerald-800";
+          banner.innerHTML = `<span>✓ Cloud Sync Complete: Student score and answers logged in Google Sheet.</span>`;
+        }
+        if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-emerald-500";
+        if (syncStatus) syncStatus.innerText = "Cloud Sync: Connected";
       } catch (err) {
         console.error("Transmission error:", err);
-        banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-rose-50 border border-rose-300 text-rose-800";
-        banner.innerHTML = `<span>⚠️ Network error sending to Sheet. Use 'Save Backup CSV' to record score.</span>`;
-
-        syncLed.className = "w-2 h-2 rounded-full bg-rose-500";
-        syncStatus.innerText = "Cloud Sync: Offline";
+        if (banner) {
+          banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-rose-50 border border-rose-300 text-rose-800";
+          banner.innerHTML = `<span>⚠️ Network error. Please click 'Save Backup CSV' to record your score.</span>`;
+        }
+        if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-rose-500";
+        if (syncStatus) syncStatus.innerText = "Cloud Sync: Offline";
       }
     }
 
@@ -837,19 +848,30 @@
           score: 0,
           timestamp: ""
         };
-        document.getElementById("diagnostic-report-card").classList.add("hidden");
-        document.getElementById("anatomy-legend-bar").classList.add("hidden");
-        document.getElementById("student-input-group").classList.remove("hidden");
-        document.getElementById("student-profile-badge").classList.add("hidden");
-        document.getElementById("student-name-input").value = "";
-        document.getElementById("student-class-input").value = "";
+        const card = document.getElementById("diagnostic-report-card");
+        const legend = document.getElementById("anatomy-legend-bar");
+        const group = document.getElementById("student-input-group");
+        const badge = document.getElementById("student-profile-badge");
+        const nameInput = document.getElementById("student-name-input");
+        const classInput = document.getElementById("student-class-input");
+
+        if (card) card.classList.add("hidden");
+        if (legend) legend.classList.add("hidden");
+        if (group) group.classList.remove("hidden");
+        if (badge) badge.classList.add("hidden");
+        if (nameInput) nameInput.value = "";
+        if (classInput) classInput.value = "";
+
         renderPillsBar();
         loadExamModule(0);
       }
     };
 
-    initStudentSession();
-    loadExamModule(0);
+    // Safe bootstrap
+    document.addEventListener("DOMContentLoaded", () => {
+      initStudentSession();
+      loadExamModule(0);
+    });
   </script>
 </body>
 </html>
