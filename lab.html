@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mian idea specialist — navigation and workaround</title>
+  <title>Main Idea Specialist — Forensic Reading Lab</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Lab Anatomy Layers */
@@ -33,10 +33,10 @@
   <header class="bg-slate-950 text-white px-6 py-4 shadow-md flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
     <div>
       <div class="flex items-center gap-2">
-        <span class="text-xs uppercase tracking-widest font-bold bg-indigo-600 text-white px-2 py-0.5 rounded">TKA Phase F</span>
-        <span class="text-xs text-slate-400 font-medium">Page 1: Diagnostic Strategy Lab</span>
+        <span class="text-xs uppercase tracking-widest font-bold bg-indigo-600 text-white px-2 py-0.5 rounded">TKA Literacy</span>
+        <span class="text-xs text-slate-400 font-medium">Page 1: Reading Strategy Lab</span>
       </div>
-      <h1 class="text-lg sm:text-xl font-bold mt-1">Forensic Reading & Anatomy Workshop</h1>
+      <h1 class="text-lg sm:text-xl font-bold mt-1">Reading Anatomy & Main Idea Workshop</h1>
     </div>
 
     <!-- Page Switcher -->
@@ -47,8 +47,11 @@
       <a href="vocab.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-amber-600/40 hover:border-amber-500 flex items-center gap-1.5">
         <span>🔍</span> Vocab Clinic (Tether & Lens)
       </a>
+      <a href="vocab-exam.html" class="bg-slate-800 hover:bg-slate-700 text-amber-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-stone-600 flex items-center gap-1.5">
+        <span>📋</span> Vocab Blind Exam
+      </a>
       <a href="exam.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
-        <span>📝</span> Go to Blind Exam (10 Qs) →
+        <span>📝</span> Main Idea Exam →
       </a>
     </div>
   </header>
@@ -69,11 +72,9 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <!-- Field Guide for Main Idea Impostors -->
       <button onclick="toggleImpostorGuide()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-1.5 rounded-md font-bold transition flex items-center gap-1">
         <span>🕵️</span> 5 Impostors Guide ▼
       </button>
-
       <button onclick="toggleHierarchyGuide()" class="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-2">
         Matryoshka Rules ▼
       </button>
@@ -83,75 +84,48 @@
     </div>
   </div>
 
-  <!-- EXPANDABLE PANEL: THE 5 MAIN IDEA IMPOSTORS (TRAPS & EXAMPLES) -->
+  <!-- Expandable Panel: 5 Impostors -->
   <div id="impostor-guide-panel" class="hidden bg-slate-900 border-b border-amber-900/50 px-6 py-4 space-y-3 text-xs text-slate-200">
     <div class="flex items-center justify-between border-b border-slate-800 pb-2">
       <div>
         <h3 class="text-sm font-bold text-amber-400 flex items-center gap-1.5">
-          <span>🕵️</span> What Looks Like the Main Idea, But Isn't (The 5 Classic Impostors)
+          <span>🕵️</span> 5 Jebakan Gagasan Utama (The 5 Classic Impostors)
         </h3>
-        <p class="text-[11px] text-slate-400 mt-0.5">Test writers use true statements from the passage to trick students into picking the wrong option.</p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Pembuat soal sengaja menyisipkan fakta yang benar dari teks untuk memancing siswa memilih jawaban yang keliru.</p>
       </div>
       <button onclick="toggleImpostorGuide()" class="text-slate-400 hover:text-white font-bold text-xs">✕ Close</button>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-5 gap-3 pt-1 text-[11px]">
-      
-      <!-- Impostor 1 -->
       <div class="bg-slate-800/90 p-3 rounded-lg border border-red-500/30 space-y-1.5">
         <span class="bg-red-950 text-red-300 border border-red-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">1. The Hook Bait</span>
-        <p class="font-semibold text-slate-100">"The opening status quo"</p>
-        <p class="text-slate-300 leading-relaxed">Sounds general and grand in lines 1-2, but the author pivots against it with <em>"However"</em>.</p>
-        <div class="bg-slate-950/70 p-2 rounded text-[10px] text-red-200 border-l-2 border-red-500 font-mono">
-          "E-readers make novels more accessible than ever." (Hook, refuted by P1 thesis!)
-        </div>
+        <p class="font-semibold text-slate-100">"Umpan Kalimat Pembuka"</p>
+        <p class="text-slate-300 leading-relaxed">Terdengar sangat meyakinkan di kalimat 1, tetapi kemudian langsung dibantah oleh penulis lewat kata <em>"However"</em> atau <em>"Yet"</em>.</p>
       </div>
 
-      <!-- Impostor 2 -->
       <div class="bg-slate-800/90 p-3 rounded-lg border border-orange-500/30 space-y-1.5">
-        <span class="bg-orange-950 text-orange-300 border border-orange-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">2. Single Topic Sentence</span>
-        <p class="font-semibold text-slate-100">"The Too-Narrow Trap"</p>
-        <p class="text-slate-300 leading-relaxed">A strong claim that governs <strong>only one</strong> body paragraph, not the entire essay umbrella.</p>
-        <div class="bg-slate-950/70 p-2 rounded text-[10px] text-orange-200 border-l-2 border-orange-500 font-mono">
-          "Paper books eliminate app notifications." (Only covers P3, misses comprehension!)
-        </div>
+        <span class="bg-orange-950 text-orange-300 border border-orange-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">2. Single Paragraph</span>
+        <p class="font-semibold text-slate-100">"Terlalu Sempit"</p>
+        <p class="text-slate-300 leading-relaxed">Pernyataan kuat yang hanya menjelaskan satu paragraf saja, bukan payung yang menaungi seluruh isi teks.</p>
       </div>
 
-      <!-- Impostor 3 -->
       <div class="bg-slate-800/90 p-3 rounded-lg border border-yellow-500/30 space-y-1.5">
-        <span class="bg-yellow-950 text-yellow-300 border border-yellow-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">3. Memorable Detail / Stat</span>
-        <p class="font-semibold text-slate-100">"The Familiar Fact"</p>
-        <p class="text-slate-300 leading-relaxed">A striking laboratory number or study. Evidence supports an argument, but is never the main idea.</p>
-        <div class="bg-slate-950/70 p-2 rounded text-[10px] text-yellow-200 border-l-2 border-yellow-500 font-mono">
-          "Particles under 5mm bypass sedimentation tanks." (Raw proof, not the main takeaway!)
-        </div>
+        <span class="bg-yellow-950 text-yellow-300 border border-yellow-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">3. Raw Fact / Number</span>
+        <p class="font-semibold text-slate-100">"Fakta Menarik"</p>
+        <p class="text-slate-300 leading-relaxed">Angka statistik atau detail riset. Fakta hanya berfungsi membuktikan argumen, bukan menjadi kesimpulan akhir teks.</p>
       </div>
 
-      <!-- Impostor 4 -->
       <div class="bg-slate-800/90 p-3 rounded-lg border border-sky-500/30 space-y-1.5">
         <span class="bg-sky-950 text-sky-300 border border-sky-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">4. Broad Topic Label</span>
-        <p class="font-semibold text-slate-100">"The Missing Claim"</p>
-        <p class="text-slate-300 leading-relaxed">A noun phrase stating what the text is about, but completely omitting the author's verdict or stance.</p>
-        <div class="bg-slate-950/70 p-2 rounded text-[10px] text-sky-200 border-l-2 border-sky-500 font-mono">
-          "AI tools in secondary classrooms." (Just a title label! Has no verb or judgment.)
-        </div>
+        <p class="font-semibold text-slate-100">"Hanya Judul Topik"</p>
+        <p class="text-slate-300 leading-relaxed">Frasa kata benda yang menyebut topik bahasan tanpa menyampaikan pesan, sikap, atau klaim dari penulis.</p>
       </div>
 
-      <!-- Impostor 5 -->
       <div class="bg-slate-800/90 p-3 rounded-lg border border-purple-500/30 space-y-1.5">
         <span class="bg-purple-950 text-purple-300 border border-purple-800 font-bold px-1.5 py-0.5 rounded text-[10px] uppercase block w-fit">5. Discussion Half-Truth</span>
-        <p class="font-semibold text-slate-100">"The One-Sided Pick"</p>
-        <p class="text-slate-300 leading-relaxed">Picking solely the Pro side (or solely the Con side) of a balanced discursive text.</p>
-        <div class="bg-slate-950/70 p-2 rounded text-[10px] text-purple-200 border-l-2 border-purple-500 font-mono">
-          "High-speed rail drastically cuts carbon." (Ignores rural debt risks in P3!)
-        </div>
+        <p class="font-semibold text-slate-100">"Mengambil Satu Sisi Saja"</p>
+        <p class="text-slate-300 leading-relaxed">Hanya memilih sisi Pro (atau sisi Kontra saja) pada teks diskusi yang seharusnya disimpulkan secara seimbang.</p>
       </div>
-
-    </div>
-
-    <!-- Umbrella Test Quick Formula -->
-    <div class="bg-amber-950/50 border border-amber-600/40 p-2.5 rounded-lg flex items-center justify-between text-[11px] text-amber-200">
-      <span><strong>The Umbrella Test:</strong> Does the candidate sentence cover Paragraph 1, Paragraph 2, Paragraph 3, AND the Conclusion? If it only fits one paragraph, it's an <strong>Impostor</strong>.</span>
     </div>
   </div>
 
@@ -159,39 +133,34 @@
   <div id="hierarchy-guide-panel" class="hidden bg-slate-900 border-b border-slate-800 px-6 py-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-[11px] text-slate-300">
     <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
       <span class="font-bold text-sky-400 block mb-1">1. TOPIC</span>
-      <p class="text-slate-300 font-medium">Where: Title / Opening noun</p>
-      <p class="text-slate-400 mt-1">1–4 words. No verbs, no claims, no judgment.</p>
-      <p class="text-rose-400 mt-1 font-mono">NOT: A full sentence.</p>
+      <p class="text-slate-300 font-medium">Di mana: Judul / Kata benda awal</p>
+      <p class="text-slate-400 mt-1">1–4 kata. Menjawab: "Tentang apa teks ini?"</p>
     </div>
     <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
       <span class="font-bold text-emerald-400 block mb-1">2. THESIS</span>
-      <p class="text-slate-300 font-medium">Where: Last sentence of P1</p>
-      <p class="text-slate-400 mt-1">The author's core debatable stance after the pivot.</p>
-      <p class="text-rose-400 mt-1 font-mono">NOT: The opening hook bait.</p>
+      <p class="text-slate-300 font-medium">Di mana: Kalimat terakhir P1</p>
+      <p class="text-slate-400 mt-1">Sikap atau argumen utama yang dibela penulis.</p>
     </div>
     <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
       <span class="font-bold text-orange-400 block mb-1">3. ARGUMENT</span>
-      <p class="text-slate-300 font-medium">Where: 1st sentence of P2/P3</p>
-      <p class="text-slate-400 mt-1">Major supporting pillar governing a whole paragraph.</p>
-      <p class="text-rose-400 mt-1 font-mono">NOT: Just a raw number or study.</p>
+      <p class="text-slate-300 font-medium">Di mana: Kalimat pertama P2 & P3</p>
+      <p class="text-slate-400 mt-1">Pilar penjelas utama yang menopang tesis.</p>
     </div>
     <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
       <span class="font-bold text-yellow-400 block mb-1">4. CLAIM & DETAIL</span>
-      <p class="text-slate-300 font-medium">Where: Middle of P2/P3</p>
-      <p class="text-slate-400 mt-1">Claim: Sub-assertion needing proof. Detail: Numbers, facts, studies.</p>
-      <p class="text-rose-400 mt-1 font-mono">NOT: The text's main idea.</p>
+      <p class="text-slate-300 font-medium">Di mana: Bagian tengah paragraf</p>
+      <p class="text-slate-400 mt-1">Bukti pendukung, contoh situasi, dan angka penguat.</p>
     </div>
     <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
       <span class="font-bold text-purple-400 block mb-1">5. RESTATING / REC</span>
-      <p class="text-slate-300 font-medium">Where: Paragraph 4</p>
-      <p class="text-slate-400 mt-1">Analytical: Restates thesis. Hortatory: Mandatory policy action.</p>
-      <p class="text-rose-400 mt-1 font-mono">NOT: A brand new argument.</p>
+      <p class="text-slate-300 font-medium">Di mana: Paragraf 4</p>
+      <p class="text-slate-400 mt-1">Penegasan ulang tesis atau seruan tindakan nyata.</p>
     </div>
   </div>
 
   <!-- Genre Tabs -->
   <nav class="bg-slate-900/90 border-b border-slate-800 px-6 py-2 flex flex-wrap items-center gap-2 overflow-x-auto">
-    <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Lab Passages:</span>
+    <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Pilihan Teks:</span>
     <button onclick="loadLabText(0)" id="lab-tab-0" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow whitespace-nowrap">
       1. Analytical Exposition
     </button>
@@ -206,13 +175,13 @@
     </button>
   </nav>
 
-  <!-- Navigation Banner -->
+  <!-- Navigation Strategy Banner -->
   <aside class="bg-indigo-950 text-indigo-100 px-6 py-2.5 border-b border-indigo-900 shadow-inner flex flex-col md:flex-row md:items-center justify-between gap-2 text-xs">
     <div class="flex items-start md:items-center gap-2">
-      <span class="bg-indigo-600 text-white font-mono font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Protocol:</span>
+      <span class="bg-indigo-600 text-white font-mono font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Langkah:</span>
       <span id="lab-nav-strategy-text" class="leading-relaxed">Strategy text...</span>
     </div>
-    <span id="lab-nav-target-zone" class="font-mono text-emerald-400 font-bold bg-indigo-900/80 px-2 py-0.5 rounded border border-indigo-700 whitespace-nowrap self-start md:self-auto">Target: End of P1</span>
+    <span id="lab-nav-target-zone" class="font-mono text-emerald-400 font-bold bg-indigo-900/80 px-2 py-0.5 rounded border border-indigo-700 whitespace-nowrap self-start md:self-auto">Target: Akhir P1</span>
   </aside>
 
   <!-- Lab Workspace -->
@@ -257,25 +226,25 @@
       <!-- Sorter Drill -->
       <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
         <div class="border-b border-slate-100 pb-3">
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Active Structural Training</span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-0.5">Hierarchy Sorter: Match Statement to Structural Level</h3>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Latihan Struktur</span>
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-0.5">Pilah Kalimat: Cocokkan Pernyataan dengan Level Strukturnya</h3>
         </div>
         <div class="space-y-3 text-xs sm:text-sm" id="sorter-container"></div>
         <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
           <button onclick="checkDrill()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition shadow-sm">
-            Verify Hierarchy Roles
+            Verifikasi Susunan
           </button>
           <div id="drill-feedback" class="text-xs font-bold"></div>
         </div>
       </div>
     </section>
 
-    <!-- Right Pane: Lab Guided Practice Questions -->
+    <!-- Right Pane: Questions -->
     <section class="lg:col-span-5 space-y-5">
       <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 shadow-sm space-y-1">
-        <span class="font-bold text-slate-800 block">Guided Forensic Practice</span>
-        <p>• Click <span class="font-bold text-rose-600 border px-1 rounded bg-rose-50">✕</span> to strike distractors.</p>
-        <p>• Click <span class="font-bold bg-slate-100 border px-1 rounded text-slate-700">+/-/=</span> to tag option sentiment against the text.</p>
+        <span class="font-bold text-slate-800 block">Panduan Praktik:</span>
+        <p>• Klik <span class="font-bold text-rose-600 border px-1 rounded bg-rose-50">✕</span> untuk mencoret pilihan jebakan.</p>
+        <p>• Klik <span class="font-bold bg-slate-100 border px-1 rounded text-slate-700">+/-/=</span> untuk memberi tanda rasa kalimat opsi.</p>
       </div>
       <div id="lab-questions-container" class="space-y-6"></div>
     </section>
@@ -283,242 +252,243 @@
   </main>
 
   <script>
+    // BALANCED ACADEMIC PASSAGES: CLEAR HOOKS + DIRECT PROSE
     const labDatabase = [
       {
         id: 0,
-        title: "Artificial Intelligence in Secondary School Writing",
+        title: "Artificial Intelligence in High School Writing",
         genre: "Analytical Exposition",
         archetype: "Deductive (Hook → Thesis in P1 → Reiteration in P4)",
-        navStrategy: "Locate the contrast pivot in Paragraph 1. The thesis follows. Check P4 for the restated thesis.",
-        navTarget: "Target: End of P1 & First sentence of P4",
+        navStrategy: "Perhatikan umpan kalimat pembuka (hook). Penulis beralih dari kemudahan AI menuju tesis utamanya di akhir Paragraf 1.",
+        navTarget: "Target: Akhir P1 & Kalimat pertama P4",
         anatomyGuide: `
-          <p class="font-bold text-amber-900 text-sm">💡 Analytical Exposition Placement Guide:</p>
-          <p>• <strong class="text-sky-700">Topic:</strong> <em>Generative AI in classroom writing</em> (Found in title and P1 opening).</p>
-          <p>• <strong class="text-emerald-700">Thesis (End of P1):</strong> <em>'High schools must restrict generative AI to supervised interactive tasks...'</em></p>
-          <p>• <strong class="text-orange-700">Arguments:</strong> P2 opens with cognitive erosion; P3 opens with attribution/accuracy risks.</p>
-          <p>• <strong class="text-yellow-700">Claims:</strong> Assertions inside paragraphs (e.g., active text drafting builds conceptual reasoning).</p>
-          <p>• <strong class="text-slate-600">Supporting Details:</strong> Mention of automated grading, invented citations, and neurolinguistic studies.</p>
-          <p>• <strong class="text-purple-700">Conclusion / Restating (P4):</strong> Restates the thesis in new words.</p>
+          <p class="font-bold text-amber-900 text-sm">💡 Bedah Struktur Teks:</p>
+          <p>• <strong class="text-sky-700">Topik:</strong> <em>Generative AI in student writing</em> (Tercantum pada judul dan kalimat 1).</p>
+          <p>• <strong class="text-emerald-700">Tesis (Akhir P1):</strong> <em>'High schools should limit generative AI to supervised classroom activities...'</em></p>
+          <p>• <strong class="text-orange-700">Argumen:</strong> P2 membahas penurunan daya kritis; P3 membahas bahaya mengutip sumber palsu.</p>
+          <p>• <strong class="text-yellow-700">Klaim:</strong> Menulis sendiri melatih cara berpikir jauh lebih dalam daripada sekadar menyalin.</p>
+          <p>• <strong class="text-slate-600">Detail Bukti:</strong> Hasil tes belajar dan contoh kutipan buku karangan AI.</p>
+          <p>• <strong class="text-purple-700">Penegasan (P4):</strong> Mengulang tesis dengan kalimat segar.</p>
         `,
         htmlContent: `
           <p id="p1">
-            <span class="passage-sentence s1 anatomy-detail">In recent years, artificial intelligence utilities have surged across secondary classrooms worldwide.</span>
-            <span class="passage-sentence s2 anatomy-detail">While some teachers celebrate these platforms for automated grading, uncritical classroom adoption undermines active student inquiry.</span>
-            <span class="passage-sentence s3 anatomy-thesis">High schools must restrict generative AI to supervised interactive tasks rather than unmonitored writing assignments.</span>
+            <span class="passage-sentence s1 anatomy-detail">Writing a school essay used to take hours of drafting in the library, but today generative AI tools can produce complete essays in seconds.</span>
+            <span class="passage-sentence s2 anatomy-detail">While these computer tools can quickly correct grammar and suggest ideas, letting software do all the heavy lifting creates serious risks for education.</span>
+            <span class="passage-sentence s3 anatomy-thesis">High schools should limit generative AI to supervised classroom activities rather than unmonitored homework assignments.</span>
           </p>
           <p id="p2">
-            <span class="passage-sentence s4 anatomy-argument font-semibold">First, unchecked generative writing directly erodes foundational critical thinking.</span>
-            <span class="passage-sentence s5 anatomy-claim">When learners outsource brainstorming and syntax formation to machine models, cognitive engagement drops significantly.</span>
-            <span class="passage-sentence s6 anatomy-detail">Internal <span class="anchor-chip" onclick="triggerSpotlight('s6')">neurolinguistic studies</span> confirm that active text drafting strengthens conceptual reasoning far more than merely editing computer outputs.</span>
+            <span class="passage-sentence s4 anatomy-argument font-semibold">First, letting an algorithm write entire essays damages a student's ability to think critically.</span>
+            <span class="passage-sentence s5 anatomy-claim">When students allow computer programs to form their arguments, they miss the chance to organize their own thoughts and solve difficult problems.</span>
+            <span class="passage-sentence s6 anatomy-detail">Classroom <span class="anchor-chip" onclick="triggerSpotlight('s6')">learning assessments</span> show that students who write their own papers develop much stronger reasoning skills than those who simply edit computer output.</span>
           </p>
           <p id="p3">
-            <span class="passage-sentence s7 anatomy-argument font-semibold">Furthermore, algorithmic reliance creates systemic attribution and factual accuracy concerns.</span>
-            <span class="passage-sentence s8 anatomy-claim">Language models frequently <span class="vocab-chip" onclick="showVocab('hallucinate', 'Menghasilkan informasi palsu/khayalan', 'generate false or fabricated information presented as fact')">hallucinate</span> and invent plausible academic citations out of whole cloth.</span>
-            <span class="passage-sentence s9 anatomy-detail">Relying on automated drafting prevents young researchers from developing rigorous <span class="anchor-chip" onclick="triggerSpotlight('s9')">source-verification skills</span>.</span>
+            <span class="passage-sentence s7 anatomy-argument font-semibold">Second, AI software frequently invents incorrect facts and fabricated sources.</span>
+            <span class="passage-sentence s8 anatomy-claim">Because these tools merely predict word patterns, they often <span class="vocab-chip" onclick="showVocab('fabricate', 'Membuat informasi palsu / mengarang', 'invent untrue information and present it as real facts')">fabricate</span> non-existent book titles and fake academic articles.</span>
+            <span class="passage-sentence s9 anatomy-detail">If young writers never learn to verify quotes, they fail to develop essential <span class="anchor-chip" onclick="triggerSpotlight('s9')">fact-checking habits</span>.</span>
           </p>
           <p id="p4">
-            <span class="passage-sentence s10 anatomy-restating">In summary, while AI platforms offer practical conveniences, unrestricted access threatens core educational outcomes.</span>
-            <span class="passage-sentence s11 anatomy-restating">Secondary institutions must regulate classroom software use to preserve authentic student literacy.</span>
+            <span class="passage-sentence s10 anatomy-restating">In summary, while AI platforms offer quick convenience, unguided use threatens essential thinking skills.</span>
+            <span class="passage-sentence s11 anatomy-restating">Secondary schools must set firm guidelines for classroom technology to protect authentic student learning.</span>
           </p>
         `,
         sorterDrill: [
-          { text: "Generative AI in secondary education.", correct: "topic" },
-          { text: "High schools need to regulate student AI use because automated tools degrade critical thinking and source-verification skills.", correct: "main-idea" },
-          { text: "High schools must restrict generative AI to supervised interactive tasks rather than unmonitored writing assignments.", correct: "thesis" },
-          { text: "Unchecked generative writing directly erodes foundational critical thinking in young learners.", correct: "argument" },
-          { text: "Language models frequently invent plausible citations and fake sources.", correct: "claim" },
-          { text: "Internal neurolinguistic studies measuring student brain activity during syntax drafting.", correct: "detail" },
-          { text: "Secondary institutions must regulate classroom software use to preserve authentic student literacy.", correct: "restating" }
+          { text: "AI in high school writing assignments.", correct: "topic" },
+          { text: "High schools need to regulate AI use because automated writing tools weaken independent thinking and source-checking skills.", correct: "main-idea" },
+          { text: "High schools should limit generative AI to supervised classroom activities rather than unmonitored homework assignments.", correct: "thesis" },
+          { text: "Letting an algorithm write entire essays damages a student's ability to think critically.", correct: "argument" },
+          { text: "AI tools often fabricate non-existent book titles and fake academic articles.", correct: "claim" },
+          { text: "Classroom learning assessments comparing student reasoning skills after drafting essays.", correct: "detail" },
+          { text: "Secondary schools must set firm guidelines for classroom technology to protect authentic student learning.", correct: "restating" }
         ],
         questions: [
           {
             id: 101,
-            type: "Analytical Main Thesis",
-            stem: "What is the primary thesis defended by the author in the text?",
+            type: "Main Thesis",
+            stem: "What is the author's primary thesis in the passage?",
             options: [
-              { id: "A", text: "Artificial intelligence should be banned completely from all school computers.", trapType: "TRAP: Extreme Qualifier ('banned completely from all').", hasExtreme: true },
-              { id: "B", text: "Schools must restrict generative AI to supervised activities to safeguard thinking skills.", trapType: "CORRECT: Paraphrases the thesis at the end of P1 and reiterated in P4.", hasExtreme: false },
-              { id: "C", text: "Automated grading is the only reason language models were invented for schools.", trapType: "TRAP: Extreme Detail Trap ('the only reason').", hasExtreme: true },
-              { id: "D", text: "Active drafting and automated editing produce identical neurological results.", trapType: "TRAP: Factually Contradicts P2.", hasExtreme: false },
-              { id: "E", text: "Secondary students prefer writing traditional essays over using computer software.", trapType: "TRAP: Outside Scope.", hasExtreme: false }
+              { id: "A", text: "Computer technology should be banned completely from all high school writing classes.", trapType: "TRAP: Extreme Qualifier ('banned completely from all').", hasExtreme: true },
+              { id: "B", text: "Schools must restrict AI use to supervised tasks to protect independent thinking skills.", trapType: "CORRECT: Paraphrases the thesis in Sentence 3 and reiterated in Sentence 11.", hasExtreme: false },
+              { id: "C", text: "Checking grammar is the only useful benefit AI brings to modern teachers.", trapType: "TRAP: Extreme Detail Trap ('the only useful benefit').", hasExtreme: true },
+              { id: "D", text: "Students who use AI to write essays get higher marks on library research projects.", trapType: "TRAP: Contradicts Paragraph 3.", hasExtreme: false },
+              { id: "E", text: "Most high school teachers prefer hand-written essays over typed documents.", trapType: "TRAP: Outside Scope.", hasExtreme: false }
             ],
             answer: "B",
-            rationale: "Sentence 3 establishes the thesis: high schools must restrict AI to supervised tasks. Sentence 11 reiterates this in P4."
+            rationale: "Sentence 3 defines the central stance: schools must restrict AI to supervised classroom tasks, and Sentence 11 reiterates this principle."
           }
         ]
       },
       {
         id: 1,
-        title: "The Crisis of Microplastics in Municipal Waterways",
+        title: "The Crisis of Plastic Waste in City Waterways",
         genre: "Hortatory Exposition",
         archetype: "Action-Oriented (Issue → Arguments → Mandatory Recommendation in P4)",
-        navStrategy: "Hortatory texts seek to persuade the reader to TAKE ACTION. Jump straight to Paragraph 4 and locate modals of obligation ('must', 'should').",
-        navTarget: "Target: Paragraph 4 (The Recommendation)",
+        navStrategy: "Teks hortatory fokus mendesak tindakan nyata. Langsung amati Paragraf 4 dan perhatikan kata penanda kewajiban ('must', 'should').",
+        navTarget: "Target: Paragraf 4 (Rekomendasi Wajib)",
         anatomyGuide: `
-          <p class="font-bold text-amber-900 text-sm">💡 Hortatory Placement Guide:</p>
-          <p>• <strong class="text-sky-700">Topic:</strong> <em>Aquatic microplastic pollution</em> (Title and P1).</p>
-          <p>• <strong class="text-orange-700">Arguments:</strong> P2 details persistent toxins bioaccumulating in seafood; P3 on municipal reservoir degradation.</p>
-          <p>• <strong class="text-pink-700">Recommendation (P4):</strong> Mandatory policy action for legislative councils and consumers.</p>
+          <p class="font-bold text-amber-900 text-sm">💡 Bedah Struktur Teks:</p>
+          <p>• <strong class="text-sky-700">Topik:</strong> <em>Plastic pollution in city rivers</em> (Tercantum pada judul dan kalimat 1).</p>
+          <p>• <strong class="text-orange-700">Argumen:</strong> P2 membahas polusi yang mencemari ikan konsumsi; P3 membahas partikel yang lolos ke air keran rumah.</p>
+          <p>• <strong class="text-pink-700">Rekomendasi (P4):</strong> Larangan hukum bagi produsen sabun dan seruan memakai botol kaca bagi masyarakat.</p>
         `,
         htmlContent: `
           <p id="p1">
-            <span class="passage-sentence s1 anatomy-detail">Microplastic accumulation in municipal waterways has emerged as a severe environmental hazard over the past decade.</span>
-            <span class="passage-sentence s2 anatomy-detail">Everyday cosmetic cleansers and packaging shed synthetic polymers that municipal filtration facilities cannot intercept.</span>
-            <span class="passage-sentence s3 anatomy-thesis">Unchecked plastic runoff creates a persistent ecological emergency requiring immediate legislative action.</span>
+            <span class="passage-sentence s1 anatomy-detail">Walk down any store aisle and you will see colorful soaps and scrubs packaged in bright plastic, but few people realize where this plastic ends up after washing down the drain.</span>
+            <span class="passage-sentence s2 anatomy-detail">Every single day, facial cleansers and synthetic bottles shed millions of tiny plastic fragments that municipal filters cannot catch.</span>
+            <span class="passage-sentence s3 anatomy-thesis">This unmanaged plastic runoff has created a public health emergency that demands immediate legal intervention.</span>
           </p>
           <p id="p2">
-            <span class="passage-sentence s4 anatomy-argument font-semibold">To begin with, microplastics absorb hazardous persistent organic pollutants from industrial runoff.</span>
-            <span class="passage-sentence s5 anatomy-claim">When aquatic organisms ingest these concentrated toxic pellets, toxins <span class="vocab-chip" onclick="showVocab('bioaccumulate', 'Menumpuk dalam rantai makanan', 'accumulate within tissues of living organisms')">bioaccumulate</span> up the food chain, eventually contaminating commercial human seafood.</span>
-            <span class="passage-sentence s6 anatomy-detail">Marine autopsies consistently show elevated liver toxicity in coastal fish stocks.</span>
+            <span class="passage-sentence s4 anatomy-argument font-semibold">First, tiny plastic particles absorb chemical poisons floating in river water.</span>
+            <span class="passage-sentence s5 anatomy-claim">When small fish mistake these plastic beads for food, dangerous industrial toxins move upward through the aquatic food chain until they reach seafood sold in public markets.</span>
+            <span class="passage-sentence s6 anatomy-detail">Recent laboratory tests on <span class="anchor-chip" onclick="triggerSpotlight('s6')">commercial river fish</span> have confirmed elevated toxin levels in local fish meat.</span>
           </p>
           <p id="p3">
-            <span class="passage-sentence s7 anatomy-argument font-semibold">Moreover, synthetic particles degrade municipal drinking reservoirs.</span>
-            <span class="passage-sentence s8 anatomy-claim">Standard municipal sedimentation tanks fail to block non-biodegradable fragments under <span class="anchor-chip" onclick="triggerSpotlight('s8')">5 millimeters</span> wide.</span>
-            <span class="passage-sentence s9 anatomy-detail">Over time, these microscopic fibers penetrate city taps and residential water supplies.</span>
+            <span class="passage-sentence s7 anatomy-argument font-semibold">Second, microscopic plastic waste contaminates municipal drinking supplies.</span>
+            <span class="passage-sentence s8 anatomy-claim">Standard water treatment tanks are simply not built to block synthetic fragments under <span class="anchor-chip" onclick="triggerSpotlight('s8')">5 millimeters</span> wide.</span>
+            <span class="passage-sentence s9 anatomy-detail">As a result, these non-biodegradable particles pass through urban filters and pour directly from residential kitchen faucets.</span>
           </p>
           <p id="p4">
-            <span class="passage-sentence s10 anatomy-recommendation">Therefore, municipal legislative councils must ban the manufacture of commercial products containing synthetic microbeads.</span>
-            <span class="passage-sentence s11 anatomy-recommendation">Consumers should also substitute single-use plastic containers with reusable glass alternatives immediately.</span>
+            <span class="passage-sentence s10 anatomy-recommendation">Therefore, city legislative councils must pass strict laws banning commercial products made with synthetic microbeads.</span>
+            <span class="passage-sentence s11 anatomy-recommendation">In addition, consumers should replace single-use plastic containers with reusable glass bottles immediately.</span>
           </p>
         `,
         sorterDrill: [
-          { text: "Aquatic microplastic pollution.", correct: "topic" },
-          { text: "Microplastic runoff contaminates seafood and municipal water supplies, necessitating immediate statutory bans and consumer action.", correct: "main-idea" },
-          { text: "Unchecked plastic runoff creates a persistent ecological emergency requiring immediate legislative intervention.", correct: "thesis" },
-          { text: "Microplastics absorb hazardous industrial toxins that bioaccumulate across the marine food chain.", correct: "argument" },
-          { text: "Standard municipal sedimentation tanks cannot intercept non-biodegradable particles under 5 millimeters.", correct: "claim" },
-          { text: "Marine autopsies showing liver toxicity measurements in coastal fish stocks.", correct: "detail" },
-          { text: "Municipal councils must ban commercial products containing synthetic microbeads.", correct: "recommendation" }
+          { text: "Plastic pollution in municipal rivers.", correct: "topic" },
+          { text: "Microplastic runoff contaminates seafood and urban tap water, requiring statutory bans and cleaner consumer habits.", correct: "main-idea" },
+          { text: "This unmanaged plastic runoff has created a public health emergency that demands immediate legal intervention.", correct: "thesis" },
+          { text: "Tiny plastic particles absorb chemical poisons floating in river water.", correct: "argument" },
+          { text: "Standard water treatment tanks are not built to block synthetic fragments under 5 millimeters wide.", correct: "claim" },
+          { text: "Laboratory tests confirming toxin levels in commercial river fish.", correct: "detail" },
+          { text: "City legislative councils must pass strict laws banning commercial products made with synthetic microbeads.", correct: "recommendation" }
         ],
         questions: [
           {
             id: 201,
-            type: "Hortatory Recommendation",
-            stem: "What concrete legislative measure is demanded in the final paragraph?",
+            type: "Recommendation Question",
+            stem: "What specific government action is demanded in the final paragraph?",
             options: [
-              { id: "A", text: "Commercial fisheries should permanently halt operations along coastal rivers.", trapType: "TRAP: Outside Scope." },
-              { id: "B", text: "Municipal legislative councils must ban products manufactured with synthetic microbeads.", trapType: "CORRECT: Direct match to Sentence 10." },
-              { id: "C", text: "Sedimentation tanks should be completely replaced by chemical filters everywhere.", trapType: "TRAP: Extreme Generalization ('everywhere').", hasExtreme: true },
-              { id: "D", text: "Citizens must stop drinking tap water completely until rivers are declared pure.", trapType: "TRAP: Extreme Distortion.", hasExtreme: true },
-              { id: "E", text: "Cosmetic companies should voluntarily label packaging without legal mandates.", trapType: "TRAP: Too Weak." }
+              { id: "A", text: "Commercial fishing fleets should permanently close operations along coastal bays.", trapType: "TRAP: Outside Scope." },
+              { id: "B", text: "City councils must pass laws banning products containing synthetic plastic beads.", trapType: "CORRECT: Direct match to Sentence 10." },
+              { id: "C", text: "All city water treatment facilities should be shut down across the country.", trapType: "TRAP: Extreme Generalization ('shut down across the country').", hasExtreme: true },
+              { id: "D", text: "Families must stop drinking all tap water forever until every river is purified.", trapType: "TRAP: Extreme Distortion.", hasExtreme: true },
+              { id: "E", text: "Cosmetic brands should voluntarily print warning labels without any legal changes.", trapType: "TRAP: Weak opposite." }
             ],
             answer: "B",
-            rationale: "Sentence 10 specifies: 'municipal legislative councils must ban the manufacture of commercial products containing synthetic microbeads.'"
+            rationale: "Sentence 10 specifies: 'city legislative councils must pass strict laws banning commercial products made with synthetic microbeads.'"
           }
         ]
       },
       {
         id: 2,
-        title: "The Biology and Morphology of Cephalopods",
+        title: "The Camouflage and Hunting Skills of Cephalopods",
         genre: "Information Report",
         archetype: "Taxonomic Classification (Definition → Anatomy → Ecological Role)",
-        navStrategy: "Reports do NOT have an argumentative thesis. Scan topic sentences for biological sub-categories (Anatomy in P2, Ecological Role in P3).",
-        navTarget: "Target: Category Topic Sentences (P2, P3)",
+        navStrategy: "Teks Report tidak memiliki opini atau debat. Pindai kalimat pertama di P2 (organ tubuh) dan P3 (peran berburu).",
+        navTarget: "Target: Kalimat Pertama P2 & P3",
         anatomyGuide: `
-          <p class="font-bold text-amber-900 text-sm">💡 Information Report Placement Guide:</p>
-          <p>• <strong class="text-sky-700">Topic:</strong> <em>Cephalopod biology and morphology</em> (Title and opening sentence).</p>
-          <p>• <strong class="text-slate-600">Thesis:</strong> <strong>NONE.</strong> Objective reports explain scientific facts without personal stances.</p>
-          <p>• <strong class="text-yellow-700">Claims:</strong> Objective anatomical assertions (chromatophores expand to alter patterns instantly).</p>
-          <p>• <strong class="text-slate-600">Supporting Details:</strong> Chitinous beaks, pressurized siphon propulsion, and bilateral body symmetry.</p>
+          <p class="font-bold text-amber-900 text-sm">💡 Bedah Struktur Teks:</p>
+          <p>• <strong class="text-sky-700">Topik:</strong> <em>Cephalopod physical traits and hunting</em> (Tercantum pada judul dan kalimat 1).</p>
+          <p>• <strong class="text-slate-600">Tesis:</strong> <strong>TIDAK ADA.</strong> Teks report menyajikan fakta ilmiah tanpa argumen pribadi.</p>
+          <p>• <strong class="text-yellow-700">Klaim:</strong> Kulit gurita dapat berubah warna dalam sekejap mata berkat kendali saraf otak.</p>
+          <p>• <strong class="text-slate-600">Detail Bukti:</strong> Kantung warna elastis, paruh tajam, dan semburan air pendorong.</p>
         `,
         htmlContent: `
           <p id="p1">
-            <span class="passage-sentence s1 anatomy-detail">Cephalopods are an advanced class of marine mollusks characterized by bilateral body symmetry, prominent head structures, and modified tentacular arms.</span>
-            <span class="passage-sentence s2 anatomy-detail">Unlike bivalves or gastropods, cephalopods display exceptionally high metabolic rates and sophisticated nervous systems.</span>
+            <span class="passage-sentence s1 anatomy-detail">Most people recognize an octopus or squid by their soft rounded bodies and eight or ten flexible arms, but these ocean mollusks are far more complex than simple sea snails.</span>
+            <span class="passage-sentence s2 anatomy-detail">Unlike clams resting motionless in shells, cephalopods possess remarkable eyesight, rapid movement, and advanced nervous systems.</span>
           </p>
           <p id="p2">
-            <span class="passage-sentence s3 font-semibold text-slate-800">Morphologically, cephalopods possess specialized dermal pigment cells known as <span class="anchor-chip" onclick="triggerSpotlight('s3')">chromatophores</span>.</span>
-            <span class="passage-sentence s4 anatomy-claim">Controlled directly by motor neurons in the cerebral ganglia, these elastic pigment sacs expand or contract to alter skin color and patterns instantly.</span>
-            <span class="passage-sentence s5 anatomy-detail">This anatomical adaptation enables instantaneous <span class="vocab-chip" onclick="showVocab('camouflage', 'Kamuflase / penyamaran', 'disguising appearance to blend with surroundings')">camouflage</span> against varied seafloor backgrounds.</span>
+            <span class="passage-sentence s3 font-semibold text-slate-800">Physically, cephalopods possess unique skin structures equipped with microscopic elastic <span class="anchor-chip" onclick="triggerSpotlight('s3')">pigment sacs</span>.</span>
+            <span class="passage-sentence s4 anatomy-claim">Nerves connected directly to the animal's central brain trigger these tiny color pockets to expand or contract in milliseconds.</span>
+            <span class="passage-sentence s5 anatomy-detail">This specialized biological trait enables an octopus to <span class="vocab-chip" onclick="showVocab('blend', 'Menyamarkan diri / berbaur', 'match colors and textures to hide in plain sight')">blend</span> against uneven seafloor rocks and coral within a single second.</span>
           </p>
           <p id="p3">
-            <span class="passage-sentence s6 font-semibold text-slate-800">Ecologically, these animals operate as active, opportunistic predatory carnivores.</span>
-            <span class="passage-sentence s7 anatomy-claim">Utilizing sharp chitinous beaks and pressurized siphon propulsion, species such as cuttlefish capture crustaceans and teleost fish.</span>
-            <span class="passage-sentence s8 anatomy-detail">They serve as a vital caloric bridge between benthic invertebrates and apex pelagic predators.</span>
+            <span class="passage-sentence s6 font-semibold text-slate-800">In the marine food chain, these creatures operate as quick, skilled predators.</span>
+            <span class="passage-sentence s7 anatomy-claim">Using powerful beaks and rapid jets of pressurized water, creatures such as cuttlefish snatch crabs, shrimp, and small reef fish.</span>
+            <span class="passage-sentence s8 anatomy-detail">In turn, they serve as a nutritious food source for larger marine hunters like sharks, seals, and dolphins.</span>
           </p>
         `,
         sorterDrill: [
-          { text: "Cephalopod biology and morphology.", correct: "topic" },
-          { text: "Cephalopods are predatory marine mollusks that possess specialized neural camouflage mechanisms and serve as vital ecological predators.", correct: "main-idea" },
-          { text: "Cephalopods represent the only marine mollusks that should be legally classified as sentient organisms.", correct: "thesis" },
-          { text: "Motor neurons directly control dermal chromatophores to achieve instantaneous background camouflage.", correct: "argument" },
-          { text: "Elastic pigment sacs expand or contract to alter skin color patterns within milliseconds.", correct: "claim" },
-          { text: "Sharp chitinous beaks, siphon propulsion, and teleost fish diet.", correct: "detail" }
+          { text: "Cephalopod physical traits and hunting habits.", correct: "topic" },
+          { text: "Cephalopods are agile ocean predators that use neural camouflage and serve as a vital link in the marine food chain.", correct: "main-idea" },
+          { text: "Cephalopods are the only marine invertebrates that deserve legal conservation status.", correct: "thesis" },
+          { text: "Nerves connected directly to the brain trigger tiny skin color pockets to expand instantly.", correct: "argument" },
+          { text: "Elastic color sacs expand or contract in milliseconds to create camouflage patterns.", correct: "claim" },
+          { text: "Powerful beaks, pressurized water jets, and eating small reef fish.", correct: "detail" }
         ],
         questions: [
           {
             id: 301,
-            type: "Report Classification Detail",
-            stem: "According to Paragraph 2, how do cephalopods change their skin color so rapidly?",
+            type: "Factual Detail Question",
+            stem: "According to Paragraph 2, how does an octopus change its skin color so rapidly?",
             options: [
-              { id: "A", text: "By circulating warm arterial blood exclusively into their outer tentacle tips.", trapType: "TRAP: Outside Scope." },
-              { id: "B", text: "Through motor neurons directly expanding and contracting elastic pigment sacs.", trapType: "CORRECT: Direct factual paraphrase of Sentence 4." },
-              { id: "C", text: "By releasing clouds of dark melanin ink that coat its body in complete shadow.", trapType: "TRAP: True cephalopod fact, but not in P2." },
-              { id: "D", text: "Through chemical reactions triggered only during ocean tidal shifts.", trapType: "TRAP: Extreme Qualifier ('only during').", hasExtreme: true },
-              { id: "E", text: "By consuming pigmented crustaceans that alter their internal stomach hues.", trapType: "TRAP: Misinterpretation of feeding habits in P3." }
+              { id: "A", text: "By pumping warm blood exclusively to the edges of its tentacles.", trapType: "TRAP: Outside Scope." },
+              { id: "B", text: "Through brain nerves that instantly expand and contract elastic color sacs.", trapType: "CORRECT: Direct factual match to Sentence 4." },
+              { id: "C", text: "By releasing thick clouds of dark ink that cast a shadow over its whole body.", trapType: "TRAP: True cephalopod fact, but not in Paragraph 2." },
+              { id: "D", text: "Through chemical shifts that occur only during ocean tide changes.", trapType: "TRAP: Extreme Qualifier ('only during').", hasExtreme: true },
+              { id: "E", text: "By digesting colored shellfish that alter its skin pigmentation.", trapType: "TRAP: Misinterpretation of feeding habits in Paragraph 3." }
             ],
             answer: "B",
-            rationale: "Sentence 4 states chromatophores are controlled directly by motor neurons, expanding or contracting elastic sacs to alter skin patterns instantly."
+            rationale: "Sentence 4 states: 'Nerves connected directly to the animal's central brain trigger these tiny color pockets to expand or contract in milliseconds.'"
           }
         ]
       },
       {
         id: 3,
-        title: "The Socioeconomic Debate Over High-Speed Passenger Rail",
+        title: "The Economic Debate Over High-Speed Passenger Rail",
         genre: "Discussion Text",
         archetype: "Balanced See-Saw (Pro vs. Con → Synthesis in P4)",
-        navStrategy: "Discussion texts do NOT take a one-sided stance in P1. Check P2 for Pro arguments, P3 for Con arguments, and P4 for balanced synthesis.",
-        navTarget: "Target: P2 (Pros), P3 (Cons), P4 (Synthesis)",
+        navStrategy: "Teks diskusi menyajikan dua sudut pandang. Cari alasan Pro di P2, alasan Kontra di P3, dan simpulan seimbang di P4.",
+        navTarget: "Target: P2 (Kelebihan), P3 (Kekurangan), P4 (Sintesis)",
         anatomyGuide: `
-          <p class="font-bold text-amber-900 text-sm">💡 Discussion Text Placement Guide:</p>
-          <p>• <strong class="text-sky-700">Topic:</strong> <em>High-speed passenger rail investment</em> (Title and P1).</p>
-          <p>• <strong class="text-slate-600">Thesis (P1):</strong> <strong>NONE.</strong> Opens with a neutral scope statement.</p>
-          <p>• <strong class="text-orange-700">Arguments:</strong> P2 presents Pro-Rail arguments; P3 presents Con-Rail arguments.</p>
-          <p>• <strong class="text-purple-700">Synthesis (P4):</strong> Balances both perspectives without declaring an absolute winner.</p>
+          <p class="font-bold text-amber-900 text-sm">💡 Bedah Struktur Teks:</p>
+          <p>• <strong class="text-sky-700">Topik:</strong> <em>High-speed train construction debate</em> (Tercantum pada judul dan kalimat 1).</p>
+          <p>• <strong class="text-slate-600">Tesis:</strong> <strong>TIDAK MEMIHAK.</strong> Pembuka memaparkan dilema secara netral.</p>
+          <p>• <strong class="text-orange-700">Argumen:</strong> P2 mengangkat pemangkasan polusi & macet; P3 mengangkat pembengkakan utang & biaya.</p>
+          <p>• <strong class="text-purple-700">Sintesis (P4):</strong> Menimbang kedua fakta untuk menyusun kesimpulan yang seimbang.</p>
         `,
         htmlContent: `
           <p id="p1">
-            <span class="passage-sentence s1 anatomy-detail">The construction of high-speed passenger rail networks has triggered substantial debate among regional economists and urban planners.</span>
-            <span class="passage-sentence s2 anatomy-detail">Whether capital-intensive rail initiatives deliver superior long-term socioeconomic benefits compared to highway expansion remains <span class="vocab-chip" onclick="showVocab('contentious', 'Dipersengketakan / memicu perdebatan', 'controversial; causing intense argument')">contentious</span>.</span>
+            <span class="passage-sentence s1 anatomy-detail">Watching sleek bullet trains glide across Japanese mountains makes high-speed rail look like the obvious future of modern transportation.</span>
+            <span class="passage-sentence s2 anatomy-detail">Yet whether multi-billion-dollar bullet trains provide greater long-term economic returns than expanding highway systems remains a deeply <span class="vocab-chip" onclick="showVocab('disputed', 'Dipersengketakan / diperdebatkan', 'argued over with valid points on both sides')">disputed</span> issue among urban planners.</span>
           </p>
           <p id="p2">
-            <span class="passage-sentence s3 anatomy-argument font-semibold">Proponents argue that electrified passenger rail significantly curbs carbon emissions and minimizes regional highway congestion.</span>
-            <span class="passage-sentence s4 anatomy-claim">Moving commuters off intercity freeways lowers petroleum consumption while slashing vehicular accident rates.</span>
-            <span class="passage-sentence s5 anatomy-detail">Central transit terminals also generate substantial localized retail spending in downtown districts.</span>
+            <span class="passage-sentence s3 anatomy-argument font-semibold">Advocates argue that electric bullet trains reduce air pollution and ease highway gridlock between major cities.</span>
+            <span class="passage-sentence s4 anatomy-claim">Taking thousands of passenger cars off regional freeways cuts petroleum emissions while significantly lowering serious traffic accidents.</span>
+            <span class="passage-sentence s5 anatomy-detail">Modern central railway stations also generate energetic commercial growth and retail shopping in downtown districts.</span>
           </p>
           <p id="p3">
-            <span class="passage-sentence s6 anatomy-argument font-semibold">Conversely, detractors emphasize that high-speed rail entails prohibitive capital construction costs and long-term operating deficits.</span>
-            <span class="passage-sentence s7 anatomy-claim">Initial tunneling and rights-of-way acquisitions routinely exceed initial municipal budget forecasts.</span>
-            <span class="passage-sentence s8 anatomy-detail">In lower-density transit corridors, passenger ticket yields rarely cover regular line maintenance.</span>
+            <span class="passage-sentence s6 anatomy-argument font-semibold">In contrast, critics emphasize that building high-speed rail requires massive public loans and causes long-term operating deficits.</span>
+            <span class="passage-sentence s7 anatomy-claim">Purchasing private land and excavating long mountain tunnels routinely cost far more than initial construction budgets predicted.</span>
+            <span class="passage-sentence s8 anatomy-detail">In rural routes with low passenger numbers, passenger ticket sales rarely produce enough revenue to pay for daily track maintenance.</span>
           </p>
           <p id="p4">
-            <span class="passage-sentence s9 anatomy-restating">In short, high-speed rail provides undeniable environmental benefits, yet presents acute debt risks in low-density corridors.</span>
-            <span class="passage-sentence s10 anatomy-restating">Regional transit authorities must evaluate local passenger density before authorizing heavy construction bonds.</span>
+            <span class="passage-sentence s9 anatomy-restating">In conclusion, while high-speed rail delivers undeniable green benefits, it presents severe debt risks in regions with low passenger traffic.</span>
+            <span class="passage-sentence s10 anatomy-restating">Regional transportation leaders must evaluate local travel density carefully before committing public money to heavy rail bonds.</span>
           </p>
         `,
         sorterDrill: [
-          { text: "High-speed passenger rail investment.", correct: "topic" },
-          { text: "Developing high-speed rail delivers clear environmental and congestion relief benefits but carries steep capital expenditure and deficit risks.", correct: "main-idea" },
-          { text: "National governments should halt all high-speed rail projects due to excessive financial risks.", correct: "thesis" },
-          { text: "Electrified passenger rail curbs carbon emissions and minimizes highway congestion.", correct: "argument" },
-          { text: "In lower-density corridors, passenger ticket yields rarely cover ongoing track maintenance.", correct: "claim" },
-          { text: "Initial tunneling costs and rights-of-way property acquisitions exceeding budget forecasts.", correct: "detail" },
-          { text: "Authorities must evaluate passenger density before approving construction bonds.", correct: "restating" }
+          { text: "High-speed passenger rail construction.", correct: "topic" },
+          { text: "Developing high-speed rail provides environmental and traffic relief benefits, but steep construction costs require cautious financial evaluation.", correct: "main-idea" },
+          { text: "National governments should immediately cancel all rail construction due to debt risks.", correct: "thesis" },
+          { text: "Electric passenger rail cuts emissions and eases highway gridlock.", correct: "argument" },
+          { text: "In rural routes with low passenger numbers, ticket sales rarely cover daily maintenance.", correct: "claim" },
+          { text: "Purchasing private land and excavating tunnels exceeding initial construction budgets.", correct: "detail" },
+          { text: "Regional leaders must evaluate travel density before committing public funds to rail bonds.", correct: "restating" }
         ],
         questions: [
           {
             id: 401,
-            type: "Discursive Balanced Synthesis",
-            stem: "Which statement best summarizes the author's overall perspective in the concluding paragraph?",
+            type: "Synthesis Question",
+            stem: "Which choice best captures the author's balanced conclusion in Paragraph 4?",
             options: [
-              { id: "A", text: "Rail systems are completely unaffordable and should be abandoned across all nations.", trapType: "TRAP: One-Sided Extreme ('completely unaffordable').", hasExtreme: true },
-              { id: "B", text: "High-speed rail offers strong environmental perks but requires cautious financial evaluation.", trapType: "CORRECT: Captures the balanced synthesis in Sentences 9 and 10." },
-              { id: "C", text: "Highway expansion is always superior to public transit investment in dense cities.", trapType: "TRAP: Extreme Qualifier ('always superior').", hasExtreme: true },
-              { id: "D", text: "Ticket yields in rural sectors cover the construction of urban stations.", trapType: "TRAP: Factually Contradicts P3." },
-              { id: "E", text: "Downtown retail spending is the only metric that proves a rail line's success.", trapType: "TRAP: Extreme Word Qualifier ('the only metric').", hasExtreme: true }
+              { id: "A", text: "Rail systems are totally useless and should be abandoned by every sensible nation.", trapType: "TRAP: One-Sided Extreme ('totally useless').", hasExtreme: true },
+              { id: "B", text: "Bullet trains deliver real environmental benefits, but their high costs require sensible financial planning.", trapType: "CORRECT: Balances green advantages with financial caution in Sentences 9 and 10." },
+              { id: "C", text: "Car highways are always superior to rail travel across every geographic territory.", trapType: "TRAP: Extreme Qualifier ('always superior').", hasExtreme: true },
+              { id: "D", text: "Passenger ticket sales in small farming villages easily cover expensive urban subway lines.", trapType: "TRAP: Directly contradicts Paragraph 3." },
+              { id: "E", text: "Downtown retail stores are the only metric used to decide if a railway line is successful.", trapType: "TRAP: Extreme Word Qualifier ('the only metric').", hasExtreme: true }
             ],
             answer: "B",
-            rationale: "Sentence 9 notes that rail provides environmental perks yet carries debt risks, requiring authorities to evaluate density before approving bonds."
+            rationale: "Sentences 9 and 10 provide balanced synthesis: bullet trains offer clear environmental benefits, but debt risks require leaders to check rider density before spending public funds."
           }
         ]
       }
@@ -598,13 +568,13 @@
 
           <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
             <button id="btn-check-lab-${q.id}" disabled onclick="checkLabAnswer(${q.id})" class="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
-              Verify Forensic Answer
+              Verifikasi Jawaban
             </button>
             <div id="feedback-lab-${q.id}" class="hidden text-xs font-semibold"></div>
           </div>
 
           <div id="rationale-lab-${q.id}" class="hidden text-xs bg-slate-50 border-l-4 border-indigo-500 p-3 text-slate-600 rounded-r space-y-1">
-            <strong>Forensic Debrief:</strong> ${q.rationale}
+            <strong>Pembahasan Forensik:</strong> ${q.rationale}
           </div>
         `;
         container.appendChild(card);
@@ -624,15 +594,15 @@
         row.innerHTML = `
           <span class="text-slate-700 flex-1 leading-snug">"${item.text}"</span>
           <select class="drill-select bg-white border border-slate-300 rounded px-2.5 py-1.5 font-medium text-slate-700 text-xs sm:text-sm" data-correct="${item.correct}">
-            <option value="">Select Role...</option>
-            <option value="topic">1. Topic (Subject Label)</option>
-            <option value="main-idea">2. Main Idea (Macro Umbrella)</option>
-            <option value="thesis">3. Thesis (Debatable Stance)</option>
-            <option value="argument">4. Argument (Supporting Pillar)</option>
-            <option value="claim">5. Claim (Sub-Assertion)</option>
-            <option value="detail">6. Detail (Fluff / Proof)</option>
-            <option value="restating">7. Restating / Synthesis</option>
-            <option value="recommendation">8. Recommendation (Hortatory)</option>
+            <option value="">Pilih Peran...</option>
+            <option value="topic">1. Topic (Label Subjek)</option>
+            <option value="main-idea">2. Main Idea (Gagasan Utama Payung)</option>
+            <option value="thesis">3. Thesis (Sikap Penulis)</option>
+            <option value="argument">4. Argument (Pilar Pendukung)</option>
+            <option value="claim">5. Claim (Klaim Sub-Argumen)</option>
+            <option value="detail">6. Detail (Bukti / Contoh Kasus)</option>
+            <option value="restating">7. Restating / Kesimpulan</option>
+            <option value="recommendation">8. Recommendation (Saran Tindakan)</option>
           </select>
         `;
         container.appendChild(row);
@@ -655,8 +625,8 @@
       });
       const fb = document.getElementById("drill-feedback");
       fb.innerHTML = allCorrect 
-        ? '<span class="text-emerald-600">✓ All Roles Correctly Placed!</span>'
-        : '<span class="text-rose-600">✕ Review Highlighted Red Errors</span>';
+        ? '<span class="text-emerald-600">✓ Semua Level Terpasang Tepat!</span>'
+        : '<span class="text-rose-600">✕ Periksa Kotak yang Masih Berwarna Merah</span>';
     };
 
     window.showVocab = (word, idMeaning, enMeaning) => {
@@ -723,7 +693,7 @@
         el.classList.toggle("dimmed-fluff", labStrippedActive);
       });
       document.getElementById("toggle-strip-btn").innerHTML = labStrippedActive 
-        ? "<span>🔄</span> Restore Fluff" 
+        ? "<span>🔄</span> Tampilkan Kembali Detail" 
         : "<span>✂️</span> Strip Fluff / Details";
     });
 
@@ -760,7 +730,7 @@
       btn.className = `text-[11px] w-7 h-7 flex items-center justify-center font-bold rounded border transition ${polarities[nextIdx].class}`;
     };
 
-    const extremeWords = ["entirely", "completely", "only", "all", "never", "exclusively", "banned completely", "always"];
+    const extremeWords = ["entirely", "completely", "only", "all", "never", "exclusively", "banned completely", "always", "every", "forever", "totally useless"];
     document.getElementById("toggle-extreme-btn").addEventListener("click", () => {
       labExtremeHighlighted = !labExtremeHighlighted;
       labDatabase[currentLabIdx].questions.forEach(q => {
@@ -801,13 +771,13 @@
       const fb = document.getElementById(`feedback-lab-${qId}`);
       fb.classList.remove("hidden");
       fb.innerHTML = (selected.value === qData.answer)
-        ? `<span class="text-emerald-600 font-bold">✓ Forensic Analysis Correct</span>`
-        : `<span class="text-rose-600 font-bold">✕ Trap Triggered! Review Below</span>`;
+        ? `<span class="text-emerald-600 font-bold">✓ Analisis Struktur Tepat!</span>`
+        : `<span class="text-rose-600 font-bold">✕ Terjebak Impostor! Periksa pembahasan di bawah</span>`;
 
       document.getElementById(`rationale-lab-${qId}`).classList.remove("hidden");
     };
 
-    // Initialize Lab
+    // Load initial passage
     loadLabText(0);
   </script>
 </body>
