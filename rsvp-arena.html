@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP Flash Arena — Speed Reading Trainer (TKA Phase F)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(244, 63, 94, 0.12) 0px, transparent 45%),
+        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 40%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.14) 0px, transparent 45%),
+        radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.12) 0px, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.05) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+    }
+
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+
+    /* Bento Surface */
+    .bento-pop {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 2px solid #0f172a;
+      box-shadow: 4px 5px 0px #0f172a;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-pop:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 7px 9px 0px #0f172a;
+    }
+
+    /* RSVP Crosshair Alignment Box */
+    .rsvp-box {
+      border: 3px solid #0f172a;
+      box-shadow: 6px 8px 0px #0f172a;
+      background: #ffffff;
+      position: relative;
+    }
+
+    /* Fixed Optimal Recognition Point (ORP) Guides */
+    .rsvp-guide-line {
+      position: absolute;
+      left: 42%;
+      width: 2px;
+      height: 18px;
+      background-color: #f43f5e;
+      z-index: 10;
+    }
+    .guide-top { top: 0; }
+    .guide-bottom { bottom: 0; }
+
+    /* Highlighted Focal Point Letter */
+    .orp-highlight {
+      color: #e11d48;
+      font-weight: 900;
+      text-shadow: 0 0 12px rgba(225, 29, 72, 0.35);
+    }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-slate-950 px-4 sm:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand Tag -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-rose-500 via-amber-400 to-indigo-600 flex items-center justify-center text-white font-black text-xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a]">
+          👁️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-mono-code font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-100 text-rose-900 border border-rose-300">
+              RAPID SERIAL VISUAL PRESENTATION
+            </span>
+            <span class="text-xs text-slate-500 font-semibold">TKA Phase F Pacing</span>
+          </div>
+          <h1 class="text-base sm:text-xl font-heading font-black text-slate-950 tracking-tight">
+            RSVP Flash Arena — Pelatih Kecepatan Mata
+          </h1>
+        </div>
+      </div>
+
+      <!-- Navigation Hub -->
+      <nav class="flex items-center gap-2 flex-wrap text-xs font-bold">
+        <a href="lesson-scanner.html" class="px-3 py-1.5 rounded-xl bg-amber-200 hover:bg-amber-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition flex items-center gap-1.5">
+          <span>📡</span> Kembalike Lesson Scanner
+        </a>
+        <a href="vocab.html" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          🔍 Klinik Vocab
+        </a>
+        <a href="game-defusal.html" class="px-3 py-1.5 rounded-xl bg-rose-200 hover:bg-rose-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          💣 Defusal
+        </a>
+        <a href="exam.html" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          📝 Ujian Mandiri
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Pacing Status Pill -->
+  <section class="bg-amber-50 border-b-2 border-slate-950 px-4 sm:px-8 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2 font-mono-code">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-bold text-slate-800">Tujuan:</span>
+        <span class="text-slate-600">Menghilangkan kebiasaan membaca bersuara dalam hati (*subvocalization*) dan melatih mata tetap fokus di 1 titik.</span>
+      </div>
+      <div class="font-mono-code text-[11px] font-bold text-rose-800 bg-rose-100 px-2 py-0.5 rounded border border-rose-300">
+        Shortcut: [Spasi] Play/Pause | [← / →] Ganti Kecepatan
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Bento Grid -->
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6 flex-1">
+
+    <!-- BENTO ROW 1: THE FLASH APPARATUS (CORE RSVP STAGE) -->
+    <section class="bento-pop rounded-3xl p-6 sm:p-8 space-y-6 bg-white">
+      
+      <!-- Top Telemetry Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-950 pb-4">
+        <div class="flex items-center gap-3">
+          <span id="reading-mode-badge" class="px-3 py-1 rounded-xl bg-indigo-100 text-indigo-900 border-2 border-slate-950 font-mono-code font-black text-xs">
+            MODUL: EKOLOGI LAHAN GAMBUT
+          </span>
+          <span id="live-wpm-pill" class="px-3 py-1 rounded-xl bg-amber-300 text-slate-950 border-2 border-slate-950 font-mono-code font-black text-xs shadow-[2px_2px_0px_#0f172a]">
+            SPEED: 350 WPM
+          </span>
+        </div>
+
+        <!-- Progress Counter -->
+        <div class="flex items-center gap-2 font-mono-code text-xs font-bold text-slate-700">
+          <span>KATA:</span>
+          <span id="word-progress-label" class="bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-950">0 / 0</span>
+        </div>
+      </div>
+
+      <!-- MAIN RSVP VIEWPORT (THE OPTICAL CHAMBER) -->
+      <div class="rsvp-box rounded-3xl h-52 sm:h-64 flex items-center justify-center relative overflow-hidden select-none">
+        
+        <!-- Vertical Alignment Guides (Top & Bottom Markers) -->
+        <div class="rsvp-guide-line guide-top"></div>
+        <div class="rsvp-guide-line guide-bottom"></div>
+
+        <!-- Horizontal Hairline Reference (Subtle) -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-slate-200 pointer-events-none"></div>
+
+        <!-- Flash Container with Spritz-style letter splitting -->
+        <div id="rsvp-word-viewport" class="font-mono-code text-4xl sm:text-6xl tracking-tight text-slate-900 font-bold z-20 flex items-center justify-center w-full px-4">
+          <span class="text-slate-400 text-xl sm:text-2xl font-sans font-medium">Klik "Mulai Flash" di bawah</span>
+        </div>
+
+        <!-- Word Context Footprint (Subtle trailing snippet) -->
+        <div id="rsvp-context-hint" class="absolute bottom-3 text-[11px] font-mono-code text-slate-400 font-semibold truncate max-w-md px-4">
+          Ready to stream...
+        </div>
+      </div>
+
+      <!-- Playback Progress Slider Bar -->
+      <div class="space-y-1.5">
+        <div class="w-full bg-slate-100 h-3 rounded-full border-2 border-slate-950 overflow-hidden relative">
+          <div id="rsvp-progress-fill" class="bg-gradient-to-r from-amber-400 to-rose-500 h-full w-0 transition-all duration-75"></div>
+        </div>
+      </div>
+
+      <!-- CONTROL COCKPIT -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center pt-2">
+        
+        <!-- Primary Action Trigger (Span 4) -->
+        <div class="md:col-span-4 flex items-center gap-2">
+          <button id="btn-toggle-rsvp" onclick="toggleRSVP()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black font-heading text-base border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] transition flex items-center justify-center gap-2">
+            <span id="btn-icon">▶</span> <span id="btn-label">MULAI FLASH BACA</span>
+          </button>
+          <button onclick="resetRSVP()" title="Ulang dari awal" class="p-3.5 rounded-2xl bg-white hover:bg-slate-100 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] font-bold text-slate-800 transition">
+            🔄
+          </button>
+        </div>
+
+        <!-- Speed Dials (Span 5) -->
+        <div class="md:col-span-5 flex items-center gap-1.5 flex-wrap justify-center">
+          <button onclick="setSpeed(250)" id="spd-btn-250" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition">
+            250 WPM
+          </button>
+          <button onclick="setSpeed(350)" id="spd-btn-350" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-indigo-600 text-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition">
+            350 WPM
+          </button>
+          <button onclick="setSpeed(500)" id="spd-btn-500" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition">
+            500 WPM
+          </button>
+          <button onclick="setSpeed(650)" id="spd-btn-650" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition">
+            650 ⚡
+          </button>
+        </div>
+
+        <!-- Fine Stepper Slider (Span 3) -->
+        <div class="md:col-span-3 flex items-center gap-2 bg-slate-50 p-2.5 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          <span class="text-[10px] font-mono-code font-bold text-slate-500">SPEED:</span>
+          <input type="range" id="wpm-slider" min="180" max="750" step="10" value="350" oninput="onSliderChange(this.value)" class="w-full accent-indigo-600 cursor-pointer">
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BENTO ROW 2: TEXT SELECTION & CUSTOM INPUT DRAWER (ASYMMETRICAL 7:5) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+      
+      <!-- Passage Module Selector (Span 7) -->
+      <div class="lg:col-span-7 bento-pop rounded-3xl p-6 sm:p-7 space-y-4 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono-code text-[11px] font-black uppercase text-indigo-900 bg-indigo-100 px-2.5 py-1 rounded-md border border-indigo-300">
+              PILIH TEKS LATIHAN RESMI
+            </span>
+            <span class="text-xs font-mono-code text-slate-500 font-bold">3 Modul Terkalibrasi</span>
+          </div>
+          <h3 class="font-heading font-black text-slate-950 text-lg mb-3">
+            Koleksi Teks Padat Berstandar Ujian TKA
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mb-4">
+            Pilih salah satu teks akademik di bawah untuk menguji apakah pemahamanmu tetap tajam saat kata-kata ditembakkan dengan kecepatan tinggi:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-mono-code">
+            <button onclick="loadPassage(0)" id="pas-btn-0" class="p-3 rounded-2xl border-2 border-slate-950 bg-indigo-100 text-indigo-950 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition">
+              <span class="block text-[10px] text-indigo-600">MODUL 01</span>
+              Lahan Gambut (Carbon)
+            </button>
+            <button onclick="loadPassage(1)" id="pas-btn-1" class="p-3 rounded-2xl border-2 border-slate-950 bg-white hover:bg-slate-50 text-slate-800 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition">
+              <span class="block text-[10px] text-slate-400">MODUL 02</span>
+              Palung Laut Dalam
+            </button>
+            <button onclick="loadPassage(2)" id="pas-btn-2" class="p-3 rounded-2xl border-2 border-slate-950 bg-white hover:bg-slate-50 text-slate-800 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition">
+              <span class="block text-[10px] text-slate-400">MODUL 03</span>
+              Pulau Panas Kota (UHI)
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t-2 border-slate-950/10 flex items-center justify-between text-xs font-bold text-slate-700">
+          <span>Panjang teks rata-rata: ~160 kata</span>
+          <span class="font-mono-code bg-amber-100 text-amber-900 px-2 py-0.5 rounded border border-amber-300">Waktu baca: ~27 detik</span>
+        </div>
+      </div>
+
+      <!-- Custom Text Injector (Span 5) -->
+      <div class="lg:col-span-5 bento-pop bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 sm:p-7 space-y-3 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono-code text-[11px] font-black uppercase text-amber-950 bg-amber-300 px-2.5 py-1 rounded-md border border-slate-950">
+              CUSTOM TEXT INJECTOR
+            </span>
+            <span class="text-xl">📋</span>
+          </div>
+          <h3 class="font-heading font-black text-slate-950 text-lg mb-1">
+            Mau Latihan Teks Sendiri?
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed font-medium mb-3">
+            Salin (*paste*) teks bacaan bahasa Inggris apa pun dari soal latihanmu ke kotak ini:
+          </p>
+
+          <textarea id="custom-text-input" rows="4" placeholder="Tempel teks bacaan di sini..." class="w-full bg-white border-2 border-slate-950 rounded-2xl p-3 text-xs font-mono-code text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-[2px_2px_0px_#0f172a]"></textarea>
+        </div>
+
+        <button onclick="applyCustomText()" class="w-full py-2.5 px-4 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs font-mono-code shadow-[2px_2px_0px_#0f172a] transition flex items-center justify-center gap-1.5">
+          <span>⚡</span> Masukkan Teks ke Mesin Flash
+        </button>
+      </div>
+
+    </section>
+
+    <!-- BENTO ROW 3: POST-FLASH VERIFICATION CHALLENGE (AUTO-UNLOCKS WHEN FINISHED) -->
+    <section id="retention-challenge-card" class="hidden bento-pop bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 rounded-3xl p-6 sm:p-8 space-y-4 border-2 border-slate-950">
+      <div class="flex items-center gap-3 border-b-2 border-slate-950 pb-3">
+        <span class="text-2xl">🧠</span>
+        <div>
+          <span class="font-mono-code text-[10px] font-black uppercase text-emerald-900 bg-emerald-200 px-2 py-0.5 rounded border border-emerald-400">
+            UJI RETENSI SETELAH FLASH
+          </span>
+          <h3 class="font-heading font-black text-slate-950 text-lg" id="quiz-question-title">
+            Pertanyaan Verifikasi
+          </h3>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium" id="quiz-question-stem">
+        Loading challenge...
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-mono-code" id="quiz-options-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div id="quiz-feedback-box" class="hidden p-3 rounded-xl border-2 border-slate-950 text-xs"></div>
+    </section>
+
+  </main>
+
+  <script>
+    // -------------------------------------------------------------
+    // DATASET TEKS PRE-LOADED + SOAL UJI RETENSI
+    // -------------------------------------------------------------
+    const rsvpDatabase = [
+      {
+        id: 0,
+        title: "Ekologi Lahan Gambut (Peatlands)",
+        text: "Covering only three percent of the planet's total land area, tropical and northern peatlands store nearly twice as much atmospheric carbon as all the world's forests combined. These wetland ecosystems build up thick layers of partially decayed organic moss over thousands of years because waterlogged soils create an oxygen-poor environment that prevents ordinary fungal decay. When water completely fills the soil pores, microbial decomposition slows almost to a standstill, locking carbon safely beneath the surface. However, industrial agriculture frequently drains these wetlands by digging deep drainage canals. Once exposed to air, the dried peat reacts rapidly with oxygen and begins decomposing at an accelerated pace, releasing gigatons of stored carbon dioxide back into the atmosphere.",
+        quiz: {
+          stem: "Berdasarkan teks yang barusan kamu tonton secara kilat, berapa persen luas daratan bumi yang ditempati lahan gambut?",
+          options: [
+            { text: "A. Tiga puluh persen (30%)", isCorrect: false },
+            { text: "B. Tiga persen (3%)", isCorrect: true },
+            { text: "C. Dua belas persen (12%)", isCorrect: false },
+            { text: "D. Lima puluh persen (50%)", isCorrect: false }
+          ],
+          explanation: "Tepat! Kalimat pertama menyatakan: 'Covering only three percent (3%) of the planet's total land area...'"
+        }
+      },
+      {
+        id: 1,
+        title: "Palung Laut Dalam (Hydrothermal Vents)",
+        text: "At depths exceeding two thousand meters, sunlight is completely absent and hydrostatic pressure reaches crushing levels over two hundred times greater than at the ocean surface. Prior to the late 1970s, marine biologists assumed these abyssal zones were barren deserts reliant entirely on organic debris falling from sunlit waters above. However, deep-sea submersibles discovered hydrothermal vents along volcanic tectonic ridges, hosting vibrant ecosystems completely independent of solar photosynthesis. These communities are fueled by chemosynthetic bacteria that metabolize toxic hydrogen sulfide billowing from superheated mineral chimneys. Giant tube worms harbor millions of these symbiotic bacteria within their internal tissues to synthesize organic nutrients.",
+        quiz: {
+          stem: "Apa sumber energi utama yang menggerakkan ekosistem cerobong palung laut dalam?",
+          options: [
+            { text: "A. Fotosintesis sinar matahari yang menembus dasar laut", isCorrect: false },
+            { text: "B. Bakteri kemosintetik yang mengolah hidrogen sulfida", isCorrect: true },
+            { text: "C. Sampah daun-daunan yang jatuh dari hutan pantai", isCorrect: false },
+            { text: "D. Oksigen murni yang dipompa oleh cacing tabung raksasa", isCorrect: false }
+          ],
+          explanation: "Tepat! Ekosistem ini tidak memakai fotosintesis, melainkan kemosintesis bakteri menggunakan hidrogen sulfida beracun."
+        }
+      },
+      {
+        id: 2,
+        title: "Pulau Panas Kota (Urban Heat Islands)",
+        text: "During summer heatwaves, major metropolitan centers consistently record ambient temperatures four to eight degrees Celsius higher than neighboring rural farmland. This phenomenon, designated as the Urban Heat Island effect, occurs because dark asphalt roadways and concrete structures absorb immense solar radiation throughout the day. Unlike natural forests that cool the atmosphere through plant evapotranspiration, cities replace moisture-retaining soil with impermeable surfaces, eliminating natural evaporative cooling. Additionally, constant waste heat discharged from automobile air conditioners and industrial ventilation systems exacerbates nocturnal temperatures, trapping heat overnight.",
+        quiz: {
+          stem: "Mengapa kawasan kota besar lebih panas dibandingkan pedesaan di sekitarnya?",
+          options: [
+            { text: "A. Aspal gelap & beton menyerap panas serta menyingkirkan pendinginan alami tanah", isCorrect: true },
+            { text: "B. Terlalu banyak pohon rindang yang menahan angin dingin berhembus", isCorrect: false },
+            { text: "C. AC kendaraan menyerap seluruh suhu hangat dari dalam gedung", isCorrect: false },
+            { text: "D. Petani di desa menyiram sawah mereka dengan cairan nitrogen dingin", isCorrect: false }
+          ],
+          explanation: "Tepat! Teks menyatakan jalan aspal gelap dan permukaan kedap air mengunci panas matahari dan menghilangkan penguapan alami."
+        }
+      }
+    ];
+
+    // -------------------------------------------------------------
+    // RSVP ENGINE STATE
+    // -------------------------------------------------------------
+    let currentPassageIdx = 0;
+    let wordList = [];
+    let currentIndex = 0;
+    let currentWPM = 350;
+    let isPlaying = false;
+    let timerTimeout = null;
+
+    // Menghitung Titik Fokus Optimal (Optimal Recognition Point / ORP)
+    // Umumnya berada di huruf ke-1 untuk kata pendek, dan ~30-35% panjang kata
+    function calculateORP(word) {
+      const len = word.length;
+      if (len <= 1) return 0;
+      if (len <= 5) return 1;
+      if (len <= 9) return 2;
+      if (len <= 13) return 3;
+      return 4;
+    }
+
+    function formatRSVPWord(word) {
+      if (!word) return "";
+      const orpIdx = calculateORP(word);
+      const leftPart = word.slice(0, orpIdx);
+      const orpChar = word.charAt(orpIdx);
+      const rightPart = word.slice(orpIdx + 1);
+
+      // Kita susun dengan container 3 kolom agar huruf ORP selalu jatuh di tengah crosshair merah
+      return `
+        <span class="inline-flex items-baseline w-full">
+          <span class="text-right w-[42%] text-slate-800">${leftPart}</span>
+          <span class="text-center w-[6%] orp-highlight">${orpChar}</span>
+          <span class="text-left w-[52%] text-slate-800">${rightPart}</span>
+        </span>
+      `;
+    }
+
+    function loadPassage(idx) {
+      currentPassageIdx = idx;
+      const data = rsvpDatabase[idx];
+
+      // Update Tab Styles
+      [0, 1, 2].forEach(i => {
+        const btn = document.getElementById(`pas-btn-${i}`);
+        if (btn) {
+          btn.className = (i === idx)
+            ? "p-3 rounded-2xl border-2 border-slate-950 bg-indigo-100 text-indigo-950 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition"
+            : "p-3 rounded-2xl border-2 border-slate-950 bg-white hover:bg-slate-50 text-slate-800 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition";
+        }
+      });
+
+      document.getElementById("reading-mode-badge").innerText = `MODUL: ${data.title.toUpperCase()}`;
+      setRawText(data.text);
+      hideRetentionChallenge();
+    }
+
+    function setRawText(text) {
+      pauseRSVP();
+      // Bersihkan spasi ganda dan pecah per kata
+      wordList = text.trim().split(/\s+/).filter(w => w.length > 0);
+      currentIndex = 0;
+      updateProgressDisplay();
+
+      const viewport = document.getElementById("rsvp-word-viewport");
+      if (wordList.length > 0) {
+        viewport.innerHTML = formatRSVPWord(wordList[0]);
+        document.getElementById("rsvp-context-hint").innerText = `Kata 1: "${wordList[0]}"`;
+      }
+    }
+
+    function applyCustomText() {
+      const input = document.getElementById("custom-text-input").value;
+      if (!input.trim()) {
+        alert("Silakan tempel teks bacaan terlebih dahulu.");
+        return;
+      }
+
+      document.getElementById("reading-mode-badge").innerText = "MODUL: CUSTOM PASTE TEXT";
+      [0, 1, 2].forEach(i => {
+        const btn = document.getElementById(`pas-btn-${i}`);
+        if (btn) btn.className = "p-3 rounded-2xl border-2 border-slate-950 bg-white hover:bg-slate-50 text-slate-800 font-bold shadow-[2px_2px_0px_#0f172a] text-left transition";
+      });
+
+      setRawText(input);
+      hideRetentionChallenge();
+    }
+
+    // -------------------------------------------------------------
+    // PLAYBACK TICK LOOP & INTELLIGENT PACING
+    // -------------------------------------------------------------
+    function tick() {
+      if (!isPlaying) return;
+
+      if (currentIndex >= wordList.length) {
+        finishPlayback();
+        return;
+      }
+
+      const currentWord = wordList[currentIndex];
+      const viewport = document.getElementById("rsvp-word-viewport");
+      viewport.innerHTML = formatRSVPWord(currentWord);
+
+      // Trailing context preview
+      const preview = wordList.slice(Math.max(0, currentIndex - 2), currentIndex + 3).join(" ");
+      document.getElementById("rsvp-context-hint").innerText = `... ${preview} ...`;
+
+      currentIndex++;
+      updateProgressDisplay();
+
+      // Hitung durasi dasar per kata
+      let delayMs = (60 / currentWPM) * 1000;
+
+      // Smart Pause: Perpanjang sedikit durasi jika kata diakhiri tanda baca (titik, koma, tanda tanya)
+      const lastChar = currentWord.slice(-1);
+      if ([".", "!", "?"].includes(lastChar)) {
+        delayMs *= 2.0; // Beri jeda napas otak di akhir kalimat
+      } else if ([",", ";", ":"].includes(lastChar)) {
+        delayMs *= 1.4;
+      }
+
+      timerTimeout = setTimeout(tick, delayMs);
+    }
+
+    function toggleRSVP() {
+      if (isPlaying) {
+        pauseRSVP();
+      } else {
+        playRSVP();
+      }
+    }
+
+    function playRSVP() {
+      if (wordList.length === 0) return;
+      if (currentIndex >= wordList.length) currentIndex = 0;
+
+      isPlaying = true;
+      document.getElementById("btn-icon").innerText = "⏸";
+      document.getElementById("btn-label").innerText = "JEDA (PAUSE)";
+      document.getElementById("btn-toggle-rsvp").className = "w-full py-3.5 px-6 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black font-heading text-base border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] transition flex items-center justify-center gap-2";
+
+      tick();
+    }
+
+    function pauseRSVP() {
+      isPlaying = false;
+      clearTimeout(timerTimeout);
+
+      document.getElementById("btn-icon").innerText = "▶";
+      document.getElementById("btn-label").innerText = "LANJUTKAN FLASH";
+      document.getElementById("btn-toggle-rsvp").className = "w-full py-3.5 px-6 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black font-heading text-base border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] transition flex items-center justify-center gap-2";
+    }
+
+    function resetRSVP() {
+      pauseRSVP();
+      currentIndex = 0;
+      updateProgressDisplay();
+
+      const viewport = document.getElementById("rsvp-word-viewport");
+      if (wordList.length > 0) {
+        viewport.innerHTML = formatRSVPWord(wordList[0]);
+      }
+    }
+
+    function finishPlayback() {
+      pauseRSVP();
+      currentIndex = wordList.length;
+      updateProgressDisplay();
+
+      document.getElementById("rsvp-word-viewport").innerHTML = `
+        <span class="text-emerald-600 font-black text-2xl sm:text-4xl">✓ SELESAI DIBACA</span>
+      `;
+
+      // Jika teks adalah salah satu modul resmi, munculkan kuis verifikasi retensi
+      if (rsvpDatabase[currentPassageIdx]) {
+        showRetentionChallenge(rsvpDatabase[currentPassageIdx].quiz);
+      }
+    }
+
+    function updateProgressDisplay() {
+      document.getElementById("word-progress-label").innerText = `${currentIndex} / ${wordList.length}`;
+      const pct = wordList.length > 0 ? (currentIndex / wordList.length) * 100 : 0;
+      document.getElementById("rsvp-progress-fill").style.width = `${pct}%`;
+    }
+
+    // -------------------------------------------------------------
+    // SPEED CONTROLS
+    // -------------------------------------------------------------
+    function setSpeed(wpm) {
+      currentWPM = wpm;
+      document.getElementById("live-wpm-pill").innerText = `SPEED: ${wpm} WPM`;
+      document.getElementById("wpm-slider").value = wpm;
+
+      // Update button highlights
+      [250, 350, 500, 650].forEach(s => {
+        const btn = document.getElementById(`spd-btn-${s}`);
+        if (btn) {
+          btn.className = (s === wpm)
+            ? "px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-indigo-600 text-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition"
+            : "px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_#0f172a] transition";
+        }
+      });
+    }
+
+    function onSliderChange(val) {
+      setSpeed(parseInt(val));
+    }
+
+    // -------------------------------------------------------------
+    // RETENTION QUIZ LOGIC
+    // -------------------------------------------------------------
+    function showRetentionChallenge(quiz) {
+      const card = document.getElementById("retention-challenge-card");
+      card.classList.remove("hidden");
+
+      document.getElementById("quiz-question-title").innerText = "Uji Retensi: Apakah Otakmu Berhasil Menangkap Faktanya?";
+      document.getElementById("quiz-question-stem").innerText = quiz.stem;
+
+      const optContainer = document.getElementById("quiz-options-container");
+      optContainer.innerHTML = "";
+
+      quiz.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "w-full text-left p-3 rounded-xl border-2 border-slate-950 bg-white hover:bg-slate-50 transition shadow-[2px_2px_0px_#0f172a] font-bold";
+        btn.innerText = opt.text;
+        btn.onclick = () => answerRetentionQuiz(opt.isCorrect, quiz.explanation);
+        optContainer.appendChild(btn);
+      });
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function answerRetentionQuiz(isCorrect, explanation) {
+      const fb = document.getElementById("quiz-feedback-box");
+      fb.classList.remove("hidden");
+
+      if (isCorrect) {
+        fb.className = "p-4 rounded-2xl border-2 border-slate-950 bg-emerald-200 text-emerald-950 shadow-[3px_3px_0px_#0f172a]";
+        fb.innerHTML = `<strong>✓ LUAR BIASA!</strong> Jawabanmu tepat. ${explanation}`;
+      } else {
+        fb.className = "p-4 rounded-2xl border-2 border-slate-950 bg-rose-200 text-rose-950 shadow-[3px_3px_0px_#0f172a]";
+        fb.innerHTML = `<strong>✕ BELUM TEPAT.</strong> Kecepatan membaca mungkin terlalu tinggi untuk saat ini. Coba turunkan ke 250–350 WPM dan perhatikan kata-kata kuncinya.`;
+      }
+    }
+
+    function hideRetentionChallenge() {
+      document.getElementById("retention-challenge-card").classList.add("hidden");
+      document.getElementById("quiz-feedback-box").classList.add("hidden");
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+      if (e.code === "Space") {
+        e.preventDefault();
+        toggleRSVP();
+      } else if (e.code === "ArrowRight") {
+        setSpeed(Math.min(750, currentWPM + 25));
+      } else if (e.code === "ArrowLeft") {
+        setSpeed(Math.max(150, currentWPM - 25));
+      }
+    });
+
+    // Start default module
+    window.addEventListener("DOMContentLoaded", () => {
+      loadPassage(0);
+    });
+  </script>
+</body>
+</html>
