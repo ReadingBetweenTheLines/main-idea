@@ -40,9 +40,9 @@
       animation: screen-shake 0.35s cubic-bezier(.36,.07,.19,.97) both;
     }
 
-    .led-red {
-      color: #f87171;
-      text-shadow: 0 0 14px rgba(239, 68, 68, 0.85);
+    .led-emerald {
+      color: #34d399;
+      text-shadow: 0 0 14px rgba(52, 211, 153, 0.8);
     }
 
     #blade-canvas {
@@ -57,7 +57,7 @@
   <header class="w-full max-w-5xl flex items-center justify-between bg-[#11161d] border border-slate-800 px-4 py-2.5 rounded-xl shadow-lg">
     <div class="flex items-center gap-3">
       <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span class="text-xs font-digital tracking-widest text-slate-300 font-bold uppercase">BOMB DEFUSAL // C-4 WIRED CORE</span>
+      <span class="text-xs font-digital tracking-widest text-slate-300 font-bold uppercase">BOMB DEFUSAL // UNTIMED STRATEGY MODE</span>
     </div>
     <div class="flex items-center gap-3 text-xs font-terminal">
       <a href="vocab.html" class="text-amber-400 hover:text-amber-300 transition">← Vocab Clinic</a>
@@ -72,25 +72,26 @@
     <!-- Dashboard Status -->
     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
       
-      <!-- Detonation Timer -->
-      <div class="sm:col-span-6 bg-[#07090b] border-2 border-slate-800 rounded-xl p-3 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
+      <!-- Detonator Integrity / Shields Remaining -->
+      <div class="sm:col-span-5 bg-[#07090b] border-2 border-slate-800 rounded-xl p-3 flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
         <div class="absolute top-1.5 left-3 text-[9px] font-digital text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-600 animate-ping"></span> TIME BEFORE DETONATION
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> DETONATOR INTEGRITY
         </div>
-        <div id="timer-display" class="text-5xl sm:text-6xl font-digital font-black led-red tracking-wider mt-1">
-          45.00
+        <div id="shield-display" class="flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-emerald-400 tracking-wider mt-1.5">
+          <span>🛡️ 🛡️ 🛡️️</span>
         </div>
+        <span id="shield-sublabel" class="text-[10px] font-terminal text-slate-400 mt-0.5">3 Defusal Chances Remaining</span>
       </div>
 
-      <!-- Telemetry Status -->
-      <div class="sm:col-span-6 grid grid-cols-2 gap-3">
+      <!-- Telemetry Status: Module Counter & Combo Score -->
+      <div class="sm:col-span-7 grid grid-cols-2 gap-3">
         <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center border border-slate-800">
           <span class="text-[10px] font-terminal text-slate-400 uppercase tracking-wider">DEFUSAL ROUND</span>
           <span id="module-counter" class="text-2xl font-digital text-amber-400 font-bold mt-0.5">01 / 10</span>
         </div>
         <div class="glass-panel rounded-xl p-3 flex flex-col items-center justify-center text-center border border-slate-800">
-          <span class="text-[10px] font-terminal text-slate-400 uppercase tracking-wider">COMBO STREAK</span>
-          <span id="combo-counter" class="text-2xl font-digital text-emerald-400 font-bold mt-0.5">0x</span>
+          <span class="text-[10px] font-terminal text-slate-400 uppercase tracking-wider">TOTAL SCORE</span>
+          <span id="score-counter" class="text-2xl font-digital led-emerald font-bold mt-0.5">0 PTS</span>
         </div>
       </div>
 
@@ -106,7 +107,7 @@
         </span>
       </div>
 
-      <!-- Sentence Display -->
+      <!-- Evidence Sentence Display -->
       <div class="min-h-[50px] flex items-center">
         <p id="evidence-sentence" class="text-base sm:text-lg text-slate-100 leading-relaxed font-sans-clean font-medium">
           Loading system... Press "START DEFUSAL" below.
@@ -115,7 +116,7 @@
 
       <!-- Feedback Banner -->
       <div class="h-5 flex items-center justify-between text-xs font-terminal text-slate-400 border-t border-slate-800/80 pt-1">
-        <span id="feedback-hint">Swipe your blade across the cable that connects the right meaning to the bomb!</span>
+        <span id="feedback-hint">Take your time. Swipe your blade across the cable that connects the right meaning!</span>
         <span id="time-delta" class="font-digital font-bold text-xs shrink-0 ml-2"></span>
       </div>
     </div>
@@ -126,7 +127,7 @@
       <!-- Top Tactical Bar -->
       <div class="absolute top-0 left-0 right-0 h-6 bg-slate-900/90 border-b border-slate-800 flex justify-between items-center px-4 text-[9px] font-terminal text-slate-500 z-10 backdrop-blur-sm">
         <span>C-4 CHARGE ARRAY // ARMED</span>
-        <span class="text-rose-500 font-bold animate-pulse">⚡ LIVE DETONATION CORDS ⚡</span>
+        <span class="text-amber-400 font-bold">⚡ STRIKE CABLE TO DEFUSE ⚡</span>
       </div>
 
       <!-- Interactive Canvas -->
@@ -135,17 +136,17 @@
 
     <!-- Start / Detonation / Victory Overlay -->
     <div id="game-overlay" class="absolute inset-0 bg-[#0a0c0e]/95 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center space-y-4 z-40">
-      <div id="overlay-stamp" class="text-4xl sm:text-5xl font-digital font-black text-rose-500 tracking-wider">
+      <div id="overlay-stamp" class="text-4xl sm:text-5xl font-digital font-black text-emerald-400 tracking-wider">
         BOMB DEFUSAL
       </div>
       <p id="overlay-msg" class="text-sm font-sans-clean text-slate-300 max-w-lg leading-relaxed">
-        5 detonation cables lead directly into a live C-4 explosive charge!
+        Analyze the context sentence and slice the cable connected to the C-4 explosive charge!
         <br><br>
-        • <strong class="text-amber-300">How to Play:</strong> Click and <strong>swipe across the cable connected to the bomb</strong> that represents the <strong>CLOSEST MEANING</strong> to the underlined word.
+        • <strong class="text-amber-300">How to Play:</strong> Click and <strong>swipe across the cable</strong> that represents the <strong>CLOSEST MEANING</strong> to the underlined word.
         <br>
-        • <strong class="text-emerald-400">Correct Cut:</strong> Severs the detonator link, safely defuses the charge, and adds <strong class="text-emerald-400">+5.00s</strong>.
+        • <strong class="text-emerald-400">Untimed Session:</strong> There is no countdown clock. Take your time to read the context carefully.
         <br>
-        • <strong class="text-rose-400">Wrong Cut:</strong> Shocks the sensor and drains <strong class="text-rose-400">-10.00s</strong> from the timer!
+        • <strong class="text-rose-400">Shield Protection:</strong> You have <strong>3 integrity chances</strong>. Cutting a wrong wire consumes 1 shield.
       </p>
       <button onclick="startGame()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-digital font-black text-base px-8 py-3 rounded-lg shadow-xl tracking-widest transition transform hover:scale-105 cursor-pointer">
         START DEFUSAL
@@ -154,6 +155,7 @@
 
   </main>
 
+  <!-- Footer Guide -->
   <footer class="w-full max-w-5xl text-center text-xs font-terminal text-slate-500 py-1">
     <span>Tip: Swipe across the wire below the C-4 block or near the label badge to cut it cleanly.</span>
   </footer>
@@ -199,7 +201,6 @@
         playTone(180, 'sawtooth', 0.2, 0.3);
         setTimeout(() => playTone(120, 'sawtooth', 0.25, 0.3), 100);
       },
-      tick: () => playTone(1400, 'square', 0.02, 0.03),
       win: () => {
         [523.25, 659.25, 783.99, 1046.50].forEach((f, idx) => {
           setTimeout(() => playTone(f, 'sine', 0.25, 0.25), idx * 120);
@@ -216,8 +217,7 @@
     ];
 
     let gameActive = false;
-    let timerInterval = null;
-    let timeLeft = 45.0;
+    let shieldsRemaining = 3;
     let currentModuleIndex = 0;
     let comboStreak = 0;
     let totalScore = 0;
@@ -306,7 +306,6 @@
     function startGame() {
       soundFX.click();
       
-      // Fallback check if defusal-data.js loaded
       const pool = (typeof defusalDatabase !== 'undefined' && defusalDatabase.length > 0)
         ? defusalDatabase 
         : [];
@@ -316,40 +315,16 @@
         return;
       }
 
-      // Randomly pick 10 questions from the 35 pool
       activeDeck = shuffle(pool).slice(0, 10);
       currentModuleIndex = 0;
       comboStreak = 0;
       totalScore = 0;
-      timeLeft = 45.0;
+      shieldsRemaining = 3;
       gameActive = true;
 
       document.getElementById("game-overlay").classList.add("hidden");
       updateStatusUI();
       renderCurrentModule();
-
-      clearInterval(timerInterval);
-      timerInterval = setInterval(gameLoop, 50);
-    }
-
-    function gameLoop() {
-      if (!gameActive) return;
-
-      timeLeft -= 0.05;
-      if (timeLeft <= 0) {
-        timeLeft = 0.0;
-        triggerDetonation();
-      }
-
-      const timerEl = document.getElementById("timer-display");
-      timerEl.innerText = timeLeft.toFixed(2);
-
-      if (timeLeft < 10) {
-        timerEl.className = "text-5xl sm:text-6xl font-digital font-black led-red tracking-wider mt-1 animate-pulse";
-        if (Math.floor(timeLeft * 10) % 10 === 0) soundFX.tick();
-      } else {
-        timerEl.className = "text-5xl sm:text-6xl font-digital font-black led-red tracking-wider mt-1";
-      }
     }
 
     function renderCurrentModule() {
@@ -432,9 +407,8 @@
         soundFX.sliceCorrect();
         comboStreak++;
         totalScore += 100 * comboStreak;
-        timeLeft = Math.min(timeLeft + 5.0, 60.0);
 
-        timeDeltaEl.innerText = "+5.00s BOMB DEFUSED!";
+        timeDeltaEl.innerText = `+${100 * comboStreak} PTS DISARMED!`;
         timeDeltaEl.className = "font-digital font-bold text-xs text-emerald-400";
         document.getElementById("feedback-hint").innerHTML = `<span class="text-emerald-400 font-bold">✓ CABLE SEVERED:</span> ${currentItem.rationale}`;
 
@@ -448,17 +422,17 @@
       } else {
         soundFX.sliceWrong();
         comboStreak = 0;
-        timeLeft = Math.max(timeLeft - 10.0, 0);
+        shieldsRemaining--;
 
         rig.classList.add("shake-alarm");
         setTimeout(() => rig.classList.remove("shake-alarm"), 350);
 
-        timeDeltaEl.innerText = "-10.00s DETONATOR SHOCK!";
+        timeDeltaEl.innerText = "⚠️ SHIELD LOST (-1)";
         timeDeltaEl.className = "font-digital font-bold text-xs text-rose-400 animate-ping";
         document.getElementById("feedback-hint").innerHTML = `<span class="text-rose-400 font-bold">✕ WRONG CABLE:</span> ${currentItem.rationale}`;
 
         updateStatusUI();
-        if (timeLeft <= 0) {
+        if (shieldsRemaining <= 0) {
           triggerDetonation();
         }
       }
@@ -482,7 +456,28 @@
 
     function updateStatusUI() {
       document.getElementById("module-counter").innerText = `${String(currentModuleIndex + 1).padStart(2, '0')} / 10`;
-      document.getElementById("combo-counter").innerText = `${comboStreak}x`;
+      document.getElementById("score-counter").innerText = `${totalScore} PTS`;
+
+      const shieldDisplay = document.getElementById("shield-display");
+      const shieldLabel = document.getElementById("shield-sublabel");
+
+      if (shieldsRemaining === 3) {
+        shieldDisplay.innerHTML = `<span class="text-emerald-400">🛡️ 🛡️ 🛡️</span>`;
+        shieldDisplay.className = "flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-emerald-400 tracking-wider mt-1.5";
+        shieldLabel.innerText = "3 Defusal Chances Remaining";
+      } else if (shieldsRemaining === 2) {
+        shieldDisplay.innerHTML = `<span class="text-amber-400">🛡️ 🛡️</span> <span class="opacity-20 grayscale">🛡️</span>`;
+        shieldDisplay.className = "flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-amber-400 tracking-wider mt-1.5";
+        shieldLabel.innerText = "Warning: 2 Chances Left";
+      } else if (shieldsRemaining === 1) {
+        shieldDisplay.innerHTML = `<span class="text-rose-500 animate-pulse">🛡️</span> <span class="opacity-20 grayscale">🛡️ 🛡️</span>`;
+        shieldDisplay.className = "flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-rose-500 tracking-wider mt-1.5";
+        shieldLabel.innerText = "CRITICAL: Last Shield Active!";
+      } else {
+        shieldDisplay.innerHTML = `<span class="opacity-20 grayscale">🛡️ 🛡️ 🛡️</span>`;
+        shieldDisplay.className = "flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-rose-600 tracking-wider mt-1.5";
+        shieldLabel.innerText = "System Integrity Breached!";
+      }
     }
 
     function canvasRenderLoop() {
@@ -493,6 +488,7 @@
       const w = canvas.width;
       const bombCenterX = w / 2;
 
+      // 1. Draw Wires Originating from the Bomb Body
       currentWires.forEach((wire) => {
         const halfH = wire.badgeHeight / 2;
 
@@ -566,8 +562,10 @@
         }
       });
 
+      // 2. Draw The Physical C-4 Explosive Bomb Assembly
       drawBombApparatus(bombCenterX, 18);
 
+      // 3. Draw Sparks
       for (let i = sparkParticles.length - 1; i >= 0; i--) {
         const s = sparkParticles[i];
         s.x += s.vx;
@@ -588,6 +586,7 @@
         ctx.restore();
       }
 
+      // 4. Draw Fruit Ninja Neon Blade Trail
       const now = performance.now();
       swipePoints = swipePoints.filter(p => now - p.time < 140);
 
@@ -627,6 +626,7 @@
       const bx = cx - bombW / 2;
 
       ctx.save();
+
       ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
       ctx.shadowBlur = 18;
       ctx.shadowOffsetY = 8;
@@ -741,17 +741,16 @@
 
     function triggerDetonation() {
       gameActive = false;
-      clearInterval(timerInterval);
       soundFX.sliceWrong();
 
       const overlay = document.getElementById("game-overlay");
       const stamp = document.getElementById("overlay-stamp");
       const msg = document.getElementById("overlay-msg");
 
-      stamp.innerText = "💥 TIME EXPIRED 💥";
+      stamp.innerText = "💥 SHIELDS DEPLETED 💥";
       stamp.className = "text-4xl sm:text-5xl font-digital font-black text-rose-600 tracking-wider animate-pulse";
       msg.innerHTML = `
-        <span class="text-rose-400 font-bold">The C-4 charge detonated before all modules were sliced.</span><br>
+        <span class="text-rose-400 font-bold">All 3 defusal shields were consumed by wrong cuts.</span><br>
         Modules Neutralized: <strong>${currentModuleIndex} / 10</strong><br>
         Final Score: <strong>${totalScore} pts</strong><br><br>
         <em>Review the sentence clues and try again!</em>
@@ -762,7 +761,6 @@
 
     function triggerVictory() {
       gameActive = false;
-      clearInterval(timerInterval);
       soundFX.win();
 
       const overlay = document.getElementById("game-overlay");
@@ -772,8 +770,8 @@
       stamp.innerText = "🏆 DEFUSED 🏆";
       stamp.className = "text-4xl sm:text-5xl font-digital font-black text-emerald-400 tracking-wider";
       msg.innerHTML = `
-        <span class="text-emerald-300 font-bold">Great Job! All C-4 detonator cords severed.</span><br>
-        Remaining Clock: <strong>${timeLeft.toFixed(2)}s</strong><br>
+        <span class="text-emerald-300 font-bold">Great Job! All C-4 detonator cords severed safely.</span><br>
+        Shields Preserved: <strong>${shieldsRemaining} / 3</strong><br>
         Total Score: <strong>${totalScore} pts</strong><br><br>
         <em>Your ability to identify words in context is getting sharp!</em>
       `;
