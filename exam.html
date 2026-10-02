@@ -1,877 +1,877 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TKA Blind Exam Arena — 10 Diagnostic Questions</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Lab Anatomy Layers (Activated after submission) */
-    .highlight-thesis { background-color: #dcfce7 !important; border-bottom: 2px solid #22c55e !important; font-weight: 600 !important; color: #15803d !important; border-radius: 2px; padding: 0 3px; }
-    .highlight-argument { background-color: #ffedd5 !important; border-bottom: 2px solid #f97316 !important; font-weight: 600 !important; color: #c2410c !important; border-radius: 2px; padding: 0 3px; }
-    .highlight-claim { background-color: #fef08a !important; border-bottom: 2px solid #eab308 !important; font-weight: 500 !important; color: #854d0e !important; border-radius: 2px; padding: 0 3px; }
-    .highlight-detail { background-color: #f1f5f9 !important; color: #64748b !important; font-style: italic !important; border-radius: 2px; padding: 0 2px; }
-    .highlight-restating { background-color: #ede9fe !important; border-bottom: 2px solid #8b5cf6 !important; font-weight: 600 !important; color: #6d28d9 !important; border-radius: 2px; padding: 0 3px; }
-    .highlight-recommendation { background-color: #fce7f3 !important; border-bottom: 2px solid #ec4899 !important; font-weight: 600 !important; color: #be185d !important; border-radius: 2px; padding: 0 3px; }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TKA Blind Exam Arena — 10 Diagnostic Questions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Lab Anatomy Layers (Activated after submission) */
+      .highlight-thesis { background-color: #dcfce7 !important; border-bottom: 2px solid #22c55e !important; font-weight: 600 !important; color: #15803d !important; border-radius: 2px; padding: 0 3px; }
+      .highlight-argument { background-color: #ffedd5 !important; border-bottom: 2px solid #f97316 !important; font-weight: 600 !important; color: #c2410c !important; border-radius: 2px; padding: 0 3px; }
+      .highlight-claim { background-color: #fef08a !important; border-bottom: 2px solid #eab308 !important; font-weight: 500 !important; color: #854d0e !important; border-radius: 2px; padding: 0 3px; }
+      .highlight-detail { background-color: #f1f5f9 !important; color: #64748b !important; font-style: italic !important; border-radius: 2px; padding: 0 2px; }
+      .highlight-restating { background-color: #ede9fe !important; border-bottom: 2px solid #8b5cf6 !important; font-weight: 600 !important; color: #6d28d9 !important; border-radius: 2px; padding: 0 3px; }
+      .highlight-recommendation { background-color: #fce7f3 !important; border-bottom: 2px solid #ec4899 !important; font-weight: 600 !important; color: #be185d !important; border-radius: 2px; padding: 0 3px; }
 
-    .strikethrough-opt { text-decoration: line-through; opacity: 0.35; }
-    .passage-sentence { border-radius: 3px; padding: 1px 2px; transition: all 0.3s ease; }
-  </style>
-</head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+      .strikethrough-opt { text-decoration: line-through; opacity: 0.35; }
+      .passage-sentence { border-radius: 3px; padding: 1px 2px; transition: all 0.3s ease; }
+    </style>
+  </head>
+  <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-slate-950 text-white px-6 py-4 shadow-md flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
-    <div>
-      <div class="flex items-center gap-2">
-        <span class="text-xs uppercase tracking-widest font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded">TKA Phase F</span>
-        <span class="text-xs text-slate-400 font-medium">Page 2: Blind Assessment Arena</span>
+    <!-- Header -->
+    <header class="bg-slate-950 text-white px-6 py-4 shadow-md flex flex-wrap items-center justify-between gap-4 border-b border-slate-800">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs uppercase tracking-widest font-bold bg-amber-500 text-slate-950 px-2 py-0.5 rounded">TKA Phase F</span>
+          <span class="text-xs text-slate-400 font-medium">Page 2: Blind Assessment Arena</span>
+        </div>
+        <h1 class="text-lg sm:text-xl font-bold mt-1">10-Question Diagnostic Assessment Battery</h1>
       </div>
-      <h1 class="text-lg sm:text-xl font-bold mt-1">10-Question Diagnostic Assessment Battery</h1>
+
+      <!-- Page Switcher -->
+      <div class="flex items-center gap-2">
+        <a href="lab.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
+          ← Return to Strategy Lab
+        </a>
+        <a href="vocab.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-amber-600/40 hover:border-amber-500 flex items-center gap-1.5">
+          <span>🔍</span> Vocab Clinic
+        </a>
+        <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5">
+          <span>📝</span> Blind Exam (10 Qs)
+        </span>
+      </div>
+    </header>
+
+    <!-- Student Identification & Live Progress Bar -->
+    <div class="bg-slate-900 border-b border-slate-800 px-6 py-3 text-xs text-slate-300">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Student Info Form / Badge -->
+        <div class="flex items-center gap-2" id="student-auth-container">
+          <div id="student-input-group" class="flex items-center gap-2">
+            <input type="text" id="student-name-input" placeholder="Enter Full Name..." class="bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-100 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none w-40 sm:w-48">
+            <input type="text" id="student-class-input" placeholder="Class / ID..." class="bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-100 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none w-24">
+            <button onclick="lockStudentProfile()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-3 py-1 rounded transition text-xs">
+              Save Profile
+            </button>
+          </div>
+
+          <div id="student-profile-badge" class="hidden flex items-center gap-2 bg-slate-950 px-3 py-1 rounded border border-slate-800">
+            <span class="text-amber-400 font-bold" id="badge-name-display">Student Name</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-slate-400 font-mono" id="badge-class-display">Class</span>
+            <button onclick="editStudentProfile()" id="btn-edit-profile" class="text-slate-500 hover:text-slate-300 text-[10px] underline ml-1">Edit</button>
+          </div>
+        </div>
+
+        <!-- Cloud Sync & Question Pills -->
+        <div class="flex items-center gap-3 flex-wrap">
+          <div id="cloud-sync-status" class="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-slate-500" id="sync-led"></span>
+            <span id="sync-status-text">Cloud Sync: Standby</span>
+          </div>
+
+          <div class="flex items-center gap-1" id="question-pills-bar"></div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Page Switcher -->
-    <div class="flex items-center gap-2">
-      <a href="lab.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-slate-700 flex items-center gap-1.5">
-        ← Return to Strategy Lab
-      </a>
-      <a href="vocab.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-lg transition border border-amber-600/40 hover:border-amber-500 flex items-center gap-1.5">
-        <span>🔍</span> Vocab Clinic
-      </a>
-      <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5">
-        <span>📝</span> Blind Exam (10 Qs)
-      </span>
-    </div>
-  </header>
+    <!-- Module Selector Bar -->
+    <nav class="bg-slate-900/90 border-b border-slate-800 px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Select Test Module:</span>
+        <button onclick="loadExamModule(0)" id="exam-tab-0" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow">
+          Passage A: Ocean Floor Mining (Q1–Q5)
+        </button>
+        <button onclick="loadExamModule(1)" id="exam-tab-1" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700">
+          Passage B: Computer Grading in Schools (Q6–Q10)
+        </button>
+      </div>
 
-  <!-- Student Identification & Live Progress Bar -->
-  <div class="bg-slate-900 border-b border-slate-800 px-6 py-3 text-xs text-slate-300">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div id="exam-status-indicator" class="flex items-center gap-2 text-xs bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-slate-300 font-mono">
+        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+        <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
+      </div>
+    </nav>
+
+    <!-- Post-Submission Anatomy Layer Legend -->
+    <aside id="anatomy-legend-bar" class="hidden bg-slate-900 text-slate-200 px-6 py-3 border-b border-slate-800 text-xs">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="bg-emerald-600 text-white font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Anatomy Layers Active</span>
+          <span class="text-slate-300">Text structural layers revealed below:</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-[11px]">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">Thesis</span>
+          <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-800 font-semibold border border-orange-300">Arguments</span>
+          <span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-800 font-semibold border border-yellow-300">Claims</span>
+          <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-700 italic border border-slate-300">Details / Proof</span>
+          <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-semibold border border-purple-300">Restating / Synthesis</span>
+          <span class="px-2 py-0.5 rounded bg-pink-100 text-pink-800 font-semibold border border-pink-300">Recommendation</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Final Diagnostic Score Report (Blind summary: No keys leaked) -->
+    <div id="diagnostic-report-card" class="hidden max-w-7xl w-full mx-auto my-6 p-6 bg-white rounded-xl shadow-md border-2 border-indigo-500 space-y-4">
+      <div class="flex flex-wrap items-center justify-between border-b border-slate-200 pb-3 gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 font-mono">OFFICIAL EXAM RESULT</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900" id="report-student-header">Student Diagnostic Report</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="downloadCSVReport()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-1.5 rounded shadow transition flex items-center gap-1">
+            <span>📊</span> Save Backup CSV
+          </button>
+          <button onclick="resetEntireExam()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded border border-slate-600 transition">
+            Retake Exam
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Sync Confirmation Banner -->
+      <div id="sheet-sync-banner" class="p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-slate-100 border border-slate-300 text-slate-700">
+        <span>🛰️ Cloud Sync Status: Ready</span>
+      </div>
+
+      <!-- Metric Tiles: Aggregate Only -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+          <span class="text-[11px] font-bold text-indigo-600 uppercase block">Total Score</span>
+          <span class="text-2xl font-black text-indigo-950" id="report-final-score">0 / 100</span>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+          <span class="text-[11px] font-bold text-emerald-600 uppercase block">Correct</span>
+          <span class="text-2xl font-black text-emerald-950" id="report-correct-count">0 Qs</span>
+        </div>
+        <div class="bg-rose-50 p-3 rounded-lg border border-rose-100">
+          <span class="text-[11px] font-bold text-rose-600 uppercase block">Incorrect</span>
+          <span class="text-2xl font-black text-rose-950" id="report-incorrect-count">0 Qs</span>
+        </div>
+        <div class="bg-amber-50 p-3 rounded-lg border border-amber-100">
+          <span class="text-[11px] font-bold text-amber-700 uppercase block">Accuracy Rate</span>
+          <span class="text-2xl font-black text-amber-950" id="report-accuracy-rate">0%</span>
+        </div>
+      </div>
+
+      <!-- Aggregate Review Notice -->
+      <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 space-y-1">
+        <strong class="text-slate-900 block font-semibold">🔒 Blind Assessment Review Policy:</strong>
+        <p>Individual answer keys are kept confidential to prevent answer sharing. The reading passage on the left has now unlocked its <strong>Anatomy Layers</strong> so you can inspect the structural skeleton (Thesis, Arguments, and Claims) and self-reflect on your reasoning.</p>
+      </div>
+    </div>
+
+    <!-- Exam Workspace -->
+    <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
-      <!-- Student Info Form / Badge -->
-      <div class="flex items-center gap-2" id="student-auth-container">
-        <div id="student-input-group" class="flex items-center gap-2">
-          <input type="text" id="student-name-input" placeholder="Enter Full Name..." class="bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-100 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none w-40 sm:w-48">
-          <input type="text" id="student-class-input" placeholder="Class / ID..." class="bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-100 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none w-24">
-          <button onclick="lockStudentProfile()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-3 py-1 rounded transition text-xs">
-            Save Profile
+      <!-- Left Pane: Passage (Unmarked during exam; Anatomy layers highlighted post-submission) -->
+      <section class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+        <div class="border-b border-slate-100 pb-3 flex justify-between items-start">
+          <div>
+            <h2 id="exam-text-title" class="text-lg font-bold text-slate-900">Title</h2>
+            <div class="flex items-center gap-2 mt-1">
+              <span id="exam-text-genre" class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Genre</span>
+              <span id="exam-mode-badge" class="text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono">Blind Assessment</span>
+            </div>
+          </div>
+        </div>
+        <div id="exam-passage-container" class="text-slate-700 text-[15px] leading-relaxed space-y-4 select-text"></div>
+      </section>
+
+      <!-- Right Pane: Questions & Exam Submission Gate -->
+      <section class="lg:col-span-5 space-y-5">
+        <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="font-bold text-slate-800 block">Assessment Status</span>
+              <span id="exam-turnin-hint" class="text-slate-500">Answer all 10 questions to enable submission.</span>
+            </div>
+            <span id="exam-total-progress-badge" class="bg-slate-100 text-slate-700 font-mono font-bold px-2.5 py-1 rounded border text-xs">
+              0 / 10 Answered
+            </span>
+          </div>
+
+          <button id="btn-final-submit" disabled onclick="turnInEntireExam()" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-xs">
+            <span>📋</span> <span id="btn-final-label">Complete All Questions to Turn In (0/10)</span>
           </button>
         </div>
 
-        <div id="student-profile-badge" class="hidden flex items-center gap-2 bg-slate-950 px-3 py-1 rounded border border-slate-800">
-          <span class="text-amber-400 font-bold" id="badge-name-display">Student Name</span>
-          <span class="text-slate-500">|</span>
-          <span class="text-slate-400 font-mono" id="badge-class-display">Class</span>
-          <button onclick="editStudentProfile()" id="btn-edit-profile" class="text-slate-500 hover:text-slate-300 text-[10px] underline ml-1">Edit</button>
-        </div>
-      </div>
+        <div id="exam-questions-container" class="space-y-6"></div>
+      </section>
+    </main>
 
-      <!-- Cloud Sync & Question Pills -->
-      <div class="flex items-center gap-3 flex-wrap">
-        <div id="cloud-sync-status" class="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-          <span class="w-2 h-2 rounded-full bg-slate-500" id="sync-led"></span>
-          <span id="sync-status-text">Cloud Sync: Standby</span>
-        </div>
+    <script>
+      // =============================================================
+      // ⚙️ CONFIGURATION: PASTE YOUR APPS SCRIPT WEB APP URL HERE
+      // =============================================================
+      const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx1Sa81sa2q5xy6i2zDfdrLvB5wzDXL9GhLjnurZiFpcFmEUAq8k57yxMX5MZofHlJUgw/exec";
 
-        <div class="flex items-center gap-1" id="question-pills-bar"></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Module Selector Bar -->
-  <nav class="bg-slate-900/90 border-b border-slate-800 px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
-    <div class="flex items-center gap-2">
-      <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider mr-2">Select Test Module:</span>
-      <button onclick="loadExamModule(0)" id="exam-tab-0" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow">
-        Passage A: Ocean Floor Mining (Q1–Q5)
-      </button>
-      <button onclick="loadExamModule(1)" id="exam-tab-1" class="text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700">
-        Passage B: Computer Grading in Schools (Q6–Q10)
-      </button>
-    </div>
-
-    <div id="exam-status-indicator" class="flex items-center gap-2 text-xs bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg text-slate-300 font-mono">
-      <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-      <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
-    </div>
-  </nav>
-
-  <!-- Post-Submission Anatomy Layer Legend -->
-  <aside id="anatomy-legend-bar" class="hidden bg-slate-900 text-slate-200 px-6 py-3 border-b border-slate-800 text-xs">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2">
-        <span class="bg-emerald-600 text-white font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">Anatomy Layers Active</span>
-        <span class="text-slate-300">Text structural layers revealed below:</span>
-      </div>
-      <div class="flex flex-wrap items-center gap-2 text-[11px]">
-        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">Thesis</span>
-        <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-800 font-semibold border border-orange-300">Arguments</span>
-        <span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-800 font-semibold border border-yellow-300">Claims</span>
-        <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-700 italic border border-slate-300">Details / Proof</span>
-        <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-semibold border border-purple-300">Restating / Synthesis</span>
-        <span class="px-2 py-0.5 rounded bg-pink-100 text-pink-800 font-semibold border border-pink-300">Recommendation</span>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Final Diagnostic Score Report (Blind summary: No keys leaked) -->
-  <div id="diagnostic-report-card" class="hidden max-w-7xl w-full mx-auto my-6 p-6 bg-white rounded-xl shadow-md border-2 border-indigo-500 space-y-4">
-    <div class="flex flex-wrap items-center justify-between border-b border-slate-200 pb-3 gap-2">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 font-mono">OFFICIAL EXAM RESULT</span>
-        <h2 class="text-xl sm:text-2xl font-bold text-slate-900" id="report-student-header">Student Diagnostic Report</h2>
-      </div>
-      <div class="flex items-center gap-2">
-        <button onclick="downloadCSVReport()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-1.5 rounded shadow transition flex items-center gap-1">
-          <span>📊</span> Save Backup CSV
-        </button>
-        <button onclick="resetEntireExam()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded border border-slate-600 transition">
-          Retake Exam
-        </button>
-      </div>
-    </div>
-
-    <!-- Live Sync Confirmation Banner -->
-    <div id="sheet-sync-banner" class="p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-slate-100 border border-slate-300 text-slate-700">
-      <span>🛰️ Cloud Sync Status: Ready</span>
-    </div>
-
-    <!-- Metric Tiles: Aggregate Only -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-      <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
-        <span class="text-[11px] font-bold text-indigo-600 uppercase block">Total Score</span>
-        <span class="text-2xl font-black text-indigo-950" id="report-final-score">0 / 100</span>
-      </div>
-      <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-        <span class="text-[11px] font-bold text-emerald-600 uppercase block">Correct</span>
-        <span class="text-2xl font-black text-emerald-950" id="report-correct-count">0 Qs</span>
-      </div>
-      <div class="bg-rose-50 p-3 rounded-lg border border-rose-100">
-        <span class="text-[11px] font-bold text-rose-600 uppercase block">Incorrect</span>
-        <span class="text-2xl font-black text-rose-950" id="report-incorrect-count">0 Qs</span>
-      </div>
-      <div class="bg-amber-50 p-3 rounded-lg border border-amber-100">
-        <span class="text-[11px] font-bold text-amber-700 uppercase block">Accuracy Rate</span>
-        <span class="text-2xl font-black text-amber-950" id="report-accuracy-rate">0%</span>
-      </div>
-    </div>
-
-    <!-- Aggregate Review Notice -->
-    <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 space-y-1">
-      <strong class="text-slate-900 block font-semibold">🔒 Blind Assessment Review Policy:</strong>
-      <p>Individual answer keys are kept confidential to prevent answer sharing. The reading passage on the left has now unlocked its <strong>Anatomy Layers</strong> so you can inspect the structural skeleton (Thesis, Arguments, and Claims) and self-reflect on your reasoning.</p>
-    </div>
-  </div>
-
-  <!-- Exam Workspace -->
-  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-    
-    <!-- Left Pane: Passage (Unmarked during exam; Anatomy layers highlighted post-submission) -->
-    <section class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
-      <div class="border-b border-slate-100 pb-3 flex justify-between items-start">
-        <div>
-          <h2 id="exam-text-title" class="text-lg font-bold text-slate-900">Title</h2>
-          <div class="flex items-center gap-2 mt-1">
-            <span id="exam-text-genre" class="text-[11px] font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Genre</span>
-            <span id="exam-mode-badge" class="text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono">Blind Assessment</span>
-          </div>
-        </div>
-      </div>
-      <div id="exam-passage-container" class="text-slate-700 text-[15px] leading-relaxed space-y-4 select-text"></div>
-    </section>
-
-    <!-- Right Pane: Questions & Exam Submission Gate -->
-    <section class="lg:col-span-5 space-y-5">
-      <div class="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-600 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
-          <div>
-            <span class="font-bold text-slate-800 block">Assessment Status</span>
-            <span id="exam-turnin-hint" class="text-slate-500">Answer all 10 questions to enable submission.</span>
-          </div>
-          <span id="exam-total-progress-badge" class="bg-slate-100 text-slate-700 font-mono font-bold px-2.5 py-1 rounded border text-xs">
-            0 / 10 Answered
-          </span>
-        </div>
-
-        <button id="btn-final-submit" disabled onclick="turnInEntireExam()" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-xs">
-          <span>📋</span> <span id="btn-final-label">Complete All Questions to Turn In (0/10)</span>
-        </button>
-      </div>
-
-      <div id="exam-questions-container" class="space-y-6"></div>
-    </section>
-  </main>
-
-  <script>
-    // =============================================================
-    // ⚙️ CONFIGURATION: PASTE YOUR APPS SCRIPT WEB APP URL HERE
-    // =============================================================
-    const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx1Sa81sa2q5xy6i2zDfdrLvB5wzDXL9GhLjnurZiFpcFmEUAq8k57yxMX5MZofHlJUgw/exec";
-
-    const examDatabase = [
-      {
-        id: 0,
-        title: "The Environmental Risks of Deep-Sea Mining",
-        genre: "Analytical Exposition",
-        htmlContent: `
-          <p id="a-p1">
-            <span class="passage-sentence s1 anatomy-detail">Electric cars and renewable power grids require large amounts of battery metals like nickel and cobalt, pushing manufacturing companies to seek new mineral sources.</span>
-            <span class="passage-sentence s2 anatomy-detail">Mining corporations argue that gathering metal-rich rocks from the deep ocean floor is cleaner than clearing forests for traditional mines on land.</span>
-            <span class="passage-sentence s3 anatomy-thesis font-semibold">However, commercial mining in the deep ocean creates severe, irreversible damage to fragile marine ecosystems that must not be sacrificed for temporary industrial supplies.</span>
-          </p>
-          <p id="a-p2">
-            <span class="passage-sentence s4 anatomy-argument font-semibold">First, removing seabed rocks permanently destroys rare deep-sea habitats.</span>
-            <span class="passage-sentence s5 anatomy-claim">These mineral rocks take millions of years to form and provide essential living space for unique sponges, octopuses, and small sea creatures found nowhere else on Earth.</span>
-            <span class="passage-sentence s6 anatomy-detail">Ocean floor test sites visited decades after experimental mining show that stripped tracks remain completely barren, proving that life at the bottom of the sea has almost zero ability to recover once disturbed.</span>
-          </p>
-          <p id="a-p3">
-            <span class="passage-sentence s7 anatomy-argument font-semibold">Second, heavy mining equipment creates massive underwater clouds of mud that choke ocean life across huge distances.</span>
-            <span class="passage-sentence s8 anatomy-claim">Waste sediment pumped back into the sea drifts for hundreds of kilometers, blocking sunlight in upper waters and clogging the delicate feeding parts of young fish and small shrimp.</span>
-            <span class="passage-sentence s9 anatomy-detail">In addition, constant noise from heavy underwater pumps produces vibrations that confuse migrating whales and dolphins.</span>
-          </p>
-          <p id="a-p4">
-            <span class="passage-sentence s10 anatomy-restating">In conclusion, digging for minerals on the ocean floor causes severe environmental harm that far outweighs short-term battery gains.</span>
-            <span class="passage-sentence s11 anatomy-recommendation font-semibold">International environmental authorities must place a strict ban on commercial seabed mining before untouched ocean habitats are permanently destroyed.</span>
-          </p>
-        `,
-        questions: [
-          {
-            id: 1,
-            skill: "Thesis Identification",
-            stem: "1. What is the central thesis defended by the author in the passage?",
-            options: [
-              { id: "A", text: "Electric car companies must immediately stop building battery-powered vehicles." },
-              { id: "B", text: "Traditional land mining is completely safe and should be expanded in every country." },
-              { id: "C", text: "Deep-sea mining causes severe environmental damage that justifies a total ban." },
-              { id: "D", text: "Collecting metal rocks from the ocean floor is the only way to power green technology." },
-              { id: "E", text: "Deep-sea octopuses and sponges can easily relocate to warm coastal waters." }
-            ],
-            answer: "C"
-          },
-          {
-            id: 2,
-            skill: "Evidence & Claim Analysis",
-            stem: "2. Which claim in Paragraph 2 is supported by evidence from past test sites?",
-            options: [
-              { id: "A", text: "Mineral rocks can easily be regrown in scientific laboratories within weeks." },
-              { id: "B", text: "Mining companies have developed silent equipment that leaves zero mud trails." },
-              { id: "C", text: "Electric vehicle sales have caused metal prices to decrease significantly." },
-              { id: "D", text: "Commercial fishermen catch more fish near deep-sea mineral fields." },
-              { id: "E", text: "Disturbed deep-sea habitats have almost zero natural ability to recover." }
-            ],
-            answer: "E"
-          },
-          {
-            id: 3,
-            skill: "Causal Reasoning",
-            stem: "3. According to Paragraph 3, how do mud clouds from mining machines harm ocean animals?",
-            options: [
-              { id: "A", text: "They block sunlight and clog the delicate feeding parts of young fish and shrimp." },
-              { id: "B", text: "They cause surface ocean currents to freeze into solid ice shelves." },
-              { id: "C", text: "They dissolve the metal hulls of commercial cargo ships travelling above." },
-              { id: "D", text: "They speed up global atmospheric warming by absorbing oceanic oxygen." },
-              { id: "E", text: "They turn harmless plankton into aggressive carnivorous predators." }
-            ],
-            answer: "A"
-          },
-          {
-            id: 4,
-            skill: "Vocabulary in Context",
-            stem: "4. In Paragraph 2, the phrase 'take millions of years to form' describes rocks that...",
-            options: [
-              { id: "A", text: "Disappear quickly into the air" },
-              { id: "B", text: "Explode violently under pressure" },
-              { id: "C", text: "Melt into liquid salt during summer" },
-              { id: "D", text: "Develop very gradually over extensive time" },
-              { id: "E", text: "Float freely across ocean waves" }
-            ],
-            answer: "D"
-          },
-          {
-            id: 5,
-            skill: "Structural Function",
-            stem: "5. What is the structural role of Paragraph 4 in this text?",
-            options: [
-              { id: "A", text: "It introduces a brand-new calculation of global nickel market prices." },
-              { id: "B", text: "It restates the central argument and calls for an official ban on seabed mining." },
-              { id: "C", text: "It admits that environmental damage is an acceptable price for cheaper batteries." },
-              { id: "D", text: "It provides step-by-step instructions for repairing deep-sea collection tools." },
-              { id: "E", text: "It argues that whales and dolphins are not affected by underwater machinery." }
-            ],
-            answer: "B"
-          }
-        ]
-      },
-      {
-        id: 1,
-        title: "Computer Grading in Modern Education",
-        genre: "Discussion Text",
-        htmlContent: `
-          <p id="b-p1">
-            <span class="passage-sentence s1 anatomy-detail">School testing centers grade millions of student essays every year, placing heavy workloads on teachers who must evaluate hundreds of papers by hand.</span>
-            <span class="passage-sentence s2 anatomy-detail">To speed up evaluation, many school boards have introduced automated grading software that scores student writing using computer algorithms.</span>
-            <span class="passage-sentence s3 anatomy-detail">Whether replacing human teacher grading with automated software improves classroom efficiency or hurts educational fairness remains an active debate.</span>
-          </p>
-          <p id="b-p2">
-            <span class="passage-sentence s4 anatomy-argument font-semibold">Supporters point out that automated scoring grades essays instantly and never suffers from teacher fatigue.</span>
-            <span class="passage-sentence s5 anatomy-claim">Unlike human teachers whose grading mood may change after reading dozens of repetitive papers late at night, computer engines apply identical standards to every single student.</span>
-            <span class="passage-sentence s6 anatomy-detail">Furthermore, instant feedback allows students to see their mistakes right away and rewrite their sentences to improve their writing skills faster.</span>
-          </p>
-          <p id="b-p3">
-            <span class="passage-sentence s7 anatomy-argument font-semibold">On the other hand, critics argue that computer engines only measure surface details rather than real creative thought.</span>
-            <span class="passage-sentence s8 anatomy-claim">Language software grades essays by counting simple features—such as paragraph length, fancy vocabulary, and transition words—instead of checking whether the student's argument actually makes sense.</span>
-            <span class="passage-sentence s9 anatomy-detail">As a result, students learn to trick the system by inserting complicated words and memorized templates into essays that have no real meaning.</span>
-          </p>
-          <p id="b-p4">
-            <span class="passage-sentence s10 anatomy-restating">In conclusion, automated grading is very helpful for quick practice drills, but it cannot replace human judgment for deep thinking.</span>
-            <span class="passage-sentence s11 anatomy-recommendation font-semibold">Schools should use a combined approach, using computer scoring for quick grammar exercises while leaving important essays to human teachers.</span>
-          </p>
-        `,
-        questions: [
-          {
-            id: 6,
-            skill: "Paragraph Function",
-            stem: "6. What is the primary purpose of Paragraph 1 in this discussion text?",
-            options: [
-              { id: "A", text: "To prove that human teachers should never grade student essays again." },
-              { id: "B", text: "To explain the computer programming code used to build grading software." },
-              { id: "C", text: "To celebrate companies that have replaced all classroom teachers with robots." },
-              { id: "D", text: "To introduce the debate over automated essay grading without picking a side." },
-              { id: "E", text: "To scold students who write poorly structured homework papers." }
-            ],
-            answer: "D"
-          },
-          {
-            id: 7,
-            skill: "Supporting Arguments",
-            stem: "7. According to supporters in Paragraph 2, what is an advantage of computer grading?",
-            options: [
-              { id: "A", text: "It applies uniform standards without fatigue and gives instant feedback for practice." },
-              { id: "B", text: "It automatically writes complete essays on behalf of busy students." },
-              { id: "C", text: "It guarantees that every student receives a perfect exam score." },
-              { id: "D", text: "It eliminates the need for students to learn English grammar rules." },
-              { id: "E", text: "It costs zero dollars for public school districts to install." }
-            ],
-            answer: "A"
-          },
-          {
-            id: 8,
-            skill: "Critical Counter-Argument",
-            stem: "8. What major weakness of computer grading is pointed out in Paragraph 3?",
-            options: [
-              { id: "A", text: "The software crashes whenever an essay is longer than fifty words." },
-              { id: "B", text: "The system refuses to read essays typed on computer keyboards." },
-              { id: "C", text: "The computer intentionally gives lower marks to students who use varied vocabulary." },
-              { id: "D", text: "Computer scoring takes much longer to return grades than human teachers." },
-              { id: "E", text: "The software rewards surface features, encouraging students to trick the system." }
-            ],
-            answer: "E"
-          },
-          {
-            id: 9,
-            skill: "Vocabulary in Context",
-            stem: "9. In Paragraph 3, the phrase 'counting simple features' refers to...",
-            options: [
-              { id: "A", text: "Testing a student's personal moral character" },
-              { id: "B", text: "Measuring surface metrics like word count rather than true understanding" },
-              { id: "C", text: "Checking the physical glass screen of testing tablets" },
-              { id: "D", text: "Fixing electrical power cords in school computer rooms" },
-              { id: "E", text: "Counting the number of books in the school library" }
-            ],
-            answer: "B"
-          },
-          {
-            id: 10,
-            skill: "Synthesis & Recommendation",
-            stem: "10. Which balanced solution represents the author's final conclusion in Paragraph 4?",
-            options: [
-              { id: "A", text: "Schools should ban all computers and tablets from educational buildings." },
-              { id: "B", text: "Computers should be in charge of grading 100% of final graduation exams." },
-              { id: "C", text: "Schools should use a combined system of computer speed for drills and humans for deep essays." },
-              { id: "D", text: "Students should be punished whenever their essays are longer than three paragraphs." },
-              { id: "E", text: "Testing centers should replace all written exams with oral interviews." }
-            ],
-            answer: "C"
-          }
-        ]
-      }
-    ];
-
-    let currentExamIdx = 0;
-    let studentProfile = {
-      name: "",
-      className: "",
-      answers: {},
-      completed: false,
-      score: 0,
-      timestamp: ""
-    };
-
-    function safeSetText(id, text) {
-      const el = document.getElementById(id);
-      if (el) el.innerText = text;
-    }
-
-    function initStudentSession() {
-      const saved = localStorage.getItem("tka_exam_session");
-      if (saved) {
-        try {
-          studentProfile = JSON.parse(saved);
-          if (studentProfile.name) {
-            renderStudentBadge();
-          }
-          if (studentProfile.completed) {
-            revealFinalResultsOnLoad();
-          }
-        } catch (e) {
-          console.error("Session parse error:", e);
+      const examDatabase = [
+        {
+          id: 0,
+          title: "The Environmental Risks of Deep-Sea Mining",
+          genre: "Analytical Exposition",
+          htmlContent: `
+            <p id="a-p1">
+              <span class="passage-sentence s1 anatomy-detail">Electric cars and renewable power grids require large amounts of battery metals like nickel and cobalt, pushing manufacturing companies to seek new mineral sources.</span>
+              <span class="passage-sentence s2 anatomy-detail">Mining corporations argue that gathering metal-rich rocks from the deep ocean floor is cleaner than clearing forests for traditional mines on land.</span>
+              <span class="passage-sentence s3 anatomy-thesis font-semibold">However, commercial mining in the deep ocean creates severe, irreversible damage to fragile marine ecosystems that must not be sacrificed for temporary industrial supplies.</span>
+            </p>
+            <p id="a-p2">
+              <span class="passage-sentence s4 anatomy-argument font-semibold">First, removing seabed rocks permanently destroys rare deep-sea habitats.</span>
+              <span class="passage-sentence s5 anatomy-claim">These mineral rocks take millions of years to form and provide essential living space for unique sponges, octopuses, and small sea creatures found nowhere else on Earth.</span>
+              <span class="passage-sentence s6 anatomy-detail">Ocean floor test sites visited decades after experimental mining show that stripped tracks remain completely barren, proving that life at the bottom of the sea has almost zero ability to recover once disturbed.</span>
+            </p>
+            <p id="a-p3">
+              <span class="passage-sentence s7 anatomy-argument font-semibold">Second, heavy mining equipment creates massive underwater clouds of mud that choke ocean life across huge distances.</span>
+              <span class="passage-sentence s8 anatomy-claim">Waste sediment pumped back into the sea drifts for hundreds of kilometers, blocking sunlight in upper waters and clogging the delicate feeding parts of young fish and small shrimp.</span>
+              <span class="passage-sentence s9 anatomy-detail">In addition, constant noise from heavy underwater pumps produces vibrations that confuse migrating whales and dolphins.</span>
+            </p>
+            <p id="a-p4">
+              <span class="passage-sentence s10 anatomy-restating">In conclusion, digging for minerals on the ocean floor causes severe environmental harm that far outweighs short-term battery gains.</span>
+              <span class="passage-sentence s11 anatomy-recommendation font-semibold">International environmental authorities must place a strict ban on commercial seabed mining before untouched ocean habitats are permanently destroyed.</span>
+            </p>
+          `,
+          questions: [
+            {
+              id: 1,
+              skill: "Thesis Identification",
+              stem: "1. What is the central thesis defended by the author in the passage?",
+              options: [
+                { id: "A", text: "Electric car companies must immediately stop building battery-powered vehicles." },
+                { id: "B", text: "Traditional land mining is completely safe and should be expanded in every country." },
+                { id: "C", text: "Deep-sea mining causes severe environmental damage that justifies a total ban." },
+                { id: "D", text: "Collecting metal rocks from the ocean floor is the only way to power green technology." },
+                { id: "E", text: "Deep-sea octopuses and sponges can easily relocate to warm coastal waters." }
+              ],
+              answer: "C"
+            },
+            {
+              id: 2,
+              skill: "Evidence & Claim Analysis",
+              stem: "2. Which claim in Paragraph 2 is supported by evidence from past test sites?",
+              options: [
+                { id: "A", text: "Mineral rocks can easily be regrown in scientific laboratories within weeks." },
+                { id: "B", text: "Mining companies have developed silent equipment that leaves zero mud trails." },
+                { id: "C", text: "Electric vehicle sales have caused metal prices to decrease significantly." },
+                { id: "D", text: "Commercial fishermen catch more fish near deep-sea mineral fields." },
+                { id: "E", text: "Disturbed deep-sea habitats have almost zero natural ability to recover." }
+              ],
+              answer: "E"
+            },
+            {
+              id: 3,
+              skill: "Causal Reasoning",
+              stem: "3. According to Paragraph 3, how do mud clouds from mining machines harm ocean animals?",
+              options: [
+                { id: "A", text: "They block sunlight and clog the delicate feeding parts of young fish and shrimp." },
+                { id: "B", text: "They cause surface ocean currents to freeze into solid ice shelves." },
+                { id: "C", text: "They dissolve the metal hulls of commercial cargo ships travelling above." },
+                { id: "D", text: "They speed up global atmospheric warming by absorbing oceanic oxygen." },
+                { id: "E", text: "They turn harmless plankton into aggressive carnivorous predators." }
+              ],
+              answer: "A"
+            },
+            {
+              id: 4,
+              skill: "Vocabulary in Context",
+              stem: "4. In Paragraph 2, the phrase 'take millions of years to form' describes rocks that...",
+              options: [
+                { id: "A", text: "Disappear quickly into the air" },
+                { id: "B", text: "Explode violently under pressure" },
+                { id: "C", text: "Melt into liquid salt during summer" },
+                { id: "D", text: "Develop very gradually over extensive time" },
+                { id: "E", text: "Float freely across ocean waves" }
+              ],
+              answer: "D"
+            },
+            {
+              id: 5,
+              skill: "Structural Function",
+              stem: "5. What is the structural role of Paragraph 4 in this text?",
+              options: [
+                { id: "A", text: "It introduces a brand-new calculation of global nickel market prices." },
+                { id: "B", text: "It restates the central argument and calls for an official ban on seabed mining." },
+                { id: "C", text: "It admits that environmental damage is an acceptable price for cheaper batteries." },
+                { id: "D", text: "It provides step-by-step instructions for repairing deep-sea collection tools." },
+                { id: "E", text: "It argues that whales and dolphins are not affected by underwater machinery." }
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        {
+          id: 1,
+          title: "Computer Grading in Modern Education",
+          genre: "Discussion Text",
+          htmlContent: `
+            <p id="b-p1">
+              <span class="passage-sentence s1 anatomy-detail">School testing centers grade millions of student essays every year, placing heavy workloads on teachers who must evaluate hundreds of papers by hand.</span>
+              <span class="passage-sentence s2 anatomy-detail">To speed up evaluation, many school boards have introduced automated grading software that scores student writing using computer algorithms.</span>
+              <span class="passage-sentence s3 anatomy-detail">Whether replacing human teacher grading with automated software improves classroom efficiency or hurts educational fairness remains an active debate.</span>
+            </p>
+            <p id="b-p2">
+              <span class="passage-sentence s4 anatomy-argument font-semibold">Supporters point out that automated scoring grades essays instantly and never suffers from teacher fatigue.</span>
+              <span class="passage-sentence s5 anatomy-claim">Unlike human teachers whose grading mood may change after reading dozens of repetitive papers late at night, computer engines apply identical standards to every single student.</span>
+              <span class="passage-sentence s6 anatomy-detail">Furthermore, instant feedback allows students to see their mistakes right away and rewrite their sentences to improve their writing skills faster.</span>
+            </p>
+            <p id="b-p3">
+              <span class="passage-sentence s7 anatomy-argument font-semibold">On the other hand, critics argue that computer engines only measure surface details rather than real creative thought.</span>
+              <span class="passage-sentence s8 anatomy-claim">Language software grades essays by counting simple features—such as paragraph length, fancy vocabulary, and transition words—instead of checking whether the student's argument actually makes sense.</span>
+              <span class="passage-sentence s9 anatomy-detail">As a result, students learn to trick the system by inserting complicated words and memorized templates into essays that have no real meaning.</span>
+            </p>
+            <p id="b-p4">
+              <span class="passage-sentence s10 anatomy-restating">In conclusion, automated grading is very helpful for quick practice drills, but it cannot replace human judgment for deep thinking.</span>
+              <span class="passage-sentence s11 anatomy-recommendation font-semibold">Schools should use a combined approach, using computer scoring for quick grammar exercises while leaving important essays to human teachers.</span>
+            </p>
+          `,
+          questions: [
+            {
+              id: 6,
+              skill: "Paragraph Function",
+              stem: "6. What is the primary purpose of Paragraph 1 in this discussion text?",
+              options: [
+                { id: "A", text: "To prove that human teachers should never grade student essays again." },
+                { id: "B", text: "To explain the computer programming code used to build grading software." },
+                { id: "C", text: "To celebrate companies that have replaced all classroom teachers with robots." },
+                { id: "D", text: "To introduce the debate over automated essay grading without picking a side." },
+                { id: "E", text: "To scold students who write poorly structured homework papers." }
+              ],
+              answer: "D"
+            },
+            {
+              id: 7,
+              skill: "Supporting Arguments",
+              stem: "7. According to supporters in Paragraph 2, what is an advantage of computer grading?",
+              options: [
+                { id: "A", text: "It applies uniform standards without fatigue and gives instant feedback for practice." },
+                { id: "B", text: "It automatically writes complete essays on behalf of busy students." },
+                { id: "C", text: "It guarantees that every student receives a perfect exam score." },
+                { id: "D", text: "It eliminates the need for students to learn English grammar rules." },
+                { id: "E", text: "It costs zero dollars for public school districts to install." }
+              ],
+              answer: "A"
+            },
+            {
+              id: 8,
+              skill: "Critical Counter-Argument",
+              stem: "8. What major weakness of computer grading is pointed out in Paragraph 3?",
+              options: [
+                { id: "A", text: "The software crashes whenever an essay is longer than fifty words." },
+                { id: "B", text: "The system refuses to read essays typed on computer keyboards." },
+                { id: "C", text: "The computer intentionally gives lower marks to students who use varied vocabulary." },
+                { id: "D", text: "Computer scoring takes much longer to return grades than human teachers." },
+                { id: "E", text: "The software rewards surface features, encouraging students to trick the system." }
+              ],
+              answer: "E"
+            },
+            {
+              id: 9,
+              skill: "Vocabulary in Context",
+              stem: "9. In Paragraph 3, the phrase 'counting simple features' refers to...",
+              options: [
+                { id: "A", text: "Testing a student's personal moral character" },
+                { id: "B", text: "Measuring surface metrics like word count rather than true understanding" },
+                { id: "C", text: "Checking the physical glass screen of testing tablets" },
+                { id: "D", text: "Fixing electrical power cords in school computer rooms" },
+                { id: "E", text: "Counting the number of books in the school library" }
+              ],
+              answer: "B"
+            },
+            {
+              id: 10,
+              skill: "Synthesis & Recommendation",
+              stem: "10. Which balanced solution represents the author's final conclusion in Paragraph 4?",
+              options: [
+                { id: "A", text: "Schools should ban all computers and tablets from educational buildings." },
+                { id: "B", text: "Computers should be in charge of grading 100% of final graduation exams." },
+                { id: "C", text: "Schools should use a combined system of computer speed for drills and humans for deep essays." },
+                { id: "D", text: "Students should be punished whenever their essays are longer than three paragraphs." },
+                { id: "E", text: "Testing centers should replace all written exams with oral interviews." }
+              ],
+              answer: "C"
+            }
+          ]
         }
-      }
-      renderPillsBar();
-      updateTurnInButtonState();
-    }
+      ];
 
-    function saveSession() {
-      localStorage.setItem("tka_exam_session", JSON.stringify(studentProfile));
-      renderPillsBar();
-      updateTurnInButtonState();
-    }
-
-    window.lockStudentProfile = () => {
-      const nameEl = document.getElementById("student-name-input");
-      const clsEl = document.getElementById("student-class-input");
-      const name = nameEl ? nameEl.value.trim() : "";
-      const cls = clsEl ? clsEl.value.trim() : "";
-
-      if (!name) {
-        alert("Please enter student name before continuing.");
-        return;
-      }
-
-      studentProfile.name = name;
-      studentProfile.className = cls || "General";
-      studentProfile.timestamp = studentProfile.timestamp || new Date().toLocaleString();
-      saveSession();
-      renderStudentBadge();
-    };
-
-    window.editStudentProfile = () => {
-      if (studentProfile.completed) {
-        alert("Exam already turned in. Profile cannot be edited.");
-        return;
-      }
-      const group = document.getElementById("student-input-group");
-      const badge = document.getElementById("student-profile-badge");
-      if (group) group.classList.remove("hidden");
-      if (badge) badge.classList.add("hidden");
-    };
-
-    function renderStudentBadge() {
-      const group = document.getElementById("student-input-group");
-      const badge = document.getElementById("student-profile-badge");
-      if (group) group.classList.add("hidden");
-      if (badge) badge.classList.remove("hidden");
-      safeSetText("badge-name-display", studentProfile.name);
-      safeSetText("badge-class-display", studentProfile.className);
-    }
-
-    function renderPillsBar() {
-      const bar = document.getElementById("question-pills-bar");
-      if (!bar) return;
-      bar.innerHTML = "";
-
-      for (let i = 1; i <= 10; i++) {
-        const isAnswered = studentProfile.answers[i] !== undefined;
-        const pill = document.createElement("button");
-        pill.onclick = () => jumpToQuestion(i);
-        pill.id = `pill-q-${i}`;
-
-        if (studentProfile.completed) {
-          pill.className = "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-700 text-slate-100 shadow-sm";
-        } else {
-          pill.className = isAnswered
-            ? "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-amber-500 text-slate-950 font-black shadow-sm"
-            : "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700";
-        }
-
-        pill.innerText = i;
-        bar.appendChild(pill);
-      }
-    }
-
-    function jumpToQuestion(qNum) {
-      const targetModule = qNum <= 5 ? 0 : 1;
-      if (currentExamIdx !== targetModule) {
-        loadExamModule(targetModule);
-      }
-      setTimeout(() => {
-        const card = document.getElementById(`card-exam-q-${qNum}`);
-        if (card) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          card.classList.add("ring-2", "ring-amber-400");
-          setTimeout(() => card.classList.remove("ring-2", "ring-amber-400"), 1200);
-        }
-      }, 100);
-    }
-
-    function loadExamModule(idx) {
-      currentExamIdx = idx;
-      const data = examDatabase[idx];
-
-      [0, 1].forEach(i => {
-        const btn = document.getElementById(`exam-tab-${i}`);
-        if (btn) {
-          btn.className = (i === idx) 
-            ? "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow"
-            : "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
-        }
-      });
-
-      safeSetText("exam-text-title", data.title);
-      safeSetText("exam-text-genre", data.genre);
-      const container = document.getElementById("exam-passage-container");
-      if (container) container.innerHTML = data.htmlContent;
-
-      const legend = document.getElementById("anatomy-legend-bar");
-      const modeBadge = document.getElementById("exam-mode-badge");
-      const statusInd = document.getElementById("exam-status-indicator");
-
-      if (studentProfile.completed) {
-        if (legend) legend.classList.remove("hidden");
-        if (modeBadge) {
-          modeBadge.innerText = "Anatomy Layers Unlocked";
-          modeBadge.className = "text-[11px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 font-mono";
-        }
-        if (statusInd) {
-          statusInd.innerHTML = `
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span class="text-emerald-400 font-semibold">Diagnostic Anatomy Mode (Turned In)</span>
-          `;
-        }
-        activateAnatomyHighlights();
-      } else {
-        if (legend) legend.classList.add("hidden");
-        if (modeBadge) {
-          modeBadge.innerText = "Blind Assessment";
-          modeBadge.className = "text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono";
-        }
-        if (statusInd) {
-          statusInd.innerHTML = `
-            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
-            <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
-          `;
-        }
-      }
-
-      renderExamQuestions(data.questions);
-      updateTurnInButtonState();
-    }
-
-    function renderExamQuestions(questions) {
-      const container = document.getElementById("exam-questions-container");
-      if (!container) return;
-      container.innerHTML = "";
-
-      questions.forEach((q) => {
-        const card = document.createElement("div");
-        card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4 transition-all";
-        card.id = `card-exam-q-${q.id}`;
-
-        const isAnswered = studentProfile.answers[q.id] !== undefined;
-        const savedChoice = studentProfile.answers[q.id];
-
-        card.innerHTML = `
-          <div class="flex justify-between items-start">
-            <h3 class="font-bold text-slate-900 text-sm leading-snug">${q.stem}</h3>
-            <span class="text-[10px] uppercase font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border">${q.skill}</span>
-          </div>
-
-          <div class="space-y-2 text-sm" id="exam-options-group-${q.id}">
-            ${q.options.map(opt => `
-              <div class="flex items-center gap-1.5" id="wrap-exam-${q.id}-${opt.id}">
-                <button type="button" title="Cross out" onclick="toggleStrike('exam-${q.id}', '${opt.id}')" class="text-xs px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded border border-slate-200 font-bold">✕</button>
-                <label id="label-exam-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border ${savedChoice === opt.id ? 'bg-indigo-50 border-indigo-400 font-medium' : 'border-slate-200 hover:bg-slate-50'} cursor-pointer transition select-none">
-                  <input type="radio" name="exam-q-${q.id}" value="${opt.id}" ${savedChoice === opt.id ? 'checked' : ''} ${studentProfile.completed ? 'disabled' : ''} onchange="recordStudentChoice(${q.id}, '${opt.id}')" class="mt-1 text-indigo-600 focus:ring-indigo-500">
-                  <span class="text-slate-700 leading-snug font-normal text-xs sm:text-sm">
-                    <strong>${opt.id}.</strong>${opt.text}
-                  </span>
-                </label>
-              </div>
-            `).join('')}
-          </div>
-
-          <div id="status-exam-${q.id}" class="${isAnswered ? '' : 'hidden'} text-xs font-mono text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
-            <span>Status: Choice Logged (${savedChoice || 'None'})</span>
-            <span class="text-emerald-700 font-semibold">✓ Recorded</span>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    window.recordStudentChoice = (qId, optionId) => {
-      if (studentProfile.completed) return;
-
-      if (!studentProfile.name) {
-        studentProfile.name = "Student_" + Math.floor(1000 + Math.random() * 9000);
-        studentProfile.className = "General";
-        renderStudentBadge();
-      }
-
-      studentProfile.answers[qId] = optionId;
-      saveSession();
-
-      const wrap = document.getElementById(`exam-options-group-${qId}`);
-      if (wrap) {
-        wrap.querySelectorAll("label").forEach(l => l.classList.remove("bg-indigo-50", "border-indigo-400", "font-medium"));
-        const activeLabel = document.getElementById(`label-exam-${qId}-${optionId}`);
-        if (activeLabel) activeLabel.classList.add("bg-indigo-50", "border-indigo-400", "font-medium");
-      }
-
-      const statusBox = document.getElementById(`status-exam-${qId}`);
-      if (statusBox) {
-        statusBox.classList.remove("hidden");
-        statusBox.innerHTML = `<span>Status: Choice Logged (${optionId})</span><span class="text-emerald-700 font-semibold">✓ Recorded</span>`;
-      }
-    };
-
-    window.toggleStrike = (prefix, optId) => {
-      const el = document.getElementById(`label-${prefix}-${optId}`);
-      if (el) el.classList.toggle("strikethrough-opt");
-    };
-
-    function updateTurnInButtonState() {
-      const answeredTotal = Object.keys(studentProfile.answers || {}).length;
-      safeSetText("exam-total-progress-badge", `${answeredTotal} / 10 Answered`);
-
-      const btn = document.getElementById("btn-final-submit");
-      const label = document.getElementById("btn-final-label");
-      const hint = document.getElementById("exam-turnin-hint");
-
-      if (!btn || !label || !hint) return;
-
-      if (studentProfile.completed) {
-        btn.disabled = true;
-        label.innerText = "Exam Completed & Locked";
-        btn.className = "w-full bg-slate-800 text-slate-400 font-bold py-2.5 px-4 rounded-lg cursor-not-allowed text-xs";
-        hint.innerText = "Exam turned in. Check score and anatomy layers on the left.";
-        return;
-      }
-
-      if (answeredTotal === 10) {
-        btn.disabled = false;
-        label.innerText = "Final Turn In & View Score (10/10 Ready) →";
-        btn.className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-lg shadow-md transition text-xs flex items-center justify-center gap-2 cursor-pointer animate-pulse";
-        hint.innerText = "All questions answered! Click to submit.";
-      } else {
-        btn.disabled = true;
-        label.innerText = `Complete All Questions to Turn In (${answeredTotal}/10)`;
-        btn.className = "w-full bg-emerald-600 opacity-40 cursor-not-allowed text-white font-bold py-2.5 px-4 rounded-lg text-xs";
-        hint.innerText = `Remaining: ${10 - answeredTotal} unanswered questions.`;
-      }
-    }
-
-    // -------------------------------------------------------------
-    // FINAL SUBMISSION (TRANSMIT FIRST, THEN DISPLAY UI)
-    // -------------------------------------------------------------
-    window.turnInEntireExam = () => {
-      const answeredTotal = Object.keys(studentProfile.answers || {}).length;
-      if (answeredTotal < 10) {
-        alert(`You have only answered ${answeredTotal} of 10 questions. Please complete all questions before turning in.`);
-        return;
-      }
-
-      if (!confirm("Turn in exam? Answers will be locked, your score calculated, and anatomy layers unlocked.")) {
-        return;
-      }
-
-      let totalCorrect = 0;
-      let passACorrect = 0;
-      let passBCorrect = 0;
-
-      examDatabase[0].questions.forEach(q => {
-        if (studentProfile.answers[q.id] === q.answer) {
-          totalCorrect++;
-          passACorrect++;
-        }
-      });
-
-      examDatabase[1].questions.forEach(q => {
-        if (studentProfile.answers[q.id] === q.answer) {
-          totalCorrect++;
-          passBCorrect++;
-        }
-      });
-
-      studentProfile.completed = true;
-      studentProfile.score = totalCorrect * 10;
-      studentProfile.timestamp = new Date().toLocaleString();
-      saveSession();
-
-      // 1. Send network payload FIRST to guarantee transmission
-      transmitToGoogleSheet(totalCorrect, passACorrect, passBCorrect);
-
-      // 2. Render UI
-      revealFinalResultsOnLoad();
-      loadExamModule(currentExamIdx);
-    };
-
-    function revealFinalResultsOnLoad() {
-      let totalCorrect = 0;
-      let passA = 0;
-      let passB = 0;
-
-      examDatabase[0].questions.forEach(q => {
-        if (studentProfile.answers[q.id] === q.answer) {
-          totalCorrect++;
-          passA++;
-        }
-      });
-      examDatabase[1].questions.forEach(q => {
-        if (studentProfile.answers[q.id] === q.answer) {
-          totalCorrect++;
-          passB++;
-        }
-      });
-
-      displayDiagnosticReport(totalCorrect, passA, passB);
-      activateAnatomyHighlights();
-    }
-
-    function activateAnatomyHighlights() {
-      document.querySelectorAll(".anatomy-thesis").forEach(el => el.classList.add("highlight-thesis"));
-      document.querySelectorAll(".anatomy-argument").forEach(el => el.classList.add("highlight-argument"));
-      document.querySelectorAll(".anatomy-claim").forEach(el => el.classList.add("highlight-claim"));
-      document.querySelectorAll(".anatomy-detail").forEach(el => el.classList.add("highlight-detail"));
-      document.querySelectorAll(".anatomy-restating").forEach(el => el.classList.add("highlight-restating"));
-      document.querySelectorAll(".anatomy-recommendation").forEach(el => el.classList.add("highlight-recommendation"));
-    }
-
-    function displayDiagnosticReport(totalCorrect, passA, passB) {
-      const card = document.getElementById("diagnostic-report-card");
-      if (card) card.classList.remove("hidden");
-
-      const incorrectCount = 10 - totalCorrect;
-      const accuracyPct = Math.round((totalCorrect / 10) * 100);
-
-      safeSetText("report-student-header", `Diagnostic Assessment: ${studentProfile.name || 'Student'} (${studentProfile.className || 'General'})`);
-      safeSetText("report-final-score", `${totalCorrect * 10} / 100`);
-      safeSetText("report-correct-count", `${totalCorrect} Qs`);
-      safeSetText("report-incorrect-count", `${incorrectCount} Qs`);
-      safeSetText("report-accuracy-rate", `${accuracyPct}%`);
-
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
-    // -------------------------------------------------------------
-    // REAL-TIME GOOGLE SHEET APPS SCRIPT SYNC (ROBUST FETCH)
-    // -------------------------------------------------------------
-    async function transmitToGoogleSheet(totalCorrect, passA, passB) {
-      const banner = document.getElementById("sheet-sync-banner");
-      const syncLed = document.getElementById("sync-led");
-      const syncStatus = document.getElementById("sync-status-text");
-
-      if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
-      if (syncStatus) syncStatus.innerText = "Cloud Sync: Transmitting to Sheet...";
-      if (banner) {
-        banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-amber-50 border border-amber-300 text-amber-800";
-        banner.innerHTML = `<span>⏳ Cloud Sync: Transmitting answers to Google Sheet...</span>`;
-      }
-
-      const payload = {
-        name: studentProfile.name || "Anonymous",
-        className: studentProfile.className || "General",
-        totalScore: totalCorrect * 10,
-        correctCount: totalCorrect,
-        accuracy: `${Math.round((totalCorrect / 10) * 100)}%`,
-        passA: passA,
-        passB: passB,
-        answers: studentProfile.answers || {}
+      let currentExamIdx = 0;
+      let studentProfile = {
+        name: "",
+        className: "",
+        answers: {},
+        completed: false,
+        score: 0,
+        timestamp: ""
       };
 
-      try {
-        // text/plain avoids CORS preflight triggers while sending valid JSON payload
-        await fetch(APPS_SCRIPT_WEBAPP_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-
-        if (banner) {
-          banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-emerald-50 border border-emerald-300 text-emerald-800";
-          banner.innerHTML = `<span>✓ Cloud Sync Complete: Student score and answers logged in Google Sheet.</span>`;
-        }
-        if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-emerald-500";
-        if (syncStatus) syncStatus.innerText = "Cloud Sync: Connected";
-      } catch (err) {
-        console.error("Transmission error:", err);
-        if (banner) {
-          banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-rose-50 border border-rose-300 text-rose-800";
-          banner.innerHTML = `<span>⚠️ Network error. Please click 'Save Backup CSV' to record your score.</span>`;
-        }
-        if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-rose-500";
-        if (syncStatus) syncStatus.innerText = "Cloud Sync: Offline";
-      }
-    }
-
-    window.downloadCSVReport = () => {
-      if (!studentProfile.name) return;
-
-      let csv = "Student Name,Class,Timestamp,Total Score,Correct Count,Incorrect Count,Accuracy,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10\n";
-      csv += `"${studentProfile.name}","${studentProfile.className}","${studentProfile.timestamp}",${studentProfile.score || 0},${(studentProfile.score || 0)/10},${10 - (studentProfile.score || 0)/10},${studentProfile.score || 0}%,`;
-      
-      for (let i = 1; i <= 10; i++) {
-        csv += `"${studentProfile.answers[i] || '-'}"${i === 10 ? '\n' : ','}`;
+      function safeSetText(id, text) {
+        const el = document.getElementById(id);
+        if (el) el.innerText = text;
       }
 
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `TKA_Exam_Report_${studentProfile.name.replace(/\s+/g, '_')}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-    };
+      function initStudentSession() {
+        const saved = localStorage.getItem("tka_exam_session");
+        if (saved) {
+          try {
+            studentProfile = JSON.parse(saved);
+            if (studentProfile.name) {
+              renderStudentBadge();
+            }
+            if (studentProfile.completed) {
+              revealFinalResultsOnLoad();
+            }
+          } catch (e) {
+            console.error("Session parse error:", e);
+          }
+        }
+        renderPillsBar();
+        updateTurnInButtonState();
+      }
 
-    window.resetEntireExam = () => {
-      if (confirm("Reset all 10 questions and start a new student session?")) {
-        localStorage.removeItem("tka_exam_session");
-        studentProfile = {
-          name: "",
-          className: "",
-          answers: {},
-          completed: false,
-          score: 0,
-          timestamp: ""
-        };
-        const card = document.getElementById("diagnostic-report-card");
-        const legend = document.getElementById("anatomy-legend-bar");
+      function saveSession() {
+        localStorage.setItem("tka_exam_session", JSON.stringify(studentProfile));
+        renderPillsBar();
+        updateTurnInButtonState();
+      }
+
+      window.lockStudentProfile = () => {
+        const nameEl = document.getElementById("student-name-input");
+        const clsEl = document.getElementById("student-class-input");
+        const name = nameEl ? nameEl.value.trim() : "";
+        const cls = clsEl ? clsEl.value.trim() : "";
+
+        if (!name) {
+          alert("Please enter student name before continuing.");
+          return;
+        }
+
+        studentProfile.name = name;
+        studentProfile.className = cls || "General";
+        studentProfile.timestamp = studentProfile.timestamp || new Date().toLocaleString();
+        saveSession();
+        renderStudentBadge();
+      };
+
+      window.editStudentProfile = () => {
+        if (studentProfile.completed) {
+          alert("Exam already turned in. Profile cannot be edited.");
+          return;
+        }
         const group = document.getElementById("student-input-group");
         const badge = document.getElementById("student-profile-badge");
-        const nameInput = document.getElementById("student-name-input");
-        const classInput = document.getElementById("student-class-input");
-
-        if (card) card.classList.add("hidden");
-        if (legend) legend.classList.add("hidden");
         if (group) group.classList.remove("hidden");
         if (badge) badge.classList.add("hidden");
-        if (nameInput) nameInput.value = "";
-        if (classInput) classInput.value = "";
+      };
 
-        renderPillsBar();
-        loadExamModule(0);
+      function renderStudentBadge() {
+        const group = document.getElementById("student-input-group");
+        const badge = document.getElementById("student-profile-badge");
+        if (group) group.classList.add("hidden");
+        if (badge) badge.classList.remove("hidden");
+        safeSetText("badge-name-display", studentProfile.name);
+        safeSetText("badge-class-display", studentProfile.className);
       }
-    };
 
-    // Safe bootstrap
-    document.addEventListener("DOMContentLoaded", () => {
-      initStudentSession();
-      loadExamModule(0);
-    });
-  </script>
-</body>
-</html>
+      function renderPillsBar() {
+        const bar = document.getElementById("question-pills-bar");
+        if (!bar) return;
+        bar.innerHTML = "";
+
+        for (let i = 1; i <= 10; i++) {
+          const isAnswered = studentProfile.answers[i] !== undefined;
+          const pill = document.createElement("button");
+          pill.onclick = () => jumpToQuestion(i);
+          pill.id = `pill-q-${i}`;
+
+          if (studentProfile.completed) {
+            pill.className = "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-700 text-slate-100 shadow-sm";
+          } else {
+            pill.className = isAnswered
+              ? "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-amber-500 text-slate-950 font-black shadow-sm"
+              : "w-6 h-6 rounded flex items-center justify-center font-mono text-[11px] font-bold bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700";
+          }
+
+          pill.innerText = i;
+          bar.appendChild(pill);
+        }
+      }
+
+      function jumpToQuestion(qNum) {
+        const targetModule = qNum <= 5 ? 0 : 1;
+        if (currentExamIdx !== targetModule) {
+          loadExamModule(targetModule);
+        }
+        setTimeout(() => {
+          const card = document.getElementById(`card-exam-q-${qNum}`);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add("ring-2", "ring-amber-400");
+            setTimeout(() => card.classList.remove("ring-2", "ring-amber-400"), 1200);
+          }
+        }, 100);
+      }
+
+      function loadExamModule(idx) {
+        currentExamIdx = idx;
+        const data = examDatabase[idx];
+
+        [0, 1].forEach(i => {
+          const btn = document.getElementById(`exam-tab-${i}`);
+          if (btn) {
+            btn.className = (i === idx) 
+              ? "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-indigo-600 text-white shadow"
+              : "text-xs px-3 py-1.5 rounded-md font-semibold transition bg-slate-800 text-slate-300 hover:bg-slate-700";
+          }
+        });
+
+        safeSetText("exam-text-title", data.title);
+        safeSetText("exam-text-genre", data.genre);
+        const container = document.getElementById("exam-passage-container");
+        if (container) container.innerHTML = data.htmlContent;
+
+        const legend = document.getElementById("anatomy-legend-bar");
+        const modeBadge = document.getElementById("exam-mode-badge");
+        const statusInd = document.getElementById("exam-status-indicator");
+
+        if (studentProfile.completed) {
+          if (legend) legend.classList.remove("hidden");
+          if (modeBadge) {
+            modeBadge.innerText = "Anatomy Layers Unlocked";
+            modeBadge.className = "text-[11px] font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 font-mono";
+          }
+          if (statusInd) {
+            statusInd.innerHTML = `
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="text-emerald-400 font-semibold">Diagnostic Anatomy Mode (Turned In)</span>
+            `;
+          }
+          activateAnatomyHighlights();
+        } else {
+          if (legend) legend.classList.add("hidden");
+          if (modeBadge) {
+            modeBadge.innerText = "Blind Assessment";
+            modeBadge.className = "text-[11px] font-semibold bg-amber-50 text-amber-800 px-2 py-0.5 rounded border border-amber-200 font-mono";
+          }
+          if (statusInd) {
+            statusInd.innerHTML = `
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+              <span id="exam-status-label">Exam in Progress (Auto-Saved Locally)</span>
+            `;
+          }
+        }
+
+        renderExamQuestions(data.questions);
+        updateTurnInButtonState();
+      }
+
+      function renderExamQuestions(questions) {
+        const container = document.getElementById("exam-questions-container");
+        if (!container) return;
+        container.innerHTML = "";
+
+        questions.forEach((q) => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4 transition-all";
+          card.id = `card-exam-q-${q.id}`;
+
+          const isAnswered = studentProfile.answers[q.id] !== undefined;
+          const savedChoice = studentProfile.answers[q.id];
+
+          card.innerHTML = `
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-slate-900 text-sm leading-snug">${q.stem}</h3>
+              <span class="text-[10px] uppercase font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border">${q.skill}</span>
+            </div>
+
+            <div class="space-y-2 text-sm" id="exam-options-group-${q.id}">
+              ${q.options.map(opt => `
+                <div class="flex items-center gap-1.5" id="wrap-exam-${q.id}-${opt.id}">
+                  <button type="button" title="Cross out" onclick="toggleStrike('exam-${q.id}', '${opt.id}')" class="text-xs px-2 py-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded border border-slate-200 font-bold">✕</button>
+                  <label id="label-exam-${q.id}-${opt.id}" class="flex-1 flex items-start gap-2.5 p-2.5 rounded-lg border ${savedChoice === opt.id ? 'bg-indigo-50 border-indigo-400 font-medium' : 'border-slate-200 hover:bg-slate-50'} cursor-pointer transition select-none">
+                    <input type="radio" name="exam-q-${q.id}" value="${opt.id}" ${savedChoice === opt.id ? 'checked' : ''} ${studentProfile.completed ? 'disabled' : ''} onchange="recordStudentChoice(${q.id}, '${opt.id}')" class="mt-1 text-indigo-600 focus:ring-indigo-500">
+                    <span class="text-slate-700 leading-snug font-normal text-xs sm:text-sm">
+                      <strong>${opt.id}.</strong>${opt.text}
+                    </span>
+                  </label>
+                </div>
+              `).join('')}
+            </div>
+
+            <div id="status-exam-${q.id}" class="${isAnswered ? '' : 'hidden'} text-xs font-mono text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Status: Choice Logged (${savedChoice || 'None'})</span>
+              <span class="text-emerald-700 font-semibold">✓ Recorded</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      window.recordStudentChoice = (qId, optionId) => {
+        if (studentProfile.completed) return;
+
+        if (!studentProfile.name) {
+          studentProfile.name = "Student_" + Math.floor(1000 + Math.random() * 9000);
+          studentProfile.className = "General";
+          renderStudentBadge();
+        }
+
+        studentProfile.answers[qId] = optionId;
+        saveSession();
+
+        const wrap = document.getElementById(`exam-options-group-${qId}`);
+        if (wrap) {
+          wrap.querySelectorAll("label").forEach(l => l.classList.remove("bg-indigo-50", "border-indigo-400", "font-medium"));
+          const activeLabel = document.getElementById(`label-exam-${qId}-${optionId}`);
+          if (activeLabel) activeLabel.classList.add("bg-indigo-50", "border-indigo-400", "font-medium");
+        }
+
+        const statusBox = document.getElementById(`status-exam-${qId}`);
+        if (statusBox) {
+          statusBox.classList.remove("hidden");
+          statusBox.innerHTML = `<span>Status: Choice Logged (${optionId})</span><span class="text-emerald-700 font-semibold">✓ Recorded</span>`;
+        }
+      };
+
+      window.toggleStrike = (prefix, optId) => {
+        const el = document.getElementById(`label-${prefix}-${optId}`);
+        if (el) el.classList.toggle("strikethrough-opt");
+      };
+
+      function updateTurnInButtonState() {
+        const answeredTotal = Object.keys(studentProfile.answers || {}).length;
+        safeSetText("exam-total-progress-badge", `${answeredTotal} / 10 Answered`);
+
+        const btn = document.getElementById("btn-final-submit");
+        const label = document.getElementById("btn-final-label");
+        const hint = document.getElementById("exam-turnin-hint");
+
+        if (!btn || !label || !hint) return;
+
+        if (studentProfile.completed) {
+          btn.disabled = true;
+          label.innerText = "Exam Completed & Locked";
+          btn.className = "w-full bg-slate-800 text-slate-400 font-bold py-2.5 px-4 rounded-lg cursor-not-allowed text-xs";
+          hint.innerText = "Exam turned in. Check score and anatomy layers on the left.";
+          return;
+        }
+
+        if (answeredTotal === 10) {
+          btn.disabled = false;
+          label.innerText = "Final Turn In & View Score (10/10 Ready) →";
+          btn.className = "w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-lg shadow-md transition text-xs flex items-center justify-center gap-2 cursor-pointer animate-pulse";
+          hint.innerText = "All questions answered! Click to submit.";
+        } else {
+          btn.disabled = true;
+          label.innerText = `Complete All Questions to Turn In (${answeredTotal}/10)`;
+          btn.className = "w-full bg-emerald-600 opacity-40 cursor-not-allowed text-white font-bold py-2.5 px-4 rounded-lg text-xs";
+          hint.innerText = `Remaining: ${10 - answeredTotal} unanswered questions.`;
+        }
+      }
+
+      // -------------------------------------------------------------
+      // FINAL SUBMISSION (TRANSMIT FIRST, THEN DISPLAY UI)
+      // -------------------------------------------------------------
+      window.turnInEntireExam = () => {
+        const answeredTotal = Object.keys(studentProfile.answers || {}).length;
+        if (answeredTotal < 10) {
+          alert(`You have only answered ${answeredTotal} of 10 questions. Please complete all questions before turning in.`);
+          return;
+        }
+
+        if (!confirm("Turn in exam? Answers will be locked, your score calculated, and anatomy layers unlocked.")) {
+          return;
+        }
+
+        let totalCorrect = 0;
+        let passACorrect = 0;
+        let passBCorrect = 0;
+
+        examDatabase[0].questions.forEach(q => {
+          if (studentProfile.answers[q.id] === q.answer) {
+            totalCorrect++;
+            passACorrect++;
+          }
+        });
+
+        examDatabase[1].questions.forEach(q => {
+          if (studentProfile.answers[q.id] === q.answer) {
+            totalCorrect++;
+            passBCorrect++;
+          }
+        });
+
+        studentProfile.completed = true;
+        studentProfile.score = totalCorrect * 10;
+        studentProfile.timestamp = new Date().toLocaleString();
+        saveSession();
+
+        // 1. Send network payload FIRST to guarantee transmission
+        transmitToGoogleSheet(totalCorrect, passACorrect, passBCorrect);
+
+        // 2. Render UI
+        revealFinalResultsOnLoad();
+        loadExamModule(currentExamIdx);
+      };
+
+      function revealFinalResultsOnLoad() {
+        let totalCorrect = 0;
+        let passA = 0;
+        let passB = 0;
+
+        examDatabase[0].questions.forEach(q => {
+          if (studentProfile.answers[q.id] === q.answer) {
+            totalCorrect++;
+            passA++;
+          }
+        });
+        examDatabase[1].questions.forEach(q => {
+          if (studentProfile.answers[q.id] === q.answer) {
+            totalCorrect++;
+            passB++;
+          }
+        });
+
+        displayDiagnosticReport(totalCorrect, passA, passB);
+        activateAnatomyHighlights();
+      }
+
+      function activateAnatomyHighlights() {
+        document.querySelectorAll(".anatomy-thesis").forEach(el => el.classList.add("highlight-thesis"));
+        document.querySelectorAll(".anatomy-argument").forEach(el => el.classList.add("highlight-argument"));
+        document.querySelectorAll(".anatomy-claim").forEach(el => el.classList.add("highlight-claim"));
+        document.querySelectorAll(".anatomy-detail").forEach(el => el.classList.add("highlight-detail"));
+        document.querySelectorAll(".anatomy-restating").forEach(el => el.classList.add("highlight-restating"));
+        document.querySelectorAll(".anatomy-recommendation").forEach(el => el.classList.add("highlight-recommendation"));
+      }
+
+      function displayDiagnosticReport(totalCorrect, passA, passB) {
+        const card = document.getElementById("diagnostic-report-card");
+        if (card) card.classList.remove("hidden");
+
+        const incorrectCount = 10 - totalCorrect;
+        const accuracyPct = Math.round((totalCorrect / 10) * 100);
+
+        safeSetText("report-student-header", `Diagnostic Assessment: ${studentProfile.name || 'Student'} (${studentProfile.className || 'General'})`);
+        safeSetText("report-final-score", `${totalCorrect * 10} / 100`);
+        safeSetText("report-correct-count", `${totalCorrect} Qs`);
+        safeSetText("report-incorrect-count", `${incorrectCount} Qs`);
+        safeSetText("report-accuracy-rate", `${accuracyPct}%`);
+
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      // -------------------------------------------------------------
+      // REAL-TIME GOOGLE SHEET APPS SCRIPT SYNC (ROBUST FETCH)
+      // -------------------------------------------------------------
+      async function transmitToGoogleSheet(totalCorrect, passA, passB) {
+        const banner = document.getElementById("sheet-sync-banner");
+        const syncLed = document.getElementById("sync-led");
+        const syncStatus = document.getElementById("sync-status-text");
+
+        if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+        if (syncStatus) syncStatus.innerText = "Cloud Sync: Transmitting to Sheet...";
+        if (banner) {
+          banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-amber-50 border border-amber-300 text-amber-800";
+          banner.innerHTML = `<span>⏳ Cloud Sync: Transmitting answers to Google Sheet...</span>`;
+        }
+
+        const payload = {
+          name: studentProfile.name || "Anonymous",
+          className: studentProfile.className || "General",
+          totalScore: totalCorrect * 10,
+          correctCount: totalCorrect,
+          accuracy: `${Math.round((totalCorrect / 10) * 100)}%`,
+          passA: passA,
+          passB: passB,
+          answers: studentProfile.answers || {}
+        };
+
+        try {
+          // text/plain avoids CORS preflight triggers while sending valid JSON payload
+          await fetch(APPS_SCRIPT_WEBAPP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+
+          if (banner) {
+            banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-emerald-50 border border-emerald-300 text-emerald-800";
+            banner.innerHTML = `<span>✓ Cloud Sync Complete: Student score and answers logged in Google Sheet.</span>`;
+          }
+          if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-emerald-500";
+          if (syncStatus) syncStatus.innerText = "Cloud Sync: Connected";
+        } catch (err) {
+          console.error("Transmission error:", err);
+          if (banner) {
+            banner.className = "p-3 rounded-lg text-xs font-mono flex items-center justify-between bg-rose-50 border border-rose-300 text-rose-800";
+            banner.innerHTML = `<span>⚠️ Network error. Please click 'Save Backup CSV' to record your score.</span>`;
+          }
+          if (syncLed) syncLed.className = "w-2 h-2 rounded-full bg-rose-500";
+          if (syncStatus) syncStatus.innerText = "Cloud Sync: Offline";
+        }
+      }
+
+      window.downloadCSVReport = () => {
+        if (!studentProfile.name) return;
+
+        let csv = "Student Name,Class,Timestamp,Total Score,Correct Count,Incorrect Count,Accuracy,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10\n";
+        csv += `"${studentProfile.name}","${studentProfile.className}","${studentProfile.timestamp}",${studentProfile.score || 0},${(studentProfile.score || 0)/10},${10 - (studentProfile.score || 0)/10},${studentProfile.score || 0}%,`;
+        
+        for (let i = 1; i <= 10; i++) {
+          csv += `"${studentProfile.answers[i] || '-'}"${i === 10 ? '\n' : ','}`;
+        }
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `TKA_Exam_Report_${studentProfile.name.replace(/\s+/g, '_')}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      window.resetEntireExam = () => {
+        if (confirm("Reset all 10 questions and start a new student session?")) {
+          localStorage.removeItem("tka_exam_session");
+          studentProfile = {
+            name: "",
+            className: "",
+            answers: {},
+            completed: false,
+            score: 0,
+            timestamp: ""
+          };
+          const card = document.getElementById("diagnostic-report-card");
+          const legend = document.getElementById("anatomy-legend-bar");
+          const group = document.getElementById("student-input-group");
+          const badge = document.getElementById("student-profile-badge");
+          const nameInput = document.getElementById("student-name-input");
+          const classInput = document.getElementById("student-class-input");
+
+          if (card) card.classList.add("hidden");
+          if (legend) legend.classList.add("hidden");
+          if (group) group.classList.remove("hidden");
+          if (badge) badge.classList.add("hidden");
+          if (nameInput) nameInput.value = "";
+          if (classInput) classInput.value = "";
+
+          renderPillsBar();
+          loadExamModule(0);
+        }
+      };
+
+      // Safe bootstrap
+      document.addEventListener("DOMContentLoaded", () => {
+        initStudentSession();
+        loadExamModule(0);
+      });
+    </script>
+  </body>
+  </html>

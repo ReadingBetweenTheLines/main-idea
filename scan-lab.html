@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forensic Scanner — Vibrant Bento Strategy Lab (TKA Phase F)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(244, 63, 94, 0.12) 0px, transparent 45%),
+        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.14) 0px, transparent 40%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 45%),
+        radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.12) 0px, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.05) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+    }
+
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+
+    /* Asymmetric Bento Surface */
+    .bento-pop {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid #0f172a;
+      box-shadow: 4px 5px 0px #0f172a;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-pop:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 7px 9px 0px #0f172a;
+    }
+
+    /* Bionic Bold Highlight */
+    .bionic-fixation {
+      font-weight: 900;
+      color: #0f172a;
+      background-color: rgba(254, 240, 138, 0.55);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+
+    /* Radar Spotlight on Evidence */
+    .radar-spotlight {
+      background: #fef08a !important;
+      border-left: 6px solid #e11d48 !important;
+      padding-left: 12px !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      border-radius: 6px;
+      box-shadow: 0 0 0 3px #fde047;
+      transition: all 0.3s ease;
+    }
+
+    /* Pacer Active Paragraph Focus */
+    .pacer-focused-para {
+      box-shadow: 0 0 0 3px #4f46e5, 5px 5px 0px #0f172a !important;
+      background: #ffffff !important;
+      border-color: #4f46e5 !important;
+      transform: scale(1.015);
+      transition: all 0.25s ease;
+    }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Colorful Top Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-slate-950 px-4 sm:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand Tag -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-600 flex items-center justify-center text-white font-black text-xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a]">
+          ⚡
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-mono-code font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-900 border border-indigo-300">
+              TKA PHASE F // LITERASI
+            </span>
+            <span class="text-xs text-slate-500 font-semibold">Strategi Verifikasi Fakta</span>
+          </div>
+          <h1 class="text-base sm:text-xl font-heading font-black text-slate-950 tracking-tight">
+            Scanner Teks Padat & Strategi Benar / Salah
+          </h1>
+        </div>
+      </div>
+
+      <!-- Vibrant Navigation Links -->
+      <nav class="flex items-center gap-2 flex-wrap text-xs font-bold">
+        <a href="lab.html" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          ← Ide Pokok
+        </a>
+        <a href="vocab.html" class="px-3 py-1.5 rounded-xl bg-amber-200 hover:bg-amber-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          🔍 Klinik Vocab
+        </a>
+        <a href="game-defusal.html" class="px-3 py-1.5 rounded-xl bg-rose-200 hover:bg-rose-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          💣 Defusal
+        </a>
+        <a href="game-liars-deck.html" class="px-3 py-1.5 rounded-xl bg-emerald-200 hover:bg-emerald-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          ♠ Liar's Deck
+        </a>
+        <a href="exam.html" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          📝 Ujian Mandiri
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Reading Utility Floating Dock -->
+  <section class="bg-indigo-50 border-b-2 border-slate-950 px-4 sm:px-8 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+      
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <span class="text-[11px] font-mono-code font-bold uppercase text-slate-800 tracking-wider flex items-center gap-1.5 bg-white px-2 py-0.5 rounded border border-slate-900 shadow-[1px_1px_0px_#0f172a]">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          SPEED UTILITY:
+        </span>
+
+        <!-- Bionic Button -->
+        <button id="btn-bionic-toggle" onclick="toggleBionicReading()" class="px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-white hover:bg-amber-100 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          <span>⚡</span> <span id="bionic-status-label">Bionic Fixation: OFF</span>
+        </button>
+
+        <!-- Auto-Pacer Button -->
+        <button id="btn-pacer-toggle" onclick="toggleReadingPacer()" class="px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-white hover:bg-indigo-100 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          <span id="pacer-play-icon">▶</span> <span>Auto-Pacer</span>
+        </button>
+
+        <!-- WPM Selector -->
+        <div class="flex items-center bg-white border-2 border-slate-950 rounded-xl px-2.5 py-1 text-[11px] font-mono-code gap-1.5 shadow-[2px_2px_0px_#0f172a]">
+          <span class="text-slate-500">SPEED:</span>
+          <select id="pacer-wpm-select" onchange="updatePacerWpm()" class="bg-transparent text-indigo-700 font-bold focus:outline-none cursor-pointer">
+            <option value="180">180 WPM (Santai)</option>
+            <option value="240" selected>240 WPM (Standar Ujian)</option>
+            <option value="300">300 WPM (Cepat)</option>
+          </select>
+        </div>
+
+        <!-- Margin Scratchpad Button -->
+        <button onclick="toggleScratchpadDrawer()" class="px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-amber-300 hover:bg-amber-400 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          <span>📝</span> <span>Catatan Pinggir</span>
+        </button>
+      </div>
+
+      <div class="text-[11px] font-mono-code font-bold text-slate-700">
+        Rumus Emas: <span class="bg-rose-100 text-rose-800 px-1.5 py-0.5 rounded border border-rose-300">Audit Bukti</span> bukan baca ulang!
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ASYMMETRICAL VIBRANT BENTO GRID -->
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6 flex-1">
+
+    <!-- BENTO ROW 0: CARA MENCARI INFORMASI DARI KATA SOAL (NEW HIGH-YIELD FEATURE) -->
+    <section class="bento-pop bg-gradient-to-r from-sky-100 via-indigo-50 to-emerald-100 rounded-3xl p-6 sm:p-8 border-2 border-slate-950">
+      <div class="flex flex-wrap items-center justify-between border-b-2 border-slate-950/20 pb-4 mb-5 gap-3">
+        <div>
+          <span class="font-mono-code text-[11px] font-black uppercase px-2.5 py-1 rounded-md bg-sky-400 text-slate-950 border border-slate-950">
+            TRIK MEMERAS SOAL (QUESTION CLUE STRIPPING)
+          </span>
+          <h2 class="font-heading text-xl sm:text-2xl font-black text-slate-950 mt-1">
+            Cara Menemukan Lokasi Jawaban Cuma dari Kata-Kata di Soal
+          </h2>
+        </div>
+        <span class="text-xs font-mono-code font-bold bg-white text-slate-800 px-3 py-1 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          3 Tingkatan Kata Petunjuk 🎯
+        </span>
+      </div>
+
+      <p class="text-sm text-slate-700 leading-relaxed font-medium mb-6">
+        Sebelum kalian menengok teks sama sekali, kalimat soal sebenarnya sudah memberi <strong>koordinat GPS</strong> tentang letak kalimat jawabannya. Bagi kata-kata di soal menjadi 3 tingkatan ini:
+      </p>
+
+      <!-- 3 Tingkat Kata Petunjuk Soal -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        
+        <!-- Tier 1: Emas -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono-code font-black text-[10px] uppercase text-emerald-900 bg-emerald-300 px-2 py-0.5 rounded border border-slate-950">
+              TIER 1: JANGKAR EMAS
+            </span>
+            <span class="text-lg">🥇</span>
+          </div>
+          <h3 class="font-heading font-bold text-slate-950 text-sm">Cari Bentuk Fisiknya Langsung</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Kata yang <strong>mustahil diubah sinonim</strong> oleh pembuat soal:
+          </p>
+          <ul class="text-[11px] text-slate-800 space-y-1 font-mono-code bg-emerald-50 p-2.5 rounded-xl border border-emerald-300">
+            <li>• Huruf Kapital (<em>Indonesia, Kyoto</em>)</li>
+            <li>• Angka/Tahun (<em>1970s, 3%, two thousand</em>)</li>
+            <li>• Istilah Ilmiah (<em>sphagnum, methane</em>)</li>
+          </ul>
+        </div>
+
+        <!-- Tier 2: Bunglon -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono-code font-black text-[10px] uppercase text-amber-900 bg-amber-300 px-2 py-0.5 rounded border border-slate-950">
+              TIER 2: SINONIM BUNGLON
+            </span>
+            <span class="text-lg">🦎</span>
+          </div>
+          <h3 class="font-heading font-bold text-slate-950 text-sm">Waspada Kata yang Berubah</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Kata kerja & kata sifat di soal hampir selalu <strong>dipelintir jadi sinonim</strong> di teks asli:
+          </p>
+          <ul class="text-[11px] text-slate-800 space-y-1 font-mono-code bg-amber-50 p-2.5 rounded-xl border border-amber-300">
+            <li>• Soal: <em>damaged</em> $\rightarrow$ Teks: <em>degraded</em></li>
+            <li>• Soal: <em>stop</em> $\rightarrow$ Teks: <em>halt, curb</em></li>
+            <li>• Soal: <em>danger</em> $\rightarrow$ Teks: <em>catastrophic</em></li>
+          </ul>
+        </div>
+
+        <!-- Tier 3: Sampah -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a] space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono-code font-black text-[10px] uppercase text-rose-900 bg-rose-200 px-2 py-0.5 rounded border border-slate-950">
+              TIER 3: KATA SAMPAH
+            </span>
+            <span class="text-lg">🗑️</span>
+          </div>
+          <h3 class="font-heading font-bold text-slate-950 text-sm">Abaikan, Jangan Dicari!</h3>
+          <p class="text-slate-600 leading-relaxed">
+            Frasa basa-basi soal yang ada di semua ujian. <strong>Jangan buang sedetik pun</strong> mencarinya di teks:
+          </p>
+          <ul class="text-[11px] text-slate-700 space-y-1 font-mono-code bg-rose-50 p-2.5 rounded-xl border border-rose-200 line-through opacity-75">
+            <li>• According to the passage...</li>
+            <li>• Which of the following is true...</li>
+            <li>• The author mentions that...</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BENTO ROW 1: 3 Langkah Asimetris (Span 7 + Span 5) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+      
+      <!-- Big Hero Bento Card: Langkah 1 & 2 (Span 7) -->
+      <div class="lg:col-span-7 bento-pop bg-gradient-to-br from-amber-100 via-amber-50 to-orange-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-44 h-44 bg-amber-300/40 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono-code text-[11px] font-black uppercase px-2.5 py-1 rounded-md bg-amber-400 text-slate-950 border border-slate-950">
+              CARA CEPAT CARI KALIMAT
+            </span>
+            <span class="text-xs font-bold text-amber-900 font-mono-code">⚡ HEMAT WAKTU 40 DETIK</span>
+          </div>
+
+          <h2 class="font-heading text-xl sm:text-2xl font-black text-slate-950 mb-3">
+            Gunakan Gerakan Mata Lift (Vertical Saccade)!
+          </h2>
+          
+          <p class="text-sm text-slate-700 leading-relaxed font-medium mb-5">
+            Setelah tahu kata jangkar dari soal atau pilihan, gunakan teknik mata ini agar tidak membaca seluruh cerita:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="bg-white/90 p-4 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+              <div class="text-indigo-600 font-black text-sm mb-1">1. Pandangan Turun ke Bawah</div>
+              <p class="text-slate-600 leading-snug">
+                Jatuhkan fokus mata lurus di tengah halaman dari atas ke bawah, seperti lift turun. <strong>Abaikan arti kata lain</strong>.
+              </p>
+            </div>
+            <div class="bg-white/90 p-4 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+              <div class="text-rose-600 font-black text-sm mb-1">2. Kunci Saat Menumbuk Kata</div>
+              <p class="text-slate-600 leading-snug">
+                Berhenti seketika saat mata menumbuk bentuk kata jangkar. Rata-rata kalimat target ditemukan dalam <strong>3–5 detik</strong>!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t-2 border-slate-950/20 flex items-center justify-between text-xs font-bold text-amber-950">
+          <span>Target ketemu tanpa baca 300 kata sebelumnya</span>
+          <span class="font-mono-code bg-white px-2 py-1 rounded border border-slate-950">Akurat & Cepat 🎯</span>
+        </div>
+      </div>
+
+      <!-- Accent Bento Card: Jendela 3 Kalimat (Span 5) -->
+      <div class="lg:col-span-5 bento-pop bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono-code text-[11px] font-black uppercase px-2.5 py-1 rounded-md bg-indigo-300 text-indigo-950 border border-slate-950">
+              LANGKAH KRUSIAL
+            </span>
+            <span class="text-2xl">🪟</span>
+          </div>
+
+          <h3 class="font-heading text-xl font-black text-slate-950 mb-2">
+            Buka "Jendela 3 Kalimat"
+          </h3>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium mb-4">
+            Banyak siswa salah jawab karena <strong>hanya membaca 1 kalimat yang ada kata kuncinya</strong>. Padahal syarat dan jebakannya ada tepat di kalimat sampingnya!
+          </p>
+
+          <div class="space-y-2 text-xs font-mono-code">
+            <div class="bg-white/90 p-2.5 rounded-xl border border-slate-950 flex items-center gap-2">
+              <span class="bg-slate-200 px-1.5 py-0.5 rounded text-[10px] font-bold">N-1</span>
+              <span class="text-slate-700">Kalimat Sebelum (Konteks Latar)</span>
+            </div>
+            <div class="bg-indigo-600 text-white p-2.5 rounded-xl border-2 border-slate-950 flex items-center gap-2 shadow-[2px_2px_0px_#0f172a]">
+              <span class="bg-amber-300 text-slate-950 px-1.5 py-0.5 rounded text-[10px] font-black">N</span>
+              <span class="font-bold">Kalimat dengan Kata Kunci</span>
+            </div>
+            <div class="bg-white/90 p-2.5 rounded-xl border border-slate-950 flex items-center gap-2">
+              <span class="bg-rose-200 text-rose-950 px-1.5 py-0.5 rounded text-[10px] font-bold">N+1</span>
+              <span class="text-slate-700">Kalimat Sesudah (Syarat: <em>However, Unless</em>)</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-[11px] font-semibold text-indigo-900 italic">
+          *Kalau di 3 kalimat itu tidak ada buktinya, langsung coret opsi tersebut!
+        </p>
+      </div>
+
+    </section>
+
+    <!-- BENTO ROW 2: 4 Jebakan Pengecoh (Asymmetric 4-Card Vibrant Colors) -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between px-1">
+        <h2 class="font-heading font-black text-slate-950 text-lg flex items-center gap-2">
+          <span>🚨</span> 4 Pola Jebakan Pilihan Ganda (Hafalkan Polanya!)
+        </h2>
+        <span class="text-xs font-mono-code font-bold text-slate-500 hidden sm:inline">Kenali cara pembuat soal memalsukan kalimat</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Trap 1: Rose Coral (Mutlak) -->
+        <div class="bento-pop bg-rose-50 rounded-2xl p-5 border-2 border-slate-950 flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono-code font-black uppercase text-rose-900 bg-rose-200 px-2 py-0.5 rounded border border-slate-950">
+                JEBAKAN 01
+              </span>
+              <span class="text-xl">📢</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-base mb-1">Kata Mutlak (Berlebihan)</h4>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Teks aslinya cuma bilang <em>"bisa membantu"</em> atau <em>"kadang-kadang"</em>, tapi di pilihan diubah jadi mutlak: <strong>always, all, completely, guarantees</strong>.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border-2 border-slate-950 text-[11px] font-mono-code text-rose-700">
+            Teks: "May reduce stress"<br>
+            Pilihan: "Guarantees cure" ❌
+          </div>
+        </div>
+
+        <!-- Trap 2: Cyber Tangerine (Sebab-Akibat) -->
+        <div class="bento-pop bg-amber-50 rounded-2xl p-5 border-2 border-slate-950 flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono-code font-black uppercase text-amber-950 bg-amber-200 px-2 py-0.5 rounded border border-slate-950">
+                JEBAKAN 02
+              </span>
+              <span class="text-xl">🔄</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-base mb-1">Sebab-Akibat Dibalik</h4>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Kedua katanya memang ada di teks, tapi panahnya diputar! Teks bilang A bikin B, pilihan malah bilang B yang memicu A.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border-2 border-slate-950 text-[11px] font-mono-code text-amber-800">
+            Teks: "Hujan bikin basah"<br>
+            Pilihan: "Basah bikin hujan" ❌
+          </div>
+        </div>
+
+        <!-- Trap 3: Lime Mint (Fakta Nyata Ga Ada di Teks) -->
+        <div class="bento-pop bg-emerald-50 rounded-2xl p-5 border-2 border-slate-950 flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono-code font-black uppercase text-emerald-950 bg-emerald-200 px-2 py-0.5 rounded border border-slate-950">
+                JEBAKAN 03
+              </span>
+              <span class="text-xl">👻</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-base mb-1">Fakta Nyata Tapi Ga Ada</h4>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Secara ilmu sains umum kalimatnya memang benar, <strong>tapi penulis sama sekali tidak menuliskannya di teks</strong>!
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border-2 border-slate-950 text-[11px] font-mono-code text-emerald-800">
+            Pilihan: "Pohon bikin O2"<br>
+            Di teks: Ga dibahas = SALAH ❌
+          </div>
+        </div>
+
+        <!-- Trap 4: Neon Lilac (Ekor Kalimat) -->
+        <div class="bento-pop bg-purple-50 rounded-2xl p-5 border-2 border-slate-950 flex flex-col justify-between space-y-3">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono-code font-black uppercase text-purple-950 bg-purple-200 px-2 py-0.5 rounded border border-slate-950">
+                JEBAKAN 04
+              </span>
+              <span class="text-xl">🪞</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-base mb-1">Pelesetan Ekor Kalimat</h4>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Awal kalimat dibuat mirip persis agar kamu merasa familiar, tapi 2 kata terakhir di ujung diganti kata yang berlawanan arti.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border-2 border-slate-950 text-[11px] font-mono-code text-purple-800">
+            Teks: "Water slows decay"<br>
+            Pilihan: "Water speeds decay" ❌
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BENTO ROW 3: Latihan Bedah Kalimat Interaktif (Asymmetric 7:5 Split) -->
+    <section class="bento-pop bg-white rounded-3xl p-6 sm:p-8 space-y-6">
+      
+      <div class="flex flex-wrap items-center justify-between border-b-2 border-slate-950 pb-4 gap-3">
+        <div>
+          <span class="font-mono-code text-xs font-black uppercase tracking-wider text-rose-600 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+            LATIHAN BEDAH FORENSIK
+          </span>
+          <h3 class="font-heading text-lg sm:text-2xl font-black text-slate-950 mt-1">
+            Kasus Nyata: Lahan Gambut Penyerap Karbon (Peatlands)
+          </h3>
+        </div>
+        <div class="text-xs font-mono-code font-bold text-slate-800 bg-amber-100 px-3 py-1.5 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]">
+          Klik pilihan di sebelah kanan untuk melihat kalimat bukti 📡
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Kolom Kiri: Teks Bacaan Asli (Span 7) -->
+        <div class="lg:col-span-7 bg-slate-50 border-2 border-slate-950 rounded-2xl p-5 sm:p-6 space-y-4 text-sm sm:text-[15px] leading-relaxed text-slate-800 select-text shadow-[3px_3px_0px_#0f172a]" id="sandbox-passage-container">
+          <p id="peat-p1" class="pacer-target-para p-3 rounded-xl border-2 border-transparent transition">
+            <span class="passage-sentence" id="s-p1">Covering only three percent of the planet's total land area, tropical and northern peatlands store nearly twice as much atmospheric carbon as all the world's forests combined.</span>
+            <span class="passage-sentence" id="s-p2">These wetland ecosystems build up thick layers of partially decayed organic moss over thousands of years because waterlogged soils create an oxygen-poor environment that prevents ordinary fungal decay.</span>
+            <span class="passage-sentence" id="s-p3">When water completely fills the soil pores, microbial decomposition slows almost to a standstill, locking carbon safely beneath the surface.</span>
+          </p>
+          <p id="peat-p2" class="pacer-target-para p-3 rounded-xl border-2 border-transparent transition">
+            <span class="passage-sentence" id="s-p4">However, industrial agriculture and plantation expansion frequently drain these wetlands by digging deep drainage canals.</span>
+            <span class="passage-sentence" id="s-p5">Once exposed to air, the dried peat reacts rapidly with oxygen and begins decomposing at an accelerated pace, releasing gigatons of stored carbon dioxide back into the atmosphere.</span>
+            <span class="passage-sentence" id="s-p6">Furthermore, dry peat soil is highly flammable and can smolder underground for months during dry seasons, producing toxic smoke that causes severe regional respiratory emergencies.</span>
+          </p>
+          <p id="peat-p3" class="pacer-target-para p-3 rounded-xl border-2 border-transparent transition">
+            <span class="passage-sentence" id="s-p7">Environmental scientists emphasize that rewetting degraded peatlands by blocking drainage canals is the most urgent step to halt catastrophic emissions.</span>
+            <span class="passage-sentence" id="s-p8">While restoring water levels stops immediate subterranean fires, complete ecological recovery of native moss species can take decades of careful hydrological management.</span>
+          </p>
+        </div>
+
+        <!-- Kolom Kanan: Pilihan Jawaban & Hasil Bedah (Span 5) -->
+        <div class="lg:col-span-5 space-y-3">
+          <span class="text-xs font-mono-code font-black text-slate-800 uppercase tracking-wider block">
+            PILIH PERNYATAAN UNTUK DIAUDIT:
+          </span>
+
+          <div class="space-y-2.5 text-xs sm:text-sm" id="sandbox-options-container">
+            
+            <button onclick="inspectStatement(0)" id="stmt-btn-0" class="w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-emerald-50 transition shadow-[2px_2px_0px_#0f172a] group">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-heading font-bold text-slate-950 group-hover:text-emerald-700">Pernyataan A</span>
+                <span class="text-[11px] font-mono-code font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">Audit Bukti →</span>
+              </div>
+              <p class="text-slate-700 text-xs leading-relaxed italic">
+                "Peatlands store twice as much carbon as forests because oxygen-poor soil stops rapid decay."
+              </p>
+            </button>
+
+            <button onclick="inspectStatement(1)" id="stmt-btn-1" class="w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-rose-50 transition shadow-[2px_2px_0px_#0f172a] group">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-heading font-bold text-slate-950 group-hover:text-rose-700">Pernyataan B</span>
+                <span class="text-[11px] font-mono-code font-bold text-rose-600 bg-rose-100 px-2 py-0.5 rounded border border-rose-300">Audit Bukti →</span>
+              </div>
+              <p class="text-slate-700 text-xs leading-relaxed italic">
+                "Blocking drainage canals guarantees that native moss species will recover completely within one year."
+              </p>
+            </button>
+
+            <button onclick="inspectStatement(2)" id="stmt-btn-2" class="w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-amber-50 transition shadow-[2px_2px_0px_#0f172a] group">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-heading font-bold text-slate-950 group-hover:text-amber-700">Pernyataan C</span>
+                <span class="text-[11px] font-mono-code font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Audit Bukti →</span>
+              </div>
+              <p class="text-slate-700 text-xs leading-relaxed italic">
+                "Subterranean smoke and respiratory emergencies are the direct cause of seasonal dry weather."
+              </p>
+            </button>
+
+            <button onclick="inspectStatement(3)" id="stmt-btn-3" class="w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-purple-50 transition shadow-[2px_2px_0px_#0f172a] group">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-heading font-bold text-slate-950 group-hover:text-purple-700">Pernyataan D</span>
+                <span class="text-[11px] font-mono-code font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded border border-purple-300">Audit Bukti →</span>
+              </div>
+              <p class="text-slate-700 text-xs leading-relaxed italic">
+                "Waterlogged soil accelerates bacterial decay, releasing all carbon into the atmosphere immediately."
+              </p>
+            </button>
+
+          </div>
+
+          <!-- Hasil Bedah Forensik Interaktif -->
+          <div id="sandbox-autopsy-card" class="hidden p-4 sm:p-5 rounded-2xl border-2 border-slate-950 space-y-2.5 transition-all shadow-[4px_4px_0px_#0f172a]">
+            <div class="flex items-center justify-between">
+              <span id="autopsy-status-badge" class="font-mono-code font-black text-[10px] uppercase px-2.5 py-1 rounded-md border border-slate-950">
+                STATUS VERIFIKASI
+              </span>
+              <span id="autopsy-trap-badge" class="font-mono-code text-[11px] font-bold text-slate-600">
+                POLA JEBAKAN
+              </span>
+            </div>
+            <p id="autopsy-explanation" class="text-xs sm:text-sm text-slate-900 leading-relaxed font-medium"></p>
+            <div id="autopsy-proof-quote" class="text-xs font-mono-code text-slate-800 bg-white p-3 rounded-xl border border-slate-950 shadow-[1px_1px_0px_#0f172a]"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Sliding Margin Scratchpad Drawer (Warna Terang) -->
+  <div id="scratchpad-drawer" class="hidden fixed top-0 right-0 h-full w-80 sm:w-96 bg-white shadow-2xl border-l-4 border-slate-950 z-50 flex flex-col p-6 space-y-4">
+    <div class="flex items-center justify-between border-b-2 border-slate-950 pb-3">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">📝</span>
+        <h3 class="font-heading font-bold text-slate-950 text-base">Catatan Pinggir (3 Kata)</h3>
+      </div>
+      <button onclick="toggleScratchpadDrawer()" class="text-slate-500 hover:text-black font-mono-code text-lg font-bold">✕</button>
+    </div>
+
+    <p class="text-xs text-slate-600 leading-relaxed font-medium">
+      Kunci pemahamanmu! Tulis <strong>3 kata inti</strong> per paragraf setelah membaca cepat agar tidak lupa saat menjawab:
+    </p>
+
+    <div class="space-y-4 overflow-y-auto flex-1 pr-1 text-xs font-mono-code">
+      <div>
+        <label class="text-[11px] font-bold text-indigo-900 block mb-1">Paragraf 1 (Fungsi Lahan Gambut):</label>
+        <input type="text" id="scan-note-p1" oninput="saveScratchpadNotes()" placeholder="e.g. 3% bumi, simpan karbon..." class="w-full bg-slate-50 border-2 border-slate-950 rounded-xl p-2.5 text-slate-900 focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-[2px_2px_0px_#0f172a]">
+      </div>
+      <div>
+        <label class="text-[11px] font-bold text-amber-900 block mb-1">Paragraf 2 (Kerusakan & Asap):</label>
+        <input type="text" id="scan-note-p2" oninput="saveScratchpadNotes()" placeholder="e.g. kanal kering, kebakaran..." class="w-full bg-slate-50 border-2 border-slate-950 rounded-xl p-2.5 text-slate-900 focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-[2px_2px_0px_#0f172a]">
+      </div>
+      <div>
+        <label class="text-[11px] font-bold text-emerald-900 block mb-1">Paragraf 3 (Solusi Pemulihan):</label>
+        <input type="text" id="scan-note-p3" oninput="saveScratchpadNotes()" placeholder="e.g. basahi lagi, puluhan tahun..." class="w-full bg-slate-50 border-2 border-slate-950 rounded-xl p-2.5 text-slate-900 focus:ring-2 focus:ring-emerald-500 focus:outline-none shadow-[2px_2px_0px_#0f172a]">
+      </div>
+    </div>
+
+    <div class="pt-3 border-t-2 border-slate-950 text-[11px] text-slate-600 flex justify-between items-center font-mono-code font-bold">
+      <span>Auto-saved lokal</span>
+      <button onclick="clearScratchpadNotes()" class="text-rose-600 hover:underline">Hapus Semua</button>
+    </div>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // UTILITY 1: BIONIC FIXATION ENGINE
+    // -------------------------------------------------------------
+    let isBionicActive = false;
+    const originalPassageHTML = document.getElementById("sandbox-passage-container").innerHTML;
+
+    window.toggleBionicReading = () => {
+      isBionicActive = !isBionicActive;
+      const btn = document.getElementById("btn-bionic-toggle");
+      const label = document.getElementById("bionic-status-label");
+      const container = document.getElementById("sandbox-passage-container");
+
+      if (isBionicActive) {
+        btn.className = "px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-amber-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]";
+        label.innerText = "Bionic Fixation: ON";
+        container.innerHTML = applyBionicMarkup(originalPassageHTML);
+      } else {
+        btn.className = "px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-white hover:bg-amber-100 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]";
+        label.innerText = "Bionic Fixation: OFF";
+        container.innerHTML = originalPassageHTML;
+      }
+    };
+
+    function applyBionicMarkup(html) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = html;
+
+      function bionifyTextNode(node) {
+        const text = node.nodeValue;
+        if (!text.trim()) return;
+
+        const words = text.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+
+        words.forEach(w => {
+          if (!w.trim() || w.length <= 1) {
+            frag.appendChild(document.createTextNode(w));
+          } else {
+            const fixLen = Math.ceil(w.length * 0.45);
+            const boldPart = w.slice(0, fixLen);
+            const restPart = w.slice(fixLen);
+
+            const span = document.createElement("span");
+            const b = document.createElement("b");
+            b.className = "bionic-fixation";
+            b.innerText = boldPart;
+            span.appendChild(b);
+            span.appendChild(document.createTextNode(restPart));
+            frag.appendChild(span);
+          }
+        });
+
+        node.parentNode.replaceChild(frag, node);
+      }
+
+      function walk(node) {
+        if (node.nodeType === 3) {
+          bionifyTextNode(node);
+        } else {
+          Array.from(node.childNodes).forEach(walk);
+        }
+      }
+
+      walk(tempDiv);
+      return tempDiv.innerHTML;
+    }
+
+    // -------------------------------------------------------------
+    // UTILITY 2: RHYTHM AUTO-PACER ENGINE
+    // -------------------------------------------------------------
+    let isPacerActive = false;
+    let pacerInterval = null;
+    let currentPacerParaIdx = 0;
+
+    window.toggleReadingPacer = () => {
+      isPacerActive = !isPacerActive;
+      const btn = document.getElementById("btn-pacer-toggle");
+      const icon = document.getElementById("pacer-play-icon");
+
+      if (isPacerActive) {
+        btn.className = "px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-indigo-500 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] animate-pulse";
+        icon.innerText = "⏸";
+        startPacerLoop();
+      } else {
+        btn.className = "px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1.5 bg-white hover:bg-indigo-100 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a]";
+        icon.innerText = "▶";
+        stopPacerLoop();
+      }
+    };
+
+    function startPacerLoop() {
+      stopPacerLoop();
+      const paras = document.querySelectorAll(".pacer-target-para");
+      if (!paras.length) return;
+
+      currentPacerParaIdx = 0;
+      highlightPacerParagraph(currentPacerParaIdx);
+
+      const wpm = parseInt(document.getElementById("pacer-wpm-select").value) || 240;
+      const intervalMs = (55 / wpm) * 60 * 1000;
+
+      pacerInterval = setInterval(() => {
+        currentPacerParaIdx++;
+        if (currentPacerParaIdx >= paras.length) {
+          currentPacerParaIdx = 0;
+        }
+        highlightPacerParagraph(currentPacerParaIdx);
+      }, intervalMs);
+    }
+
+    function stopPacerLoop() {
+      clearInterval(pacerInterval);
+      document.querySelectorAll(".pacer-focused-para").forEach(p => p.classList.remove("pacer-focused-para"));
+    }
+
+    function highlightPacerParagraph(idx) {
+      const paras = document.querySelectorAll(".pacer-target-para");
+      paras.forEach((p, i) => {
+        if (i === idx) {
+          p.classList.add("pacer-focused-para");
+          p.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          p.classList.remove("pacer-focused-para");
+        }
+      });
+    }
+
+    window.updatePacerWpm = () => {
+      if (isPacerActive) startPacerLoop();
+    };
+
+    // -------------------------------------------------------------
+    // UTILITY 3: MARGIN SCRATCHPAD STORAGE
+    // -------------------------------------------------------------
+    window.toggleScratchpadDrawer = () => {
+      document.getElementById("scratchpad-drawer").classList.toggle("hidden");
+    };
+
+    window.saveScratchpadNotes = () => {
+      const notes = {
+        p1: document.getElementById("scan-note-p1").value,
+        p2: document.getElementById("scan-note-p2").value,
+        p3: document.getElementById("scan-note-p3").value
+      };
+      localStorage.setItem("tka_scanner_notes", JSON.stringify(notes));
+    };
+
+    function loadScratchpadNotes() {
+      const saved = localStorage.getItem("tka_scanner_notes");
+      if (saved) {
+        try {
+          const notes = JSON.parse(saved);
+          document.getElementById("scan-note-p1").value = notes.p1 || "";
+          document.getElementById("scan-note-p2").value = notes.p2 || "";
+          document.getElementById("scan-note-p3").value = notes.p3 || "";
+        } catch (e) {}
+      }
+    }
+
+    window.clearScratchpadNotes = () => {
+      if (confirm("Hapus semua catatan pinggir?")) {
+        document.getElementById("scan-note-p1").value = "";
+        document.getElementById("scan-note-p2").value = "";
+        document.getElementById("scan-note-p3").value = "";
+        localStorage.removeItem("tka_scanner_notes");
+      }
+    };
+
+    // -------------------------------------------------------------
+    // INTERACTIVE AUTOPSY ENGINE (Audit Bukti Soal)
+    // -------------------------------------------------------------
+    const statementAutopsies = [
+      {
+        targetId: "s-p2",
+        status: "BENAR // SESUAI DENGAN TEKS",
+        statusClass: "bg-emerald-300 text-slate-950",
+        trap: "PARAFRASE TEPAT",
+        cardBg: "bg-emerald-100",
+        explanation: "Pernyataan ini 100% BENAR. Kalimat 2 dan 3 di paragraf 1 dengan jelas menyatakan bahwa tanah yang basah tergenang air membuat tanah minim oksigen, sehingga pembusukan lumut berhenti dan karbon terkunci rapat.",
+        quote: "Bukti di Teks: '...waterlogged soils create an oxygen-poor environment that prevents ordinary fungal decay... locking carbon safely beneath the surface.'"
+      },
+      {
+        targetId: "s-p8",
+        status: "SALAH // JEBAKAN KATA MUTLAK",
+        statusClass: "bg-rose-300 text-slate-950",
+        trap: "KATA MUTLAK (GUARANTEES / 1 TAHUN)",
+        cardBg: "bg-rose-100",
+        explanation: "Perhatikan kata 'guarantees' (menjamin pasti) dan batas waktu palsu 'within one year'. Teks aslinya di Kalimat 8 justru menyatakan pemulihan total jenis lumut asli membutuhkan waktu berpuluh-puluh tahun (decades), bukan selesai dalam 1 tahun!",
+        quote: "Bukti di Teks: 'While restoring water levels stops immediate subterranean fires, complete ecological recovery... can take decades...'"
+      },
+      {
+        targetId: "s-p6",
+        status: "SALAH // JEBAKAN SEBAB-AKIBAT KEBALIK",
+        statusClass: "bg-amber-300 text-slate-950",
+        trap: "ARAH SEBAB-AKIBAT DITUKAR",
+        cardBg: "bg-amber-100",
+        explanation: "Pilihan ini menukar posisi sebab dan akibat. Cuaca kemarau (dry season) yang menyebabkan tanah gambut kering terbakar dan memicu asap, bukan asapnya yang menyebabkan musim kemarau datang!",
+        quote: "Bukti di Teks: '...dry peat soil is highly flammable and can smolder underground for months during dry seasons...'"
+      },
+      {
+        targetId: "s-p3",
+        status: "SALAH // JEBAKAN PELESETAN KATA KERJA",
+        statusClass: "bg-purple-300 text-slate-950",
+        trap: "ARTI DIUBAH LAWAN KATA (ACCELERATES)",
+        cardBg: "bg-purple-100",
+        explanation: "Pilihan ini mengganti kata kerja asli 'slows almost to a standstill' (melambat sampai hampir berhenti) menjadi kata yang berlawanan arah, yaitu 'accelerates' (mempercepat). Ini membalikkan fakta sains yang tertulis di teks.",
+        quote: "Bukti di Teks: 'When water completely fills the soil pores, microbial decomposition slows almost to a standstill...'"
+      }
+    ];
+
+    window.inspectStatement = (idx) => {
+      const data = statementAutopsies[idx];
+
+      // Highlight active button
+      [0, 1, 2, 3].forEach(i => {
+        const btn = document.getElementById(`stmt-btn-${i}`);
+        if (i === idx) {
+          btn.className = "w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-indigo-200 transition shadow-[4px_4px_0px_#0f172a] transform -translate-y-0.5";
+        } else {
+          btn.className = "w-full text-left p-3.5 rounded-2xl border-2 border-slate-950 bg-white hover:bg-slate-50 transition shadow-[2px_2px_0px_#0f172a] group";
+        }
+      });
+
+      // Radar Spotlight on evidence sentence
+      document.querySelectorAll(".radar-spotlight").forEach(el => el.classList.remove("radar-spotlight"));
+      const targetEl = document.getElementById(data.targetId);
+      if (targetEl) {
+        targetEl.classList.add("radar-spotlight");
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Render diagnostic autopsy box
+      const card = document.getElementById("sandbox-autopsy-card");
+      card.classList.remove("hidden");
+      card.className = `p-4 sm:p-5 rounded-2xl border-2 border-slate-950 space-y-2.5 transition-all shadow-[4px_4px_0px_#0f172a] ${data.cardBg}`;
+
+      const badge = document.getElementById("autopsy-status-badge");
+      badge.innerText = data.status;
+      badge.className = `font-mono-code font-black text-[10px] uppercase px-2.5 py-1 rounded-md border border-slate-950 ${data.statusClass}`;
+
+      document.getElementById("autopsy-trap-badge").innerText = `POLA: ${data.trap}`;
+      document.getElementById("autopsy-explanation").innerText = data.explanation;
+      document.getElementById("autopsy-proof-quote").innerText = data.quote;
+    };
+
+    // Initialize state
+    loadScratchpadNotes();
+  </script>
+</body>
+</html>
