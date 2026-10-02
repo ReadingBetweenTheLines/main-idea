@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restatement Stepped-Drill Arena — 10 Diagnostic Drills (B1–B2+)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.14) 0px, transparent 45%),
+        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.14) 0px, transparent 40%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.14) 0px, transparent 45%),
+        radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.12) 0px, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.05) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+    }
+
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+
+    .bento-pop {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 2px solid #0f172a;
+      box-shadow: 4px 5px 0px #0f172a;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-pop:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 7px 9px 0px #0f172a;
+    }
+
+    .tier-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #0f172a;
+    }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-slate-950 px-4 sm:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-indigo-500 to-pink-500 flex items-center justify-center text-white font-black text-xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a]">
+          📈
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-mono-code font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-sky-100 text-sky-950 border border-sky-300">
+              TKA PHASE F // STEPPED DRILL
+            </span>
+            <span class="text-xs text-slate-500 font-semibold">Tingkat Kesulitan Bertingkat (Tier 1 $\rightarrow$ 5)</span>
+          </div>
+          <h1 class="text-base sm:text-xl font-heading font-black text-slate-950 tracking-tight">
+            Arena Latihan Restatement Bertingkat
+          </h1>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2 flex-wrap text-xs font-bold">
+        <a href="index.html" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          🏠 Home Hub
+        </a>
+        <a href="lesson-restatement.html" class="px-3 py-1.5 rounded-xl bg-sky-200 hover:bg-sky-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition flex items-center gap-1">
+          <span>📖</span> Teori Restatement
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Live Progress & Telemetry Dock -->
+  <section class="bg-indigo-50 border-b-2 border-slate-950 px-4 sm:px-8 py-2.5">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+      
+      <!-- Student Profile -->
+      <div class="flex items-center gap-2" id="student-identity-dock">
+        <div id="student-input-wrap" class="flex items-center gap-2">
+          <input type="text" id="student-name-input" placeholder="Nama Siswa..." class="bg-white border-2 border-slate-950 rounded-xl px-2.5 py-1 text-slate-900 text-xs font-mono-code focus:outline-none w-36 sm:w-44 shadow-[2px_2px_0px_#0f172a]">
+          <input type="text" id="student-class-input" placeholder="Kelas..." class="bg-white border-2 border-slate-950 rounded-xl px-2.5 py-1 text-slate-900 text-xs font-mono-code focus:outline-none w-20 shadow-[2px_2px_0px_#0f172a]">
+          <button onclick="saveStudentProfile()" class="bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold px-3 py-1 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition text-xs font-mono-code">
+            Kunci
+          </button>
+        </div>
+
+        <div id="student-locked-badge" class="hidden flex items-center gap-2 bg-white px-3 py-1 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] font-mono-code">
+          <span class="text-indigo-900 font-bold" id="badge-name-label">Siswa</span>
+          <span class="text-slate-400">|</span>
+          <span class="text-slate-600 font-bold" id="badge-class-label">Kelas</span>
+          <button onclick="editStudentProfile()" class="text-slate-400 hover:text-slate-900 text-[10px] underline ml-1">Ubah</button>
+        </div>
+      </div>
+
+      <!-- Cloud Sync & Telemetry Counters -->
+      <div class="flex items-center gap-3 flex-wrap">
+        <div id="cloud-sync-status" class="flex items-center gap-1.5 text-[11px] font-mono-code text-slate-700 bg-white px-2.5 py-1 rounded-xl border border-slate-950 shadow-[1px_1px_0px_#0f172a]">
+          <span class="w-2 h-2 rounded-full bg-slate-400" id="sync-led"></span>
+          <span id="sync-status-text">Sheets: Siaga</span>
+        </div>
+
+        <div class="flex items-center gap-2 font-mono-code">
+          <span id="answered-count-badge" class="bg-white px-2.5 py-1 rounded-xl border-2 border-slate-950 font-bold shadow-[2px_2px_0px_#0f172a]">
+            0 / 10 Terjawab
+          </span>
+          <button onclick="calculateFinalScore()" class="px-4 py-1.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition cursor-pointer">
+            ✓ Kumpulkan & Periksa Nilai
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Difficulty Progression Legend Banner -->
+  <section class="bg-white border-b-2 border-slate-950 px-4 sm:px-8 py-2">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-mono-code font-bold overflow-x-auto gap-4">
+      <span class="text-slate-500 whitespace-nowrap">PROGRESSI KESULITAN:</span>
+      <div class="flex items-center gap-2 whitespace-nowrap">
+        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300">Q1–Q2: Tier 1 (B1 Dasar)</span>
+        <span>→</span>
+        <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 border border-sky-300">Q3–Q4: Tier 2 (B1+ Menengah)</span>
+        <span>→</span>
+        <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">Q5–Q6: Tier 3 (B2 Standar)</span>
+        <span>→</span>
+        <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-900 border border-purple-300">Q7–Q8: Tier 4 (B2+ Kompleks)</span>
+        <span>→</span>
+        <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-900 border border-rose-300">Q9–Q10: Tier 5 (TKA Mahir)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Score Banner & Google Sheets Sync Receipt -->
+  <div id="score-report-banner" class="hidden max-w-7xl mx-auto px-4 sm:px-8 pt-6 w-full">
+    <div class="bento-pop bg-emerald-100 p-6 rounded-3xl border-2 border-slate-950 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-slate-950/20 pb-3">
+        <div>
+          <span class="font-mono-code font-black text-xs uppercase px-2.5 py-1 rounded-md bg-emerald-300 text-slate-950 border border-slate-950">
+            HASIL EVALUASI RESTATEMENT
+          </span>
+          <h3 class="font-heading font-black text-slate-950 text-xl sm:text-2xl mt-1" id="report-student-title">
+            Laporan Hasil Siswa
+          </h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="downloadCSVReport()" class="bg-white hover:bg-slate-50 text-slate-950 font-bold font-mono-code text-xs px-3 py-1.5 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition flex items-center gap-1.5">
+            <span>📊</span> Backup CSV
+          </button>
+          <button onclick="resetExerciseSession()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold font-mono-code text-xs px-3 py-1.5 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+            🔄 Ulangi Latihan
+          </button>
+        </div>
+      </div>
+
+      <!-- Cloud Transmission Banner -->
+      <div id="sheets-receipt-box" class="p-3 rounded-2xl border-2 border-slate-950 bg-white text-xs font-mono-code flex items-center justify-between shadow-[2px_2px_0px_#0f172a]">
+        <span id="sheets-receipt-text">🛰️ Transmisi Google Sheets: Menyiapkan pengiriman data...</span>
+      </div>
+
+      <div class="flex flex-wrap items-baseline gap-4">
+        <div class="text-4xl sm:text-5xl font-black font-heading text-slate-950" id="final-score-val">0 / 100</div>
+        <div class="text-sm font-semibold text-slate-700" id="final-verdict-msg">Pemeriksaan selesai.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 10-Question Arena Grid -->
+  <main class="max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6 flex-1" id="questions-arena-container">
+    <!-- Questions Injected Dynamically -->
+  </main>
+
+  <script>
+    // =============================================================
+    // CONFIGURATION: GOOGLE APPS SCRIPT WEB APP ENDPOINT
+    // =============================================================
+    // Ganti URL berikut dengan Web App URL dari spreadsheet Anda:
+    const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwI83jTlNPI82Q6HQWHn33sBEItUqa0xhZ2jOglVxtCB-5apFYv7fKjFCFFhiEhHyw/exec";
+
+    // -------------------------------------------------------------
+    // STEPPED DIFFICULTY QUESTION BANK (TIER 1 -> TIER 5)
+    // BALANCED ANSWER KEYS: Q1:B, Q2:D, Q3:A, Q4:E, Q5:C, Q6:A, Q7:D, Q8:B, Q9:E, Q10:C
+    // -------------------------------------------------------------
+    const questionsDatabase = [
+      // ----------------- TIER 1: B1 DASAR (Q1 - Q2) -----------------
+      {
+        id: 1,
+        tier: 1,
+        tierName: "TIER 1: B1 DASAR // AKTIF-PASIF LANGSUNG",
+        tierBadgeClass: "bg-emerald-200 text-emerald-950 border-emerald-400",
+        type: "Simple Active to Passive",
+        targetSentence: "The librarian sorted hundreds of new science books yesterday afternoon.",
+        translation: "Artinya: 'Pustakawan menyortir ratusan buku sains baru kemarin siang.'",
+        correctKey: "B",
+        options: [
+          { key: "A", text: "Hundreds of new science books completely replaced the school librarian yesterday." },
+          { key: "B", text: "Hundreds of new science books were organized by the librarian yesterday afternoon." },
+          { key: "C", text: "The librarian refused to touch any science books because they were too old." },
+          { key: "D", text: "Science students sorted the librarian into different categories yesterday afternoon." },
+          { key: "E", text: "Yesterday afternoon, new science books were permanently banned from the library." }
+        ],
+        explanation: "Kunci B benar: Bentuk aktif sederhana 'The librarian sorted books' diubah pasif menjadi 'books were organized by the librarian'. Pilihan A memutarbalikkan subjek-objek, C dan E membuat cerita palsu."
+      },
+      {
+        id: 2,
+        tier: 1,
+        tierName: "TIER 1: B1 DASAR // SEBAB-AKIBAT LANGSUNG",
+        tierBadgeClass: "bg-emerald-200 text-emerald-950 border-emerald-400",
+        type: "Direct Cause and Effect",
+        targetSentence: "Heavy rain flooded the school yard, so the morning sports competition was canceled.",
+        translation: "Artinya: 'Hujan lebat membanjiri halaman sekolah, sehingga lomba olahraga pagi dibatalkan.'",
+        correctKey: "D",
+        options: [
+          { key: "A", text: "The morning sports match caused heavy rain to fall all over the school yard." },
+          { key: "B", text: "Heavy rain guarantees that school sports competitions will never happen again." },
+          { key: "C", text: "Students canceled the heavy rain so they could use the dry school field." },
+          { key: "D", text: "Because heavy rain covered the school field with water, the morning athletic event was called off." },
+          { key: "E", text: "The sports competition continued inside the flooded school yard despite the storm." }
+        ],
+        explanation: "Kunci D benar: Hubungan sebab-akibat 'Heavy rain flooded... so competition was canceled' diparafrase sepadan dengan 'Because heavy rain covered the field... the athletic event was called off'. Pilihan A membalik panah kausalitas."
+      },
+
+      // ----------------- TIER 2: B1+ MENENGAH (Q3 - Q4) -----------------
+      {
+        id: 3,
+        tier: 2,
+        tierName: "TIER 2: B1+ MENENGAH // KONTRAS & DESPITE",
+        tierBadgeClass: "bg-sky-200 text-sky-950 border-sky-400",
+        type: "Concession & Contrast (Although / Despite)",
+        targetSentence: "Although smartphones are useful for quick research, excessive nighttime usage often ruins student sleep schedules.",
+        translation: "Artinya: 'Meskipun ponsel pintar berguna untuk riset cepat, penggunaan berlebihan di malam hari sering merusak jadwal tidur siswa.'",
+        correctKey: "A",
+        options: [
+          { key: "A", text: "Despite their benefits for rapid research, spending too much time on smartphones at night frequently harms learners' rest routines." },
+          { key: "B", text: "Smartphones completely destroy every student's brain and guarantee zero hours of sleep." },
+          { key: "C", text: "Because students sleep so well at night, they avoid using smartphones for quick school research." },
+          { key: "D", text: "Quick research is banned in schools because smartphones produce no educational benefits." },
+          { key: "E", text: "Nighttime phone use improves sleep schedules because students read online encyclopedias." }
+        ],
+        explanation: "Kunci A benar: Hubungan 'Although useful... nighttime usage ruins sleep' diubah presisi memakai 'Despite their benefits... spending too much time frequently harms rest routines'. Pilihan B memakai kata mutlak berlebihan ('completely destroy', 'guarantee zero')."
+      },
+      {
+        id: 4,
+        tier: 2,
+        tierName: "TIER 2: B1+ MENENGAH // HEDGING VS MUTLAK",
+        tierBadgeClass: "bg-sky-200 text-sky-950 border-sky-400",
+        type: "Hedging Alignment",
+        targetSentence: "Adding fresh vegetables to daily meals tends to reduce the risk of certain digestive problems.",
+        translation: "Artinya: 'Menambahkan sayuran segar ke makanan sehari-hari cenderung mengurangi risiko masalah pencernaan tertentu.'",
+        correctKey: "E",
+        options: [
+          { key: "A", text: "Eating fresh vegetables guarantees that a person will never experience any stomach illness." },
+          { key: "B", text: "Digestive problems are completely cured within five minutes by touching fresh vegetables." },
+          { key: "C", text: "Fresh vegetables are the direct cause of serious digestive disorders in all teenagers." },
+          { key: "D", text: "Only expensive imported vegetables can protect human digestion from harmful bacteria." },
+          { key: "E", text: "Eating fresh vegetables regularly is likely to lower the probability of developing specific stomach issues." }
+        ],
+        explanation: "Kunci E benar: Kata peredam 'tends to reduce' (cenderung mengurangi) diparafrase tetap moderat menjadi 'is likely to lower the probability'. Opsi A dan B terjebak kata mutlak sombong ('guarantees', 'never', 'completely cured')."
+      },
+
+      // ----------------- TIER 3: B2 STANDAR (Q5 - Q6) -----------------
+      {
+        id: 5,
+        tier: 3,
+        tierName: "TIER 3: B2 STANDAR // KONDISIONAL UNLESS",
+        tierBadgeClass: "bg-amber-200 text-amber-950 border-amber-400",
+        type: "Negative Conditional to Positive Prerequisite",
+        targetSentence: "City air quality cannot improve noticeably unless regional governments strictly restrict smoke from old diesel vehicles.",
+        translation: "Artinya: 'Kualitas udara kota tidak dapat membaik secara nyata kecuali pemerintah daerah membatasi asap dari kendaraan diesel tua secara ketat.'",
+        correctKey: "C",
+        options: [
+          { key: "A", text: "City air quality improves naturally even when old diesel vehicles emit unlimited toxic smoke." },
+          { key: "B", text: "Old diesel trucks are bought by regional governments to clean polluted urban air." },
+          { key: "C", text: "Rigorous government limits on exhaust from aging diesel vehicles are necessary for measurable improvements in urban air." },
+          { key: "D", text: "Restricting diesel vehicles guarantees that city air will become one hundred percent pure mountain oxygen." },
+          { key: "E", text: "Unless citizens stop breathing city air, diesel engines will continue to run without fuel." }
+        ],
+        explanation: "Kunci C benar: Pola syarat negatif 'cannot improve unless governments restrict' diubah menjadi prasyarat positif 'government limits are necessary for measurable improvements'. Opsi D memakai klaim 100% mutlak."
+      },
+      {
+        id: 6,
+        tier: 3,
+        tierName: "TIER 3: B2 STANDAR // PASIF KOMPLEKS KE AKTIF",
+        tierBadgeClass: "bg-amber-200 text-amber-950 border-amber-400",
+        type: "Multi-Clause Passive to Active",
+        targetSentence: "An emergency shelter was quickly assembled by disaster response teams to protect flood victims from hypothermia.",
+        translation: "Artinya: 'Sebuah tenda darurat segera dirakit oleh tim tanggap bencana untuk melindungi korban banjir dari hipotermia.'",
+        correctKey: "A",
+        options: [
+          { key: "A", text: "Disaster response personnel swiftly set up an emergency refuge so that flood survivors would be shielded from freezing temperatures." },
+          { key: "B", text: "Flood victims built an emergency shelter to rescue disaster teams from hypothermia." },
+          { key: "C", text: "Hypothermia forced emergency teams to flood the newly built disaster shelter." },
+          { key: "D", text: "Emergency shelters were permanently banned in flood zones to test the cold endurance of victims." },
+          { key: "E", text: "Disaster response teams refused to assemble tents because flood victims requested luxury hotels." }
+        ],
+        explanation: "Kunci A benar: Pasif 'shelter was assembled by teams to protect victims' diubah aktif dengan sinonim pas: 'personnel swiftly set up refuge so that survivors would be shielded'. Pilihan B menukar pelaku dengan korban."
+      },
+
+      // ----------------- TIER 4: B2+ KOMPLEKS (Q7 - Q8) -----------------
+      {
+        id: 7,
+        tier: 4,
+        tierName: "TIER 4: B2+ KOMPLEKS // NOMINALISASI & KAUSALITAS TERBALIK",
+        tierBadgeClass: "bg-purple-200 text-purple-950 border-purple-400",
+        type: "Nominalized Effect to Cause",
+        targetSentence: "Coastal fish populations plummeted rapidly following the untreated chemical runoff discharged by industrial factories.",
+        translation: "Artinya: 'Populasi ikan pesisir merosot tajam menyusul pembuangan limbah kimia tanpa olah oleh pabrik-pabrik industri.'",
+        correctKey: "D",
+        options: [
+          { key: "A", text: "Dying fish schools caused industrial factories to begin dumping untreated chemicals into coastal waters." },
+          { key: "B", text: "Industrial factories completely eliminated all water runoff to protect fish from overpopulation." },
+          { key: "C", text: "Chemical runoff guarantees that coastal marine animals will grow twice as fast." },
+          { key: "D", text: "The sharp decline in marine fish stocks along the coast was triggered by the release of raw manufacturing chemicals." },
+          { key: "E", text: "Coastal fish migrated toward factories because untreated chemical waste provided rich nutrition." }
+        ],
+        explanation: "Kunci D benar: Kata kerja 'plummeted following runoff' dinominalisasi menjadi 'sharp decline in fish stocks was triggered by the release of raw chemicals'. Pilihan A membalik kausalitas (ikan mati memicu pabrik buang limbah)."
+      },
+      {
+        id: 8,
+        tier: 4,
+        tierName: "TIER 4: B2+ KOMPLEKS // HEDGING AKADEMIK TINGKAT TINGGI",
+        tierBadgeClass: "bg-purple-200 text-purple-950 border-purple-400",
+        type: "Nuanced Hedging Alignment",
+        targetSentence: "Researchers observed that prolonged social isolation is frequently correlated with heightened cognitive fatigue in older adults.",
+        translation: "Artinya: 'Para peneliti mengamati bahwa isolasi sosial berkepanjangan seringkali berkorelasi dengan meningkatnya kelelahan kognitif pada lansia.'",
+        correctKey: "B",
+        options: [
+          { key: "A", text: "Heightened cognitive fatigue is the sole biological reason why senior citizens choose to live in total isolation." },
+          { key: "B", text: "Elderly individuals who experience extended periods of isolation often demonstrate an increased likelihood of mental exhaustion." },
+          { key: "C", text: "Social isolation guarantees that every single elderly person will suffer total and irreversible brain death." },
+          { key: "D", text: "Older adults who socialize every day permanently lose the ability to feel any physical tiredness." },
+          { key: "E", text: "Researchers proved that cognitive fatigue can only be cured by isolating patients in silent chambers." }
+        ],
+        explanation: "Kunci B benar: Makna 'frequently correlated with heightened fatigue' diparafrase presisi: 'often demonstrate an increased likelihood of mental exhaustion'. Pilihan C mutlak ekstrem ('guarantees', 'every single', 'irreversible brain death')."
+      },
+
+      // ----------------- TIER 5: TKA MAHIR (Q9 - Q10) -----------------
+      {
+        id: 9,
+        tier: 5,
+        tierName: "TIER 5: TKA MAHIR // KLAUSA GANDA DENGAN PENGECEK TERTUNDA",
+        tierBadgeClass: "bg-rose-200 text-rose-950 border-rose-400",
+        type: "Compound Clause with Delayed Qualification",
+        targetSentence: "While aeroponic vertical farming cuts agricultural water consumption by ninety percent, initial facility construction demands substantial capital investment that deters smallholder farmers.",
+        translation: "Artinya: 'Meskipun pertanian vertikal aeroponik memangkas konsumsi air pertanian hingga sembilan puluh persen, pembangunan fasilitas awal menuntut investasi modal besar yang membuat petani kecil enggan.'",
+        correctKey: "E",
+        options: [
+          { key: "A", text: "Smallholder farmers refuse to use water because vertical aeroponic facilities are entirely free to construct." },
+          { key: "B", text: "Ninety percent of global water supplies are wasted whenever smallholder farmers invest in vertical towers." },
+          { key: "C", text: "Aeroponic farming guarantees that smallholder farmers will become billionaires within their first month of harvest." },
+          { key: "D", text: "Because vertical farming consumes more water than soil agriculture, financial banks decline all facility loans." },
+          { key: "E", text: "Steep upfront installation expenses discourage small-scale agriculturalists from adopting vertical aeroponics, notwithstanding its tremendous water-saving efficiency." }
+        ],
+        explanation: "Kunci E benar: Bentuk kontras 'While... water cuts, initial demands capital... deters' diparafrase menjadi 'Steep upfront expenses discourage small-scale agriculturalists, notwithstanding its water-saving efficiency'. Pilihan A dan D memalsukan fakta sains bacaan."
+      },
+      {
+        id: 10,
+        tier: 5,
+        tierName: "TIER 5: TKA MAHIR // DUAL CONDITION DENGAN REVERSED REASONING",
+        tierBadgeClass: "bg-rose-200 text-rose-950 border-rose-400",
+        type: "Dual Condition Negative Inversion",
+        targetSentence: "Algorithmic screening tools cannot ensure equitable hiring outcomes as long as historical training datasets reflect entrenched human demographic disparities.",
+        translation: "Artinya: 'Alat penyaring algoritmik tidak dapat menjamin hasil perekrutan yang adil selama dataset pelatihan historis mencerminkan disparitas demografis manusia yang mengakar.'",
+        correctKey: "C",
+        options: [
+          { key: "A", text: "Fair recruitment is fully guaranteed by artificial intelligence algorithms regardless of flaws in historical data." },
+          { key: "B", text: "Entrenched demographic disparities are eliminated instantly once corporations fire human human resource recruiters." },
+          { key: "C", text: "The achievement of unbiased recruitment via automated filters remains unattainable as long as past training data embodies deep-seated demographic imbalances." },
+          { key: "D", text: "Historical datasets force all hiring algorithms to reject every candidate holding college credentials." },
+          { key: "E", text: "Algorithmic hiring tools have successfully eradicated all forms of human bias across every corporate industry." }
+        ],
+        explanation: "Kunci C benar: Klausa bersyarat 'cannot ensure equitable outcomes as long as historical data reflects disparities' diparafrase setara 'unbiased recruitment remains unattainable as long as past training data embodies deep-seated imbalances'. Pilihan A dan E bertolak belakang 180 derajat."
+      }
+    ];
+
+    // -------------------------------------------------------------
+    // LOCAL STORAGE & SESSION STATE
+    // -------------------------------------------------------------
+    let userSession = {
+      studentName: "",
+      studentClass: "",
+      answers: {},
+      isCompleted: false,
+      totalScore: 0,
+      timestamp: ""
+    };
+
+    function initExerciseSession() {
+      const saved = localStorage.getItem("tka_restatement_stepped_session");
+      if (saved) {
+        try {
+          userSession = JSON.parse(saved);
+          if (userSession.studentName) renderLockedProfile();
+        } catch (e) {}
+      }
+
+      renderQuestionsDOM();
+
+      if (userSession.answers) {
+        for (const [qId, val] of Object.entries(userSession.answers)) {
+          const radio = document.querySelector(`input[name="${qId}"][value="${val}"]`);
+          if (radio) radio.checked = true;
+        }
+      }
+
+      updateAnsweredBadge();
+
+      if (userSession.isCompleted) {
+        evaluateExercise(false);
+      }
+    }
+
+    function saveExerciseSession() {
+      localStorage.setItem("tka_restatement_stepped_session", JSON.stringify(userSession));
+      updateAnsweredBadge();
+    }
+
+    window.saveStudentProfile = () => {
+      const name = document.getElementById("student-name-input").value.trim();
+      const cls = document.getElementById("student-class-input").value.trim();
+      if (!name) {
+        alert("Harap masukkan nama siswa.");
+        return;
+      }
+      userSession.studentName = name;
+      userSession.studentClass = cls || "TKA-F";
+      saveExerciseSession();
+      renderLockedProfile();
+    };
+
+    window.editStudentProfile = () => {
+      if (userSession.isCompleted) {
+        alert("Latihan sudah dikumpulkan dan dinilai.");
+        return;
+      }
+      document.getElementById("student-input-wrap").classList.remove("hidden");
+      document.getElementById("student-locked-badge").classList.add("hidden");
+    };
+
+    function renderLockedProfile() {
+      document.getElementById("student-input-wrap").classList.add("hidden");
+      document.getElementById("student-locked-badge").classList.remove("hidden");
+      document.getElementById("badge-name-label").innerText = userSession.studentName;
+      document.getElementById("badge-class-label").innerText = userSession.studentClass || "TKA-F";
+    }
+
+    // -------------------------------------------------------------
+    // RENDER QUESTIONS DOM
+    // -------------------------------------------------------------
+    function renderQuestionsDOM() {
+      const container = document.getElementById("questions-arena-container");
+      container.innerHTML = "";
+
+      questionsDatabase.forEach((q) => {
+        const card = document.createElement("section");
+        card.className = "bento-pop rounded-3xl p-6 sm:p-7 border-2 border-slate-950 space-y-4 bg-white";
+        card.id = `card-q${q.id}`;
+
+        let optionsHTML = "";
+        q.options.forEach((opt) => {
+          optionsHTML += `
+            <label class="flex items-start gap-3 p-3 rounded-2xl border-2 border-slate-200 hover:border-slate-950 hover:bg-slate-50 transition cursor-pointer group">
+              <input type="radio" name="q${q.id}" value="${opt.key}" class="mt-0.5 accent-indigo-600 cursor-pointer">
+              <span class="text-xs sm:text-sm font-mono-code font-bold text-slate-800 leading-relaxed">
+                <strong class="text-indigo-600 mr-1">${opt.key}.</strong> ${opt.text}
+              </span>
+            </label>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="tier-badge ${q.tierBadgeClass}">
+                ${q.tierName}
+              </span>
+            </div>
+            <span class="text-xs font-mono-code font-bold text-slate-400">10 Poin</span>
+          </div>
+
+          <div class="bg-indigo-50/70 border-2 border-slate-950 rounded-2xl p-4 sm:p-5 space-y-1.5">
+            <span class="text-[10px] font-mono-code font-bold text-indigo-900 uppercase block">Kalimat Asli (Target Sentence):</span>
+            <p class="font-heading font-black text-slate-950 text-sm sm:text-base leading-snug">
+              "${q.targetSentence}"
+            </p>
+            <p class="text-xs text-slate-600 italic font-medium">
+              ${q.translation}
+            </p>
+          </div>
+
+          <div class="space-y-1">
+            <span class="text-xs font-mono-code font-bold text-slate-700 block mb-2">
+              Pilih kalimat parafrase yang paling tepat (A–E):
+            </span>
+            <div class="space-y-2.5">
+              ${optionsHTML}
+            </div>
+          </div>
+
+          <div id="fb-q${q.id}" class="hidden p-3.5 rounded-2xl border-2 border-slate-950 text-xs font-mono-code space-y-1"></div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // Attach radio listeners
+      document.querySelectorAll("input[type='radio']").forEach(input => {
+        input.addEventListener("change", (e) => {
+          if (userSession.isCompleted) return;
+          userSession.answers = userSession.answers || {};
+          userSession.answers[e.target.name] = e.target.value;
+          saveExerciseSession();
+        });
+      });
+    }
+
+    function updateAnsweredBadge() {
+      let count = 0;
+      for (let i = 1; i <= 10; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`)) count++;
+      }
+      document.getElementById("answered-count-badge").innerText = `${count} / 10 Terjawab`;
+    }
+
+    // -------------------------------------------------------------
+    // SCORING & GOOGLE SHEETS DISPATCH
+    // -------------------------------------------------------------
+    function calculateFinalScore() {
+      let count = 0;
+      for (let i = 1; i <= 10; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`)) count++;
+      }
+
+      if (count < 10) {
+        if (!confirm(`Kamu baru menjawab ${count} dari 10 soal. Tetap ingin mengumpulkan dan memeriksa nilai?`)) {
+          return;
+        }
+      }
+
+      evaluateExercise(true);
+    }
+
+    function evaluateExercise(triggerCloudTransmission = true) {
+      let score = 0;
+      let tierCounts = { tier1: 0, tier2: 0, tier3: 0, tier4: 0, tier5: 0 };
+
+      questionsDatabase.forEach(q => {
+        const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+        const fb = document.getElementById(`fb-q${q.id}`);
+        fb.classList.remove("hidden");
+
+        if (selected && selected.value === q.correctKey) {
+          score += 10;
+          tierCounts[`tier${q.tier}`]++;
+          fb.className = "p-3.5 rounded-2xl border-2 border-slate-950 text-xs font-mono-code bg-emerald-100 text-emerald-950 shadow-[2px_2px_0px_#0f172a]";
+          fb.innerHTML = `<strong>✓ BENAR (+10 Poin):</strong> ${q.explanation}`;
+        } else {
+          fb.className = "p-3.5 rounded-2xl border-2 border-slate-950 text-xs font-mono-code bg-rose-100 text-rose-950 shadow-[2px_2px_0px_#0f172a]";
+          fb.innerHTML = `<strong>✕ SALAH (0 Poin):</strong> Kunci jawaban adalah <strong>[${q.correctKey}]</strong>. ${q.explanation}`;
+        }
+      });
+
+      userSession.isCompleted = true;
+      userSession.totalScore = score;
+      userSession.timestamp = userSession.timestamp || new Date().toLocaleString("id-ID");
+      saveExerciseSession();
+
+      // Show summary banner
+      const banner = document.getElementById("score-report-banner");
+      banner.classList.remove("hidden");
+      document.getElementById("final-score-val").innerText = `${score} / 100`;
+      document.getElementById("report-student-title").innerText = `Laporan Latihan: ${userSession.studentName || 'Anonim'} (${userSession.studentClass || 'TKA-F'})`;
+
+      const msg = document.getElementById("final-verdict-msg");
+      if (score >= 80) {
+        msg.innerText = "Mastery Level: Kemampuan restatement dan deteksi jebakanmu sangat tajam hingga Tier 5!";
+      } else if (score >= 60) {
+        msg.innerText = "Cukup Bagus. Kamu menguasai Tier 1–3, namun perlu lebih berhati-hati pada klausa bertingkat Tier 4–5.";
+      } else {
+        msg.innerText = "Perlu Latihan Lagi. Pelajari kembali materi peredam (hedging) dan arah sebab-akibat di lesson-restatement.html.";
+      }
+
+      if (triggerCloudTransmission) {
+        transmitRestatementToSheets(score, tierCounts);
+      }
+
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    async function transmitRestatementToSheets(finalScore, tierCounts) {
+      const syncLed = document.getElementById("sync-led");
+      const syncStatus = document.getElementById("sync-status-text");
+      const receiptText = document.getElementById("sheets-receipt-text");
+
+      syncLed.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+      syncStatus.innerText = "Sheets: Mengirim...";
+      receiptText.innerHTML = "🛰️ Mengirimkan rekaman diagnostik berjenjang ke Google Spreadsheet server...";
+
+      const payload = {
+        arena: "Restatement Stepped Arena (Tier 1–5)",
+        studentName: userSession.studentName || "Anonim",
+        studentClass: userSession.studentClass || "TKA-F",
+        totalScore: finalScore,
+        accuracy: `${finalScore}%`,
+        timestamp: userSession.timestamp,
+        tierBreakdown: tierCounts,
+        answers: userSession.answers || {}
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        syncLed.className = "w-2 h-2 rounded-full bg-emerald-500";
+        syncStatus.innerText = "Sheets: Tercatat ✓";
+        receiptText.innerHTML = `✓ <strong>TERCATAT:</strong> Skor ${finalScore}/100 untuk siswa <em>${userSession.studentName || 'Anonim'}</em> berhasil tersimpan secara otomatis di Google Sheets.`;
+      } catch (err) {
+        syncLed.className = "w-2 h-2 rounded-full bg-rose-500";
+        syncStatus.innerText = "Sheets: Offline";
+        receiptText.innerHTML = `⚠️ Gagal menghubungi server Google Sheets. Gunakan tombol <strong>Backup CSV</strong> untuk mengunduh rekaman nilai.`;
+      }
+    }
+
+    window.downloadCSVReport = () => {
+      let csv = "Nama Siswa,Kelas,Waktu,Skor Akhir,Akurasi,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10\n";
+      const a = userSession.answers || {};
+      csv += `"${userSession.studentName}","${userSession.studentClass}","${userSession.timestamp}",${userSession.totalScore},"${userSession.totalScore}%",`;
+      csv += `"${a.q1 || '-'}","${a.q2 || '-'}","${a.q3 || '-'}","${a.q4 || '-'}","${a.q5 || '-'}","${a.q6 || '-'}","${a.q7 || '-'}","${a.q8 || '-'}","${a.q9 || '-'}","${a.q10 || '-'}"\n`;
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Restatement_Stepped_${(userSession.studentName || 'Student').replace(/\s+/g, '_')}.csv`;
+      link.click();
+      URL.revokeObjectURL(link);
+    };
+
+    window.resetExerciseSession = () => {
+      if (confirm("Reset seluruh jawaban dan mulai ulang latihan ini dari awal?")) {
+        localStorage.removeItem("tka_restatement_stepped_session");
+        userSession = {
+          studentName: "",
+          studentClass: "",
+          answers: {},
+          isCompleted: false,
+          totalScore: 0,
+          timestamp: ""
+        };
+        location.reload();
+      }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initExerciseSession();
+    });
+  </script>
+</body>
+</html>
