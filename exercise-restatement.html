@@ -78,6 +78,12 @@
         <a href="lesson-restatement.html" class="px-3 py-1.5 rounded-xl bg-sky-200 hover:bg-sky-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition flex items-center gap-1">
           <span>📖</span> Teori Restatement
         </a>
+        <a href="forensic-arena.html" class="px-3 py-1.5 rounded-xl bg-purple-200 hover:bg-purple-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          ⚖️️ Forensic Arena
+        </a>
+        <a href="exam.html" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          📝 Ujian Mandiri
+        </a>
       </nav>
 
     </div>
@@ -186,11 +192,10 @@
     // =============================================================
     // CONFIGURATION: GOOGLE APPS SCRIPT WEB APP ENDPOINT
     // =============================================================
-    // Ganti URL berikut dengan Web App URL dari spreadsheet Anda:
     const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwI83jTlNPI82Q6HQWHn33sBEItUqa0xhZ2jOglVxtCB-5apFYv7fKjFCFFhiEhHyw/exec";
 
     // -------------------------------------------------------------
-    // STEPPED DIFFICULTY QUESTION BANK (TIER 1 -> TIER 5)
+    // STEPPED DIFFICULTY QUESTION BANK WITH STRICT UNIFORM-LENGTH OPTIONS
     // BALANCED ANSWER KEYS: Q1:B, Q2:D, Q3:A, Q4:E, Q5:C, Q6:A, Q7:D, Q8:B, Q9:E, Q10:C
     // -------------------------------------------------------------
     const questionsDatabase = [
@@ -205,13 +210,13 @@
         translation: "Artinya: 'Pustakawan menyortir ratusan buku sains baru kemarin siang.'",
         correctKey: "B",
         options: [
-          { key: "A", text: "Hundreds of new science books completely replaced the school librarian yesterday." },
-          { key: "B", text: "Hundreds of new science books were organized by the librarian yesterday afternoon." },
-          { key: "C", text: "The librarian refused to touch any science books because they were too old." },
-          { key: "D", text: "Science students sorted the librarian into different categories yesterday afternoon." },
-          { key: "E", text: "Yesterday afternoon, new science books were permanently banned from the library." }
+          { key: "A", text: "Hundreds of new science books completely replaced the school librarian during yesterday's class." },
+          { key: "B", text: "Hundreds of new science books were carefully organized by the librarian yesterday afternoon." },
+          { key: "C", text: "The librarian refused to accept any new science books because the shelves were already full." },
+          { key: "D", text: "Students in the science laboratory sorted the librarian into different research groups yesterday." },
+          { key: "E", text: "Yesterday afternoon, all new science books were permanently removed from the central library room." }
         ],
-        explanation: "Kunci B benar: Bentuk aktif sederhana 'The librarian sorted books' diubah pasif menjadi 'books were organized by the librarian'. Pilihan A memutarbalikkan subjek-objek, C dan E membuat cerita palsu."
+        explanation: "Kunci B benar: Bentuk aktif 'The librarian sorted books' diubah menjadi pasif setara 'books were organized by the librarian'. Pilihan A memutarbalikkan subjek-objek, C, D, dan E mengarang cerita yang bertentangan dengan teks."
       },
       {
         id: 2,
@@ -223,13 +228,13 @@
         translation: "Artinya: 'Hujan lebat membanjiri halaman sekolah, sehingga lomba olahraga pagi dibatalkan.'",
         correctKey: "D",
         options: [
-          { key: "A", text: "The morning sports match caused heavy rain to fall all over the school yard." },
-          { key: "B", text: "Heavy rain guarantees that school sports competitions will never happen again." },
-          { key: "C", text: "Students canceled the heavy rain so they could use the dry school field." },
-          { key: "D", text: "Because heavy rain covered the school field with water, the morning athletic event was called off." },
-          { key: "E", text: "The sports competition continued inside the flooded school yard despite the storm." }
+          { key: "A", text: "The morning athletic competition caused massive rainstorms to suddenly flood the entire school yard." },
+          { key: "B", text: "Heavy rain guarantees that outdoor sports competitions will never be hosted at the school again." },
+          { key: "C", text: "Athletic committee members stopped the heavy rainstorm so that students could use the dry field." },
+          { key: "D", text: "Because heavy rain covered the school field with water, the morning sports tournament was called off." },
+          { key: "E", text: "The school sports tournament continued inside the wet yard despite serious flooding hazards." }
         ],
-        explanation: "Kunci D benar: Hubungan sebab-akibat 'Heavy rain flooded... so competition was canceled' diparafrase sepadan dengan 'Because heavy rain covered the field... the athletic event was called off'. Pilihan A membalik panah kausalitas."
+        explanation: "Kunci D benar: Pola 'Heavy rain flooded... so competition was canceled' diparafrase menjadi 'Because heavy rain covered the field... the sports tournament was called off'. Pilihan A membalik arah sebab-akibat, B memakai kata mutlak berlebihan."
       },
 
       // ----------------- TIER 2: B1+ MENENGAH (Q3 - Q4) -----------------
@@ -243,13 +248,13 @@
         translation: "Artinya: 'Meskipun ponsel pintar berguna untuk riset cepat, penggunaan berlebihan di malam hari sering merusak jadwal tidur siswa.'",
         correctKey: "A",
         options: [
-          { key: "A", text: "Despite their benefits for rapid research, spending too much time on smartphones at night frequently harms learners' rest routines." },
-          { key: "B", text: "Smartphones completely destroy every student's brain and guarantee zero hours of sleep." },
-          { key: "C", text: "Because students sleep so well at night, they avoid using smartphones for quick school research." },
-          { key: "D", text: "Quick research is banned in schools because smartphones produce no educational benefits." },
-          { key: "E", text: "Nighttime phone use improves sleep schedules because students read online encyclopedias." }
+          { key: "A", text: "Despite their value for rapid study, spending too much time on smartphones at night frequently disturbs pupils' sleep." },
+          { key: "B", text: "Because mobile phones permanently damage young brains, students are strictly forbidden from conducting school research." },
+          { key: "C", text: "Nighttime phone usage improves sleep patterns because learners can finish difficult online assignments before resting." },
+          { key: "D", text: "Rapid research guarantees that students who study with smartphones will completely avoid severe nighttime fatigue." },
+          { key: "E", text: "Students manage their sleeping schedules perfectly whenever they browse scientific online articles after midnight." }
         ],
-        explanation: "Kunci A benar: Hubungan 'Although useful... nighttime usage ruins sleep' diubah presisi memakai 'Despite their benefits... spending too much time frequently harms rest routines'. Pilihan B memakai kata mutlak berlebihan ('completely destroy', 'guarantee zero')."
+        explanation: "Kunci A benar: Hubungan kontras 'Although useful... nighttime usage ruins sleep' dipertahankan presisi dengan 'Despite their value... spending too much time frequently disturbs sleep'. Opsi B, C, D, dan E memutarbalikkan fakta atau memakai kata mutlak."
       },
       {
         id: 4,
@@ -261,13 +266,13 @@
         translation: "Artinya: 'Menambahkan sayuran segar ke makanan sehari-hari cenderung mengurangi risiko masalah pencernaan tertentu.'",
         correctKey: "E",
         options: [
-          { key: "A", text: "Eating fresh vegetables guarantees that a person will never experience any stomach illness." },
-          { key: "B", text: "Digestive problems are completely cured within five minutes by touching fresh vegetables." },
-          { key: "C", text: "Fresh vegetables are the direct cause of serious digestive disorders in all teenagers." },
-          { key: "D", text: "Only expensive imported vegetables can protect human digestion from harmful bacteria." },
-          { key: "E", text: "Eating fresh vegetables regularly is likely to lower the probability of developing specific stomach issues." }
+          { key: "A", text: "Consuming raw garden vegetables guarantees that a patient will never experience any stomach illnesses ever again." },
+          { key: "B", text: "Severe digestive problems are always cured immediately whenever people add fresh green vegetables to meals." },
+          { key: "C", text: "Fresh green vegetables directly trigger dangerous stomach disorders in every person who eats them frequently." },
+          { key: "D", text: "Only expensive imported organic crops can successfully protect human digestive systems from bacterial illnesses." },
+          { key: "E", text: "Eating fresh vegetables regularly is likely to lower the probability of developing specific stomach illnesses." }
         ],
-        explanation: "Kunci E benar: Kata peredam 'tends to reduce' (cenderung mengurangi) diparafrase tetap moderat menjadi 'is likely to lower the probability'. Opsi A dan B terjebak kata mutlak sombong ('guarantees', 'never', 'completely cured')."
+        explanation: "Kunci E benar: Kata peredam 'tends to reduce' (cenderung mengurangi) diparafrase tetap moderat menjadi 'is likely to lower the probability'. Pilihan A dan B terjebak kata mutlak sombong ('guarantees', 'never', 'always cured immediately')."
       },
 
       // ----------------- TIER 3: B2 STANDAR (Q5 - Q6) -----------------
@@ -281,13 +286,13 @@
         translation: "Artinya: 'Kualitas udara kota tidak dapat membaik secara nyata kecuali pemerintah daerah membatasi asap dari kendaraan diesel tua secara ketat.'",
         correctKey: "C",
         options: [
-          { key: "A", text: "City air quality improves naturally even when old diesel vehicles emit unlimited toxic smoke." },
-          { key: "B", text: "Old diesel trucks are bought by regional governments to clean polluted urban air." },
-          { key: "C", text: "Rigorous government limits on exhaust from aging diesel vehicles are necessary for measurable improvements in urban air." },
-          { key: "D", text: "Restricting diesel vehicles guarantees that city air will become one hundred percent pure mountain oxygen." },
-          { key: "E", text: "Unless citizens stop breathing city air, diesel engines will continue to run without fuel." }
+          { key: "A", text: "Urban air quality improves rapidly even while aging diesel automobiles release heavy plumes of poisonous smoke." },
+          { key: "B", text: "Regional governments purchase older diesel vehicles to filter hazardous pollution out of crowded urban districts." },
+          { key: "C", text: "Rigorous official restrictions on aging diesel exhaust are essential for measurable progress in city air quality." },
+          { key: "D", text: "Banning diesel engines guarantees that urban atmospheric air will become completely pure mountain oxygen instantly." },
+          { key: "E", text: "City atmospheres become clean naturally as long as transportation authorities permit older diesel buses on roads." }
         ],
-        explanation: "Kunci C benar: Pola syarat negatif 'cannot improve unless governments restrict' diubah menjadi prasyarat positif 'government limits are necessary for measurable improvements'. Opsi D memakai klaim 100% mutlak."
+        explanation: "Kunci C benar: Pola syarat negatif 'cannot improve noticeably unless governments restrict' diubah menjadi prasyarat positif setara 'official restrictions are essential for measurable progress'. Opsi D memakai klaim 100% mutlak dan mustahil."
       },
       {
         id: 6,
@@ -299,13 +304,13 @@
         translation: "Artinya: 'Sebuah tenda darurat segera dirakit oleh tim tanggap bencana untuk melindungi korban banjir dari hipotermia.'",
         correctKey: "A",
         options: [
-          { key: "A", text: "Disaster response personnel swiftly set up an emergency refuge so that flood survivors would be shielded from freezing temperatures." },
-          { key: "B", text: "Flood victims built an emergency shelter to rescue disaster teams from hypothermia." },
-          { key: "C", text: "Hypothermia forced emergency teams to flood the newly built disaster shelter." },
-          { key: "D", text: "Emergency shelters were permanently banned in flood zones to test the cold endurance of victims." },
-          { key: "E", text: "Disaster response teams refused to assemble tents because flood victims requested luxury hotels." }
+          { key: "A", text: "Emergency workers rapidly built a temporary refuge so that displaced flood survivors were safe from freezing cold." },
+          { key: "B", text: "Freezing flood survivors built an emergency camp to rescue regional disaster personnel from severe hypothermia." },
+          { key: "C", text: "Severe hypothermia forced emergency rescue crews to abandon all temporary tents during the seasonal river flood." },
+          { key: "D", text: "Emergency shelters were permanently banned in flood regions to evaluate the natural physical endurance of survivors." },
+          { key: "E", text: "Disaster response units refused to provide shelters because flood survivors demanded luxury hotel accommodations." }
         ],
-        explanation: "Kunci A benar: Pasif 'shelter was assembled by teams to protect victims' diubah aktif dengan sinonim pas: 'personnel swiftly set up refuge so that survivors would be shielded'. Pilihan B menukar pelaku dengan korban."
+        explanation: "Kunci A benar: Kalimat pasif 'shelter was assembled by teams to protect victims' diubah aktif seimbang 'emergency workers rapidly built refuge so survivors were safe from cold'. Pilihan B menukar pelaku dengan korban, C, D, dan E melenceng dari teks."
       },
 
       // ----------------- TIER 4: B2+ KOMPLEKS (Q7 - Q8) -----------------
@@ -319,13 +324,13 @@
         translation: "Artinya: 'Populasi ikan pesisir merosot tajam menyusul pembuangan limbah kimia tanpa olah oleh pabrik-pabrik industri.'",
         correctKey: "D",
         options: [
-          { key: "A", text: "Dying fish schools caused industrial factories to begin dumping untreated chemicals into coastal waters." },
-          { key: "B", text: "Industrial factories completely eliminated all water runoff to protect fish from overpopulation." },
-          { key: "C", text: "Chemical runoff guarantees that coastal marine animals will grow twice as fast." },
-          { key: "D", text: "The sharp decline in marine fish stocks along the coast was triggered by the release of raw manufacturing chemicals." },
-          { key: "E", text: "Coastal fish migrated toward factories because untreated chemical waste provided rich nutrition." }
+          { key: "A", text: "Collapsing coastal fish populations forced manufacturing factories to dump larger quantities of liquid chemicals into water." },
+          { key: "B", text: "Industrial manufacturing plants removed all toxic drainage pipes to protect marine organisms from unexpected overpopulation." },
+          { key: "C", text: "Unfiltered industrial chemicals guarantee that marine fish varieties in coastal regions will reproduce twice as quickly." },
+          { key: "D", text: "The dramatic reduction in coastal marine life was caused by the dumping of unpurified factory chemical pollutants." },
+          { key: "E", text: "Schools of ocean fish gathered near industrial factories because raw factory waste provided valuable organic nourishment." }
         ],
-        explanation: "Kunci D benar: Kata kerja 'plummeted following runoff' dinominalisasi menjadi 'sharp decline in fish stocks was triggered by the release of raw chemicals'. Pilihan A membalik kausalitas (ikan mati memicu pabrik buang limbah)."
+        explanation: "Kunci D benar: Bentuk kata kerja 'populations plummeted following chemical runoff' dinominalisasi secara seimbang menjadi 'reduction in marine life was caused by the dumping of chemical pollutants'. Pilihan A membalik kausalitas (ikan mati memicu pembuangan limbah)."
       },
       {
         id: 8,
@@ -337,13 +342,13 @@
         translation: "Artinya: 'Para peneliti mengamati bahwa isolasi sosial berkepanjangan seringkali berkorelasi dengan meningkatnya kelelahan kognitif pada lansia.'",
         correctKey: "B",
         options: [
-          { key: "A", text: "Heightened cognitive fatigue is the sole biological reason why senior citizens choose to live in total isolation." },
-          { key: "B", text: "Elderly individuals who experience extended periods of isolation often demonstrate an increased likelihood of mental exhaustion." },
-          { key: "C", text: "Social isolation guarantees that every single elderly person will suffer total and irreversible brain death." },
-          { key: "D", text: "Older adults who socialize every day permanently lose the ability to feel any physical tiredness." },
-          { key: "E", text: "Researchers proved that cognitive fatigue can only be cured by isolating patients in silent chambers." }
+          { key: "A", text: "Intense cognitive fatigue is the sole biological reason why aging citizens choose to live in complete personal isolation." },
+          { key: "B", text: "Elderly people undergoing long periods of seclusion often show a greater tendency toward mental exhaustion." },
+          { key: "C", text: "Social isolation guarantees that every single senior citizen will experience immediate and irreversible brain damage." },
+          { key: "D", text: "Older adults who interact with others daily lose the biological capacity to feel physical or emotional exhaustion." },
+          { key: "E", text: "Medical researchers confirmed that mental exhaustion is entirely cured whenever patients spend months in silent rooms." }
         ],
-        explanation: "Kunci B benar: Makna 'frequently correlated with heightened fatigue' diparafrase presisi: 'often demonstrate an increased likelihood of mental exhaustion'. Pilihan C mutlak ekstrem ('guarantees', 'every single', 'irreversible brain death')."
+        explanation: "Kunci B benar: Makna terukur 'frequently correlated with heightened cognitive fatigue' diparafrase sepadan 'often show a greater tendency toward mental exhaustion'. Pilihan C mutlak berlebihan ('guarantees', 'every single', 'irreversible brain damage')."
       },
 
       // ----------------- TIER 5: TKA MAHIR (Q9 - Q10) -----------------
@@ -357,13 +362,13 @@
         translation: "Artinya: 'Meskipun pertanian vertikal aeroponik memangkas konsumsi air pertanian hingga sembilan puluh persen, pembangunan fasilitas awal menuntut investasi modal besar yang membuat petani kecil enggan.'",
         correctKey: "E",
         options: [
-          { key: "A", text: "Smallholder farmers refuse to use water because vertical aeroponic facilities are entirely free to construct." },
-          { key: "B", text: "Ninety percent of global water supplies are wasted whenever smallholder farmers invest in vertical towers." },
-          { key: "C", text: "Aeroponic farming guarantees that smallholder farmers will become billionaires within their first month of harvest." },
-          { key: "D", text: "Because vertical farming consumes more water than soil agriculture, financial banks decline all facility loans." },
-          { key: "E", text: "Steep upfront installation expenses discourage small-scale agriculturalists from adopting vertical aeroponics, notwithstanding its tremendous water-saving efficiency." }
+          { key: "A", text: "Independent farmers avoid traditional water irrigation because building aeroponic towers costs almost nothing to initiate." },
+          { key: "B", text: "Ninety percent of municipal fresh water is wasted whenever rural farmers decide to finance modern aeroponic towers." },
+          { key: "C", text: "Vertical farming methods guarantee that all smallholder agriculturalists will earn immense fortunes in their first year." },
+          { key: "D", text: "Because vertical systems consume more fresh water than traditional agriculture, regional banks reject every loan inquiry." },
+          { key: "E", text: "Steep upfront setup costs discourage small-scale growers from choosing aeroponics, despite its remarkable water efficiency." }
         ],
-        explanation: "Kunci E benar: Bentuk kontras 'While... water cuts, initial demands capital... deters' diparafrase menjadi 'Steep upfront expenses discourage small-scale agriculturalists, notwithstanding its water-saving efficiency'. Pilihan A dan D memalsukan fakta sains bacaan."
+        explanation: "Kunci E benar: Struktur kontras dua klausa 'While water cuts... initial costs deter growers' diparafrase presisi menjadi 'Steep setup costs discourage small-scale growers... despite its remarkable water efficiency'. Pilihan A dan D bertolak belakang dengan fakta sains pada teks."
       },
       {
         id: 10,
@@ -375,13 +380,13 @@
         translation: "Artinya: 'Alat penyaring algoritmik tidak dapat menjamin hasil perekrutan yang adil selama dataset pelatihan historis mencerminkan disparitas demografis manusia yang mengakar.'",
         correctKey: "C",
         options: [
-          { key: "A", text: "Fair recruitment is fully guaranteed by artificial intelligence algorithms regardless of flaws in historical data." },
-          { key: "B", text: "Entrenched demographic disparities are eliminated instantly once corporations fire human human resource recruiters." },
-          { key: "C", text: "The achievement of unbiased recruitment via automated filters remains unattainable as long as past training data embodies deep-seated demographic imbalances." },
-          { key: "D", text: "Historical datasets force all hiring algorithms to reject every candidate holding college credentials." },
-          { key: "E", text: "Algorithmic hiring tools have successfully eradicated all forms of human bias across every corporate industry." }
+          { key: "A", text: "Impartial employment decisions are fully secured by automated hiring systems, irrespective of flaws inside training data." },
+          { key: "B", text: "Historical demographic imbalances disappear immediately from corporate records once human personnel are entirely replaced." },
+          { key: "C", text: "Unbiased hiring through automated models remains impossible while historical data incorporates deep-seated social inequities." },
+          { key: "D", text: "Historical databases compel computerized screening tools to dismiss every job applicant possessing university diplomas." },
+          { key: "E", text: "Automated recruitment platforms have successfully eliminated all human discrimination throughout modern employment sectors." }
         ],
-        explanation: "Kunci C benar: Klausa bersyarat 'cannot ensure equitable outcomes as long as historical data reflects disparities' diparafrase setara 'unbiased recruitment remains unattainable as long as past training data embodies deep-seated imbalances'. Pilihan A dan E bertolak belakang 180 derajat."
+        explanation: "Kunci C benar: Hubungan syarat 'cannot ensure equitable outcomes as long as datasets reflect disparities' diparafrase menjadi 'unbiased hiring remains impossible while historical data incorporates deep-seated inequities'. Pilihan A dan E bertolak belakang 180 derajat."
       }
     ];
 
