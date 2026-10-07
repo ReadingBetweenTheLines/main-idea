@@ -60,7 +60,11 @@
       <span class="text-xs font-digital tracking-widest text-slate-300 font-bold uppercase">BOMB DEFUSAL // UNTIMED STRATEGY MODE</span>
     </div>
     <div class="flex items-center gap-3 text-xs font-terminal">
-      <a href="vocab.html" class="text-amber-400 hover:text-amber-300 transition">← Vocab Clinic</a>
+      <button onclick="toggleLeaderboardModal()" class="text-amber-400 hover:text-amber-300 transition flex items-center gap-1 font-bold cursor-pointer">
+        <span>🏆</span> <span>LEADERBOARD</span>
+      </button>
+      <span class="text-slate-600">|</span>
+      <a href="vocab.html" class="text-slate-400 hover:text-slate-200 transition">Vocab Clinic</a>
       <span class="text-slate-600">|</span>
       <a href="game-liars-deck.html" class="text-slate-400 hover:text-slate-200 transition">Liar's Deck</a>
     </div>
@@ -78,7 +82,7 @@
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> DETONATOR INTEGRITY
         </div>
         <div id="shield-display" class="flex items-center gap-2 text-2xl sm:text-3xl font-digital font-bold text-emerald-400 tracking-wider mt-1.5">
-          <span>🛡️ 🛡️ 🛡️️</span>
+          <span>🛡️ 🛡️ 🛡️</span>
         </div>
         <span id="shield-sublabel" class="text-[10px] font-terminal text-slate-400 mt-0.5">3 Defusal Chances Remaining</span>
       </div>
@@ -139,6 +143,12 @@
       <div id="overlay-stamp" class="text-4xl sm:text-5xl font-digital font-black text-emerald-400 tracking-wider">
         BOMB DEFUSAL
       </div>
+      
+      <!-- Player Identification Input for Leaderboard Tracking -->
+      <div class="flex items-center gap-2 font-terminal text-xs">
+        <input type="text" id="player-callsign-input" placeholder="Callsign / Nama Petugas..." class="bg-black/90 border border-slate-700 px-3 py-1.5 rounded text-slate-100 focus:outline-none focus:border-amber-400 w-52 text-center">
+      </div>
+
       <p id="overlay-msg" class="text-sm font-sans-clean text-slate-300 max-w-lg leading-relaxed">
         Analyze the context sentence and slice the cable connected to the C-4 explosive charge!
         <br><br>
@@ -148,9 +158,51 @@
         <br>
         • <strong class="text-rose-400">Shield Protection:</strong> You have <strong>3 integrity chances</strong>. Cutting a wrong wire consumes 1 shield.
       </p>
-      <button onclick="startGame()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-digital font-black text-base px-8 py-3 rounded-lg shadow-xl tracking-widest transition transform hover:scale-105 cursor-pointer">
-        START DEFUSAL
-      </button>
+
+      <div class="flex items-center gap-3">
+        <button onclick="startGame()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-digital font-black text-base px-8 py-3 rounded-lg shadow-xl tracking-widest transition transform hover:scale-105 cursor-pointer">
+          START DEFUSAL
+        </button>
+        <button onclick="toggleLeaderboardModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 font-terminal font-bold text-sm px-4 py-3 rounded-lg border border-slate-700 transition cursor-pointer">
+          🏆 VIEW RANKS
+        </button>
+      </div>
+    </div>
+
+    <!-- Leaderboard Modal Panel -->
+    <div id="leaderboard-modal" class="hidden absolute inset-0 bg-[#07090c]/95 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center space-y-4 z-50">
+      <div class="w-full max-w-md bg-[#0f141a] border-2 border-slate-800 rounded-xl p-5 space-y-4 shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🏆</span>
+            <span class="font-digital text-sm font-bold text-amber-400 tracking-wider">DEFUSAL TOP OPERATIVES</span>
+          </div>
+          <button onclick="toggleLeaderboardModal()" class="text-slate-400 hover:text-white font-terminal text-sm cursor-pointer">✕</button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs font-terminal">
+          <div class="bg-black/60 p-2 rounded border border-slate-800">
+            <span class="text-slate-500 block text-[10px]">ALL-TIME HIGH SCORE</span>
+            <span id="lb-highest-score-label" class="font-digital text-emerald-400 font-bold text-base">0 PTS</span>
+          </div>
+          <div class="bg-black/60 p-2 rounded border border-slate-800">
+            <span class="text-slate-500 block text-[10px]">MAX COMBO STREAK</span>
+            <span id="lb-highest-streak-label" class="font-digital text-amber-400 font-bold text-base">0 🔥</span>
+          </div>
+        </div>
+
+        <div class="text-left font-terminal text-xs space-y-1.5 max-h-52 overflow-y-auto pr-1">
+          <div class="text-[10px] text-slate-500 font-bold tracking-wider uppercase border-b border-slate-800 pb-1">TOP 5 DEFUSAL RECORDS:</div>
+          <div id="leaderboard-records-list" class="space-y-1">
+            <div class="text-slate-500 text-center py-4 italic">No missions logged yet. Deploy now!</div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-[10px] font-terminal text-slate-500">
+          <button onclick="clearLocalLeaderboard()" class="text-rose-400 hover:underline">Reset Local Records</button>
+          <span>Cloud Sync: Active</span>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -165,6 +217,11 @@
 
   <!-- 2. Game Engine Script -->
   <script>
+    // =============================================================
+    // GOOGLE APPS SCRIPT WEB APP INTEGRATION (OPTIONAL CLOUD SYNC)
+    // =============================================================
+    const APPS_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxrOtfgzsYS3ZOyCZbDXSW7oYGg1LZ43RHKfptOIWXPfU64bWhoF9J200gXulWDgFPn/exec";
+
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -220,6 +277,7 @@
     let shieldsRemaining = 3;
     let currentModuleIndex = 0;
     let comboStreak = 0;
+    let maxStreakAchieved = 0;
     let totalScore = 0;
     let activeDeck = [];
     let currentWires = [];
@@ -228,6 +286,127 @@
     let isSwiping = false;
     let swipePoints = [];
     let sparkParticles = [];
+
+    // -------------------------------------------------------------
+    // LEADERBOARD REPOSITORY & LOCAL STORAGE STATE
+    // -------------------------------------------------------------
+    let leaderboardState = {
+      highScore: 0,
+      highStreak: 0,
+      records: []
+    };
+
+    function loadLeaderboard() {
+      const saved = localStorage.getItem("tka_defusal_leaderboard");
+      if (saved) {
+        try {
+          leaderboardState = JSON.parse(saved);
+        } catch (e) {}
+      }
+
+      const savedName = localStorage.getItem("tka_defusal_callsign");
+      if (savedName && document.getElementById("player-callsign-input")) {
+        document.getElementById("player-callsign-input").value = savedName;
+      }
+      renderLeaderboardUI();
+    }
+
+    function saveRecordToLeaderboard(score, streak, defusedRounds) {
+      const input = document.getElementById("player-callsign-input");
+      const name = (input && input.value.trim()) ? input.value.trim() : "Operative";
+      localStorage.setItem("tka_defusal_callsign", name);
+
+      if (score > leaderboardState.highScore) leaderboardState.highScore = score;
+      if (streak > leaderboardState.highStreak) leaderboardState.highStreak = streak;
+
+      const newRecord = {
+        name: name,
+        score: score,
+        streak: streak,
+        rounds: defusedRounds,
+        date: new Date().toLocaleDateString("id-ID", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
+      };
+
+      leaderboardState.records.push(newRecord);
+      leaderboardState.records.sort((a, b) => b.score - a.score || b.streak - a.streak);
+      leaderboardState.records = leaderboardState.records.slice(0, 5); // Retain top 5
+
+      localStorage.setItem("tka_defusal_leaderboard", JSON.stringify(leaderboardState));
+      renderLeaderboardUI();
+
+      // Cloud Transmission Sync
+      transmitToCloudLeaderboard(name, score, streak, defusedRounds);
+    }
+
+    function renderLeaderboardUI() {
+      const scoreLabel = document.getElementById("lb-highest-score-label");
+      const streakLabel = document.getElementById("lb-highest-streak-label");
+      const list = document.getElementById("leaderboard-records-list");
+
+      if (scoreLabel) scoreLabel.innerText = `${leaderboardState.highScore} PTS`;
+      if (streakLabel) streakLabel.innerText = `${leaderboardState.highStreak} 🔥`;
+
+      if (!list) return;
+
+      if (!leaderboardState.records || leaderboardState.records.length === 0) {
+        list.innerHTML = `<div class="text-slate-500 text-center py-4 italic">No missions logged yet. Deploy now!</div>`;
+        return;
+      }
+
+      list.innerHTML = leaderboardState.records.map((r, i) => `
+        <div class="flex items-center justify-between p-2 rounded bg-black/50 border border-slate-800 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2">
+            <span class="font-digital font-bold text-xs ${i === 0 ? 'text-amber-400' : 'text-slate-400'}">#${i + 1}</span>
+            <div>
+              <strong class="text-slate-200 block text-xs leading-none">${r.name}</strong>
+              <span class="text-[9px] text-slate-500">${r.date} // ${r.rounds}/10 Rounds</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="font-digital font-bold text-emerald-400 text-xs block leading-none">${r.score} PTS</span>
+            <span class="text-[10px] text-amber-400 font-bold">${r.streak}x STREAK</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.toggleLeaderboardModal = () => {
+      const modal = document.getElementById("leaderboard-modal");
+      if (modal) {
+        modal.classList.toggle("hidden");
+        renderLeaderboardUI();
+      }
+    };
+
+    window.clearLocalLeaderboard = () => {
+      if (confirm("Reset local leaderboard scores on this browser?")) {
+        leaderboardState = { highScore: 0, highStreak: 0, records: [] };
+        localStorage.removeItem("tka_defusal_leaderboard");
+        renderLeaderboardUI();
+      }
+    };
+
+    async function transmitToCloudLeaderboard(name, score, streak, defusedRounds) {
+      if (!APPS_SCRIPT_WEBAPP_URL) return;
+      const payload = {
+        arena: "Blade Strike Defusal",
+        studentName: name,
+        studentClass: "Tactical EOD",
+        totalScore: score,
+        maxStreak: streak,
+        defusedModules: `${defusedRounds}/10`,
+        timestamp: new Date().toLocaleString("id-ID")
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {}
+    }
 
     function shuffle(array) {
       return array.slice().sort(() => Math.random() - 0.5);
@@ -283,6 +462,7 @@
         isSwiping = false;
       });
 
+      loadLeaderboard();
       requestAnimationFrame(canvasRenderLoop);
     }
 
@@ -315,14 +495,21 @@
         return;
       }
 
+      const input = document.getElementById("player-callsign-input");
+      if (input && input.value.trim()) {
+        localStorage.setItem("tka_defusal_callsign", input.value.trim());
+      }
+
       activeDeck = shuffle(pool).slice(0, 10);
       currentModuleIndex = 0;
       comboStreak = 0;
+      maxStreakAchieved = 0;
       totalScore = 0;
       shieldsRemaining = 3;
       gameActive = true;
 
       document.getElementById("game-overlay").classList.add("hidden");
+      document.getElementById("leaderboard-modal").classList.add("hidden");
       updateStatusUI();
       renderCurrentModule();
     }
@@ -406,9 +593,10 @@
       if (wire.isTarget) {
         soundFX.sliceCorrect();
         comboStreak++;
+        if (comboStreak > maxStreakAchieved) maxStreakAchieved = comboStreak;
         totalScore += 100 * comboStreak;
 
-        timeDeltaEl.innerText = `+${100 * comboStreak} PTS DISARMED!`;
+        timeDeltaEl.innerText = `+${100 * comboStreak} PTS DISARMED! (${comboStreak}x STREAK)`;
         timeDeltaEl.className = "font-digital font-bold text-xs text-emerald-400";
         document.getElementById("feedback-hint").innerHTML = `<span class="text-emerald-400 font-bold">✓ CABLE SEVERED:</span> ${currentItem.rationale}`;
 
@@ -743,6 +931,8 @@
       gameActive = false;
       soundFX.sliceWrong();
 
+      saveRecordToLeaderboard(totalScore, maxStreakAchieved, currentModuleIndex);
+
       const overlay = document.getElementById("game-overlay");
       const stamp = document.getElementById("overlay-stamp");
       const msg = document.getElementById("overlay-msg");
@@ -752,7 +942,7 @@
       msg.innerHTML = `
         <span class="text-rose-400 font-bold">All 3 defusal shields were consumed by wrong cuts.</span><br>
         Modules Neutralized: <strong>${currentModuleIndex} / 10</strong><br>
-        Final Score: <strong>${totalScore} pts</strong><br><br>
+        Final Score: <strong>${totalScore} pts</strong> | Best Streak: <strong>${maxStreakAchieved}x</strong><br><br>
         <em>Review the sentence clues and try again!</em>
       `;
 
@@ -763,6 +953,8 @@
       gameActive = false;
       soundFX.win();
 
+      saveRecordToLeaderboard(totalScore, maxStreakAchieved, activeDeck.length);
+
       const overlay = document.getElementById("game-overlay");
       const stamp = document.getElementById("overlay-stamp");
       const msg = document.getElementById("overlay-msg");
@@ -772,7 +964,7 @@
       msg.innerHTML = `
         <span class="text-emerald-300 font-bold">Great Job! All C-4 detonator cords severed safely.</span><br>
         Shields Preserved: <strong>${shieldsRemaining} / 3</strong><br>
-        Total Score: <strong>${totalScore} pts</strong><br><br>
+        Final Score: <strong>${totalScore} pts</strong> | Best Streak: <strong>${maxStreakAchieved}x</strong><br><br>
         <em>Your ability to identify words in context is getting sharp!</em>
       `;
 

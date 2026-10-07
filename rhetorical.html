@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhetorical Purpose Lab — TKA Bahasa Inggris Fase F</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.14) 0px, transparent 45%),
+        radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.14) 0px, transparent 40%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.12) 0px, transparent 45%),
+        radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.12) 0px, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.05) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+    }
+
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+
+    .bento-pop {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 2px solid #0f172a;
+      box-shadow: 4px 5px 0px #0f172a;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-pop:hover {
+      transform: translate(-2px, -3px);
+      box-shadow: 7px 9px 0px #0f172a;
+    }
+
+    .pill-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #0f172a;
+    }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-2 border-slate-950 px-4 sm:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-500 via-indigo-500 to-sky-400 flex items-center justify-center text-white font-black text-xl border-2 border-slate-950 shadow-[3px_3px_0px_#0f172a]">
+          🏗️
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="pill-tag bg-purple-100 text-purple-950 border-purple-300">
+              TKA PHASE F // ARSITEKTUR TEKS
+            </span>
+            <span class="text-xs text-slate-500 font-semibold">Trik Membaca Niat Penulis</span>
+          </div>
+          <h1 class="text-base sm:text-xl font-heading font-black text-slate-950 tracking-tight">
+            Rhetorical Purpose & Paragraph Function
+          </h1>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2 flex-wrap text-xs font-bold">
+        <a href="index.html" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          🏠 Home Hub
+        </a>
+        <a href="lesson-scanner.html" class="px-3 py-1.5 rounded-xl bg-amber-200 hover:bg-amber-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          📡 Lesson Scanner
+        </a>
+        <a href="lesson-restatement.html" class="px-3 py-1.5 rounded-xl bg-sky-200 hover:bg-sky-300 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          🔄 Restatement Lab
+        </a>
+        <a href="forensic-arena.html" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] transition">
+          ⚖️ Forensic Arena
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Notification Banner -->
+  <section class="bg-purple-100 border-b-2 border-slate-950 px-4 sm:px-8 py-2">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-xs font-mono-code font-bold text-purple-950">
+      <span>💡 RUMUS DASAR: <strong>Bukan "Apa isi teksnya?" (WHAT), melainkan "Mengapa penulis menulisnya?" (WHY)!</strong></span>
+      <span class="hidden sm:inline bg-white px-2 py-0.5 rounded border border-slate-950">Level Kalimat: B1 – B2</span>
+    </div>
+  </section>
+
+  <!-- Main Bento Grid -->
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8 flex-1">
+
+    <!-- BENTO ROW 1: PERBEDAAN ISI VS FUNGSI RETORIS -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- Definisi & Jebakan Terbesar (Span 7) -->
+      <div class="lg:col-span-7 bento-pop bg-gradient-to-br from-purple-50 via-white to-indigo-50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="pill-tag bg-purple-200 text-purple-950">KUNCI UTAMA</span>
+            <span class="text-xs text-purple-700 font-bold font-mono-code">The Architectural Mindset</span>
+          </div>
+
+          <h2 class="font-heading text-xl sm:text-2xl font-black text-slate-950 mb-3">
+            Jangan Tertipu Ringkasan Isi (Summary Trap)!
+          </h2>
+
+          <p class="text-sm text-slate-700 leading-relaxed font-medium">
+            Banyak siswa gagal di soal jenis ini karena memilih jawaban yang <strong>menceritakan ulang fakta teks</strong>. Soal fungsi retoris menanyakan <em>peran batu bata</em> di dalam bangunan argumen, bukan nama batu batanya!
+          </p>
+
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono-code">
+            <div class="p-3.5 bg-rose-50 border-2 border-slate-950 rounded-2xl shadow-[2px_2px_0px_#0f172a] space-y-1">
+              <span class="text-rose-700 font-black block">❌ Soal Isi (Informational):</span>
+              <p class="text-slate-700 font-sans leading-relaxed">
+                <em>"Paragraf 2 membahas tentang toko roti yang membayar tagihan listrik mahal."</em>
+              </p>
+              <span class="text-[10px] text-rose-800 font-bold block pt-1">(Hanya merangkum detail)</span>
+            </div>
+
+            <div class="p-3.5 bg-emerald-50 border-2 border-slate-950 rounded-2xl shadow-[2px_2px_0px_#0f172a] space-y-1">
+              <span class="text-emerald-700 font-black block">✓ Soal Fungsi (Rhetorical):</span>
+              <p class="text-slate-700 font-sans leading-relaxed">
+                <em>"Penulis menyebut toko roti itu <strong>untuk memberikan contoh nyata</strong> tentang risiko bisnis kecil."</em>
+              </p>
+              <span class="text-[10px] text-emerald-800 font-bold block pt-1">(Menjelaskan niat/tujuan penulis)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-[11px] font-mono-code text-slate-600 border-t border-slate-200 pt-3 flex justify-between items-center">
+          <span>Pola Pertanyaan Ujian:</span>
+          <span class="bg-purple-100 text-purple-900 px-2 py-0.5 rounded border border-purple-300 font-bold">"The author mentions X in order to..." / "The function of paragraph 2 is..."</span>
+        </div>
+      </div>
+
+      <!-- Formula Struktur Pilihan Jawaban (Span 5) -->
+      <div class="lg:col-span-5 bento-pop bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 sm:p-8 space-y-4 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="pill-tag bg-amber-300 text-amber-950">FORMULA OPSI</span>
+            <span class="text-2xl">🎯</span>
+          </div>
+
+          <h3 class="font-heading text-xl font-black text-slate-950 mb-2">
+            Struktur Jawaban yang Selalu Benar
+          </h3>
+
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium mb-3">
+            Pilihan yang tepat selalu diawali oleh <strong>Kata Kerja Aksi (Rhetorical Verb)</strong> diikuti target fungsinya:
+          </p>
+
+          <div class="p-4 bg-white rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] space-y-2 text-xs font-mono-code">
+            <div class="text-purple-700 font-black text-sm">
+              [Verb Aksi] + [Subjek Target] + [Tujuan]
+            </div>
+            <div class="text-slate-600 font-sans space-y-1 pt-1">
+              <div>&bull; <strong>To illustrate</strong> &rarr; Memberikan contoh bukti nyata.</div>
+              <div>&bull; <strong>To qualify</strong> &rarr; Menunjukkan batas/kekurangan ide.</div>
+              <div>&bull; <strong>To refute</strong> &rarr; Membantah klaim/mitos yang salah.</div>
+              <div>&bull; <strong>To propose</strong> &rarr; Mengajukan solusi/anjuran baru.</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-[11px] font-bold text-amber-950 italic">
+          *Trik Kilat: Cek kata kerja pertamanya! Jika kata kerjanya terlalu agresif (misal: "demolish" padahal teks cuma memberi saran), langsung coret!
+        </p>
+      </div>
+
+    </section>
+
+    <!-- BENTO ROW 2: 5 KELUARGA KATA KERJA RETORIS (THE VERB FAMILIES) -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between px-1">
+        <h2 class="font-heading font-black text-slate-950 text-lg flex items-center gap-2">
+          <span>🗂️</span> 4 Peran Utama Paragraf yang Wajib Dihafal
+        </h2>
+        <span class="text-xs font-mono-code font-bold text-slate-500 hidden sm:inline">Kenali fungsi kalimat dari kata hubungnya</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+        
+        <!-- Role 1: Exemplification -->
+        <div class="bento-pop bg-sky-50 rounded-2xl p-5 border-2 border-slate-950 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="pill-tag bg-sky-200 text-sky-950">PERAN 01</span>
+              <span class="text-xl">🔍</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-sm">Exemplify (Memberi Contoh)</h4>
+            <p class="text-slate-600 leading-relaxed mt-1">
+              Menghadirkan studi kasus, nama orang, atau data angka konkret untuk memperjelas ide umum sebelumnya.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border border-slate-950 font-mono-code text-[11px]">
+            <span class="text-sky-700 font-bold block mb-0.5">Tanda Penghubung:</span>
+            <em>For instance, for example, such as, specifically</em>
+          </div>
+        </div>
+
+        <!-- Role 2: Qualification -->
+        <div class="bento-pop bg-amber-50 rounded-2xl p-5 border-2 border-slate-950 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="pill-tag bg-amber-200 text-amber-950">PERAN 02</span>
+              <span class="text-xl">⚖️</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-sm">Qualify (Memberi Batasan)</h4>
+            <p class="text-slate-600 leading-relaxed mt-1">
+              Mengingatkan bahwa ide di paragraf 1 tidak selalu berhasil di semua kondisi; ada hambatan nyata.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border border-slate-950 font-mono-code text-[11px]">
+            <span class="text-amber-800 font-bold block mb-0.5">Tanda Penghubung:</span>
+            <em>However, although, in reality, on the other hand</em>
+          </div>
+        </div>
+
+        <!-- Role 3: Concession -->
+        <div class="bento-pop bg-purple-50 rounded-2xl p-5 border-2 border-slate-950 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="pill-tag bg-purple-200 text-purple-950">PERAN 03</span>
+              <span class="text-xl">🤝</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-sm">Concede (Mengakui Lawan)</h4>
+            <p class="text-slate-600 leading-relaxed mt-1">
+              Penulis mengakui kebenaran argumen pihak lawan sejenak sebelum mempertahankan pendapat utamanya.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border border-slate-950 font-mono-code text-[11px]">
+            <span class="text-purple-800 font-bold block mb-0.5">Tanda Penghubung:</span>
+            <em>Admittedly, while it is true that, skeptics argue</em>
+          </div>
+        </div>
+
+        <!-- Role 4: Prescription -->
+        <div class="bento-pop bg-emerald-50 rounded-2xl p-5 border-2 border-slate-950 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="pill-tag bg-emerald-200 text-emerald-950">PERAN 04</span>
+              <span class="text-xl">📢</span>
+            </div>
+            <h4 class="font-heading font-bold text-slate-950 text-sm">Propose / Prescribe (Solusi)</h4>
+            <p class="text-slate-600 leading-relaxed mt-1">
+              Mengajukan langkah konkret, kebijakan pemerintah, atau tindakan yang harus dilakukan pembaca.
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl border border-slate-950 font-mono-code text-[11px]">
+            <span class="text-emerald-800 font-bold block mb-0.5">Tanda Penghubung:</span>
+            <em>Therefore, consequently, should, must, in order to</em>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BENTO ROW 3: INTERACTIVE LAB (3 CONTOH KASUS B1–B2) -->
+    <section class="bento-pop bg-white rounded-3xl p-6 sm:p-8 space-y-6">
+      
+      <div class="flex flex-wrap items-center justify-between border-b-2 border-slate-950 pb-4 gap-3">
+        <div>
+          <span class="pill-tag bg-indigo-200 text-indigo-950">SIMULATOR INTERAKTIF</span>
+          <h3 class="font-heading text-lg sm:text-2xl font-black text-slate-950 mt-1">
+            Uji Coba: Membedakan Isi vs. Niat Penulis
+          </h3>
+        </div>
+
+        <!-- Pilihan Contoh Kasus -->
+        <div class="flex items-center gap-2 flex-wrap text-xs font-mono-code">
+          <button onclick="loadExercise(0)" id="ex-tab-0" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-indigo-600 text-white font-bold shadow-[2px_2px_0px_#0f172a] transition">
+            Kasus 1: Jalur Sepeda Kota (B1)
+          </button>
+          <button onclick="loadExercise(1)" id="ex-tab-1" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-slate-100 text-slate-800 font-bold hover:bg-slate-200 transition">
+            Kasus 2: Toko Roti & Listrik (B1-B2)
+          </button>
+          <button onclick="loadExercise(2)" id="ex-tab-2" class="px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-slate-100 text-slate-800 font-bold hover:bg-slate-200 transition">
+            Kasus 3: Kerja WFH & Skeptis (B2)
+          </button>
+        </div>
+      </div>
+
+      <!-- Kotak Kalimat / Paragraf Target -->
+      <div class="bg-purple-50/70 border-2 border-slate-950 rounded-2xl p-5 space-y-2">
+        <div class="flex items-center justify-between text-xs font-mono-code">
+          <span class="font-bold text-purple-900 uppercase">📌 KUTIPAN PARAGRAF DARI BACAAN:</span>
+          <span class="text-slate-500 font-semibold" id="ex-topic-badge">Fungsi Paragraf Makro</span>
+        </div>
+        <p class="text-sm sm:text-base font-heading font-black text-slate-950 leading-relaxed" id="ex-target-sentence">
+          "However, urban planning experts point out that adding bike lanes alone rarely solves long-term traffic problems. In several cities, bike lanes alongside freight truck roads remain empty because cyclists feel unsafe."
+        </p>
+        <p class="text-xs text-slate-600 font-medium italic" id="ex-sentence-translation">
+          Pertanyaan: "What is the primary function of this paragraph in the passage?"
+        </p>
+      </div>
+
+      <!-- Pilihan Jawaban A sampai E -->
+      <div class="space-y-3">
+        <span class="text-xs font-mono-code font-bold text-slate-700 uppercase block">
+          PILIH JAWABAN YANG MENJELASKAN "FUNGSI RETORIS" BUKAN "RINGKASAN HARFIAH":
+        </span>
+
+        <div class="grid grid-cols-1 gap-2.5 text-xs sm:text-sm font-mono-code" id="ex-options-container">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Box Hasil Bedah Kasus -->
+        <div id="ex-autopsy-box" class="hidden p-5 rounded-2xl border-2 border-slate-950 space-y-2 transition-all shadow-[3px_3px_0px_#0f172a]">
+          <div class="flex items-center justify-between">
+            <span id="ex-autopsy-status" class="pill-tag"></span>
+            <span id="ex-autopsy-trap-label" class="text-xs font-bold text-slate-700"></span>
+          </div>
+          <p id="ex-autopsy-detail" class="text-xs sm:text-sm text-slate-800 font-sans leading-relaxed"></p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BENTO ROW 4: 3 LANGKAH MENEMUKAN JAWABAN SAAT UJIAN -->
+    <section class="bento-pop bg-gradient-to-r from-purple-100 via-indigo-50 to-pink-100 rounded-3xl p-6 sm:p-8 border-2 border-slate-950">
+      <div class="border-b-2 border-slate-950/20 pb-3 mb-4">
+        <span class="pill-tag bg-purple-300 text-purple-950">STRATEGI UJIAN</span>
+        <h3 class="font-heading font-black text-xl text-slate-950 mt-1">
+          Langkah "Jembatan Dua Sisi" Menjawab Soal Fungsi dalam 15 Detik
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="bg-white p-4 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] space-y-1.5">
+          <span class="text-base font-black text-purple-700 block">1. Cek Sambungan Pertama</span>
+          <p class="text-slate-600 leading-relaxed font-sans">
+            Lihat 5 kata pembuka paragraf atau kalimat tersebut. Kata seperti <em>However, For example, In addition</em> langsung membocorkan perannya.
+          </p>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] space-y-1.5">
+          <span class="text-base font-black text-rose-600 block">2. Coret Ringkasan Harfiah</span>
+          <p class="text-slate-600 leading-relaxed font-sans">
+            Jika sebuah opsi hanya mengulang cerita (misal: "menceritakan truk dan sepeda"), langsung coret! Itu jawaban untuk pertanyaan "What", bukan "Why".
+          </p>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border-2 border-slate-950 shadow-[2px_2px_0px_#0f172a] space-y-1.5">
+          <span class="text-base font-black text-emerald-700 block">3. Uji Hubungan Antar-Paragraf</span>
+          <p class="text-slate-600 leading-relaxed font-sans">
+            Tanyakan: <em>"Kalau paragraf ini dihapus, apa yang hilang dari tulisan penulis?"</em> Jika tulisan jadi kehilangan bukti ilmiah &rarr; fungsinya adalah <strong>Substantiation</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // -------------------------------------------------------------
+    // DATABASE SIMULASI RETORIS TINGKAT B1 - B2
+    // -------------------------------------------------------------
+    const exercisesData = [
+      {
+        topic: "Fungsi Paragraf Makro // Transportasi Kota",
+        sentence: "However, urban planning experts point out that adding bike lanes alone rarely solves long-term traffic problems. In several cities, bicycle lanes built directly next to freight truck corridors remain empty because casual riders feel unsafe without physical barriers.",
+        translation: "Pertanyaan: What is the primary function of this paragraph in the passage?",
+        options: [
+          {
+            label: "A",
+            text: "To describe how rental bicycles are parked near busy bus terminals in large cities.",
+            isCorrect: false,
+            trap: "JEBAKAN DETAIL KECIL (LOCAL FRAGMENT)",
+            explanation: "Salah! Kalimat ini hanya menyebutkan bus terminal di paragraf sebelumnya, sama sekali bukan tujuan utama mengapa paragraf ini ditulis."
+          },
+          {
+            label: "B",
+            text: "To prove that city residents completely hate riding bicycles in all weather conditions.",
+            isCorrect: false,
+            trap: "JEBAKAN KATA MUTLAK (COMPLETELY HATE)",
+            explanation: "Salah! Teks hanya bilang pesepeda merasa kurang aman tanpa pembatas fisik, bukan membenci sepeda secara total di semua cuaca."
+          },
+          {
+            label: "C",
+            text: "To qualify the initial solution by explaining a practical obstacle that limits its success.",
+            isCorrect: true,
+            trap: "FUNGSI RETORIS SEMPURNA (QUALIFY)",
+            explanation: "BENAR (Kunci)! Kata kerja 'To qualify' artinya menunjukkan batasan/syarat. Paragraf ini berfungsi memberi koreksi bahwa rencana cat jalur sepeda di paragraf 1 punya hambatan nyata (keamanan)."
+          },
+          {
+            label: "D",
+            text: "To report the exact number of freight trucks operating on European highways.",
+            isCorrect: false,
+            trap: "JEBAKAN RINGKASAN HARFIAH (LITERAL SUMMARY)",
+            explanation: "Salah! Truk hanya disebut sebagai penyebab rasa tidak aman pesepeda, bukan tujuan penulisan artikel."
+          },
+          {
+            label: "E",
+            text: "To demand that city governments completely demolish all bicycle tracks immediately.",
+            isCorrect: false,
+            trap: "JEBAKAN EKSTRIM BERTENTANGAN",
+            explanation: "Salah! Penulis justru ingin jalur sepeda diperbaiki dengan pembatas beton, bukan dihancurkan seluruhnya."
+          }
+        ]
+      },
+      {
+        topic: "Tujuan Kalimat Mikro // Bisnis Kecil",
+        sentence: "Many small enterprises struggle to survive their first three years due to unpredictable operational costs. For instance, a local bakery in Manchester saw its monthly utility bills surge by seventy percent during the energy crisis, forcing the owners to cut staff hours.",
+        translation: "Pertanyaan: The author mentions the 'local bakery in Manchester' primarily in order to...",
+        options: [
+          {
+            label: "A",
+            text: "Promote and advertise the delicious bread baked by a popular English shop.",
+            isCorrect: false,
+            trap: "SALAH PAHAMI INTENSI PENULIS",
+            explanation: "Salah! Penulis sedang menulis artikel analisis ekonomi, bukan brosur iklan makanan."
+          },
+          {
+            label: "B",
+            text: "Provide a concrete real-world example illustrating how unexpected utility expenses threaten small businesses.",
+            isCorrect: true,
+            trap: "FUNGSI RETORIS SEMPURNA (EXEMPLIFY)",
+            explanation: "BENAR (Kunci)! Kata kerja 'To provide an example' persis mencerminkan kata hubung 'For instance'. Toko roti dihadirkan sebagai bukti nyata bahaya lonjakan biaya listrik."
+          },
+          {
+            label: "C",
+            text: "Explain the traditional culinary recipe steps required to bake commercial bread.",
+            isCorrect: false,
+            trap: "JEBAKAN TIDAK RELEVAN",
+            explanation: "Salah! Resep roti tidak pernah dibahas atau disinggung di teks."
+          },
+          {
+            label: "D",
+            text: "Accuse electric companies of deliberately attacking independent restaurant owners.",
+            isCorrect: false,
+            trap: "JEBAKAN NADA EMOSIONAL PALSU",
+            explanation: "Salah! Teks netral menjelaskan kenaikan tarif saat krisis energi, tidak ada tuduhan niat jahat perusahaan listrik."
+          },
+          {
+            label: "E",
+            text: "Criticize the bakery owners for making poor business choices during high inflation.",
+            isCorrect: false,
+            trap: "JEBAKAN MEMBALIKKAN SIKAP PENULIS",
+            explanation: "Salah! Penulis justru bersimpati pada toko roti sebagai korban kenaikan biaya operasional."
+          }
+        ]
+      },
+      {
+        topic: "Fungsi Kalimat Sanggahan // Kerja WFH",
+        sentence: "Remote work allows employees to save commute time each week. Skeptics often argue that working from home inevitably damages team collaboration and isolates younger staff members. Nevertheless, recent surveys show hybrid models maintain high morale while boosting productivity.",
+        translation: "Pertanyaan: Why does the author mention the opinion of 'skeptics' in the text?",
+        options: [
+          {
+            label: "A",
+            text: "To acknowledge an opposing concern before presenting a balanced hybrid compromise.",
+            isCorrect: true,
+            trap: "FUNGSI RETORIS SEMPURNA (CONCESSION)",
+            explanation: "BENAR (Kunci)! Penulis memunculkan pendapat kaum skeptis (kekhawatiran kurang gaul) sebagai 'konsesi' sebelum membuktikan bahwa model hybrid (2 hari kantor) adalah solusi jalan tengah yang seimbang."
+          },
+          {
+            label: "B",
+            text: "To prove that young workers are completely incapable of working without strict direct supervision.",
+            isCorrect: false,
+            trap: "JEBAKAN GENERALISASI KASAR",
+            explanation: "Salah! Penulis tidak pernah menghina kemampuan pegawai muda."
+          },
+          {
+            label: "C",
+            text: "To demand that corporate executives immediately close all physical office headquarters forever.",
+            isCorrect: false,
+            trap: "JEBAKAN REKOMENDASI EKSTRIM",
+            explanation: "Salah! Penulis justru mendukung model hybrid yang tetap masuk kantor sebagian hari."
+          },
+          {
+            label: "D",
+            text: "To confirm that video conferencing tools have failed entirely across every commercial company.",
+            isCorrect: false,
+            trap: "JEBAKAN KATA MUTLAK (FAILED ENTIRELY)",
+            explanation: "Salah! Tidak ada klaim bahwa teknologi video conference gagal total."
+          },
+          {
+            label: "E",
+            text: "To list the exact project management software applications used by modern companies.",
+            isCorrect: false,
+            trap: "JEBAKAN HARFIAH GA ADA DI TEKS",
+            explanation: "Salah! Nama aplikasi komputer tidak pernah disebutkan di teks."
+          }
+        ]
+      }
+    ];
+
+    let currentExerciseIdx = 0;
+
+    function loadExercise(idx) {
+      currentExerciseIdx = idx;
+      const data = exercisesData[idx];
+
+      [0, 1, 2].forEach(i => {
+        const btn = document.getElementById(`ex-tab-${i}`);
+        if (btn) {
+          btn.className = (i === idx)
+            ? "px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-indigo-600 text-white font-bold shadow-[2px_2px_0px_#0f172a] transition"
+            : "px-3 py-1.5 rounded-xl border-2 border-slate-950 bg-slate-100 text-slate-800 font-bold hover:bg-slate-200 transition";
+        }
+      });
+
+      document.getElementById("ex-topic-badge").innerText = data.topic;
+      document.getElementById("ex-target-sentence").innerText = `"${data.sentence}"`;
+      document.getElementById("ex-sentence-translation").innerText = data.translation;
+
+      const container = document.getElementById("ex-options-container");
+      container.innerHTML = "";
+
+      data.options.forEach((opt, oIdx) => {
+        const btn = document.createElement("button");
+        btn.id = `opt-btn-${oIdx}`;
+        btn.onclick = () => checkOption(oIdx);
+        btn.className = "w-full text-left p-3.5 rounded-xl border-2 border-slate-950 bg-white hover:bg-slate-50 transition shadow-[2px_2px_0px_#0f172a] flex items-start gap-3 group";
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-slate-100 border border-slate-950 flex items-center justify-center font-bold text-xs text-slate-900 group-hover:bg-purple-600 group-hover:text-white transition flex-shrink-0">
+            ${opt.label}
+          </span>
+          <span class="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed">
+            ${opt.text}
+          </span>
+        `;
+        container.appendChild(btn);
+      });
+
+      document.getElementById("ex-autopsy-box").classList.add("hidden");
+    }
+
+    function checkOption(optIdx) {
+      const data = exercisesData[currentExerciseIdx];
+      const opt = data.options[optIdx];
+
+      data.options.forEach((_, i) => {
+        const btn = document.getElementById(`opt-btn-${i}`);
+        if (btn) {
+          if (i === optIdx) {
+            btn.className = opt.isCorrect
+              ? "w-full text-left p-3.5 rounded-xl border-2 border-slate-950 bg-emerald-100 transition shadow-[3px_3px_0px_#0f172a] flex items-start gap-3"
+              : "w-full text-left p-3.5 rounded-xl border-2 border-slate-950 bg-rose-100 transition shadow-[3px_3px_0px_#0f172a] flex items-start gap-3";
+          } else {
+            btn.className = "w-full text-left p-3.5 rounded-xl border-2 border-slate-950 bg-white hover:bg-slate-50 transition shadow-[2px_2px_0px_#0f172a] flex items-start gap-3 opacity-60";
+          }
+        }
+      });
+
+      const box = document.getElementById("ex-autopsy-box");
+      box.classList.remove("hidden");
+      box.className = opt.isCorrect
+        ? "p-5 rounded-2xl border-2 border-slate-950 space-y-2 transition-all shadow-[3px_3px_0px_#0f172a] bg-emerald-50"
+        : "p-5 rounded-2xl border-2 border-slate-950 space-y-2 transition-all shadow-[3px_3px_0px_#0f172a] bg-rose-50";
+
+      const statusBadge = document.getElementById("ex-autopsy-status");
+      statusBadge.innerText = opt.isCorrect ? "✓ JAWABAN TEPAT (FUNGSI RETORIS SAH)" : "✕ PILIHAN KELIRU";
+      statusBadge.className = opt.isCorrect
+        ? "pill-tag bg-emerald-300 text-emerald-950"
+        : "pill-tag bg-rose-300 text-rose-950";
+
+      document.getElementById("ex-autopsy-trap-label").innerText = `ANALISIS: ${opt.trap}`;
+      document.getElementById("ex-autopsy-detail").innerHTML = opt.explanation;
+
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadExercise(0);
+    });
+  </script>
+</body>
+</html>
