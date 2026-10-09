@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KosmoMorfem — Panduan & Lab Affixes TKA Bahasa Inggris</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Orbitron, Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            orbitron: ['"Orbitron"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            space: {
+              950: '#03040b',
+              900: '#070919',
+              850: '#0d112b',
+              800: '#14183d',
+              750: '#1c2254',
+              700: '#232b6b',
+            },
+            neonCyan: '#00f0ff',
+            neonViolet: '#b026ff',
+            neonFuchsia: '#ff007f',
+            neonAmber: '#ffaa00',
+            neonEmerald: '#00ffa3',
+            neonBlue: '#3b82f6',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Neon Glow Styles */
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.15);
+    }
+    .glow-violet {
+      box-shadow: 0 0 25px rgba(176, 38, 255, 0.4), inset 0 0 15px rgba(176, 38, 255, 0.15);
+    }
+    .glow-fuchsia {
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.4), inset 0 0 15px rgba(255, 0, 127, 0.15);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px rgba(0, 255, 163, 0.4), inset 0 0 15px rgba(0, 255, 163, 0.15);
+    }
+    
+    /* Glassmorphism Styles */
+    .glass-card {
+      background: rgba(13, 17, 43, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-interactive {
+      background: rgba(20, 24, 61, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-interactive:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 12px 35px -10px rgba(0, 240, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #070919; }
+    ::-webkit-scrollbar-thumb { background: #1c2254; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b026ff; }
+  </style>
+</head>
+<body class="bg-space-950 text-slate-200 antialiased font-sans selection:bg-neonFuchsia selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Interactive Cosmic Canvas Background -->
+  <canvas id="starfieldCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Pulsing Ambient Nebula Background Elements -->
+  <div class="fixed top-12 left-1/4 w-[550px] h-[550px] bg-neonViolet/10 rounded-full blur-[160px] pointer-events-none z-0 animate-pulse" style="animation-duration: 9s;"></div>
+  <div class="fixed bottom-12 right-12 w-[650px] h-[650px] bg-neonCyan/10 rounded-full blur-[170px] pointer-events-none z-0 animate-pulse" style="animation-duration: 12s;"></div>
+  <div class="fixed top-1/2 left-3/4 w-[450px] h-[450px] bg-neonFuchsia/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+  <header class="sticky top-0 z-50 glass-card border-b border-white/10 shadow-lg shadow-black/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo Branding -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative flex items-center justify-center h-11 w-11 rounded-2xl bg-gradient-to-tr from-neonViolet via-neonFuchsia to-neonCyan text-white font-orbitron font-extrabold text-2xl shadow-lg shadow-purple-500/30 group-hover:scale-105 transition-transform">
+          Ω
+          <div class="absolute -inset-1 rounded-2xl bg-neonCyan/40 blur-sm -z-10 animate-pulse"></div>
+        </div>
+        <div>
+          <span class="font-orbitron font-black text-white tracking-wider text-lg sm:text-xl flex items-center gap-1.5">
+            KOSMO<span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonViolet to-neonFuchsia">MORFEM</span>
+          </span>
+          <span class="text-[10px] font-mono tracking-widest text-neonCyan block uppercase font-bold">Panduan TKA & Literasi Bahasa Inggris</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs font-mono font-semibold tracking-wider uppercase text-slate-300">
+        <a href="#konsep" class="hover:text-neonCyan transition-colors">1. Konsep Kalimat</a>
+        <a href="#deconstructor" class="hover:text-neonFuchsia transition-colors">2. Lab Dekonstruksi</a>
+        <a href="#katalog" class="hover:text-neonAmber transition-colors">3. Katalog 40+ Morfem</a>
+        <a href="#jebakan" class="hover:text-rose-400 transition-colors">4. False Friends</a>
+        <a href="#kuis" class="hover:text-neonEmerald transition-colors">5. Kuis 10 Soal (A-E)</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-3">
+        <a href="#kuis" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-neonEmerald to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-bold tracking-wider shadow-lg shadow-emerald-500/30 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+          <span>KUIS 10 SOAL</span>
+          <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section class="pt-16 pb-20 lg:pt-24 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-space-850/90 border border-neonCyan/40 text-neonCyan text-xs font-mono tracking-wider uppercase mb-8 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-neonCyan animate-ping"></span>
+          Modul Akselerasi Morfologi UTBK SNBT & Ujian Mandiri 2026
+        </div>
+        
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-black text-white tracking-tight leading-[1.08] mb-6">
+          Kuasai Kosakata Akademis <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonViolet to-neonFuchsia">
+            Melalui Rumus Afiksasi Kosmik
+          </span>
+        </h1>
+        
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
+          Di soal teks ilmiah TKA Bahasa Inggris, kamu tidak perlu panik saat menemukan kata-kata rumit 4-5 suku kata. Cukup pisahkan <span class="text-neonCyan font-bold">Prefix</span> untuk menentukan arah/polaritas, <span class="text-neonFuchsia font-bold">Root</span> untuk arti gagasan, dan <span class="text-neonAmber font-bold">Suffix</span> untuk kelas kata dan fungsi kalimatnya.
+        </p>
+
+        <!-- Live Structural Equation Board -->
+        <div class="mt-8 p-6 sm:p-9 rounded-3xl glass-card border border-neonViolet/40 relative overflow-hidden text-left shadow-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-6">
+            <div>
+              <span class="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-bold block">Prinsip Dekomposisi Morfologi</span>
+              <h3 class="text-xl sm:text-2xl font-display font-extrabold text-white mt-1">Anatomi Kata Universal Soal Literasi</h3>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-space-800 border border-white/15 text-xs font-mono text-neonCyan">
+              <span>Formula:</span>
+              <span class="font-bold text-white">[Prefix] + [Root] + [Suffix]</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center">
+            <!-- Prefix Block -->
+            <div class="md:col-span-2 p-5 rounded-2xl bg-cyan-950/40 border border-neonCyan/40 relative group hover:border-neonCyan transition-all">
+              <div class="flex items-center justify-between text-[11px] font-mono uppercase font-bold text-neonCyan tracking-wider mb-2">
+                <span>01. PREFIX (AWALAN)</span>
+                <span>✦</span>
+              </div>
+              <div class="text-2xl sm:text-3xl font-mono font-bold text-white">un-</div>
+              <p class="text-xs text-slate-300 mt-2"><strong>Fungsi:</strong> Negasi, Penolakan, Pembalikan Arah</p>
+              <div class="mt-3 text-[11px] font-mono text-neonCyan bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/80">
+                Makna: "Tidak / Belum Pernah"
+              </div>
+            </div>
+
+            <div class="text-2xl font-display font-black text-slate-500 text-center select-none hidden md:block">+</div>
+
+            <!-- Root Block -->
+            <div class="md:col-span-2 p-5 rounded-2xl bg-fuchsia-950/40 border border-neonFuchsia/40 relative group hover:border-neonFuchsia transition-all">
+              <div class="flex items-center justify-between text-[11px] font-mono uppercase font-bold text-neonFuchsia tracking-wider mb-2">
+                <span>02. ROOT (AKAR DASAR)</span>
+                <span>✦</span>
+              </div>
+              <div class="text-2xl sm:text-3xl font-mono font-bold text-white">precede</div>
+              <p class="text-xs text-slate-300 mt-2"><strong>Fungsi:</strong> Inti Konsep (Latin: <em>praecedere</em>)</p>
+              <div class="mt-3 text-[11px] font-mono text-neonFuchsia bg-fuchsia-950/80 px-2.5 py-1 rounded-lg border border-fuchsia-800/80">
+                Makna: "Mendahului / Berada di depan"
+              </div>
+            </div>
+
+            <div class="text-2xl font-display font-black text-slate-500 text-center select-none hidden md:block">+</div>
+
+            <!-- Suffix Block -->
+            <div class="md:col-span-2 p-5 rounded-2xl bg-amber-950/40 border border-neonAmber/40 relative group hover:border-neonAmber transition-all">
+              <div class="flex items-center justify-between text-[11px] font-mono uppercase font-bold text-neonAmber tracking-wider mb-2">
+                <span>03. SUFFIX (AKHIRAN)</span>
+                <span>✦</span>
+              </div>
+              <div class="text-2xl sm:text-3xl font-mono font-bold text-white">-ent / -ed</div>
+              <p class="text-xs text-slate-300 mt-2"><strong>Fungsi:</strong> Kelas Kata (Part of Speech)</p>
+              <div class="mt-3 text-[11px] font-mono text-neonAmber bg-amber-950/80 px-2.5 py-1 rounded-lg border border-amber-800/80">
+                Makna: "Bentuk Adjective / Participle"
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Banner -->
+          <div class="mt-6 p-4 sm:p-5 rounded-2xl bg-space-900 border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-neonViolet to-neonFuchsia text-white font-mono text-xs font-bold uppercase tracking-wider">
+                Hasil Morfem:
+              </span>
+              <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white tracking-wide">
+                unprecedented
+              </span>
+              <span class="text-xs font-mono text-amber-400 font-semibold">[Adjective]</span>
+            </div>
+            <div class="text-xs sm:text-sm text-slate-300 max-w-lg">
+              <span class="text-neonCyan font-bold">Makna TKA:</span> Belum pernah terjadi atau ada preseden sebelumnya dalam sejarah; peristiwa yang benar-benar baru dan mengguncang.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="konsep" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+      <div class="max-w-3xl mb-14 text-left">
+        <span class="text-xs font-mono font-bold text-neonCyan uppercase tracking-widest block mb-2">Bagian 1 • Pemahaman Konseptual</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Apa yang Terjadi Saat Kalimat Menggunakan Affixes?
+        </h2>
+        <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+          Dalam teks literasi ilmiah bahasa Inggris, afiks bukan sekadar hiasan kata. Afiks memodifikasi logika klausa, mengindikasikan sudut pandang penulis, serta mengatur sintaksis kalimat secara presisi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+        <!-- 01. Polaritas & Pembalikan Argumen -->
+        <div class="glass-interactive p-7 sm:p-8 rounded-3xl relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-xl bg-neonCyan/20 text-neonCyan border border-neonCyan/40 flex items-center justify-center font-mono font-bold text-sm">01</span>
+            <h3 class="text-xl font-display font-bold text-white">Perubahan Polaritas & Kebenaran Premis</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Menambahkan prefix tertentu membalikkan nilai kebenaran kalimat 180 derajat tanpa memerlukan kata "not". Ini menjadi fokus utama pada pertanyaan <em>True/False statement</em> dan <em>Author's inference</em>.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-space-900/90 border border-white/10 space-y-3 font-mono text-xs">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase">Kalimat Awal (Premis Positif):</span>
+              <p class="text-slate-200 font-sans mt-0.5">"The experiment produced <span class="text-emerald-400 font-bold">tangible</span> and reliable evidence." (bukti nyata & dapat dipegang)</p>
+            </div>
+            <div class="pt-2 border-t border-white/10">
+              <span class="text-neonCyan block text-[10px] uppercase font-bold">Kalimat Berubah (Prefix in- $\rightarrow$ im-):</span>
+              <p class="text-white font-sans font-bold mt-0.5">"The experiment produced <span class="text-neonCyan font-bold underline">intangible</span> and unreliable evidence."</p>
+              <span class="text-slate-400 font-sans text-[11px] block mt-1">Dampak kalimat: Bukti tersebut menjadi abstrak/semu dan tidak dapat dijadikan landasan ilmiah.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02. Mendeteksi Nada Penulis (Author's Tone) -->
+        <div class="glass-interactive p-7 sm:p-8 rounded-3xl relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-xl bg-neonViolet/20 text-neonViolet border border-neonViolet/40 flex items-center justify-center font-mono font-bold text-sm">02</span>
+            <h3 class="text-xl font-display font-bold text-white">Indikator Sikap & Nada Penulis (Tone)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Soal <em>"The author's tone in paragraph 3 is..."</em> bisa langsung dijawab dengan memindai morfem evaluatif (apakah bernuansa positif, negatif, atau ragu-ragu).
+          </p>
+
+          <div class="p-4 rounded-2xl bg-space-900/90 border border-white/10 space-y-2.5 text-xs">
+            <div class="flex items-start gap-2">
+              <span class="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 text-[10px] font-mono font-bold">SKEPTIS</span>
+              <p class="text-slate-200">Prefix: <strong>pseudo-, un-, mis-</strong> $\rightarrow$ Contoh: <em>"pseudoscientific assertions"</em> menandakan penulis meragukan keabsahan data.</p>
+            </div>
+            <div class="flex items-start gap-2 pt-2 border-t border-white/10">
+              <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-mono font-bold">FAVORABLE</span>
+              <p class="text-slate-200">Prefix: <strong>bene-, pro-</strong> $\rightarrow$ Contoh: <em>"profoundly beneficial outcome"</em> menandakan dukungan penuh penulis.</p>
+            </div>
+            <div class="flex items-start gap-2 pt-2 border-t border-white/10">
+              <span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800 text-[10px] font-mono font-bold">KRITIS</span>
+              <p class="text-slate-200">Prefix: <strong>mal-, counter-, hyper-</strong> $\rightarrow$ Contoh: <em>"maladministration and hyperinflation"</em> menandakan celaan terhadap manajemen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03. Pengubah Kelas Kata untuk Soal Cloze Test -->
+        <div class="glass-interactive p-7 sm:p-8 rounded-3xl relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-xl bg-neonAmber/20 text-neonAmber border border-neonAmber/40 flex items-center justify-center font-mono font-bold text-sm">03</span>
+            <h3 class="text-xl font-display font-bold text-white">Parsing Posisi Gramatikal (Cloze Fill)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Jika opsi jawaban di soal berupa variasi kata yang sama (contoh: <em>diversify, diversity, diverse, diversely</em>), kamu tidak butuh kamus. Cukup lihat suffix untuk mencocokkan ke slot gramatikal.
+          </p>
+
+          <div class="space-y-2 text-xs font-mono">
+            <div class="p-2.5 rounded-xl bg-space-900/90 border border-white/10 flex items-center justify-between">
+              <span class="text-slate-300">Article (the/a) + <strong class="text-amber-400">[ NOUN ]</strong> + of</span>
+              <span class="text-neonAmber font-bold">-tion, -ity, -ment, -ness</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-space-900/90 border border-white/10 flex items-center justify-between">
+              <span class="text-slate-300">Linking Verb (is/seem) + <strong class="text-neonCyan">[ ADJ ]</strong></span>
+              <span class="text-neonCyan font-bold">-able, -ive, -ous, -ic</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-space-900/90 border border-white/10 flex items-center justify-between">
+              <span class="text-slate-300">Modal Verb + <strong class="text-emerald-400">[ VERB ]</strong> + Object</span>
+              <span class="text-neonEmerald font-bold">-ize, -ate, -ify, -en</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04. Nominalisasi: Pemadatan Argumen Ilmiah -->
+        <div class="glass-interactive p-7 sm:p-8 rounded-3xl relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-xl bg-neonFuchsia/20 text-neonFuchsia border border-neonFuchsia/40 flex items-center justify-center font-mono font-bold text-sm">04</span>
+            <h3 class="text-xl font-display font-bold text-white">Nominalization (Pemadatan Ide Teks Ilmiah)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Penulis akademik menolak kalimat bertele-tele. Melalui suffix kata benda (<em>-tion, -ence, -ment</em>), proses sebab-akibat yang panjang dirangkum menjadi satu subjek yang padat.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-space-900/90 border border-white/10 text-xs font-mono space-y-2.5">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase">Gaya Percakapan Sehari-hari (Verb-heavy):</span>
+              <p class="text-slate-300 font-sans mt-0.5">"Because the temperatures in the Arctic increased rapidly, the glaciers melted quickly."</p>
+            </div>
+            <div class="pt-2 border-t border-white/10">
+              <span class="text-neonFuchsia block text-[10px] uppercase font-bold">Gaya Akademis TKA (Nominalized):</span>
+              <p class="text-white font-sans font-bold mt-0.5">"Rapid Arctic <span class="text-neonFuchsia">warming</span> accelerated glacial <span class="text-neonFuchsia">liquefaction</span>."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deconstructor" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-mono font-bold text-neonFuchsia uppercase tracking-widest block mb-2">Eksplorasi Praktis</span>
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+          Lab Morfologi Kosmik
+        </h2>
+        <p class="mt-3 text-slate-300 text-sm sm:text-base">
+          Pilih salah satu dari 10 kata akademik paling sering diujikan di bawah ini. Perhatikan dekonstruksi komponen, rumus pembentukan, petunjuk ujian, dan peringatan jebakannya.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto glass-card p-6 sm:p-10 rounded-3xl border border-neonFuchsia/30 shadow-2xl relative">
+        <!-- Preset Words Selector -->
+        <div class="mb-8">
+          <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 font-semibold">
+            Pilih Kata Akademis TKA:
+          </label>
+          <div class="flex flex-wrap gap-2.5" id="labWordButtonsContainer">
+            <!-- Buttons injected via JS -->
+          </div>
+        </div>
+
+        <!-- Target Word Display Card -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-space-900/90 border border-white/10 relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-6">
+            <div>
+              <span class="text-[10px] font-mono text-neonCyan uppercase tracking-widest block font-bold">Kata Target Terpilih</span>
+              <h3 class="text-3xl sm:text-5xl font-display font-extrabold text-white tracking-wide mt-1" id="labWordTitle">
+                Counterintuitive
+              </h3>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3 py-1.5 rounded-full text-xs font-mono font-bold bg-neonViolet/20 text-purple-300 border border-neonViolet/50" id="labWordPos">
+                Adjective (Kata Sifat)
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-mono bg-space-800 text-slate-300 border border-white/10" id="labWordYield">
+                Frekuensi Sangat Tinggi di TKA
+              </span>
+            </div>
+          </div>
+
+          <!-- 3 Pods: Prefix, Root, Suffix -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="p-5 rounded-2xl bg-cyan-950/40 border border-neonCyan/40 text-left">
+              <div class="flex items-center justify-between text-[11px] font-mono text-neonCyan font-bold uppercase mb-2">
+                <span>[ PREFIX ]</span>
+                <span class="px-2 py-0.5 rounded bg-cyan-900/50 text-[10px]">Arah / Orientasi</span>
+              </div>
+              <div class="text-2xl font-mono font-bold text-white" id="labPrefixText">counter-</div>
+              <p class="text-xs text-slate-300 mt-2.5 leading-relaxed" id="labPrefixDesc">
+                Melawan, berlawanan, atau bertentangan secara frontal.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-fuchsia-950/40 border border-neonFuchsia/40 text-left">
+              <div class="flex items-center justify-between text-[11px] font-mono text-neonFuchsia font-bold uppercase mb-2">
+                <span>[ ROOT ]</span>
+                <span class="px-2 py-0.5 rounded bg-fuchsia-900/50 text-[10px]">Inti Konsep</span>
+              </div>
+              <div class="text-2xl font-mono font-bold text-white" id="labRootText">intuit (tueri)</div>
+              <p class="text-xs text-slate-300 mt-2.5 leading-relaxed" id="labRootDesc">
+                Melihat langsung ke dalam batin; pemahaman firasat tanpa kalkulasi.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-amber-950/40 border border-neonAmber/40 text-left">
+              <div class="flex items-center justify-between text-[11px] font-mono text-neonAmber font-bold uppercase mb-2">
+                <span>[ SUFFIX ]</span>
+                <span class="px-2 py-0.5 rounded bg-amber-900/50 text-[10px]">Kelas Kata</span>
+              </div>
+              <div class="text-2xl font-mono font-bold text-white" id="labSuffixText">-ive</div>
+              <p class="text-xs text-slate-300 mt-2.5 leading-relaxed" id="labSuffixDesc">
+                Membentuk adjective yang menyatakan sifat bawaan atau kecenderungan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Semantic Synthesis, TKA Reading Cue, and Trap Alert -->
+          <div class="p-6 rounded-2xl bg-space-850 border border-white/10 space-y-4 text-left">
+            <div>
+              <span class="text-xs font-mono font-bold text-neonCyan uppercase tracking-wider block">Makna Sintesis Ilmiah:</span>
+              <p class="text-sm text-slate-200 mt-1 font-medium leading-relaxed" id="labSynthesisText">
+                Bertolak belakang dari perkiraan intuisi spontan manusia atau dugaan akal sehat umum.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <span class="text-xs font-mono font-bold text-neonFuchsia uppercase tracking-wider block">Sinyal Membaca Teks Ujian (Reading Passage Cue):</span>
+              <p class="text-xs text-slate-300 mt-1 leading-relaxed italic font-serif" id="labCueText">
+                Jika kalimat diawali dengan "While this appears counterintuitive...", bersiaplah karena argumen berikutnya akan membuktikan fenomena tersebut secara ilmiah melalui data riil.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider block">Peringatan Jebakan Soal (Trap Warning):</span>
+              <p class="text-xs text-rose-200 mt-1 leading-relaxed" id="labTrapText">
+                Jangan samakan kata ini dengan "illogical" (tidak masuk akal secara mutlak). Counterintuitive tetap logis secara sains, hanya saja hasilnya mengejutkan intuisi awam.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="katalog" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 text-left">
+        <div>
+          <span class="text-xs font-mono font-bold text-neonAmber uppercase tracking-widest block mb-2">Database Lengkap 40+ Morfem</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Katalog Morfologi & Contoh Kalimat TKA
+          </h2>
+          <p class="text-slate-300 text-sm mt-2 max-w-2xl leading-relaxed">
+            Setiap morfem dilengkapi arti semantik, sinyal nada soal, serta contoh kalimat akademik autentik dengan terjemahan dan ulasan perubahan maknanya.
+          </p>
+        </div>
+
+        <!-- Search & Category Filters -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="catalogInput" 
+              placeholder="Cari affix, makna, atau kata..."
+              class="w-full sm:w-64 pl-9 pr-4 py-2.5 rounded-xl bg-space-900 border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-neonCyan transition-all font-mono"
+            >
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+
+          <div class="flex flex-wrap rounded-xl bg-space-900 p-1 border border-white/10 text-xs font-mono font-semibold" id="catalogFilterPills">
+            <button class="cat-pill px-3 py-1.5 rounded-lg bg-neonViolet text-white transition-all" data-cat="all">Semua (40+)</button>
+            <button class="cat-pill px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all" data-cat="prefix">Prefix</button>
+            <button class="cat-pill px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all" data-cat="suffix-noun">Suffix Noun</button>
+            <button class="cat-pill px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all" data-cat="suffix-adj">Suffix Adj</button>
+            <button class="cat-pill px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all" data-cat="suffix-verb">Verb & Adv</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Count Bar -->
+      <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 px-2">
+        <span>Menampilkan <strong id="catalogCounter" class="text-neonCyan">0</strong> morfem terdaftar</span>
+        <span class="text-[11px] text-slate-500">Masing-masing dilengkapi 2 contoh kalimat akademik autentik</span>
+      </div>
+
+      <!-- Morpheme Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="catalogGrid">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <section id="jebakan" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+      <div class="max-w-3xl mb-12 text-left">
+        <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-widest block mb-2">Bagian 4 • Waspada Distraktor</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Jebakan "False Friends" & Asimilasi Bunyi
+        </h2>
+        <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+          Pembuat soal ujian TKA sengaja memanfaatkan kata-kata yang tampak seperti negasi atau mudah ditebak dari bentuk luarnya, padahal maknanya sangat berbeda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Invaluable vs Priceless -->
+        <div class="glass-card p-6 rounded-3xl border border-rose-500/30 text-left relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center font-mono font-bold text-sm mb-4">
+            !
+          </div>
+          <h4 class="text-lg font-display font-bold text-white mb-2">Invaluable ≠ Tidak Berharga</h4>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Prefix <code>in-</code> di sini bukan berarti <em>not</em>, melainkan intensitas batas: nilainya melampaui kemampuan angka untuk menghitungnya.
+          </p>
+          <div class="p-3.5 rounded-xl bg-space-900 border border-white/10 text-xs font-mono space-y-1.5">
+            <div class="text-emerald-400">✓ Arti Sebenarnya: Sangat amat bernilai / Priceless</div>
+            <div class="text-rose-400">✕ Pilihan Jebakan: Worthless, useless</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Inflammable vs Flammable -->
+        <div class="glass-card p-6 rounded-3xl border border-rose-500/30 text-left relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center font-mono font-bold text-sm mb-4">
+            !
+          </div>
+          <h4 class="text-lg font-display font-bold text-white mb-2">Inflammable = Flammable</h4>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Berasal dari kata kerja Latin <em>inflammare</em> (menyulut api). Kedua kata ini berarti <strong>sama persis</strong>: sangat mudah tersulut api.
+          </p>
+          <div class="p-3.5 rounded-xl bg-space-900 border border-white/10 text-xs font-mono space-y-1.5">
+            <div class="text-emerald-400">✓ Lawan Kata Sebenarnya: Non-flammable</div>
+            <div class="text-rose-400">✕ Pilihan Jebakan: Fireproof, safe from fire</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Dispassionate vs Uncaring -->
+        <div class="glass-card p-6 rounded-3xl border border-rose-500/30 text-left relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center font-mono font-bold text-sm mb-4">
+            !
+          </div>
+          <h4 class="text-lg font-display font-bold text-white mb-2">Dispassionate ≠ Berhati Dingin</h4>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Dalam wacana riset dan hukum, <code>dispassionate</code> adalah karakter positif seorang peneliti: tidak memihak, objektif, dan bebas bias emosional.
+          </p>
+          <div class="p-3.5 rounded-xl bg-space-900 border border-white/10 text-xs font-mono space-y-1.5">
+            <div class="text-emerald-400">✓ Arti Sebenarnya: Objective, impartial, unbiased</div>
+            <div class="text-rose-400">✕ Pilihan Jebakan: Cruel, heartless, indifferent</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Asimilasi Fonetik Mini Guide -->
+      <div class="mt-8 p-6 sm:p-8 rounded-3xl glass-card border border-white/10 text-left">
+        <h4 class="text-lg font-display font-bold text-white mb-3 flex items-center gap-2">
+          <span class="text-neonCyan font-mono">✦</span> Hukum Asimilasi Fonetik (Bunyi yang Bermutasi)
+        </h4>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+          Banyak siswa bingung mencari awalan <em>in-</em> atau <em>con-</em> karena bunyinya berbaur dengan huruf pertama pada kata dasar:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+          <div class="p-3 rounded-xl bg-space-900 border border-white/10">
+            <span class="text-neonCyan font-bold block">in- menjadi im- / ir- / il-</span>
+            <span class="text-slate-400 text-[11px] block mt-1">Di depan B, P, M (impatient, imbalance); di depan R (irresponsible); di depan L (illogical).</span>
+          </div>
+          <div class="p-3 rounded-xl bg-space-900 border border-white/10">
+            <span class="text-neonViolet font-bold block">con- menjadi com- / col- / cor-</span>
+            <span class="text-slate-400 text-[11px] block mt-1">Di depan B, P, M (combine, compose); di depan L (collaborate); di depan R (correlate).</span>
+          </div>
+          <div class="p-3 rounded-xl bg-space-900 border border-white/10">
+            <span class="text-neonFuchsia font-bold block">ad- menjadi ac- / af- / ap- / as-</span>
+            <span class="text-slate-400 text-[11px] block mt-1">Di depan C (accelerate); di depan F (affirm); di depan P (approximate); di depan S (assimilate).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kuis" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-white/5">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/40 text-neonEmerald text-xs font-mono mb-3">
+          ✦ Simulasi Lengkap 10 Soal (Opsi A - E)
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Kuis Diagnostik Morfologi TKA
+        </h2>
+        <p class="text-slate-300 text-sm mt-2 max-w-xl mx-auto">
+          Uji kecakapanmu menjawab 10 format soal TKA/UTBK dengan 5 pilihan jawaban (A, B, C, D, E) dan kunci jawaban terdistribusi seimbang.
+        </p>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-neonEmerald/30 shadow-2xl relative text-left">
+        <!-- Top Status Bar & Question Progress Indicator -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono uppercase font-bold text-white tracking-wider px-2.5 py-1 rounded-lg bg-space-850 border border-white/15" id="quizNumberIndicator">
+              Soal 1 dari 10
+            </span>
+            <span class="px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-emerald-950 text-neonEmerald border border-emerald-700" id="quizTypeBadge">
+              Vocabulary in Context
+            </span>
+          </div>
+          
+          <!-- Number Tracker Bar -->
+          <div class="flex items-center gap-1.5 flex-wrap" id="quizPillTracker">
+            <!-- 1 to 10 bubbles injected via JS -->
+          </div>
+        </div>
+
+        <!-- Question Body Wrapper -->
+        <div id="quizContainer">
+          <!-- Authentic Reading Excerpt -->
+          <div class="p-5 rounded-2xl bg-space-900 border border-white/10 mb-6 font-serif text-sm sm:text-base text-slate-200 leading-relaxed italic" id="quizPassageText">
+            <!-- Injected by JavaScript -->
+          </div>
+
+          <!-- Prompt Header -->
+          <h4 class="text-base sm:text-lg font-display font-bold text-white mb-5" id="quizPrompt">
+            <!-- Injected by JavaScript -->
+          </h4>
+
+          <!-- Option Buttons Stack (A - E) -->
+          <div class="space-y-3 mb-6" id="quizOptionsWrapper">
+            <!-- Injected by JavaScript -->
+          </div>
+
+          <!-- Rationale / Feedback Box -->
+          <div id="quizFeedbackWrapper" class="hidden p-5 rounded-2xl border transition-all text-xs sm:text-sm">
+            <!-- Populated upon answering -->
+          </div>
+        </div>
+
+        <!-- Footer Control Buttons -->
+        <div class="flex items-center justify-between pt-6 border-t border-white/10 mt-6">
+          <button id="quizPrevBtn" class="px-4 py-2.5 rounded-xl bg-space-900 hover:bg-space-850 border border-white/10 text-xs font-mono text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+            ← Sebelumnya
+          </button>
+          
+          <div class="text-xs font-mono text-slate-400">
+            Skor Anda: <span id="quizScoreText" class="text-neonEmerald font-bold text-base">0</span> / 10
+          </div>
+
+          <button id="quizNextBtn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonEmerald to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-bold tracking-wider shadow-lg shadow-emerald-500/20 transition-all">
+            Lanjut →
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="glass-card border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8 mt-20 relative z-10 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-neonViolet to-neonCyan flex items-center justify-center text-white font-orbitron font-bold text-sm">Ω</div>
+        <span class="font-orbitron font-bold text-white text-sm tracking-wide">KosmoMorfem • TKA Bahasa Inggris</span>
+      </div>
+      
+      <p class="text-center md:text-left text-slate-400 max-w-xl">
+        Aplikasi edukasi morfologi bahasa Inggris komparatif untuk persiapan SNBT, UTBK, SIMAK UI, dan Ujian Mandiri Perguruan Tinggi Negeri. Didesain untuk penguasaan makna kata akademik berbasis akar dan imbuhan.
+      </p>
+
+      <div class="flex items-center gap-4 font-mono text-[11px]">
+        <a href="#konsep" class="hover:text-neonCyan transition-colors">Konsep</a>
+        <a href="#deconstructor" class="hover:text-neonFuchsia transition-colors">Lab</a>
+        <a href="#katalog" class="hover:text-neonAmber transition-colors">Katalog</a>
+        <a href="#kuis" class="hover:text-neonEmerald transition-colors">Kuis (10 Soal)</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // -------------------------------------------------------------
+    // 1. STARFIELD CANVAS ANIMATION
+    // -------------------------------------------------------------
+    const canvas = document.getElementById('starfieldCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const STAR_COUNT = 150;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.8 + 0.3,
+          speed: Math.random() * 0.35 + 0.05,
+          opacity: Math.random() * 0.8 + 0.2,
+          pulse: Math.random() * 0.03 + 0.01,
+          color: ['#00f0ff', '#b026ff', '#ff007f', '#ffffff'][Math.floor(Math.random() * 4)]
+        });
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        star.y -= star.speed;
+        if (star.y < 0) {
+          star.y = canvas.height;
+          star.x = Math.random() * canvas.width;
+        }
+        star.opacity += Math.sin(Date.now() * star.pulse) * 0.01;
+        const currentOpacity = Math.max(0.15, Math.min(0.95, star.opacity));
+
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = currentOpacity;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initStars();
+    });
+    resizeCanvas();
+    initStars();
+    animateStars();
+
+    // -------------------------------------------------------------
+    // 2. DATA: LAB DEKONSTRUKSI KOSMIK (10 Kata Kompleks TKA)
+    // -------------------------------------------------------------
+    const LAB_WORDS_DATA = {
+      'Counterintuitive': {
+        word: 'Counterintuitive',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Sangat Sering Muncul di TKA',
+        prefix: 'counter-',
+        prefixDesc: 'Melawan, berlawanan arah, atau bertentangan dengan sesuatu.',
+        root: 'intuit (tueri)',
+        rootDesc: 'Melihat langsung secara batiniah; pemahaman spontan / firasat.',
+        suffix: '-ive',
+        suffixDesc: 'Membentuk kata sifat yang menunjukkan kecenderungan alami.',
+        synthesis: 'Bertolak belakang dari apa yang diramalkan oleh intuisi awal atau dugaan akal sehat manusia.',
+        cue: 'Ketika penulis menggunakan "Counterintuitively, ...", bersiaplah membaca temuan data yang membantah mitos umum.',
+        trap: 'Bukan berarti "illogical" (mustahil/salah logika), melainkan proses logis ilmiah yang hasilnya tidak kita sangka-sangka.'
+      },
+      'Biodegradable': {
+        word: 'Biodegradable',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Wacana Ekologi & Lingkungan Hidup',
+        prefix: 'bio- + de-',
+        prefixDesc: 'bio- (kehidupan biologis) + de- (pengurangan, penguraian ke bawah).',
+        root: 'grade (gradus)',
+        rootDesc: 'Tahap, derajat langkah per langkah.',
+        suffix: '-able',
+        suffixDesc: 'Dapat atau mampu dikenai suatu proses.',
+        synthesis: 'Dapat diurai kembali menjadi unsur hara alami oleh aktivitas mikroorganisme tanah.',
+        cue: 'Muncul sebagai materi solusi pada teks bertema akumulasi limbah mikroplastik dan polusi laut.',
+        trap: 'Jangan tertukar dengan "degradable" saja yang bisa berarti hancur karena sinar matahari (photodegradable) namun tetap beracun.'
+      },
+      'Disproportionate': {
+        word: 'Disproportionate',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Wacana Sosiologi & Ekonomi',
+        prefix: 'dis-',
+        prefixDesc: 'Peniadaan, ketidaksesuaian, atau pemisahan dari kondisi wajar.',
+        root: 'proportion (pro portione)',
+        rootDesc: 'Keseimbangan ukuran bagian yang seimbang dan adil.',
+        suffix: '-ate',
+        suffixDesc: 'Membentuk adjective yang menunjukkan kepemilikan kualitas tertentu.',
+        synthesis: 'Sangat berat sebelah; tidak seimbang atau terlalu besar/kecil dibandingkan proporsi wajarnya.',
+        cue: 'Sering dipakai dalam klausa: "impose a disproportionate burden on marginalized communities".',
+        trap: 'Siswa sering salah mengira kata ini bersinonim dengan "unfair" secara etika saja; kata ini murni mengukur perbandingan matematis/statistik.'
+      },
+      'Invaluable': {
+        word: 'Invaluable',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Jebakan Klasik Soal Vocabulary',
+        prefix: 'in- (intensif tak hingga)',
+        prefixDesc: 'Bukan berarti meniadakan, melainkan nilainya melebihi kemampuan untuk dinilai harga pasar.',
+        root: 'val (valere)',
+        rootDesc: 'Memiliki bobot, bernilai, kuat, berfaedah.',
+        suffix: '-able',
+        suffixDesc: 'Dapat atau mampu ditakar harganya.',
+        synthesis: 'Begitu berharganya sehingga tidak ternilai dengan uang; sangat amat berguna (Priceless).',
+        cue: 'Jika peneliti menyebut bantuan atau data bersifat "invaluable", berarti peran data itu sangat menentukan keberhasilan eksperimen.',
+        trap: 'DISTRAKTOR UTAMA: Siswa ceroboh memilih opsi "worthless" atau "useless" karena menganggap "in-" selalu negatif.'
+      },
+      'Irreversible': {
+        word: 'Irreversible',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Wacana Krisis Iklim & Kepunahan',
+        prefix: 'ir- (asimilisasi in-)',
+        prefixDesc: 'Tidak dapat / mustahil untuk (bermutasi sebelum huruf konsonan r).',
+        root: 'vers / vert (vertere)',
+        rootDesc: 'Memutar kembali arah, mengembalikan arah gerak.',
+        suffix: '-ible',
+        suffixDesc: 'Mampu untuk dikerjakan ulang.',
+        synthesis: 'Kondisi kerusakan yang bersifat permanen dan mustahil untuk dipulihkan kembali ke keadaan asalnya.',
+        cue: 'Menandai nada peringatan keras (cautionary tone) dari saintis terkait perubahan iklim global.',
+        trap: 'Hati-hati dengan kata "unreversible" — bentuk standar baku dalam bahasa Inggris akademik adalah "irreversible".'
+      },
+      'Sustainability': {
+        word: 'Sustainability',
+        pos: 'Noun Abstrak (Kata Benda)',
+        yield: 'Topik Paling Dominan di UTBK',
+        prefix: 'sub- (menjadi sus-)',
+        prefixDesc: 'Dari bawah menopang ke atas; memberikan sokongan fondasi.',
+        root: 'tain / ten (tenere)',
+        rootDesc: 'Menggenggam erat, menahan, merawat agar tidak runtuh.',
+        suffix: '-ability (-able + -ity)',
+        suffixDesc: 'Kapasitas kemampuan laten untuk terus bertahan.',
+        synthesis: 'Kapasitas suatu sistem atau ekosistem untuk terus bertahan secara stabil tanpa menghabiskan sumber dayanya.',
+        cue: 'Sering menjadi kata kunci penentu pada opsi Main Idea (Gagasan Utama) dan Judul Bacaan.',
+        trap: 'Jangan keliru memilih varian "sustenance" yang merujuk pada makanan/gizi fisik, bukan konsep keberlanjutan sistem.'
+      },
+      'Interconnectedness': {
+        word: 'Interconnectedness',
+        pos: 'Noun Jamak Konsep',
+        yield: 'Wacana Ekologi & Globalisasi',
+        prefix: 'inter- + con-',
+        prefixDesc: 'inter- (lintas batas/antar) + con- (bersama-sama secara simultan).',
+        root: 'nect (nectere)',
+        rootDesc: 'Mengikat tali, menyambung simpul.',
+        suffix: '-ed + -ness',
+        suffixDesc: '-ed (kondisi terhubung) + -ness (keadaan kata benda abstrak).',
+        synthesis: 'Keadaan di mana semua bagian atau spesies saling bertautan dan memengaruhi satu sama lain.',
+        cue: 'Dipakai untuk menegaskan bahwa kepunahan satu hewan kecil di kutub bisa meruntuhkan rantai makanan benua lain.',
+        trap: 'Bila ada "intranetted" atau "intraconnected", perhatikan: "intra-" hanya di dalam satu unit tertutup, bukan lintas ekosistem.'
+      },
+      'Maladministration': {
+        word: 'Maladministration',
+        pos: 'Noun (Kata Benda)',
+        yield: 'Wacana Tata Kelola & Kebijakan',
+        prefix: 'mal-',
+        prefixDesc: 'Buruk, cacat moral, gagal prosedur, merugikan.',
+        root: 'minister (administrare)',
+        rootDesc: 'Melayani rakyat, mengelola urusan tata kelola publik.',
+        suffix: '-ation',
+        suffixDesc: 'Proses tindakan atau kondisi perbuatan hukum.',
+        synthesis: 'Tindakan tata kelola yang menyimpang, curang, atau salah kelola birokrasi pemerintahan.',
+        cue: 'Pemberian label "maladministration" langsung menunjukkan sikap kritis dan mengecam dari penulis terhadap institusi.',
+        trap: 'Bedakan dengan "misadministration" (kesalahan teknis minor); "mal-" mengindikasikan penyimpangan yang lebih fatal atau koruptif.'
+      },
+      'Unprecedented': {
+        word: 'Unprecedented',
+        pos: 'Adjective (Kata Sifat)',
+        yield: 'Wacana Penemuan & Krisis Sejarah',
+        prefix: 'un-',
+        prefixDesc: 'Peniadaan / belum pernah terjadi sebelumnya.',
+        root: 'precede (praecedere)',
+        rootDesc: 'Berjalan mendahului di depan; preseden acuan masa lalu.',
+        suffix: '-ent + -ed',
+        suffixDesc: 'Membentuk adjective participle kejadian masa lampau.',
+        synthesis: 'Peristiwa yang belum pernah ada tandingannya atau contohnya sama sekali dalam catatan sejarah.',
+        cue: 'Mendandai skala krisis atau terobosan ilmiah yang luar biasa dahsyat (ekstrem).',
+        trap: 'Jawaban yang salah biasanya mengartikannya sebagai "unpredictable" (tidak bisa diramal). Keduanya konsep berbeda.'
+      },
+      'Hypersensitivity': {
+        word: 'Hypersensitivity',
+        pos: 'Noun (Kondisi Medis/Biologi)',
+        yield: 'Wacana Imunologi & Psikologi',
+        prefix: 'hyper-',
+        prefixDesc: 'Melampaui batas wajar, ekstrem, kelewat batas.',
+        root: 'sens (sentire)',
+        rootDesc: 'Merasakan rangsangan melalui pancaindra.',
+        suffix: '-ive + -ity',
+        suffixDesc: 'Kondisi status biologis atau respon fisiologis tubuh.',
+        synthesis: 'Reaksi daya respons atau kekebalan tubuh yang berlebihan terhadap zat atau stimulus yang sebenarnya tidak berbahaya.',
+        cue: 'Biasanya dibandingkan dengan "hyposensitivity" (kondisi kekurangan kepekaan respons).',
+        trap: 'Jangan tertukar dengan prefix "hypo-" (artinya di bawah kadar normal/rendah).'
+      }
+    };
+
+    // Render Preset Lab Buttons
+    const labWordButtonsContainer = document.getElementById('labWordButtonsContainer');
+    const labKeys = Object.keys(LAB_WORDS_DATA);
+
+    labKeys.forEach((key, index) => {
+      const btn = document.createElement('button');
+      btn.textContent = key;
+      btn.className = `px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold transition-all ${
+        index === 0
+          ? 'bg-gradient-to-r from-neonViolet to-neonFuchsia text-white shadow-lg shadow-purple-500/30 ring-1 ring-white/50'
+          : 'bg-space-900 text-slate-300 hover:bg-space-850 hover:text-white border border-white/10'
+      }`;
+      btn.addEventListener('click', () => updateLabDisplay(key, btn));
+      labWordButtonsContainer.appendChild(btn);
+    });
+
+    function updateLabDisplay(key, clickedBtn) {
+      const allBtns = labWordButtonsContainer.querySelectorAll('button');
+      allBtns.forEach(b => {
+        b.className = 'px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold bg-space-900 text-slate-300 hover:bg-space-850 hover:text-white border border-white/10 transition-all';
+      });
+      clickedBtn.className = 'px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold bg-gradient-to-r from-neonViolet to-neonFuchsia text-white shadow-lg shadow-purple-500/30 ring-1 ring-white/50 transition-all';
+
+      const d = LAB_WORDS_DATA[key];
+      document.getElementById('labWordTitle').textContent = d.word;
+      document.getElementById('labWordPos').textContent = d.pos;
+      document.getElementById('labWordYield').textContent = d.yield;
+
+      document.getElementById('labPrefixText').textContent = d.prefix;
+      document.getElementById('labPrefixDesc').textContent = d.prefixDesc;
+
+      document.getElementById('labRootText').textContent = d.root;
+      document.getElementById('labRootDesc').textContent = d.rootDesc;
+
+      document.getElementById('labSuffixText').textContent = d.suffix;
+      document.getElementById('labSuffixDesc').textContent = d.suffixDesc;
+
+      document.getElementById('labSynthesisText').textContent = d.synthesis;
+      document.getElementById('labCueText').textContent = d.cue;
+      document.getElementById('labTrapText').textContent = d.trap;
+    }
+
+    // -------------------------------------------------------------
+    // 3. DATA: KATALOG LENGKAP 40+ MORFEM DENGAN CONTOH KALIMAT
+    // -------------------------------------------------------------
+    const MASTER_AFFIXES_CATALOG = [
+      // === PREFIXES: NEGATION & POLARITY ===
+      {
+        affix: 'un-',
+        category: 'prefix',
+        badge: 'Prefix Negasi',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Tidak, bukan, belum, membalikkan keadaan asal.',
+        toneSignal: 'Skeptis jika menempel pada klausa ilmiah; evaluasi negatif.',
+        examples: [
+          {
+            en: 'The scientist dismissed the report as it relied on completely unsubstantiated assertions.',
+            id: 'Ilmuwan itu menolak laporan tersebut karena sepenuhnya bergantung pada penegasan yang belum terbukti keabsahannya.',
+            shift: 'un- mengubah "substantiated" (berdasar bukti) menjadi tidak berbukti, sehingga klaim wajib ditolak.'
+          },
+          {
+            en: 'The unprecedented rise in global sea levels alarmed oceanographers worldwide.',
+            id: 'Kenaikan permukaan laut global yang belum pernah terjadi sebelumnya mengguncang para ahli kelautan dunia.',
+            shift: 'un- menandakan peristiwa bersejarah baru yang melampaui preseden masa lalu.'
+          }
+        ]
+      },
+      {
+        affix: 'in- / im- / il- / ir-',
+        category: 'prefix',
+        badge: 'Prefix Negasi / Asimilasi',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Tidak, bukan, peniadaan mutlak (bermutasi fonetik sebelum konsonan tertentu).',
+        toneSignal: 'Objektif atau kritis (contoh: inaccessible, irregular).',
+        examples: [
+          {
+            en: 'Due to severe soil degradation, vast agricultural areas became utterly inaccessible to modern machinery.',
+            id: 'Akibat degradasi tanah yang parah, area pertanian yang luas menjadi sama sekali tidak dapat diakses oleh alat berat modern.',
+            shift: 'in- menegaskan keterbatasan fisik mutlak mesin untuk mencapai area.'
+          },
+          {
+            en: 'The committee discovered several irregular accounting transactions during the fiscal audit.',
+            id: 'Komite menemukan beberapa transaksi akuntansi yang tidak lazim/menyimpang selama audit keuangan.',
+            shift: 'ir- menggeser "regular" (tertib/wajar) menjadi indikasi kecurangan administratif.'
+          }
+        ]
+      },
+      {
+        affix: 'dis-',
+        category: 'prefix',
+        badge: 'Prefix Pemisahan / Lawan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Tidak, bertentangan, pemisahan, penghentian koneksi.',
+        toneSignal: 'Kritis, penolakan, atau perpecahan sosial.',
+        examples: [
+          {
+            en: 'The controversial dam project caused widespread disenfranchisement among the local indigenous villagers.',
+            id: 'Proyek bendungan yang kontroversial itu menyebabkan hilangnya hak-hak dasar secara meluas di kalangan penduduk desa adat setempat.',
+            shift: 'dis- mencabut hak partisipasi dan kekuasaan warga (enfranchise -> disenfranchise).'
+          },
+          {
+            en: 'A sudden market disruption forced the tech conglomerate to overhaul its operational workflow.',
+            id: 'Gangguan pasar yang mendadak memaksa konglomerat teknologi itu merombak total alur kerja operasionalnya.',
+            shift: 'dis- + rupt (pecah) menandakan hancurnya tatanan stabilitas pasar lama.'
+          }
+        ]
+      },
+      {
+        affix: 'non-',
+        category: 'prefix',
+        badge: 'Prefix Negasi Netral',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Bukan, tidak termasuk dalam klasifikasi ilmiah.',
+        toneSignal: 'Deskriptif netral, klasifikasi fakta sains.',
+        examples: [
+          {
+            en: 'Developing nations are heavily dependent on non-renewable fossil fuel reserves for electricity generation.',
+            id: 'Negara-negara berkembang sangat bergantung pada cadangan bahan bakar fosil yang tidak terbarukan untuk pembangkit listrik.',
+            shift: 'non- membagi energi menjadi dua kategori kaku: yang dapat diperbarui vs tidak dapat diperbarui.'
+          },
+          {
+            en: 'The research confirmed the treatment had negligible non-toxic residue inside the animal tissues.',
+            id: 'Riset tersebut mengonfirmasi bahwa pengobatan tersebut menyisakan residu tidak beracun yang dapat diabaikan di dalam jaringan hewan.',
+            shift: 'non- memastikan zat tidak membahayakan subjek pengujian.'
+          }
+        ]
+      },
+      {
+        affix: 'a- / an-',
+        category: 'prefix',
+        badge: 'Prefix Ketiadaan (Yunani)',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Tanpa, ketiadaan sifat, hampa dari kualitas tertentu.',
+        toneSignal: 'Istilah teknis biologis, medis, atau filosofis.',
+        examples: [
+          {
+            en: 'Deep sea hydrothermal vents host atypical bacteria that survive under anaerobic conditions.',
+            id: 'Ventilasi hidrotermal laut dalam menampung bakteri tidak lazim yang bertahan hidup dalam kondisi tanpa oksigen (anaerobik).',
+            shift: 'an- + aero (oksigen) menjelaskan metabolisme yang sama sekali tidak membutuhkan udara.'
+          },
+          {
+            en: 'The historian argued that the monarch ruled with an amoral pragmatism focused solely on survival.',
+            id: 'Sejarawan itu berpendapat bahwa sang penguasa memerintah dengan pragmatisme amoral yang semata-mata berfokus pada kelangsungan hidup.',
+            shift: 'amoral berarti acuh terhadap konsep moralitas (berbeda dari immoral yang aktif berbuat jahat).'
+          }
+        ]
+      },
+
+      // === PREFIXES: FLAW, DEFICIENCY, DEGRADATION ===
+      {
+        affix: 'mis-',
+        category: 'prefix',
+        badge: 'Prefix Kekeliruan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Salah, keliru, tidak tepat sasaran.',
+        toneSignal: 'Korektif, menolak kesimpulan studi pihak lawan.',
+        examples: [
+          {
+            en: 'A widespread misconception about climate change is that all regions will experience uniform warming.',
+            id: 'Sebuah kekeliruan pemahaman yang meluas tentang perubahan iklim adalah anggapan bahwa semua wilayah akan mengalami pemanasan yang seragam.',
+            shift: 'mis- menandakan bahwa asumsi publik salah total dan perlu diluruskan oleh data empiris.'
+          },
+          {
+            en: 'Poor translation resulted in a severe misinterpretation of the international diplomatic pact.',
+            id: 'Penerjemahan yang buruk mengakibatkan salah tafsir parah terhadap pakta diplomatik internasional tersebut.',
+            shift: 'mis- mengubah pemahaman yang semestinya menjadi distorsi pesan diplomatik.'
+          }
+        ]
+      },
+      {
+        affix: 'mal-',
+        category: 'prefix',
+        badge: 'Prefix Keburukan / Cacat',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Buruk, jahat, abnormal, merusak fungsi sistem.',
+        toneSignal: 'Sangat kritis, mencela tata kelola atau kesehatan.',
+        examples: [
+          {
+            en: 'Chronic childhood malnutrition directly compromises cognitive development and immune competence.',
+            id: 'Gizi buruk kronis pada masa kanak-kanak secara langsung mengorbankan perkembangan kognitif dan ketahanan sistem kekebalan tubuh.',
+            shift: 'mal- menunjukkan kualitas asupan gizi yang sangat cacat dan merusak tubuh.'
+          },
+          {
+            en: 'The tribunal convicted the medical official of grave professional malpractice.',
+            id: 'Mahkamah memvonis pejabat medis tersebut atas malpraktik profesional yang fatal.',
+            shift: 'mal- + practice menandakan tindakan profesional yang menyalahi kode etik dan mencelakai pasien.'
+          }
+        ]
+      },
+      {
+        affix: 'pseudo-',
+        category: 'prefix',
+        badge: 'Prefix Kepalsuan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Palsu, semu, meniru tanpa dasar ilmiah yang sah.',
+        toneSignal: 'Mengejek, skeptis, menolak keras validitas klaim.',
+        examples: [
+          {
+            en: 'The university warned students against investing tuition money in pseudoscientific wellness seminars.',
+            id: 'Pihak universitas memperingatkan para mahasiswa agar tidak menginvestasikan uang kuliah pada seminar kebugaran yang berkedok sains palsu.',
+            shift: 'pseudo- merendahkan seminar tersebut sebagai penipuan yang dibungkus istilah sains semu.'
+          },
+          {
+            en: 'He published his radical anti-establishment essays under an anonymous pseudonym.',
+            id: 'Ia menerbitkan esai-esai radikal anti kemapanannya di bawah nama samaran tanpa nama.',
+            shift: 'pseudo- + nym (nama) menandakan identitas samaran agar penulis asli tidak terlacak.'
+          }
+        ]
+      },
+      {
+        affix: 'under-',
+        category: 'prefix',
+        badge: 'Prefix Defisit / Di Bawah',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Kurang dari cukup, di bawah standar, meremehkan.',
+        toneSignal: 'Evaluasi kekurangan, memperingatkan bahaya.',
+        examples: [
+          {
+            en: 'Early epidemiological models severely underestimated the rapid transmission velocity of the airborne variant.',
+            id: 'Model-model epidemiologis awal sangat meremehkan kecepatan penularan yang pesat dari varian yang menular lewat udara.',
+            shift: 'under- menandakan bahwa estimasi awal jauh lebih rendah daripada bahaya kenyataan lapangan.'
+          },
+          {
+            en: 'The rural health clinics were perpetually underfunded and critically understaffed during the epidemic.',
+            id: 'Klinik-klinik kesehatan desa terus-menerus kekurangan dana dan sangat kekurangan tenaga medis selama epidemi.',
+            shift: 'under- menegaskan defisit sumber daya yang menyebabkan fasilitas lumpuh.'
+          }
+        ]
+      },
+      {
+        affix: 'de-',
+        category: 'prefix',
+        badge: 'Prefix Pengurangan / Penurunan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Turun, mengurangi, memusnahkan, membalikkan struktur.',
+        toneSignal: 'Wacana kerusakan lingkungan, pembongkaran sistem.',
+        examples: [
+          {
+            en: 'Commercial cattle farming accelerates Amazonian deforestation at an alarming annual rate.',
+            id: 'Peternakan sapi komersial mempercepat penggundulan hutan Amazon pada laju tahunan yang mencemaskan.',
+            shift: 'de- + forestasi menandakan aksi penghilangan total vegetasi hutan.'
+          },
+          {
+            en: 'The government initiated a nationwide program to deregulate the telecommunications industry.',
+            id: 'Pemerintah memprakarsai program nasional untuk menghapus aturan birokrasi pada industri telekomunikasi.',
+            shift: 'de- menghapus regulasi lama demi membuka pasar bebas.'
+          }
+        ]
+      },
+
+      // === PREFIXES: SPATIAL, RELATIONAL, HIERARCHICAL ===
+      {
+        affix: 'inter-',
+        category: 'prefix',
+        badge: 'Prefix Relasi Antar Unit',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Antara, lintas kelompok, hubungan timbal balik dua entitas.',
+        toneSignal: 'Globalisasi, keterkaitan sistem ekologi.',
+        examples: [
+          {
+            en: 'Modern environmental scientists emphasize the profound interdependence between terrestrial and aquatic biomes.',
+            id: 'Pakar lingkungan modern menekankan saling ketergantungan yang mendalam antara bioma darat dan perairan.',
+            shift: 'inter- menyatakan bahwa kelangsungan hidup ekosistem darat dan laut saling memengaruhi satu sama lain.'
+          },
+          {
+            en: 'The researcher analyzed intercellular communication pathways during viral infection.',
+            id: 'Peneliti tersebut menganalisis jalur komunikasi antar-sel selama infeksi virus.',
+            shift: 'inter- menegaskan bahwa transmisi sinyal terjadi dari satu sel ke sel tetangganya.'
+          }
+        ]
+      },
+      {
+        affix: 'intra-',
+        category: 'prefix',
+        badge: 'Prefix Internal Di Dalam',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Di dalam satu lingkup tertutup, internal satu spesies/organ.',
+        toneSignal: 'Spesifik biologis atau internal organisasi.',
+        examples: [
+          {
+            en: 'Aggressive intraspecific competition for nesting sites forced younger birds to migrate farther south.',
+            id: 'Persaingan internal dalam satu spesies yang agresif untuk memperebutkan lokasi sarang memaksa burung-burung yang lebih muda bermigrasi lebih jauh ke selatan.',
+            shift: 'intra- menegaskan pertarungan terjadi antar individu dari SATU jenis spesies yang sama.'
+          },
+          {
+            en: 'The medication must be administered via an intravenous drip to prevent gastric degradation.',
+            id: 'Obat tersebut harus diberikan melalui infus ke dalam pembuluh darah untuk mencegah penguraian di lambung.',
+            shift: 'intra- + venous berarti cairan langsung dimasukkan ke rongga dalam pembuluh vena.'
+          }
+        ]
+      },
+      {
+        affix: 'trans-',
+        category: 'prefix',
+        badge: 'Prefix Lintas Wilayah',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Melintasi, menyeberangi, menembus batasan, mengubah total.',
+        toneSignal: 'Transformasi radikal, pergerakan lintas benua.',
+        examples: [
+          {
+            en: 'The transcontinental railway radically slashed the transit duration for industrial freight in the 19th century.',
+            id: 'Jalur kereta api lintas benua itu secara radikal memangkas durasi transit kargo industri pada abad ke-19.',
+            shift: 'trans- menegaskan jalur kereta menembus seluruh luas daratan dari satu ujung samudra ke samudra lain.'
+          },
+          {
+            en: 'Renewable energy adoption drove a transformative shift in global industrial manufacturing.',
+            id: 'Penerapan energi terbarukan mendorong pergeseran transformatif yang mengubah wajah manufaktur industri global.',
+            shift: 'trans- + form mengubah wujud dasar tatanan ekonomi lama menjadi tatanan baru.'
+          }
+        ]
+      },
+      {
+        affix: 'sub-',
+        category: 'prefix',
+        badge: 'Prefix Di Bawah / Sekunder',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Di bawah tingkat dasar, lapisan kedua, sekunder, subordinat.',
+        toneSignal: 'Tingkatan hierarki atau posisi geografis.',
+        examples: [
+          {
+            en: 'Subsequent geological investigations confirmed the existence of massive subterranean water reservoirs.',
+            id: 'Penyelidikan geologis berikutnya mengonfirmasi keberadaan waduk air bawah tanah yang masif.',
+            shift: 'sub- pada subterranean menandakan posisi air persis di bawah lapisan permukaan kerak bumi.'
+          },
+          {
+            en: 'The local municipal board remained subordinate to the federal supreme court ruling.',
+            id: 'Dewan pemerintah kota setempat tetap berkedudukan lebih rendah/tunduk pada putusan mahkamah agung federal.',
+            shift: 'sub- menunjukkan posisi otoritas hukum yang berada di bawah kendali lembaga pusat.'
+          }
+        ]
+      },
+      {
+        affix: 'super- / supra-',
+        category: 'prefix',
+        badge: 'Prefix Di Atas / Melampaui',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Di atas batas biasa, melampaui standar manusiawi atau regional.',
+        toneSignal: 'Kekuatan superior, otoritas multinasional.',
+        examples: [
+          {
+            en: 'The European Union acts as a supranational authority capable of issuing binding economic directives.',
+            id: 'Uni Eropa bertindak sebagai otoritas supranasional yang mampu mengeluarkan arahan ekonomi yang mengikat negara anggotanya.',
+            shift: 'supra- menegaskan hukum tersebut berada di atas wewenang masing-masing negara berdaulat.'
+          },
+          {
+            en: 'The new quantum alloy displayed superconducting capabilities at relatively higher temperatures.',
+            id: 'Paduan kuantum baru ini menunjukkan kemampuan superkonduktivitas pada temperatur yang relatif lebih tinggi.',
+            shift: 'super- menandakan kemampuan konduksi arus listrik tanpa hambatan sama sekali.'
+          }
+        ]
+      },
+      {
+        affix: 'circum-',
+        category: 'prefix',
+        badge: 'Prefix Mengelilingi',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Memutari, mengelilingi perimeter, menghindari secara berputar.',
+        toneSignal: 'Penjelasan geografis atau taktik penghindaran aturan.',
+        examples: [
+          {
+            en: 'Clever financial corporations constantly seek legal loopholes to circumvent environmental taxation policies.',
+            id: 'Korporasi finansial yang cerdik terus mencari celah hukum untuk mengakali/menghindari kebijakan pajak lingkungan hidup.',
+            shift: 'circum- + vent (berjalan memutar) menandakan tindakan menghindari aturan tanpa melanggar secara terang-terangan.'
+          },
+          {
+            en: 'Ferdinand Magellan commanded the first historical maritime fleet to circumnavigate the globe.',
+            id: 'Ferdinand Magellan memimpin armada maritim bersejarah pertama yang mengelilingi bola bumi.',
+            shift: 'circum- menegaskan pelayaran yang menempuh satu putaran penuh bola bumi.'
+          }
+        ]
+      },
+      {
+        affix: 'extra-',
+        category: 'prefix',
+        badge: 'Prefix Di Luar Batas',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Di luar batas normal, melampaui yurisdiksi atau alam fisik.',
+        toneSignal: 'Astronomis atau yurisdiksi hukum luar negeri.',
+        examples: [
+          {
+            en: 'Astrobiologists utilize radio telescopes to detect potential signatures of extraterrestrial civilizations.',
+            id: 'Astrobiolog menggunakan teleskop radio untuk mendeteksi kemungkinan jejak sinyal dari peradaban di luar planet bumi.',
+            shift: 'extra- + terrestrial (bumi) berarti berada di luar atmosfer bumi.'
+          },
+          {
+            en: 'The ambassador enjoyed extraterritorial immunity while serving at the foreign embassy.',
+            id: 'Duta besar tersebut menikmati kekebalan hukum di luar yurisdiksi wilayah saat bertugas di kedutaan asing.',
+            shift: 'extra- membebaskan duta besar dari jeratan hukum lokal negara tempat ia bertugas.'
+          }
+        ]
+      },
+
+      // === PREFIXES: TEMPORAL, SEQUENTIAL, DEGREE ===
+      {
+        affix: 'pre-',
+        category: 'prefix',
+        badge: 'Prefix Sebelum / Pendahulu',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Sebelum waktu tertentu, mendahului urutan, persiapan awal.',
+        toneSignal: 'Penyebab awal, peringatan prasyarat.',
+        examples: [
+          {
+            en: 'Detailed field geological mapping is an indispensable precursor to deep oil extraction.',
+            id: 'Pemetaan geologis lapangan yang terperinci adalah pendahulu mutlak yang wajib ada sebelum pengeboran minyak bumi dalam.',
+            shift: 'pre- menandakan langkah wajib yang harus rampung sebelum langkah ekstraksi bisa dimulai.'
+          },
+          {
+            en: 'The engineer initiated precautionary protocols before activating the high-voltage reactor.',
+            id: 'Insinyur tersebut memulai protokol kehati-hatian/pencegahan sebelum mengaktifkan reaktor tegangan tinggi.',
+            shift: 'pre- memastikan keselamatan diuji sebelum bahaya muncul.'
+          }
+        ]
+      },
+      {
+        affix: 'post-',
+        category: 'prefix',
+        badge: 'Prefix Setelah / Masa Pasca',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Sesudah, masa yang terjadi setelah peristiwa besar.',
+        toneSignal: 'Evaluasi dampak historis, analisis pasca-krisis.',
+        examples: [
+          {
+            en: 'The economy experienced prolonged structural stagflation during the tumultuous post-war era.',
+            id: 'Perekonomian mengalami stagflasi struktural yang berkepanjangan selama era pasca-perang yang bergejolak.',
+            shift: 'post- memfokuskan analisis teks pada dampak kerusakan yang tertinggal setelah perang usai.'
+          },
+          {
+            en: 'Clinical psychologists documented alarming post-traumatic symptoms among disaster survivors.',
+            id: 'Psikolog klinis mendokumentasikan gejala pasca-trauma yang mengkhawatirkan di kalangan penyintas bencana.',
+            shift: 'post- trauma menegaskan gangguan jiwa yang baru meledak sesudah tragedi berlalu.'
+          }
+        ]
+      },
+      {
+        affix: 'fore-',
+        category: 'prefix',
+        badge: 'Prefix Di Depan / Masa Depan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Sebelumnya, berada di garis depan, melihat masa depan.',
+        toneSignal: 'Prediksi ilmiah, kewaspadaan masa depan.',
+        examples: [
+          {
+            en: 'Meteorologists provided an accurate weather forecast, allowing coastal residents to evacuate safely.',
+            id: 'Ahli meteorologi memberikan prakiraan cuaca yang akurat, memungkinkan warga pesisir mengungsi dengan aman.',
+            shift: 'fore- + cast meramalkan kondisi alam sebelum badai benar-benar menghantam daratan.'
+          },
+          {
+            en: 'The political philosopher was in the forefront of the constitutional democratic reform movement.',
+            id: 'Filsuf politik tersebut berada di garda terdepan dari gerakan reformasi konstitusional yang demokratis.',
+            shift: 'fore- menempatkan tokoh sebagai pelopor barisan paling muka.'
+          }
+        ]
+      },
+      {
+        affix: 'retro-',
+        category: 'prefix',
+        badge: 'Prefix Menengok ke Belakang',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Mundur ke masa lalu, berorientasi ke belakang, retroaktif.',
+        toneSignal: 'Analisis kilas balik sejarah, evaluasi masa lampau.',
+        examples: [
+          {
+            en: 'A retrospective study of medical records revealed subtle genetic mutations that caused early heart failure.',
+            id: 'Studi kilas balik terhadap rekam medis mengungkap mutasi genetik samar yang menyebabkan gagal jantung dini.',
+            shift: 'retro- menandakan metodologi riset yang memeriksa data masa lalu untuk mencari pola penyakit.'
+          },
+          {
+            en: 'The court decided that the newly passed corporate regulations could not be applied retroactively.',
+            id: 'Pengadilan memutuskan bahwa regulasi perusahaan yang baru disahkan tersebut tidak dapat diberlakukan surut ke belakang.',
+            shift: 'retro- menolak penghukuman atas tindakan yang terjadi sebelum undang-undang baru ada.'
+          }
+        ]
+      },
+      {
+        affix: 'hyper- vs. hypo-',
+        category: 'prefix',
+        badge: 'Prefix Tingkat Ekstrem',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'hyper- (berlebihan/terlalu tinggi) vs. hypo- (defisit/di bawah kadar normal).',
+        toneSignal: 'Pengukuran kadar kuantitatif laboratorium atau moneter.',
+        examples: [
+          {
+            en: 'Runaway money printing in the Weimar Republic resulted in catastrophic hyperinflation.',
+            id: 'Pencetakan uang yang tak terkendali di Republik Weimar mengakibatkan hiperinflasi yang memporak-porandakan ekonomi.',
+            shift: 'hyper- menandakan lonjakan kenaikan harga barang yang ribuan kali melampaui batas normal.'
+          },
+          {
+            en: 'Mountain climbers trapped in the blizzard suffered from severe hypothermia as their body temperatures plummeted.',
+            id: 'Para pendaki gunung yang terjebak dalam badai salju menderita hipotermia parah saat suhu tubuh mereka merosot drastis.',
+            shift: 'hypo- + thermia menandakan anjloknya panas tubuh hingga di bawah ambang batas hidup manusia.'
+          }
+        ]
+      },
+      {
+        affix: 'over-',
+        category: 'prefix',
+        badge: 'Prefix Kelebihan Batas',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Melampaui kapasitas wajar, berlebihan hingga merugikan.',
+        toneSignal: 'Kritik atas eksploitasi atau pernyataan berlebihan.',
+        examples: [
+          {
+            en: 'Marine ecologists warn that chronic overfishing is triggering an irreversible collapse of coral reef biodiversity.',
+            id: 'Pakar ekologi laut memperingatkan bahwa penangkapan ikan berlebihan yang kronis memicu keruntuhan permanen pada keanekaragaman hayati terumbu karang.',
+            shift: 'over- menandakan laju perburuan yang melampaui daya reproduksi alami ikan.'
+          },
+          {
+            en: 'The marketing claims were grossly overstated and lacked any verifiable clinical trials.',
+            id: 'Klaim pemasaran tersebut terlalu dilebih-lebihkan secara mencolok dan sama sekali tidak memiliki uji klinis yang dapat diverifikasi.',
+            shift: 'over- menandakan kebohongan promosi yang melipatgandakan khasiat produk.'
+          }
+        ]
+      },
+
+      // === PREFIXES: SYNTHESIS & OPPOSITION ===
+      {
+        affix: 'co- / com- / con- / col-',
+        category: 'prefix',
+        badge: 'Prefix Kebersamaan',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Bersama-sama, serentak, menyatu, kerja sama kolektif.',
+        toneSignal: 'Kolaboratif, persetujuan mufakat, konvergensi ide.',
+        examples: [
+          {
+            en: 'Diverse indigenous communities coexisted peacefully in the fertile river basin for centuries.',
+            id: 'Beragam komunitas adat hidup berdampingan secara damai di lembah sungai yang subur tersebut selama berabad-abad.',
+            shift: 'co- menandakan kehidupan bersama tanpa konflik perpecahan.'
+          },
+          {
+            en: 'After days of intense negotiation, the world leaders finally reached a binding consensus.',
+            id: 'Setelah berhari-hari negosiasi yang alot, para pemimpin dunia akhirnya mencapai kesepakatan mufakat yang mengikat.',
+            shift: 'con- + sensus (kesamaan rasa pikir) menegaskan peleburan sudut pandang menjadi satu keputusan.'
+          }
+        ]
+      },
+      {
+        affix: 'syn- / sym-',
+        category: 'prefix',
+        badge: 'Prefix Penyatuan (Yunani)',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Satu padu, sinkron, integrasi elemen terpisah.',
+        toneSignal: 'Sintesis ilmiah, interaksi mutualisme biologis.',
+        examples: [
+          {
+            en: 'Lichens represent an elegant biological symbiosis between photosynthetic algae and protective fungi.',
+            id: 'Lumut kerak merepresentasikan simbiosis biologis yang elegan antara alga fotosintetik dan jamur pelindung.',
+            shift: 'sym- + bio menandakan dua makhluk hidup bersatu demi bertahan hidup bersama.'
+          },
+          {
+            en: 'The academic literature review serves to synthesize findings from over fifty independent clinical studies.',
+            id: 'Tinjauan pustaka akademis tersebut berfungsi untuk menyintesiskan temuan-temuan dari lebih dari lima puluh studi klinis independen.',
+            shift: 'syn- merajut benang merah dari puluhan penelitian yang tercerai-berai menjadi satu teori kokoh.'
+          }
+        ]
+      },
+      {
+        affix: 'counter- / anti- / contra-',
+        category: 'prefix',
+        badge: 'Prefix Perlawanan / Kontra',
+        badgeColor: 'border-cyan-800 text-neonCyan bg-cyan-950/60',
+        meaning: 'Melawan, membalas, meredam gaya lawan, bertentangan frontal.',
+        toneSignal: 'Menolak premis awal, membeberkan paradoks.',
+        examples: [
+          {
+            en: 'Imposing strict price ceilings proved counterproductive, resulting in acute black market shortages.',
+            id: 'Pemberlakuan batas harga tertinggi terbukti membuahkan hasil yang bertolak belakang, mengakibatkan kelangkaan akut di pasar gelap.',
+            shift: 'counter- menegaskan niat menolong rakyat miskin justru berujung pada kelaparan dan hilangnya barang.'
+          },
+          {
+            en: 'The defense attorney uncovered irrefutable evidence that directly contradicted the prosecution’s theory.',
+            id: 'Pengacara pembela mengungkap bukti tak terbantahkan yang secara langsung bertentangan dengan teori jaksa penuntut.',
+            shift: 'contra- + dict (mengatakan hal yang sebaliknya) menghancurkan kebenaran premis jaksa.'
+          }
+        ]
+      },
+
+      // === SUFFIXES NOUN: PROCESS, ABSTRACT, STATE ===
+      {
+        affix: '-tion / -sion',
+        category: 'suffix-noun',
+        badge: 'Suffix Noun Proses',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Tindakan, proses pelaksanaan, atau hasil pemikiran (Nominalization).',
+        toneSignal: 'Penggunaan gaya ilmiah formal padat makna.',
+        examples: [
+          {
+            en: 'The rapid industrialization of the delta led to unprecedented toxic effluent proliferation.',
+            id: 'Industrialisasi delta yang berlangsung pesat menyebabkan maraknya pembuangan limbah beracun yang belum pernah terjadi sebelumnya.',
+            shift: '-tion mengubah kata kerja "industrialize" menjadi konsep abstrak berskala makro.'
+          },
+          {
+            en: 'Scientific comprehension of gravitational waves broadened following the discovery of deep space ripples.',
+            id: 'Pemahaman ilmiah tentang gelombang gravitasi meluas menyusul penemuan riak-riak di ruang angkasa dalam.',
+            shift: '-sion mengubah proses kerja "comprehend" menjadi kapasitas intelektual peneliti.'
+          }
+        ]
+      },
+      {
+        affix: '-ity / -ty',
+        category: 'suffix-noun',
+        badge: 'Suffix Noun Kualitas',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Keadaan, sifat bawaan, derajat mutu abstrak.',
+        toneSignal: 'Definisi konsep kunci teks sains atau ekologi.',
+        examples: [
+          {
+            en: 'Protecting rainforest biodiversity is vital for stabilizing the planet’s biochemical equilibrium.',
+            id: 'Melindungi keanekaragaman hayati hutan hujan sangat penting untuk menstabilkan keseimbangan biokimia planet ini.',
+            shift: '-ity mengubah "diverse" (beragam) menjadi konsep kekayaan spesies biologis.'
+          },
+          {
+            en: 'Extreme poverty exacerbates the vulnerability of coastal families to tropical cyclones.',
+            id: 'Kemiskinan ekstrem memperparah kerentanan keluarga-keluarga pesisir terhadap siklon tropis.',
+            shift: '-ity mengubah sifat rentan (vulnerable) menjadi risiko kerawanan yang dapat diukur.'
+          }
+        ]
+      },
+      {
+        affix: '-ment',
+        category: 'suffix-noun',
+        badge: 'Suffix Noun Hasil',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Hasil tindakan, produk perbuatan, atau sarana kebijakan.',
+        toneSignal: 'Laporan implementasi program pemerintah atau penemuan baru.',
+        examples: [
+          {
+            en: 'The swift implementation of wastewater recycling averted a crippling urban drought.',
+            id: 'Penerapan daur ulang air limbah yang cepat berhasil mencegah bencana kekeringan kota yang melumpuhkan.',
+            shift: '-ment memadatkan aksi "implement" menjadi instrumen nyata penyelamat krisis.'
+          },
+          {
+            en: 'The treaty acknowledged the historical mistreatment endured by indigenous populations.',
+            id: 'Perjanjian tersebut mengakui perlakuan buruk historis yang dialami oleh populasi suku asli.',
+            shift: '-ment merangkum seluruh kekejaman puluhan tahun menjadi satu objek pengakuan hukum.'
+          }
+        ]
+      },
+      {
+        affix: '-ance / -ence',
+        category: 'suffix-noun',
+        badge: 'Suffix Noun Eksistensi',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Keadaan eksis, kualitas ketahanan, atau frekuensi kejadian.',
+        toneSignal: 'Karakteristik ketangguhan material atau ekosistem.',
+        examples: [
+          {
+            en: 'The remarkable genetic resilience of mangrove trees permits their survival in high-salinity waters.',
+            id: 'Daya lentur/ketahanan genetik yang luar biasa dari pohon bakau memungkinkan mereka bertahan hidup di perairan berkadar garam tinggi.',
+            shift: '-ence mengubah sifat tangguh (resilient) menjadi daya tahan hidup fisiologis.'
+          },
+          {
+            en: 'The sudden divergence between theoretical models and empirical field data puzzled the astronomers.',
+            id: 'Penyimpangan mendadak antara model teoritis dan data lapangan empiris membingungkan para astronom.',
+            shift: '-ence mengubah kata kerja "diverge" menjadi fenomena anomali data riset.'
+          }
+        ]
+      },
+      {
+        affix: '-ness',
+        category: 'suffix-noun',
+        badge: 'Suffix Noun Kondisi',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Keadaan batin, status kondisi, derajat kesadaran.',
+        toneSignal: 'Wacana psikologi, kesadaran publik, filosofi batin.',
+        examples: [
+          {
+            en: 'Public awareness regarding the dangers of single-use plastics has surged exponentially over the past decade.',
+            id: 'Kesadaran masyarakat mengenai bahaya plastik sekali pakai telah melonjak secara eksponensial selama dekade terakhir.',
+            shift: '-ness mengubah "aware" menjadi gerakan kesadaran sosial bersama.'
+          },
+          {
+            en: 'The total darkness of the abyssal zone forced deep-sea fauna to evolve bioluminescent organs.',
+            id: 'Kegelapan total zona abisal memaksa fauna laut dalam mengembangkan organ yang memancarkan cahaya biologis.',
+            shift: '-ness mendeskripsikan kondisi lingkungan fisik laut tanpa sinar matahari.'
+          }
+        ]
+      },
+      {
+        affix: '-hood & -ship',
+        category: 'suffix-noun',
+        badge: 'Suffix Relasi / Ikatan',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Status keanggotaan, kurun waktu hidup, ikatan relasi profesi.',
+        toneSignal: 'Teks sejarah, sosiologi keluarga, kepemimpinan publik.',
+        examples: [
+          {
+            en: 'Strong community fellowship helped the isolated farming enclave withstand severe economic recessions.',
+            id: 'Ikatan persaudaraan komunitas yang kuat membantu daerah pertanian terpencil itu bertahan menghadapi resesi ekonomi parah.',
+            shift: '-ship merekatkan individu menjadi satu ikatan persatuan saling tolong.'
+          },
+          {
+            en: 'Early childhood experiences exert a disproportionately durable influence on lifelong emotional stability.',
+            id: 'Pengalaman masa kanak-kanak awal memberikan pengaruh yang sangat bertahan lama terhadap stabilitas emosional seumur hidup.',
+            shift: '-hood membatasi kurun waktu spesifik perkembangan manusia.'
+          }
+        ]
+      },
+      {
+        affix: '-ism',
+        category: 'suffix-noun',
+        badge: 'Suffix Ideologi / Doktrin',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Ajaran doktrin, filsafat, prinsip gerakan, karakteristik perilaku.',
+        toneSignal: 'Ilmu politik, aliran sastra, kritik sosial.',
+        examples: [
+          {
+            en: 'The essay critiqued raw consumerism, arguing that perpetual acquisition diminishes personal well-being.',
+            id: 'Esai tersebut mengkritik konsumerisme buta, dengan alasan bahwa nafsu belanja terus-menerus justru mengurangi kesejahteraan pribadi.',
+            shift: '-ism menamai budaya atau pola perilaku menjadi sebuah paham yang dikritik.'
+          },
+          {
+            en: 'Enlightenment empiricism demanded that all philosophical claims be subjected to observable testing.',
+            id: 'Empirisme Abad Pencerahan menuntut agar semua klaim filosofis tunduk pada pengujian yang dapat diamati.',
+            shift: '-ism mendefinisikan doktrin filsafat ilmu pengetahuan modern.'
+          }
+        ]
+      },
+
+      // === SUFFIXES NOUN: AGENT, DOER, SUBJECT ===
+      {
+        affix: '-ist',
+        category: 'suffix-noun',
+        badge: 'Suffix Pelaku Spesialis',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Orang yang mempraktikkan keahlian khusus atau menganut ideologi.',
+        toneSignal: 'Subjek pelaku penelitian atau figur sejarah.',
+        examples: [
+          {
+            en: 'The botanist discovered a rare medicinal orchid previously presumed extinct by academic institutions.',
+            id: 'Ahli botani itu menemukan anggrek obat langka yang sebelumnya dianggap telah punah oleh lembaga akademis.',
+            shift: '-ist menegaskan pelaku adalah ilmuwan yang mendedikasikan hidupnya pada flora.'
+          },
+          {
+            en: 'A prominent environmentalist urged citizens to reduce carbon emissions through sustainable transit.',
+            id: 'Seorang aktivis lingkungan hidup terkemuka mengimbau masyarakat untuk mengurangi emisi karbon melalui transportasi berkelanjutan.',
+            shift: '-ist menandakan figur penganut aksi penyelamatan lingkungan.'
+          }
+        ]
+      },
+      {
+        affix: '-or / -er',
+        category: 'suffix-noun',
+        badge: 'Suffix Pelaku / Alat',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Seseorang atau instrumen alat yang melakukan suatu pekerjaan.',
+        toneSignal: 'Aktor kebijakan atau perangkat instrumen riset.',
+        examples: [
+          {
+            en: 'The thermal sensor acts as a key indicator of internal volcanic pressure fluctuations.',
+            id: 'Sensor termal bertindak sebagai indikator kunci dari fluktuasi tekanan internal gunung berapi.',
+            shift: '-or pada indicator menandakan alat/instrumen mekanik penunjuk data sains.'
+          },
+          {
+            en: 'The primary consumer in the arctic food web feeds exclusively on nutrient-dense tundra mosses.',
+            id: 'Konsumen tingkat pertama dalam jaring-jaring makanan arktik memakan secara eksklusif lumut tundra yang kaya nutrisi.',
+            shift: '-er mendefinisikan organisme biologis yang memakan produsen.'
+          }
+        ]
+      },
+      {
+        affix: '-ology',
+        category: 'suffix-noun',
+        badge: 'Suffix Bidang Ilmu',
+        badgeColor: 'border-amber-800 text-neonAmber bg-amber-950/60',
+        meaning: 'Cabang ilmu pengetahuan, studi formal, wacana keilmuan.',
+        toneSignal: 'Klasifikasi disiplin akademis perguruan tinggi.',
+        examples: [
+          {
+            en: 'Advances in climatology reveal disturbing correlations between deforestation and erratic rainfall.',
+            id: 'Kemajuan dalam bidang klimatologi mengungkap korelasi mengkhawatirkan antara deforestasi dan curah hujan yang tidak menentu.',
+            shift: '-ology memayungi seluruh metodologi ilmiah tentang iklim.'
+          },
+          {
+            en: 'The medical student chose to specialize in epidemiology to combat infectious disease outbreaks.',
+            id: 'Mahasiswa kedokteran itu memilih mendalami epidemiologi guna memerangi wabah penyakit menular.',
+            shift: '-ology menandakan sains yang mempelajari penyebaran wabah.'
+          }
+        ]
+      },
+
+      // === SUFFIXES ADJECTIVE: CAPABILITY, NATURE, DEFICIT ===
+      {
+        affix: '-able / -ible',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Kelayakan',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Dapat dilakukan, mampu menanggung aksi, memenuhi kualifikasi.',
+        toneSignal: 'Kelaikan metode sains, kemungkinan keberhasilan.',
+        examples: [
+          {
+            en: 'Without immediate intervention, the delicate island ecosystem faces irreversible extinction cascades.',
+            id: 'Tanpa intervensi segera, ekosistem pulau yang rentan itu menghadapi rantai kepunahan yang mustahil dipulihkan (irreversible).',
+            shift: '-ible menyatakan bahwa peristiwa tersebut tidak memiliki kapasitas teknis untuk diputar balik.'
+          },
+          {
+            en: 'The agricultural engineer demonstrated that salt-tolerant barley was economically viable in arid regions.',
+            id: 'Insinyur pertanian itu membuktikan bahwa jelai tahan garam layak secara ekonomi untuk dikembangkan di wilayah gersang.',
+            shift: '-able menyatakan tanaman tersebut memenuhi syarat untuk mendatangkan keuntungan panen.'
+          }
+        ]
+      },
+      {
+        affix: '-al / -ial',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Karakteristik',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Berkaitan dengan, memiliki sifat alami dari, berasal dari.',
+        toneSignal: 'Menerangkan ranah fenomena (sosial, spasial, atau komersial).',
+        examples: [
+          {
+            en: 'Unregulated artificial intelligence poses profound existential threats to future democratic discourse.',
+            id: 'Kecerdasan buatan yang tidak diatur menimbulkan ancaman eksistensial yang mendalam terhadap diskursus demokrasi masa depan.',
+            shift: '-al mengubah kata benda "existence" menjadi jenis ancaman yang menyangkut hidup-mati umat manusia.'
+          },
+          {
+            en: 'Industrial runoff inflicted severe ecological damage upon adjacent coastal wetlands.',
+            id: 'Limpasan limbah industri menimbulkan kerusakan ekologis parah pada lahan basah pesisir di sekitarnya.',
+            shift: '-al mengaitkan dampak buruk secara spesifik pada jaringan rantai ekologi makhluk hidup.'
+          }
+        ]
+      },
+      {
+        affix: '-ic / -ical',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Sifat Ilmiah',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Memiliki karakteristik bawaan, bersandar pada prinsip ilmu.',
+        toneSignal: 'Kualifikasi data empiris atau fenomena kronologis.',
+        examples: [
+          {
+            en: 'The hypothesis was rejected because it contradicted established empirical observations.',
+            id: 'Hipotesis tersebut ditolak karena bertentangan dengan observasi-observasi empiris yang telah mapan.',
+            shift: '-ic menegaskan bahwa kebenaran riset harus berlandaskan fakta riil lapangan.'
+          },
+          {
+            en: 'Volcanic eruptions caused catastrophic shifts in regional weather patterns across the continent.',
+            id: 'Letusan gunung berapi menyebabkan pergeseran dahsyat (bencana) pada pola cuaca regional di seantero benua.',
+            shift: '-ic mengubah "catastrophe" (bencana) menjadi sifat kedahsyatan kerusakan.'
+          }
+        ]
+      },
+      {
+        affix: '-ive',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Kecenderungan',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Cenderung bertindak, berfungsi sebagai agen pelaksana, aktif.',
+        toneSignal: 'Mendeskripsikan watak, efektivitas instrumen, atau dampak hukum.',
+        examples: [
+          {
+            en: 'Heavy smartphone usage can have an insidious and disruptive effect on adolescent cognitive focus.',
+            id: 'Penggunaan ponsel cerdas yang berlebihan dapat memiliki dampak yang samar merusak dan mengacaukan fokus kognitif remaja.',
+            shift: '-ive mengubah "disrupt" menjadi kata sifat yang menerangkan sifat daya rusak gadget.'
+          },
+          {
+            en: 'The committee implemented decisive measures to mitigate further corporate financial losses.',
+            id: 'Komite menerapkan langkah-langkah tegas/menentukan untuk memitigasi kerugian finansial korporasi lebih lanjut.',
+            shift: '-ive menandakan langkah tegas yang mampu menuntaskan polemik.'
+          }
+        ]
+      },
+      {
+        affix: '-ous / -ious',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Kelimpahan',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Penuh dengan bahaya, kaya akan zat, memiliki ciri khas menonjol.',
+        toneSignal: 'Peringatan bahaya racun, status kerentanan spesies.',
+        examples: [
+          {
+            en: 'Improper disposal of hazardous chemical solvents poisons local groundwater aquifers.',
+            id: 'Pembuangan pelarut kimia berbahaya secara sembarangan meracuni akuifer air tanah setempat.',
+            shift: '-ous menandakan limbah yang sarat akan risiko bahaya fatal bagi kesehatan manusia.'
+          },
+          {
+            en: 'Certain fungal species are ubiquitous in tropical soil, decomposing organic matter with astonishing efficiency.',
+            id: 'Spesies jamur tertentu ada di mana-mana (ubiquitous) di tanah tropis, menguraikan bahan organik dengan efisiensi yang menakjubkan.',
+            shift: '-ous mendeskripsikan keberadaan jamur yang tersebar merata di setiap sudut bumi.'
+          }
+        ]
+      },
+      {
+        affix: '-less',
+        category: 'suffix-adj',
+        badge: 'Suffix Adj Tanpa / Hampa',
+        badgeColor: 'border-fuchsia-800 text-neonFuchsia bg-fuchsia-950/60',
+        meaning: 'Sama sekali tanpa, tidak memiliki kualitas dasar, defisit tuntas.',
+        toneSignal: 'Menyatakan kemustahilan, kekurangan, atau keteguhan hati.',
+        examples: [
+          {
+            en: 'The defense attorney argued that the criminal allegations were completely groundless and lacked evidence.',
+            id: 'Pengacara pembela berpendapat bahwa tuduhan pidana tersebut sama sekali tidak berdasar dan tidak memiliki bukti.',
+            shift: '-less meniadakan pijakan hukum dari jaksa (tanpa dasar).'
+          },
+          {
+            en: 'The relentless march of desertification swallows thousands of fertile hectares each year.',
+            id: 'Laju penggurunan yang tak henti-hentinya menelan ribuan hektar tanah subur setiap tahun.',
+            shift: '-less melukiskan laju perusakan alam yang tidak pernah berhenti sedetik pun.'
+          }
+        ]
+      },
+
+      // === SUFFIXES VERB & ADVERB: CAUSATIVE & MANNER ===
+      {
+        affix: '-ize / -ise',
+        category: 'suffix-verb',
+        badge: 'Suffix Verb Kausatif',
+        badgeColor: 'border-emerald-800 text-neonEmerald bg-emerald-950/60',
+        meaning: 'Menyebabkan menjadi, mengonversi struktur, memproses.',
+        toneSignal: 'Aksi predikat inti dalam kalimat pasif akademik.',
+        examples: [
+          {
+            en: 'Modern farmers utilize micro-drip irrigation to optimize crop water efficiency during drought.',
+            id: 'Petani modern memanfaatkan irigasi tetes mikro untuk mengoptimalkan efisiensi air tanaman selama kemarau.',
+            shift: '-ize memproses sesuatu menjadi titik optimum terbaik.'
+          },
+          {
+            en: 'The biochemist managed to synthesize an artificial enzyme that breaks down plastic polymers.',
+            id: 'Ahli biokimia itu berhasil menyintesiskan enzim buatan yang mampu mengurai polimer plastik.',
+            shift: '-ize menandakan perbuatan menciptakan zat sintetis baru di laboratorium.'
+          }
+        ]
+      },
+      {
+        affix: '-ate',
+        category: 'suffix-verb',
+        badge: 'Suffix Verb Pelaksanaan',
+        badgeColor: 'border-emerald-800 text-neonEmerald bg-emerald-950/60',
+        meaning: 'Melakukan tindakan ilmiah, merekayasa zat, memberlakukan.',
+        toneSignal: 'Predikat sains (mitigate, deteriorate, stimulate).',
+        examples: [
+          {
+            en: 'Planting mangrove greenbelts helps mitigate coastal erosion caused by frequent monsoon surges.',
+            id: 'Penanaman sabuk hijau bakau membantu memitigasi (meredam) abrasi pesisir yang disebabkan oleh gelombang muson yang sering terjadi.',
+            shift: '-ate menandakan tindakan aksi penanggulangan bahaya.'
+          },
+          {
+            en: 'Uncontrolled deforestation will inevitably accelerate soil nutrient depletion.',
+            id: 'Penebangan hutan yang tak terkendali pasti akan mempercepat pengurasan nutrisi tanah.',
+            shift: '-ate memacu kecepatan terjadinya kerusakan lingkungan.'
+          }
+        ]
+      },
+      {
+        affix: '-ify',
+        category: 'suffix-verb',
+        badge: 'Suffix Verb Pengubahan',
+        badgeColor: 'border-emerald-800 text-neonEmerald bg-emerald-950/60',
+        meaning: 'Mengubah wujud, memperjelas konsep, menaikkan intensitas.',
+        toneSignal: 'Eksperimen kimia atau klarifikasi teori sains.',
+        examples: [
+          {
+            en: 'Rising atmospheric carbon levels steadily acidify oceanic surface waters, imperiling coral reefs.',
+            id: 'Kadar karbon atmosfer yang meningkat secara bertahap mengasamkan air permukaan samudra, membahayakan terumbu karang.',
+            shift: '-ify mengubah sifat air laut dari netral menjadi asam berbahaya.'
+          },
+          {
+            en: 'The researcher used electron microscopy to clarify the cellular boundary of the newly found virus.',
+            id: 'Peneliti tersebut menggunakan mikroskop elektron untuk memperjelas batas seluler dari virus yang baru ditemukan.',
+            shift: '-ify membuat struktur yang tadinya buram menjadi terang benderang.'
+          }
+        ]
+      },
+      {
+        affix: '-en',
+        category: 'suffix-verb',
+        badge: 'Suffix Verb Pertambahan',
+        badgeColor: 'border-emerald-800 text-neonEmerald bg-emerald-950/60',
+        meaning: 'Membuat menjadi lebih, menambah sifat intensitas dasar.',
+        toneSignal: 'Perubahan gradual kondisi alam (widen, strengthen, threaten).',
+        examples: [
+          {
+            en: 'Severe tectonic tremors threaten to weaken the structural integrity of the historic reservoir dam.',
+            id: 'Guncangan tektonik yang parah mengancam akan melemahkan keutuhan struktural dari bendungan waduk bersejarah tersebut.',
+            shift: '-en pada weaken membuat fondasi dinding menjadi semakin rapuh hari demi hari.'
+          },
+          {
+            en: 'Rising global temperatures heighten the frequency and intensity of destructive atmospheric droughts.',
+            id: 'Suhu global yang menghangat mempertinggi frekuensi dan intensitas kekeringan atmosfer yang merusak.',
+            shift: '-en pada heighten meningkatkan bahaya ke level yang lebih parah.'
+          }
+        ]
+      },
+      {
+        affix: '-ly',
+        category: 'suffix-verb',
+        badge: 'Suffix Adverb Keterangan',
+        badgeColor: 'border-emerald-800 text-neonEmerald bg-emerald-950/60',
+        meaning: 'Dengan cara, tingkat kepastian derajat peristiwa, frekuensi.',
+        toneSignal: 'Menunjukkan derajat kebenaran pernyataan (substantially, inadvertently).',
+        examples: [
+          {
+            en: 'The newly implemented tariff substantially reduced international imported steel volume.',
+            id: 'Tarif yang baru diterapkan itu secara substansial (dalam jumlah besar) mengurangi volume baja impor internasional.',
+            shift: '-ly mengukur besarnya dampak kebijakan hukum pada data perdagangan.'
+          },
+          {
+            en: 'The field biologist inadvertently contaminated the sterile biological sample during field collection.',
+            id: 'Ahli biologi lapangan itu tanpa sengaja/lalai mencemari sampel biologis steril selama pengumpulan lapangan.',
+            shift: '-ly menegaskan bahwa tindakan kontaminasi terjadi di luar kehendak sadar peneliti.'
+          }
+        ]
+      }
+    ];
+
+    // Filter and Render Morpheme Cards
+    const catalogGrid = document.getElementById('catalogGrid');
+    const catalogInput = document.getElementById('catalogInput');
+    const catalogCounter = document.getElementById('catalogCounter');
+    const filterPills = document.querySelectorAll('.cat-pill');
+
+    let currentCatalogCategory = 'all';
+    let currentCatalogSearch = '';
+
+    function renderCatalogCards() {
+      catalogGrid.innerHTML = '';
+
+      const filtered = MASTER_AFFIXES_CATALOG.filter(item => {
+        const matchesCategory = currentCatalogCategory === 'all' || item.category === currentCatalogCategory;
+        const query = currentCatalogSearch.toLowerCase().trim();
+        const matchesSearch = query === '' ||
+          item.affix.toLowerCase().includes(query) ||
+          item.meaning.toLowerCase().includes(query) ||
+          item.toneSignal.toLowerCase().includes(query) ||
+          item.examples.some(ex => ex.en.toLowerCase().includes(query) || ex.id.toLowerCase().includes(query));
+
+        return matchesCategory && matchesSearch;
+      });
+
+      catalogCounter.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        catalogGrid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 font-mono text-xs glass-card rounded-3xl border border-white/10">
+            Tidak ada morfem yang cocok dengan kata pencarianmu. Coba kata kunci lain atau pilih filter kategori "Semua".
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'glass-interactive p-6 rounded-3xl text-left border border-white/10 flex flex-col justify-between';
+
+        const examplesHtml = item.examples.map((ex, exIdx) => `
+          <div class="p-3.5 rounded-xl bg-space-900/90 border border-white/10 space-y-1.5 text-xs font-mono">
+            <div class="text-white font-sans font-medium text-xs sm:text-sm">
+              "${ex.en}"
+            </div>
+            <div class="text-slate-400 font-sans italic text-[11px]">
+              Artinya: "${ex.id}"
+            </div>
+            <div class="pt-1.5 border-t border-white/10 text-[10px] text-neonCyan font-mono">
+              ✦ Peran Morfem: ${ex.shift}
+            </div>
+          </div>
+        `).join('');
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <span class="text-xl sm:text-2xl font-mono font-extrabold text-white tracking-wide">${item.affix}</span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold border ${item.badgeColor}">
+                ${item.badge}
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-200 font-medium leading-relaxed mb-3">
+              <strong class="text-slate-100">Fungsi / Arti:</strong> ${item.meaning}
+            </p>
+
+            <div class="p-2.5 rounded-xl bg-space-850/80 border border-white/10 mb-4 text-[11px] font-mono text-purple-300">
+              <span class="text-neonFuchsia font-bold">Sinyal Soal TKA:</span> ${item.toneSignal}
+            </div>
+
+            <!-- Collapsible Example Sentences -->
+            <div class="space-y-2 mt-4">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold block">
+                Contoh Kalimat Akademik TKA:
+              </span>
+              ${examplesHtml}
+            </div>
+          </div>
+        `;
+
+        catalogGrid.appendChild(card);
+      });
+    }
+
+    catalogInput.addEventListener('input', (e) => {
+      currentCatalogSearch = e.target.value;
+      renderCatalogCards();
+    });
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => {
+          p.className = 'cat-pill px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all';
+        });
+        pill.className = 'cat-pill px-3 py-1.5 rounded-lg bg-neonViolet text-white transition-all';
+        currentCatalogCategory = pill.dataset.cat;
+        renderCatalogCards();
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 4. DATA: KUIS DIAGNOSTIK TKA BAHASA INGGRIS (10 SOAL REALISTIS A-E)
+    // Kunci jawaban tersebar seimbang: 
+    // Q1: B | Q2: C | Q3: A | Q4: D | Q5: E | Q6: B | Q7: A | Q8: C | Q9: D | Q10: E
+    // Distribusi Kunci: A:2, B:2, C:2, D:2, E:2 (Tepat & Merata!)
+    // -------------------------------------------------------------
+    const DIAGNOSTIC_QUIZ_DATA = [
+      {
+        type: '01. Vocabulary in Context',
+        excerpt: '"While initial agricultural subsidies promised to bolster rural family revenues, several regional economists warned that the aggressive interventions were inherently <span class=\"text-neonCyan font-bold underline decoration-neonCyan\">counterproductive</span>, exacerbating localized inflation and stifling technical innovation."',
+        prompt: 'Di dalam kutipan wacana ekonomi di atas, kata "counterproductive" paling mendekati makna:',
+        options: [
+          { text: 'A. Highly efficient and financially self-regulating', correct: false },
+          { text: 'B. Generating the exact opposite of the intended objective', correct: true }, // KEY: B
+          { text: 'C. Requiring excessive technological manufacturing capacity', correct: false },
+          { text: 'D. Extremely profitable despite bureaucratic delays', correct: false },
+          { text: 'E. Easily manageable through decentralized planning', correct: false }
+        ],
+        explanation: '<strong>Bedah Morfem:</strong> Prefix <code>counter-</code> (melawan/berlawanan) + Root <code>product</code> (hasil/output) + Suffix <code>-ive</code> (sifat). Kata ini berarti menghasilkan dampak yang justru bertolak belakang dari tujuan semula (merugikan). Konteks teks menegaskan subsidi tersebut malah memperparah inflasi lokal (<em>exacerbating</em>), bukan menyejahterakan warga. (Kunci: B)'
+      },
+      {
+        type: "02. Author's Tone & Attitude",
+        excerpt: '"The technology conglomerate vigorously marketed the diagnostic gadget as a revolutionary breakthrough; however, clinical researchers dismissed the methodology as utterly <span class=\"text-neonFuchsia font-bold underline decoration-neonFuchsia\">pseudoscientific</span> and urged hospitals to disregard <span class=\"text-neonFuchsia font-bold underline decoration-neonFuchsia\">unsubstantiated</span> commercial assertions."',
+        prompt: 'Sikap dan nada penulis (author\'s tone) terhadap perangkat diagnostik tersebut dapat disimpulkan sebagai:',
+        options: [
+          { text: 'A. Highly enthusiastic and unconditionally supportive', correct: false },
+          { text: 'B. Wholly indifferent and philosophically detached', correct: false },
+          { text: 'C. Deeply skeptical and critically dismissive', correct: true }, // KEY: C
+          { text: 'D. Anxious, melancholic, and nostalgically reflective', correct: false },
+          { text: 'E. Ambivalent yet mildly celebratory of future prospects', correct: false }
+        ],
+        explanation: '<strong>Petunjuk Afiks:</strong> Kata <code>pseudo-</code> (palsu/seolah-olah sains) dan <code>un-</code> pada <em>unsubstantiated</em> (tanpa bukti verifikasi) secara gamblang menunjukkan penolakan keras peneliti terhadap klaim produk. Nada penulis jelas <strong>Deeply skeptical and critically dismissive</strong>. (Kunci: C)'
+      },
+      {
+        type: '03. Syntactic Cloze Parsing',
+        excerpt: '"To ensure long-term environmental protection, local municipal authorities highlighted the absolute [ $\\underline{\\hspace{2.5cm}}$ ] of penalizing factories that release untreated chemical effluent into the river basin."',
+        prompt: 'Bentuk kata manakah yang secara tepat mengisi kekosongan sintaksis kalimat rumpang di atas?',
+        options: [
+          { text: 'A. necessity (Noun)', correct: true }, // KEY: A
+          { text: 'B. necessary (Adjective)', correct: false },
+          { text: 'C. necessitate (Verb)', correct: false },
+          { text: 'D. necessarily (Adverb)', correct: false },
+          { text: 'E. necessitous (Adjective arkais)', correct: false }
+        ],
+        explanation: '<strong>Analisis Rangka Sintaksis:</strong> Struktur kalimat: <code>the absolute [ ... ] of penalizing</code>. Bagian rumpang diapit oleh article <em>the</em> dan kata sifat <em>absolute</em>, serta diikuti preposisi <em>of</em>. Posisi ini <strong>wajib diisi oleh Noun (Kata Benda)</strong>. Suffix <code>-ity</code> pada <em>necessity</em> merupakan penanda mutlak kata benda abstrak. (Kunci: A)'
+      },
+      {
+        type: '04. Trap Detection (False Friends)',
+        excerpt: '"The centuries-old archival manuscripts recovered from the monastery provided anthropologists with <span class=\"text-neonAmber font-bold underline decoration-neonAmber\">invaluable</span> primary accounts of indigenous administrative treaties."',
+        prompt: 'Kata "invaluable" pada kalimat ilmiah di atas bermakna:',
+        options: [
+          { text: 'A. Devoid of any historical significance (worthless)', correct: false },
+          { text: 'B. Having counterfeit, dubious, or forged provenance', correct: false },
+          { text: 'C. Difficult to restore due to ancient microbial decay', correct: false },
+          { text: 'D. Having an immense value beyond quantifiable price (priceless)', correct: true }, // KEY: D
+          { text: 'E. Temporarily invalid until legal ratifications are verified', correct: false }
+        ],
+        explanation: '<strong>Waspada Jebakan:</strong> Prefix <code>in-</code> pada <code>invaluable</code> bukan bermakna "tidak bernilai" (worthless). Sebaliknya, artinya adalah nilainya begitu luar biasa besar sehingga melampaui kemampuan uang untuk menilainya (<strong>Priceless / Amat sangat berharga</strong>). Pilihan A adalah jebakan klasik yang memancing siswa ceroboh. (Kunci: D)'
+      },
+      {
+        type: '05. Spatial & Relational Nuance',
+        excerpt: '"The neurobiologist observed that while electrical synaptic transmission took place across <span class=\"text-neonCyan font-bold underline decoration-neonCyan\">intercellular</span> gaps, metabolic polypeptide synthesis occurred exclusively within <span class=\"text-neonCyan font-bold underline decoration-neonCyan\">intracellular</span> compartments."',
+        prompt: 'Berdasarkan kutipan teks di atas, perbedaan lokasi biologis yang tepat adalah:',
+        options: [
+          { text: 'A. Intercellular di dalam rongga inti sel, intracellular di aliran darah bebas', correct: false },
+          { text: 'B. Keduanya hanya berlangsung di luar membran sel setelah organisme mati', correct: false },
+          { text: 'C. Intercellular berada di dalam sitoplasma, intracellular melintasi dinding organel', correct: false },
+          { text: 'D. Keduanya merujuk pada area yang persis sama tanpa pembedaan sitologis', correct: false },
+          { text: 'E. Intercellular berada di antara sel yang berdekatan, intracellular berada di dalam sel itu sendiri', correct: true } // KEY: E
+        ],
+        explanation: '<strong>Pembedaan Morfem Ruang:</strong> Prefix <code>inter-</code> bermakna <em>antar/lintas unit</em> (seperti <em>international</em> = antar negara). Sedangkan prefix <code>intra-</code> bermakna <em>di dalam satu unit internal yang sama</em> (seperti <em>intravenous</em> = di dalam vena). Jawaban E adalah pembedaan yang tepat. (Kunci: E)'
+      },
+      {
+        type: '06. Sentence Paraphrase & Semantic Shift',
+        excerpt: '"Aggressive commercial timber extraction caused unprecedented forest fragmentation, which ultimately triggered extensive wildlife habitat <span class=\"text-neonEmerald font-bold underline decoration-neonEmerald\">degradation</span>."',
+        prompt: 'Manakah parafrasa yang paling akurat merepresentasikan klausa terakhir kalimat di atas?',
+        options: [
+          { text: 'A. Wildlife populations successfully adapted and dramatically increased their geographic range', correct: false },
+          { text: 'B. Natural animal living environments deteriorated substantially in ecological quality', correct: true }, // KEY: B
+          { text: 'C. Conservation rangers successfully restored the pristine ecological balance of the forest', correct: false },
+          { text: 'D. Forest fragmentation allowed diverse predator species to hunt with improved efficiency', correct: false },
+          { text: 'E. The forested territory was swiftly converted into fertile sustainable farmlands', correct: false }
+        ],
+        explanation: '<strong>Bedah Morfem:</strong> Prefix <code>de-</code> (penurunan/kemunduran) + Root <code>grade</code> (derajat kualitas) + Suffix <code>-ation</code> (proses). Kata <code>degradation</code> berarti proses penurunan drastis kualitas suatu sistem. Pilihan B paling tepat: <em>"habitat deteriorated substantially in ecological quality"</em>. (Kunci: B)'
+      },
+      {
+        type: '07. Suffix Nominalization in Scientific Discourse',
+        excerpt: '"The continuous burning of fossil fuels causes global temperatures to rise, and this phenomenon consequently leads to the rapid [ $\\underline{\\hspace{2.5cm}}$ ] of polar ice sheets."',
+        prompt: 'Bentuk kata benda nominalisasi yang paling baku dan lazim digunakan dalam teks akademik ilmiah untuk melengkapi rumpang tersebut adalah:',
+        options: [
+          { text: 'A. liquefaction', correct: true }, // KEY: A
+          { text: 'B. liquefy', correct: false },
+          { text: 'C. liquid', correct: false },
+          { text: 'D. liquidize', correct: false },
+          { text: 'E. liquidly', correct: false }
+        ],
+        explanation: '<strong>Analisis Nominalisasi:</strong> Di belakang frasa determiner dan kata sifat <code>the rapid [ ... ] of</code>, kita membutuhkan kata benda (Noun) proses. Kata kerja dasarnya adalah <em>liquefy</em> (mencair). Bentuk nominalisasi ilmiahnya mengadopsi suffix <code>-action</code> menjadi <strong>liquefaction</strong> (proses pencairan material padat menjadi cair). (Kunci: A)'
+      },
+      {
+        type: '08. Prefix of Scale & Extremity',
+        excerpt: '"Following sudden currency devaluations, the republic plunged into <span class=\"text-neonAmber font-bold underline decoration-neonAmber\">hyperinflation</span>, rendering basic daily groceries unaffordable for ordinary citizens within weeks."',
+        prompt: 'Berdasarkan fungsi awalan "hyper-", kata "hyperinflation" mengindikasikan bahwa laju inflasi tersebut:',
+        options: [
+          { text: 'A. Turun secara drastis di bawah angka nol (deflasi parah)', correct: false },
+          { text: 'B. Berfluktuasi secara wajar mengikuti siklus musiman tahunan', correct: false },
+          { text: 'C. Mengalami lonjakan kenaikan harga barang yang luar biasa ekstrem dan tak terkendali', correct: true }, // KEY: C
+          { text: 'D. Terjadi hanya di dalam satu sektor industri tertentu yang terisolasi', correct: false },
+          { text: 'E. Sengaja distabilkan oleh otoritas perbankan sentral untuk memicu ekspor', correct: false }
+        ],
+        explanation: '<strong>Analisis Morfem Skala:</strong> Prefix <code>hyper-</code> berasal dari bahasa Yunani yang berarti <em>over, above normal, excessive</em> (melampaui batas kewajaran / ekstrem). Kebalikannya adalah <code>hypo-</code> (di bawah kadar). <em>Hyperinflation</em> berarti inflasi yang sangat ekstrem dan merusak daya beli masyarakat. (Kunci: C)'
+      },
+      {
+        type: '09. Evaluative Prefix & Discursive Inference',
+        excerpt: '"The parliamentary watchdog criticized the treasury board for gross <span class=\"text-rose-400 font-bold underline decoration-rose-400\">maladministration</span>, citing millions in public funds routed to non-existent infrastructure projects."',
+        prompt: 'Penggunaan awalan "mal-" pada kata "maladministration" menyiratkan bahwa penulis dan komite memandang tindakan kementerian tersebut sebagai:',
+        options: [
+          { text: 'A. Prosedur standar birokrasi yang sepenuhnya legal dan transparan', correct: false },
+          { text: 'B. Upaya modernisasi administrasi yang patut diapresiasi oleh masyarakat', correct: false },
+          { text: 'C. Kesalahan teknis pembukuan ringan yang tidak menimbulkan kerugian negara', correct: false },
+          { text: 'D. Tata kelola yang buruk, menyimpang, curang, serta merugikan kepentingan publik', correct: true }, // KEY: D
+          { text: 'E. Inovasi finansial yang menghasilkan dividen investasi jangka panjang', correct: false }
+        ],
+        explanation: '<strong>Analisis Evaluatif Prefix:</strong> Prefix <code>mal-</code> berasal dari bahasa Latin <em>malus</em> (bad, evil, wrongful / buruk, cacat, korup). Menempelkannya pada <em>administration</em> memberikan muatan evaluatif celaan keras bahwa tata kelola telah menyimpang atau terjadi korupsi secara struktural. (Kunci: D)'
+      },
+      {
+        type: '10. Negation & Reversibility Analysis',
+        excerpt: '"The marine biologist warned that once coral ecosystems cross critical thermal bleaching thresholds, the structural collapse becomes practically <span class=\"text-neonCyan font-bold underline decoration-neonCyan\">irreversible</span> within human timescales."',
+        prompt: 'Makna paling tepat dari istilah "irreversible" dalam kutipan sains kelautan di atas adalah:',
+        options: [
+          { text: 'A. Sangat mudah dipulihkan dengan teknologi transplantasi buatan manusia', correct: false },
+          { text: 'B. Berlangsung secara berkala setiap dekade saat terjadi siklon tropis', correct: false },
+          { text: 'C. Dapat dihindari asalkan kapal nelayan komersial dilarang melintas', correct: false },
+          { text: 'D. Tidak membahayakan kelangsungan hidup biota laut penghuni karang', correct: false },
+          { text: 'E. Bersifat permanen dan mustahil untuk diputarbalikkan ke kondisi semula', correct: true } // KEY: E
+        ],
+        explanation: '<strong>Bedah Morfem Asimilasi & Negasi:</strong> Prefix <code>ir-</code> (asimilasi dari awalan negasi <code>in-</code> sebelum huruf "r") + Root <code>vers/vert</code> (memutar arah) + Suffix <code>-ible</code> (mampu/bisa). Kata ini menyatakan kondisi kerusakan yang <strong>permanen dan mustahil untuk dikembalikan atau diputarbalikkan lagi ke keadaan asalnya</strong>. (Kunci: E)'
+      }
+    ];
+
+    let currentQuizIndex = 0;
+    let userQuizScore = 0;
+    const userQuizAnswers = {};
+
+    const quizNumberIndicator = document.getElementById('quizNumberIndicator');
+    const quizTypeBadge = document.getElementById('quizTypeBadge');
+    const quizPassageText = document.getElementById('quizPassageText');
+    const quizPrompt = document.getElementById('quizPrompt');
+    const quizOptionsWrapper = document.getElementById('quizOptionsWrapper');
+    const quizFeedbackWrapper = document.getElementById('quizFeedbackWrapper');
+    const quizPrevBtn = document.getElementById('quizPrevBtn');
+    const quizNextBtn = document.getElementById('quizNextBtn');
+    const quizScoreText = document.getElementById('quizScoreText');
+    const quizPillTracker = document.getElementById('quizPillTracker');
+
+    // Build the Top Number Tracker Bubble Pills (1 - 10)
+    function renderPillTracker() {
+      quizPillTracker.innerHTML = '';
+      DIAGNOSTIC_QUIZ_DATA.forEach((_, idx) => {
+        const pill = document.createElement('button');
+        pill.textContent = idx + 1;
+        const isCurrent = idx === currentQuizIndex;
+        const isAnswered = userQuizAnswers[idx] !== undefined;
+
+        let baseClass = 'w-7 h-7 rounded-lg font-mono text-[11px] font-bold transition-all border ';
+        if (isCurrent) {
+          baseClass += 'bg-neonCyan text-slate-950 border-neonCyan shadow-sm shadow-cyan-500/50 scale-105 ';
+        } else if (isAnswered) {
+          baseClass += userQuizAnswers[idx].correct 
+            ? 'bg-emerald-950 text-neonEmerald border-emerald-500/60 ' 
+            : 'bg-rose-950 text-rose-300 border-rose-500/60 ';
+        } else {
+          baseClass += 'bg-space-900 text-slate-400 border-white/10 hover:border-white/30 ';
+        }
+
+        pill.className = baseClass;
+        pill.addEventListener('click', () => {
+          currentQuizIndex = idx;
+          loadQuizQuestion(currentQuizIndex);
+        });
+        quizPillTracker.appendChild(pill);
+      });
+    }
+
+    function loadQuizQuestion(index) {
+      const q = DIAGNOSTIC_QUIZ_DATA[index];
+      quizNumberIndicator.textContent = `Soal ${index + 1} dari ${DIAGNOSTIC_QUIZ_DATA.length}`;
+      quizTypeBadge.textContent = q.type;
+      quizPassageText.innerHTML = q.excerpt;
+      quizPrompt.textContent = q.prompt;
+      quizOptionsWrapper.innerHTML = '';
+      quizFeedbackWrapper.classList.add('hidden');
+
+      quizPrevBtn.disabled = index === 0;
+      quizNextBtn.textContent = index === DIAGNOSTIC_QUIZ_DATA.length - 1 ? 'Selesai & Evaluasi' : 'Lanjut →';
+
+      renderPillTracker();
+
+      q.options.forEach((opt, oIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'w-full text-left p-4 rounded-2xl bg-space-900 border border-white/10 text-xs sm:text-sm font-medium text-slate-200 hover:border-neonCyan hover:bg-space-850 transition-all flex items-center justify-between';
+        btn.innerHTML = `<span>${opt.text}</span>`;
+
+        btn.addEventListener('click', () => handleQuizOptionClick(index, oIdx, q));
+
+        if (userQuizAnswers[index] !== undefined) {
+          btn.disabled = true;
+          if (opt.correct) {
+            btn.className = 'w-full text-left p-4 rounded-2xl bg-emerald-950/70 border border-emerald-500 text-xs sm:text-sm font-bold text-emerald-200';
+          } else if (userQuizAnswers[index].selectedIdx === oIdx) {
+            btn.className = 'w-full text-left p-4 rounded-2xl bg-rose-950/70 border border-rose-500 text-xs sm:text-sm font-semibold text-rose-200';
+          }
+        }
+
+        quizOptionsWrapper.appendChild(btn);
+      });
+
+      if (userQuizAnswers[index] !== undefined) {
+        displayQuizFeedback(q, userQuizAnswers[index].selectedIdx);
+      }
+    }
+
+    function handleQuizOptionClick(qIdx, selectedIdx, questionData) {
+      if (userQuizAnswers[qIdx] !== undefined) return;
+      
+      const isCorrect = questionData.options[selectedIdx].correct;
+      userQuizAnswers[qIdx] = {
+        selectedIdx: selectedIdx,
+        correct: isCorrect
+      };
+
+      if (isCorrect) {
+        userQuizScore++;
+        quizScoreText.textContent = userQuizScore;
+      }
+
+      loadQuizQuestion(qIdx);
+    }
+
+    function displayQuizFeedback(questionData, selectedIdx) {
+      quizFeedbackWrapper.classList.remove('hidden', 'bg-emerald-950/60', 'border-emerald-500/50', 'bg-rose-950/60', 'border-rose-500/50');
+      const isCorrect = questionData.options[selectedIdx].correct;
+
+      if (isCorrect) {
+        quizFeedbackWrapper.classList.add('bg-emerald-950/60', 'border-emerald-500/50');
+        quizFeedbackWrapper.innerHTML = `
+          <div class="flex items-center gap-2 text-neonEmerald font-bold font-mono text-xs uppercase mb-1.5">
+            <span>✓ Jawaban Kamu Benar!</span>
+          </div>
+          <div class="text-slate-200 leading-relaxed font-sans">${questionData.explanation}</div>
+        `;
+      } else {
+        quizFeedbackWrapper.classList.add('bg-rose-950/60', 'border-rose-500/50');
+        quizFeedbackWrapper.innerHTML = `
+          <div class="flex items-center gap-2 text-rose-400 font-bold font-mono text-xs uppercase mb-1.5">
+            <span>✕ Jawaban Kurang Tepat</span>
+          </div>
+          <div class="text-slate-200 leading-relaxed font-sans">${questionData.explanation}</div>
+        `;
+      }
+    }
+
+    quizPrevBtn.addEventListener('click', () => {
+      if (currentQuizIndex > 0) {
+        currentQuizIndex--;
+        loadQuizQuestion(currentQuizIndex);
+      }
+    });
+
+    quizNextBtn.addEventListener('click', () => {
+      if (currentQuizIndex < DIAGNOSTIC_QUIZ_DATA.length - 1) {
+        currentQuizIndex++;
+        loadQuizQuestion(currentQuizIndex);
+      } else {
+        // When finished all questions or at the end
+        if (Object.keys(userQuizAnswers).length === DIAGNOSTIC_QUIZ_DATA.length) {
+          quizFeedbackWrapper.classList.remove('hidden');
+          quizFeedbackWrapper.className = 'p-6 rounded-2xl bg-space-900 border border-neonCyan text-center mt-6 shadow-xl';
+          
+          const percentage = Math.round((userQuizScore / DIAGNOSTIC_QUIZ_DATA.length) * 100);
+          let gradeMessage = '';
+          if (percentage >= 80) {
+            gradeMessage = 'Luar Biasa! Kemampuan analisis morfologimu sudah berada di level universitas tingkat lanjut.';
+          } else if (percentage >= 60) {
+            gradeMessage = 'Bagus! Kamu sudah memahami prinsip dekonstruksi dasar, perkuat pemahaman morfem ruang dan false friends.';
+          } else {
+            gradeMessage = 'Jangan berkecil hati! Pelajari kembali Katalog 40+ Morfem dan tabel jebakan di atas untuk meningkatkan akurasi jawaban.';
+          }
+
+          quizFeedbackWrapper.innerHTML = `
+            <div class="text-3xl font-display font-extrabold text-white mb-2">Simulasi 10 Soal Selesai! 🚀</div>
+            <div class="inline-block my-3 px-4 py-2 rounded-2xl bg-space-850 border border-neonCyan/40">
+              <span class="text-xs font-mono text-slate-400 block uppercase">Skor Diagnostik Akhir</span>
+              <span class="text-3xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonViolet to-neonFuchsia">${userQuizScore} / 10 (${percentage}%)</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-lg mx-auto leading-relaxed">${gradeMessage}</p>
+            <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-center gap-3">
+              <button onclick="restartQuiz()" class="px-4 py-2 rounded-xl bg-space-800 hover:bg-space-750 text-white font-mono text-xs font-bold border border-white/20 transition-all">
+                Ulangi Kuis ↺
+              </button>
+            </div>
+          `;
+        } else {
+          // If some questions are still unanswered, alert softly in the feedback wrapper
+          quizFeedbackWrapper.classList.remove('hidden');
+          quizFeedbackWrapper.className = 'p-4 rounded-xl bg-amber-950/70 border border-amber-500/50 text-amber-200 text-xs text-center mt-4';
+          quizFeedbackWrapper.innerHTML = `Kamu telah berada di soal terakhir, namun masih ada soal yang belum kamu jawab. Gunakan nomor di atas untuk melengkapi seluruh jawabanmu!`;
+        }
+      }
+    });
+
+    window.restartQuiz = function() {
+      for (const key in userQuizAnswers) {
+        delete userQuizAnswers[key];
+      }
+      userQuizScore = 0;
+      currentQuizIndex = 0;
+      quizScoreText.textContent = '0';
+      loadQuizQuestion(0);
+    };
+
+    // -------------------------------------------------------------
+    // INITIALIZATION ON DOM READY
+    // -------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCatalogCards();
+      loadQuizQuestion(0);
+    });
+  </script>
+</body>
+</html>
